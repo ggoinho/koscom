@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:id="@+id/xk_keypad_view">
+
+    <com.softforum.xecurekeypad.XKKeypadTopLayout
+        android:id="@+id/xk_keypad_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#A6ACB8"
+        android:visibility="gone" />
+
+    <com.softforum.xecurekeypad.XKKeypad
+		android:id="@+id/xk_keypad"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"
+		android:background="#dbdde2" />
+    
+</RelativeLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="90dip"
+    android:background="@drawable/list_bg" >
+
+    <ImageView
+        android:id="@+id/virus_img"
+        android:layout_width="42dip"
+        android:layout_height="42dip"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8.67dip"
+        android:src="@drawable/icon_virus" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dip"
+        android:layout_marginLeft="8.67dip"
+        android:layout_toRightOf="@id/virus_img"
+        android:gravity="center_vertical" >
+
+        <RelativeLayout
+            android:id="@+id/layout_package_name"
+            android:layout_width="wrap_content"
+            android:layout_height="16dip" >
+
+            <TextView
+                android:id="@+id/package_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hello"
+                android:textColor="#ffffff"
+                android:textSize="13.33dip" />
+
+            <TextView
+                android:id="@+id/package_name_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hello"
+                android:textColor="#2b2e2f"
+                android:textSize="13.33dip" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_file_path"
+            android:layout_width="wrap_content"
+            android:layout_height="16dip"
+            android:layout_below="@id/layout_package_name" >
+
+            <TextView
+                android:id="@+id/file_path"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hello"
+                android:textColor="#ffffff"
+                android:textSize="13.33dip" />
+
+            <TextView
+                android:id="@+id/file_path_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hello"
+                android:textColor="#707578"
+                android:textSize="13.33dip" />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/layout_virus_name"
+            android:layout_width="wrap_content"
+            android:layout_height="16dip"
+            android:layout_below="@id/layout_file_path" >
+
+            <TextView
+                android:id="@+id/virus_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hello"
+                android:textColor="#ffffff"
+                android:textSize="13.33dip" />
+            <TextView
+                android:id="@+id/virus_name_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hello"
+                android:textColor="#707578"
+                android:textSize="13.33dip" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

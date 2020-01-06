@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "666316166150",
+    "firebase_url": "https://bemyunicorn-5ba61.firebaseio.com",
+    "project_id": "bemyunicorn-5ba61",
+    "storage_bucket": "bemyunicorn-5ba61.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666316166150:android:84bb9822771da8a8249f87",
+        "android_client_info": {
+          "package_name": "kr.co.koscom.omp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "666316166150-jtj1t00foe3pcf1n5g0td5ek4l8648gr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3YT_rOYgaJ1_94if4J4dMnqDvrNV2kEE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "666316166150-jtj1t00foe3pcf1n5g0td5ek4l8648gr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

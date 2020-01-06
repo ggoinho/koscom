@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="#f8f8f8">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnSignPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="#FFFFFF"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="5sp"
+                        android:text="통합인증 간편로그인 등록 및 변경"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:src="@drawable/ico_chevron_right"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#eeeeee"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="#FFFFFF"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="5sp"
+                        android:text="알림 설정 (Push)"/>
+
+                    <ToggleButton
+                        android:id="@+id/alarmYn"
+                        android:layout_width="44dp"
+                        android:layout_height="26dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:background="@drawable/toggle_selector"
+                        android:checked="true"
+                        android:text=""
+                        android:textOff=""
+                        android:textOn="" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#eeeeee"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="#FFFFFF"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="5sp"
+                        android:text="마케팅 수신 동의"/>
+
+                    <ToggleButton
+                        android:id="@+id/adYn"
+                        android:layout_width="44dp"
+                        android:layout_height="26dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:background="@drawable/toggle_selector"
+                        android:checked="true"
+                        android:text=""
+                        android:textOff=""
+                        android:textOn="" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#eeeeee"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="#FFFFFF"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="5sp"
+                        android:text="버전정보"/>
+
+                    <TextView
+                        android:id="@+id/version"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:lineSpacingExtra="6sp"
+                        android:gravity="end"
+                        android:text="V2.0.10"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#eeeeee"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnUseAgreement"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="#FFFFFF"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="5sp"
+                        android:text="서비스이용약관"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:src="@drawable/ico_chevron_right"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#eeeeee"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnInfoAgreement"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="#FFFFFF"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="5sp"
+                        android:text="개인정보취급처리방침"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:src="@drawable/ico_chevron_right"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#eeeeee"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnRightAgreement"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="#FFFFFF"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="5sp"
+                        android:text="저작권보호방침"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:src="@drawable/ico_chevron_right"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#eeeeee"/>
+
+
+            </LinearLayout>
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/progress_bar_login"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="invisible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:background="#FFFFFF">
+
+
+            <kr.co.koscom.omp.view.MyToolbarView
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <kr.co.koscom.omp.view.MyBottomNavigationView
+            android:id="@+id/bottom_navigation_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    <FrameLayout
+        android:id="@+id/nav_view"
+        android:layout_width="232dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:fitsSystemWindows="true"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:fitsSystemWindows="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="100dp"
+                android:layout_height="28dp"
+                android:src="@drawable/logo_top"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/btnMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="11dp"
+                android:orientation="vertical"
+                android:padding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ico_menu" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnAlarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btnMenu"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ico_alert" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/alarm"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="44dp"
+                android:background="@drawable/shape_rect_fill6"
+                android:gravity="center"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="4sp"
+                android:text="0"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/mainScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:id="@+id/main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/noticeZone"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:background="#4e4e9e"
+                    android:visibility="gone">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/gradient2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintWidth_percent="0.2" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginLeft="16dp"
+                        android:src="@drawable/ico_notice_w"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/notice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="47dp"
+                        android:lineSpacingExtra="5sp"
+                        android:text="비상장주식거래 마켓 플랫폼 Be My Unicorn 오픈"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/myDealZone"
+                    android:layout_width="match_parent"
+                    android:layout_height="193dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.95"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_purple_1" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="49dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginBottom="10dp"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="8sp"
+                            android:text="나의 협상 관리"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/myNego"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_marginRight="18dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/shape_rect_fill21"
+                            android:gravity="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:letterSpacing="-0.03"
+                                android:lineSpacingExtra="7sp"
+                                android:text="협상관리 &gt;"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/vpMyDeal"
+                        android:layout_width="match_parent"
+                        android:layout_height="132dp"
+                        android:layout_marginBottom="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="39dp"
+                        android:layout_height="18dp"
+                        android:layout_marginLeft="23dp"
+                        android:layout_marginTop="56dp"
+                        android:background="@drawable/shape_rect_fill35"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/dealPage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="5sp"
+                            android:text="1"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="5sp"
+                            android:text="/"
+                            android:textColor="#e9e9e9"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/dealTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="5sp"
+                            android:text="15"
+                            android:textColor="#e9e9e9"
+                            android:textSize="12sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/myContractZone"
+                    android:layout_width="match_parent"
+                    android:layout_height="204dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="49dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginBottom="10dp"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="8sp"
+                            android:text="나의 계약 및 체결 관리"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/myContract"
+                            android:layout_width="130dp"
+                            android:layout_height="30dp"
+                            android:layout_marginRight="18dp"
+                            android:layout_marginBottom="5dp"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:background="@drawable/shape_rect_fill21"
+                            android:gravity="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:letterSpacing="-0.03"
+                                android:lineSpacingExtra="7sp"
+                                android:text="계약 및 체결관리>"
+                                android:textColor="#000826"
+                                android:textSize="13sp" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/vpMyContract"
+                        android:layout_width="match_parent"
+                        android:layout_height="132dp"
+                        android:layout_marginBottom="23dp"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="39dp"
+                        android:layout_height="18dp"
+                        android:layout_marginLeft="23dp"
+                        android:layout_marginTop="56dp"
+                        android:background="@drawable/shape_rect_fill10"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/contractPage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="5sp"
+                            android:text="1"
+                            android:textColor="#000000"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="5sp"
+                            android:text="/"
+                            android:textColor="#666666"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/contractTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="5sp"
+                            android:text="15"
+                            android:textColor="#666666"
+                            android:textSize="12sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <ImageView
+                        android:id="@+id/btnContract"
+                        android:layout_width="64dp"
+                        android:layout_height="57dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="2dp"
+                        android:src="@drawable/btn_go"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="#e6e8f4" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="8sp"
+                        android:text="주문현황"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/btnOrderList"
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/shape_rect_fill21"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="7sp"
+                            android:text="더보기 &gt;"
+                            android:textColor="#000826"
+                            android:textSize="13sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/listOrder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="6dp"
+                        tools:listitem="@layout/list_item_orders" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/nothing1"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ico_pointmark_g_50" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="4sp"
+                            android:text="조회된 내용이 없습니다"
+                            android:textColor="#555555"
+                            android:textSize="14sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="#e6e8f4" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="8sp"
+                        android:text="체결 현황"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/btnOrderedList"
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/shape_rect_fill21"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="7sp"
+                            android:text="더보기 &gt;"
+                            android:textColor="#000826"
+                            android:textSize="13sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <include layout="@layout/list_title_ordered" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/listOrdered"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        tools:listitem="@layout/list_item_ordered" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/nothing2"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ico_pointmark_g_50" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="4sp"
+                            android:text="조회된 내용이 없습니다"
+                            android:textColor="#555555"
+                            android:textSize="14sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#e6e8f4" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/btnUseAgreement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="14sp"
+                        android:text="이용약관"
+                        android:textColor="#555555"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/btnInfoAgreement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="14sp"
+                        android:text="개인정보처리방침"
+                        android:textColor="#2b366d"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnRightAgreement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="14sp"
+                        android:text="저작권보호방침"
+                        android:textColor="#555555"
+                        android:textSize="14sp" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="172dp"
+                    android:background="#2d3554"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp">
+
+                    <ImageView
+                        android:layout_width="90dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/logo_koscom_w" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_horizontal"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="21sp"
+                        android:text="서울시 영등포구 여의나루로 76 (주)코스콤"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="21sp"
+                        android:text=" 대표전화  02-767-7114"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_horizontal"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="9sp"
+                        android:text="© 2019 KOSCOM CORP."
+                        android:textColor="#dddee3"
+                        android:textSize="11sp" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <ImageView
+            android:id="@+id/btnTop"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="63dp"
+            android:src="@drawable/btn_top"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progress_bar_login"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <kr.co.koscom.omp.view.MyBottomNavigationView
+        android:id="@+id/bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

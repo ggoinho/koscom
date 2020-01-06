@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#FFFFFF">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ico_fingerprint"/>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/btnFingerRegist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="49dp"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="5sp"
+                        android:text="바이오인증 등록"
+                        android:paddingLeft="10dp"
+                        android:gravity="center_vertical"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="19dp"
+                    android:src="@drawable/ico_pincode"/>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/btnPinRegist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="49dp"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="5sp"
+                        android:text="핀코드 등록"
+                        android:paddingLeft="10dp"
+                        android:gravity="center_vertical"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#eeeeee"/>
+                    <TextView
+                        android:id="@+id/btnPinChange"
+                        android:layout_width="wrap_content"
+                        android:layout_height="49dp"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="5sp"
+                        android:text="핀코드 변경"
+                        android:paddingLeft="10dp"
+                        android:gravity="center_vertical"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="19dp"
+                    android:src="@drawable/ico_pattern"/>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/btnPatternRegist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="49dp"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="5sp"
+                        android:text="패턴 등록"
+                        android:paddingLeft="10dp"
+                        android:gravity="center_vertical"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#eeeeee"/>
+                    <TextView
+                        android:id="@+id/btnPatternChange"
+                        android:layout_width="wrap_content"
+                        android:layout_height="49dp"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="5sp"
+                        android:text="패턴 변경"
+                        android:paddingLeft="10dp"
+                        android:gravity="center_vertical"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee"/>
+
+
+
+        </LinearLayout>
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progress_bar_login"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="invisible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:background="#FFFFFF">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:textColor="#000826"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="1sp"
+                android:gravity="center_horizontal"
+                android:text="통합인증 간편로그인 등록 및 변경"/>
+            <LinearLayout
+                android:id="@+id/btnClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ico_expand_close"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

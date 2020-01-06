@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Be My\nUNICORN</string>
+    <string name="contact_desc">협상내용 입력 후 확인을 누르시면 상대방에게 <font color='#e8055a'>계약서가 자동생성</font>되어 전달됩니다.</string>
+    <string name="chat_warning">계약서 전자서명 이전에 <font color='#e8055a'>채팅방을 나가시면 협상이 결렬되며 이전 채팅내용이 삭제</font>됩니다.</string>
+    <string name="contract_right_deny">등록기업에서 주권미발행확인서 <font color='#e8055a'>발급</font>을 <font color='#e8055a'>거부</font>하였습니다</string>
+    <string name="tutorian_desc1">회원가입 시 <u><b>공인인증 또는 DID인증 후 계좌정보만 등록</b></u>화면 비상장주식거래를 바로 시작할 수 있습니다.</string>
+    <string name="tutorian_desc2">화면 아래의 \'주문제출\'버튼을 누른 후, 원하는 <u><b>종목의 수량과 단가를 입력</b></u>하면 주문이 제출됩니다.</string>
+    <string name="tutorian_desc3">원하는 주문에 \'협상\' 버튼을 눌러 <u><b>협상요청을 한 후, 협상채팅창에서 채팅으로 협상</b></u>을 진행합니다.</string>
+    <string name="tutorian_desc4">채팅창에서 <u><b>계약서에 전자서명완료가 되면 계약이 완료되며, 매수자의 매수대금 입금이 완료</b></u>되면 계약이 체결됩니다.</string>
+    <string name="login_title"><![CDATA[투자자 유형<font color=#757575>을 선택하여 주십시오</font>]]></string>
+    <string name="login_auth_type"><![CDATA[가입 시 인증한 인증방법<font color=#757575>을 선택하여 주십시오</font>]]></string>
+    <string name="login_auth_desc">개인의 경우 인증방식은 2가지 모두 등록할 수 있습니다.\n가입 시 인증한 인증방식으로 로그인 한 후 My Page에서\n인증방식 추가가 가능합니다.</string>
+    <string name="seller_warning"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;귀사 <font color=\'#3348ae\'>%1$s</font><font color=\'#333333\'>(매도의향자)가</font> <font color=\'#e8055a\'>%2$s</font> 현재 <font color=\'#3348ae\'>%3$s회사</font> 보통주 주식의 %4$s주(바로 전 주주명부에 나타난 수량 전체)에 대해 현재 별도 매매 등 처분을 하지 아니하여 %5$s주 전체에 대해 보유하고 있음을 <font color=\'#3348ae\'>%6$s회사</font>에 확인요청을 하고자 함.]]></string>
+</resources>
+

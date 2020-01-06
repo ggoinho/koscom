@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <!-- Title Layout -->
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="42.67dip"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/title_port" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4.00dip"
+            android:src="@drawable/title_port_logo" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/layout_close_button"
+            android:src="@drawable/title_port_line" />
+
+        <LinearLayout
+            android:id="@+id/layout_close_button"
+            android:layout_width="49.33dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/exit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/title_port_close_button"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Button Area -->
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="64.00dip"
+        android:layout_below="@id/title"
+        android:background="@drawable/button_bg" >
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="4.00dip"
+            android:background="@drawable/scan_start_port_button"
+            android:text="휴대폰 검사"
+            android:textColor="#b7e47a"
+            android:textSize="13.33dip" />
+    </RelativeLayout>
+
+    <!-- Info Area -->
+
+    <LinearLayout
+        android:id="@+id/infoarea"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/relativeLayout1"
+        android:background="@drawable/info_bar"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/scan_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#375d9e" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="파일 검사"
+            android:textColor="#424653" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/infoarea"
+        android:background="#ecf0f2" >
+
+        <ImageView
+            android:id="@+id/nofile_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/nofile_icon" />
+
+        <RelativeLayout
+            android:id="@+id/nofile_textlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nofile_icon"
+            android:layout_centerInParent="true" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="검사 결과가 없습니다."
+                android:textColor="#ffffff"
+                android:textSize="12dip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0.67dip"
+                android:text="검사 결과가 없습니다."
+                android:textColor="#a3aaad"
+                android:textSize="12dip" />
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </ListView>
+    </RelativeLayout>
+
+</RelativeLayout>

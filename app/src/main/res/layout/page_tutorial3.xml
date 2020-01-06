@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:textColor="#ffffff"
+        android:lineSpacingExtra="3sp"
+        android:gravity="center_horizontal"
+        android:text="쉽고 빠른 UNICORN 비상장주식거래"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="101dp"
+        android:layout_height="28dp"
+        android:background="@drawable/shape_rect_fill30"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#4bada0"
+            android:lineSpacingExtra="6sp"
+            android:gravity="center_horizontal"
+            android:text="03"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="15sp"
+            android:textColor="#ffffff"
+            android:lineSpacingExtra="5sp"
+            android:gravity="center_horizontal"
+            android:text="협상하기"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="13sp"
+        android:textColor="#ffffff"
+        android:letterSpacing="-0.03"
+        android:lineSpacingExtra="5sp"
+        android:gravity="center_horizontal"
+        android:text="@string/tutorian_desc3" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="124dp"
+            android:layout_height="260dp"
+            android:src="@drawable/tutorial_img_05"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="124dp"
+            android:layout_height="260dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/tutorial_img_06"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

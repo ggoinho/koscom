@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="kr.co.koscom.omp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- vguard 권한 설정 추가-->
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.DELETE_PACKAGES" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES"/>
+    <!-- Android 10부터, 실시간 감시 서비스를 통한 악성 앱 탐지 감지 시
+    해당 내용을 사용자에게 즉각적으로 알리기 위해서는 아래의 퍼미션이 요구 됨에 따라 추가-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+        <application
+            android:name="kr.co.koscom.omp.BaseApplication"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            android:networkSecurityConfig="@xml/network_vguard_config">
+            <activity android:name=".SplashActivity"
+                android:screenOrientation="portrait">
+                <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
+
+                    <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>
+            </activity>
+            <activity android:name=".TutorialActivity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name=".MainActivity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name=".OrderListActivity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name=".OrderPopupActivity"
+                android:theme="@style/AppTheme.Transparent"/>
+            <activity android:name=".ContractPopupActivity"
+                android:theme="@style/AppTheme.Transparent"/>
+            <activity android:name=".ChatListActivity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name=".LoginActivity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name=".DidReceiverActivity">
+                <intent-filter>
+                    <action android:name="android.intent.action.VIEW"/>
+                    <category android:name="android.intent.category.DEFAULT"/>
+                    <category android:name="android.intent.category.BROWSABLE" />
+                    <data android:scheme="bemyunicorn" android:host="did" />
+                </intent-filter>
+            </activity>
+            <activity android:name=".Regist1Activity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name=".PersonRegist2Activity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name=".PersonRegist3Activity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name=".CompanyRegist2Activity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name=".CompanyRegist3Activity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name=".AgreementActivity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name=".OrderDetailActivity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".OrderWriteActivity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".BuyWriteActivity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".SearchActivity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".Search2Activity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".WebActivity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".ContractDetailActivity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".EscrowBuyerActivity"
+                android:theme="@style/AppTheme.Transparent"/>
+            <activity android:name=".EscrowSellerActivity"
+                android:theme="@style/AppTheme.Transparent"/>
+            <activity android:name=".ChatbotLoginActivity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name=".CreateGroupChannelActivity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name=".GroupChannelActivity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name="com.sendbird.syncmanager.utils.PhotoViewerActivity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name="com.sendbird.syncmanager.utils.MediaPlayerActivity"
+                android:screenOrientation="portrait">
+            </activity>
+            <activity android:name=".SettingActivity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".MyPageActivity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".CustomerCenterActivity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".InvestmentActivity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".TradingActivity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".ServiceOutActivity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".RegistActivity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".SignLaunchActivity"
+                android:screenOrientation="portrait"/>
+
+            <!-- 검사 Activity -->
+            <activity
+                android:name="kr.co.vguard2.ScanActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:theme="@android:style/Theme.NoTitleBar"
+                android:screenOrientation="portrait" >
+            </activity>
+            <activity
+                android:name="com.softforum.xecurekeypad.XKKeypadView"
+                android:theme="@android:style/Theme.Translucent"
+                android:configChanges="orientation|keyboardHidden" >
+            </activity>
+
+            <service
+                android:name=".DownloadService"
+                android:enabled="true"
+                android:exported="false" />
+            <service android:name=".fcm.MyFirebaseMessagingService">
+                <intent-filter>
+                    <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                </intent-filter>
+            </service>
+            <!-- 실시간 검사 서비스 -->
+            <service android:name="kr.co.vguard2.RealtimeScanningService" android:exported="false"/>
+            <!-- 실시간 검사 Receiver -->
+            <receiver android:name="kr.co.vguard2.RealtimeScanningReceiver"/>
+
+            <provider
+                android:authorities="kr.co.koscom.omp.fileProvider"
+                android:name="androidx.core.content.FileProvider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+                <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_path"/>
+            </provider>
+        </application>
+
+    </manifest>

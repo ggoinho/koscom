@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="9dp"
+    android:layout_marginTop="13dp"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+    <include
+        android:id="@+id/layout_group_chat_info"
+        layout="@layout/partial_group_chat_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/text_group_chat_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingTop="2dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="3dp"
+        android:background="@drawable/shape_rect_fill10"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/text_group_chat_sender_nicname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#3348ae"
+            android:lineSpacingExtra="6sp"
+            android:text="매도닉(조정석)"
+            android:visibility="gone"/>
+
+        <TextView
+            android:text="님이 협상요청 수락을 하였습니다"
+            android:id="@+id/text_group_chat_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#555555"
+            android:lineSpacingExtra="6sp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</LinearLayout>
+

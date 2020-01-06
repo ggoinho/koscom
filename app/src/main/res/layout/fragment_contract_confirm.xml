@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="15dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:lineSpacingExtra="-1sp"
+                android:textColor="#000826"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                tools:text="계약 내용" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btnHide"
+                android:layout_width="30dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ico_contract_write_k" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="5sp"
+            android:text="계약자 정보"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="16dp"
+            android:background="#cccccc" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp">
+
+                <TextView
+                    android:id="@+id/mygubnTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="주문게시자"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/myname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4sp"
+                    android:text="나아나(김희응)"
+                    android:textColor="#3348ae"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mygubnTitle" />
+
+                <TextView
+                    android:id="@+id/mygubn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/shape_rect_fill11"
+                    android:lineSpacingExtra="5sp"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="1dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="1dp"
+                    android:text="매수"
+                    android:textColor="#e8055a"
+                    android:textSize="13sp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="4dp"
+                    android:lineSpacingExtra="21sp"
+                    android:text="나"
+                    android:textColor="#333333"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="#eeeeee" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp">
+
+                <TextView
+                    android:id="@+id/hisGubnTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="협상상대자"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/hisname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4sp"
+                    android:text="닉네임(조정석)"
+                    android:textColor="#3348ae"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hisGubnTitle" />
+
+                <TextView
+                    android:id="@+id/hisGubn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/shape_rect_fill12"
+                    android:lineSpacingExtra="5sp"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="1dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="1dp"
+                    android:text="매수"
+                    android:textColor="#3348ae"
+                    android:textSize="13sp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="#cccccc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10.5dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="3.5dp"
+            android:lineSpacingExtra="5sp"
+            android:text="협상내역"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="#cccccc" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:background="#f8f8f8"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="17sp"
+                    android:paddingLeft="10dp"
+                    android:text="수량"
+                    android:textColor="#333333"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:lineSpacingExtra="4sp"
+                    android:text="2,000"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:gravity="end"
+                    android:lineSpacingExtra="4sp"
+                    android:text="주"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:background="#f8f8f8"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="17sp"
+                    android:paddingLeft="10dp"
+                    android:text="가격"
+                    android:textColor="#333333"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:lineSpacingExtra="4sp"
+                    android:text="5,000"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:gravity="end"
+                    android:lineSpacingExtra="4sp"
+                    android:text="원"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:background="#f8f8f8"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="17sp"
+                    android:paddingLeft="10dp"
+                    android:text="금액"
+                    android:textColor="#333333"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/amount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:lineSpacingExtra="4sp"
+                    android:text="10,000,000"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:gravity="end"
+                    android:lineSpacingExtra="4sp"
+                    android:text="원"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:background="#f8f8f8"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="17sp"
+                    android:paddingLeft="10dp"
+                    android:text="결제마감일"
+                    android:textColor="#333333"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/payEndDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#e8055a"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="2019.08.20" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cccccc" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/contractZone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/rightStatusReady"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10.5dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/shape_rect_fill15"
+                android:gravity="center_horizontal"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="2sp"
+                android:paddingTop="9dp"
+                android:paddingBottom="9dp"
+                android:text="주권미발행확인서 미발급"
+                android:textColor="#3348ae"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/rightStatusOk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10.5dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/shape_rect_fill15"
+                android:gravity="center_horizontal"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="2sp"
+                android:paddingTop="9dp"
+                android:paddingBottom="9dp"
+                android:text="주권미발행확인서 발급완료"
+                android:textColor="#3348ae"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/rightStatusDeny"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10.5dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/shape_rect_fill15"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="9dp"
+                android:paddingBottom="9dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="-0.03"
+                    android:lineSpacingExtra="2sp"
+                    android:text="주권미발행확인서 "
+                    android:textColor="#3348ae"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="-0.03"
+                    android:lineSpacingExtra="2sp"
+                    android:text="발급거부"
+                    android:textColor="#e8055a"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="4sp"
+                        android:text="상대의 서명상태"
+                        android:textColor="#333333"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:clipToPadding="false"
+                        android:orientation="vertical"
+                        android:padding="3dp">
+
+                        <TextView
+                            android:id="@+id/hisSign"
+                            android:layout_width="match_parent"
+                            android:layout_height="58dp"
+                            android:background="@drawable/shape_rect_fill7"
+                            android:elevation="1dp"
+                            android:gravity="center"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="5sp"
+                            android:text="서명 대기중입니다"
+                            android:textColor="#555555"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="11dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="4sp"
+                        android:text="나의 서명 상태"
+                        android:textColor="#333333"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:clipToPadding="false"
+                        android:orientation="vertical"
+                        android:padding="3dp">
+
+                        <TextView
+                            android:id="@+id/mySign"
+                            android:layout_width="match_parent"
+                            android:layout_height="58dp"
+                            android:background="@drawable/shape_rect_fill7"
+                            android:elevation="1dp"
+                            android:gravity="center"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="5sp"
+                            android:text="서명 대기중입니다"
+                            android:textColor="#555555"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/btnSign"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="19dp"
+                android:background="#3348ae"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ico_confirm_check_w" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:lineSpacingExtra="5sp"
+                    android:text="전자서명"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/rightZone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#dddddd" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="17dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/buyerZone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="5sp"
+                            android:text="※ 매도자의 주주정합성은 등록기업에서 입력
+한 주주명부를 기반으로 진행되었습니다. 안전
+한 거래를 위해 등록기업으로 부터 매도자의 주
+권미발행 확인서를 발급받아 그 정합성을 체크
+하실 수 있습니다. 발급된 주권미발행확인서가
+있더라도 발급일을 잘 확인하시고 전자서명을
+진행하시기 바랍니다."
+                            android:textColor="#333333"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="5sp"
+                            android:text="※ 매도자만 등록기업에 주권미발행확인서 발급요청을 할 수 있습니다. 아래 발급요청을 클릭 하시면 매도자에게 주권미발행 확인서 확인요청이 가능합니다."
+                            android:textColor="#333333"
+                            android:textSize="13sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/sellerZone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="5sp"
+                            android:text="※ 보유하고 있는 주식의 해당 회사에게 주권미발행확인서 발급요청이 가능합니다."
+                            android:textColor="#333333"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="5sp"
+                            android:text="※ 발급요청 시 필수로 아래 1개 항목에 체크하
+셔야 주권미발행확인서 발급요청 가능합니다."
+                            android:textColor="#333333"
+                            android:textSize="13sp" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp">
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/chkConfirm"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:translationX="-5dp" />
+
+                            <TextView
+                                android:id="@+id/sellerWarning"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:letterSpacing="-0.03"
+                                android:lineSpacingExtra="5sp"
+                                android:text="@string/seller_warning"
+                                android:textColor="#333333"
+                                android:textSize="13sp" />
+                        </RelativeLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.core.widget.NestedScrollView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#dddddd" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/btnIssue"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="10dp"
+                android:background="#3348ae"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ico_confirm_check_w" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:lineSpacingExtra="5sp"
+                    android:text="발급요청"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btnClose"
+        android:layout_width="28dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/shape_rect_fill14"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ico_chevron_left_w" />
+
+        <TextView
+            android:layout_width="11dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:lineSpacingExtra="3sp"
+            android:text="계약내용"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+    </LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
