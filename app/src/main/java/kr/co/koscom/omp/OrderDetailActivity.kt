@@ -475,7 +475,7 @@ class OrderDetailActivity : AppCompatActivity() {
                         /*ViewUtils.alertDialog(this, "성공적으로 취소했습니다."){
 
                         }*/
-                    } else {
+                    } else { 
                         btnStar.setImageResource(R.drawable.ico_start_y)
                         ViewUtils.alertDialog(this, "성공적으로 등록했습니다."){
 
