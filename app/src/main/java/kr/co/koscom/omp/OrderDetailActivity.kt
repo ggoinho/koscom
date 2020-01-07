@@ -560,7 +560,8 @@ class OrderDetailActivity : AppCompatActivity() {
 
             view = inflater.inflate(R.layout.page_order_chart, container, false)
 
-            view.findViewById<TextView>(R.id.stockCode).text = data.ENTP_NO
+            //view.findViewById<TextView>(R.id.stockCode).text = data.ENTP_NO
+            view.findViewById<TextView>(R.id.stockCode).text = data.STK_CODE
             //view.findViewById<TextView>(R.id.stockKind).text = data.CORP_HANGL_NM
             view.findViewById<TextView>(R.id.count).text = numberFormat.format(data.DEAL_QTY ?: 0)
             view.findViewById<TextView>(R.id.price).text = numberFormat.format(data.DEAL_UPRC ?: 0)
