@@ -25,7 +25,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_buy_write.*
 import kotlinx.android.synthetic.main.activity_order_write.*
-import kotlinx.android.synthetic.main.activity_order_write.ableCount
+//import kotlinx.android.synthetic.main.activity_order_write.ableCount
 import kotlinx.android.synthetic.main.activity_order_write.btnCancel
 import kotlinx.android.synthetic.main.activity_order_write.btnSave
 import kotlinx.android.synthetic.main.activity_order_write.btnSearch
@@ -108,13 +108,13 @@ class OrderWriteActivity : AppCompatActivity() {
                 }
             })
         }
-        iv_popup.setOnClickListener {
+        /*iv_popup.setOnClickListener {
             frame_popup.visibility = View.VISIBLE
         }
 
         iv_close.setOnClickListener {
             frame_popup.visibility = View.GONE
-        }
+        }*/
 
         btnCloseCountOrder.setOnClickListener {
             countOrder.setText("")

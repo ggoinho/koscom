@@ -121,62 +121,7 @@
                                 android:layout_marginStart="4dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/shape_rect_fill21"
-                                android:paddingLeft="10dp">
-
-                                <TextView
-                                    android:id="@+id/tv_re_title"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="11dp"
-                                    android:lineSpacingExtra="3sp"
-                                    android:text="매도"
-                                    android:textColor="#3348ae"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-
-                                <TextView
-                                    android:id="@+id/tv_re_sub_title"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/tv_re_title"
-                                    android:lineSpacingExtra="3sp"
-                                    android:text="(매도가능 수량 : "
-                                    android:textColor="#000000"
-                                    android:textSize="15sp" />
-
-                                <TextView
-                                    android:id="@+id/ableCount"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/tv_re_title"
-                                    android:layout_toRightOf="@id/tv_re_sub_title"
-                                    android:hint="1,000,000"
-                                    android:textColor="#000000"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/tv_re_title"
-                                    android:layout_toRightOf="@id/ableCount"
-                                    android:lineSpacingExtra="3sp"
-                                    android:text="주)"
-                                    android:textColor="#000000"
-                                    android:textSize="15sp" />
-
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:id="@+id/iv_popup"
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_margin="6dp"
-                                    android:src="@drawable/ico_qm_b" />
-
-
-                            </RelativeLayout>
+                                android:paddingLeft="10dp"/>
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
 

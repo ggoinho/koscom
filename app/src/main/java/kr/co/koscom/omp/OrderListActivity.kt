@@ -225,6 +225,46 @@ class OrderListActivity : AppCompatActivity() {
 
         tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
             override fun onTabReselected(tab: TabLayout.Tab?) {
+                val text = tab?.customView as TextView?
+
+                text?.setTypeface(null, Typeface.BOLD)
+                text?.setTextColor(Color.parseColor("#ffffff"))
+
+                lastPage = false
+
+                search.text = ""
+                listData.clear()
+                contractList.clear()
+
+
+                if(tab!!.position == 0){
+                    subFragment.visibility = View.INVISIBLE
+
+                    search("")
+
+                    ll_orderList.visibility = View.VISIBLE
+                }
+                else if(tab.position == 1){
+                    subFragment.visibility = View.INVISIBLE
+
+                    searchContract()
+
+                    ll_orderList.visibility = View.GONE
+                }
+                else if(tab.position == 2){
+
+                    if(fragment == null){
+                        val transaction = supportFragmentManager.beginTransaction()
+                        fragment = WebFragment()
+                        var bundle = Bundle()
+                        bundle.putString("url", BuildConfig.SERVER_URL + "/mobile/invst/nltdAllStockTrdSt")
+                        fragment!!.arguments = bundle
+                        transaction.replace(R.id.subFragment, fragment!!)
+                        transaction.commitAllowingStateLoss()
+                    }
+
+                    subFragment.visibility = View.VISIBLE
+                }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
