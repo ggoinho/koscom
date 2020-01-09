@@ -44,6 +44,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import kotlin.Unit;
@@ -605,6 +606,36 @@ class GroupChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             super.bind(message, isNewDay);
 
             String dataType = StringUtils.substringBetween(message.getData() + "|", "data_type^", "|");
+
+            if ("chat_info".equals(dataType)) {
+                String infoMessage = "";
+
+                Map<String, String> messages = new HashMap<String, String>();
+                for (String s : StringUtils.split(message.getData(), "|")) {
+                    String[] keyValue = StringUtils.split(s, "^");
+                    if (keyValue.length == 2) {
+                        if (keyValue[0].contains("message")) {
+                            messages.put(keyValue[0], keyValue[1]);
+                        }
+                    }
+
+                }
+
+                Set<String> keys = messages.keySet();
+                int index = 0;
+                for (String key : keys) {
+                    infoMessage += messages.get(key);
+                    index++;
+                    if (keys.size() < index) {
+                        infoMessage += "\n";
+                    }
+                }
+
+                messageText.setText(infoMessage);
+            }
+            else {
+                messageText.setText(WebUtil.htmlToText(StringUtils.substringBetween(message.getData() + "|", "message01^", "|")));
+            }
             //senderNicname.setText(message.getData());
 
             //if("chat_date".equals(dataType)){
@@ -612,7 +643,7 @@ class GroupChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             //    Log.d(GroupChatAdapter.class.getSimpleName(), "message gone : " + ToStringBuilder.reflectionToString(message));
             //}
             //else{
-                messageText.setText(WebUtil.htmlToText(StringUtils.substringBetween(message.getData() + "|", "message01^", "|")));
+//                messageText.setText(WebUtil.htmlToText(StringUtils.substringBetween(message.getData() + "|", "message01^", "|")));
                 //messageText.setText(messageText.getText().toString() + " " + findMentionUsers(message.getMentionedUsers()));
             //}
 
