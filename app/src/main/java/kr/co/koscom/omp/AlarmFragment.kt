@@ -284,7 +284,7 @@ class AlarmFragment : Fragment() {
             holder.gubnNotice.visibility = View.GONE
             holder.gubnMessage.visibility = View.VISIBLE
             holder.gubn.text = data.ANC_TP_NAME
-            holder.date.text = data.ANC_DATE
+            holder.date.text = data.REG_DTTM_FORM
             holder.readYn.text = data.ANC_YN
             holder.message.text = data.ANC_CNTS
 

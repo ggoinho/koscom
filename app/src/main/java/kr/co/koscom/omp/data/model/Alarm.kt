@@ -26,6 +26,7 @@ class Alarm {
         var ANC_DATE: String? = null
         var ANC_YN: String? = null
         var LANDING_URL: String? = null
+        var REG_DTTM_FORM: String? = null
 
         override fun toString(): String {
             return ToStringBuilder.reflectionToString(this);
