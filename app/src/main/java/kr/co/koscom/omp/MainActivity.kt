@@ -89,6 +89,11 @@ class MainActivity : AppCompatActivity() {
         negoViewModel = ViewModelProviders.of(this, viewModelFactory).get(NegoViewModel::class.java)
         orderViewModel = ViewModelProviders.of(this, viewModelFactory).get(OrderViewModel::class.java)
 
+        logo.setOnClickListener {
+            Log.d("logo", "logo")
+            search()
+        }
+
         myNego.setOnClickListener {
             var intent = Intent(this@MainActivity, MyPageActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
