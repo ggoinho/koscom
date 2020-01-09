@@ -42,6 +42,7 @@ import com.sendbird.syncmanager.utils.PreferenceUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_chatlist.view.*
 import kotlinx.android.synthetic.main.fragment_alarm.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
@@ -114,6 +115,12 @@ class AlarmFragment : Fragment() {
                 Log.d(AlarmFragment::class.simpleName, "viewItem($itemIndex)")
             }
         });
+
+        readAll.setOnClickListener {
+            updateRead("all")
+            listData.clear();
+            search()
+        }
 
         listView.setOnClickListener {
             var alertBuilder = AlertDialog.Builder(activity!!);

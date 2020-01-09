@@ -84,7 +84,7 @@ class OrderWriteActivity : AppCompatActivity() {
 
         btnSearch.setOnClickListener {
             startActivityForResult(
-                Intent(this@OrderWriteActivity, SearchActivity::class.java),
+                Intent(this@OrderWriteActivity, OrderSearchActivity::class.java),
                 STOCK_SEARCH
             )
         }

@@ -89,6 +89,8 @@
                 android:screenOrientation="portrait"/>
             <activity android:name=".SearchActivity"
                 android:screenOrientation="portrait"/>
+            <activity android:name=".OrderSearchActivity"
+                android:screenOrientation="portrait"/>
             <activity android:name=".Search2Activity"
                 android:screenOrientation="portrait"/>
             <activity android:name=".WebActivity"
