@@ -57,6 +57,8 @@ class EscrowBuyerActivity : AppCompatActivity() {
         viewModelFactory = Injection.provideViewModelFactory(this)
         chatViewModel = ViewModelProviders.of(this, viewModelFactory).get(ChatViewModel::class.java)
 
+        submitEndDate.text = null
+
         btnClose.setOnClickListener {
             finish()
         }
