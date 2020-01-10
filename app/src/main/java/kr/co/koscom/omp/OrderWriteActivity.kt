@@ -25,7 +25,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_buy_write.*
 import kotlinx.android.synthetic.main.activity_order_write.*
-//import kotlinx.android.synthetic.main.activity_order_write.ableCount
+import kotlinx.android.synthetic.main.activity_order_write.btnGubn
+import kotlinx.android.synthetic.main.activity_order_write.ableCount
 import kotlinx.android.synthetic.main.activity_order_write.btnCancel
 import kotlinx.android.synthetic.main.activity_order_write.btnSave
 import kotlinx.android.synthetic.main.activity_order_write.btnSearch
@@ -108,13 +109,13 @@ class OrderWriteActivity : AppCompatActivity() {
                 }
             })
         }
-        /*iv_popup.setOnClickListener {
+        iv_popup.setOnClickListener {
             frame_popup.visibility = View.VISIBLE
         }
 
         iv_close.setOnClickListener {
             frame_popup.visibility = View.GONE
-        }*/
+        }
 
         btnCloseCountOrder.setOnClickListener {
             countOrder.setText("")
@@ -197,6 +198,12 @@ class OrderWriteActivity : AppCompatActivity() {
             limit.visibility = View.VISIBLE
         }
 
+        tv_re_title.visibility=View.INVISIBLE
+        tv_re_sub_title.visibility=View.INVISIBLE
+        ableCount.visibility=View.INVISIBLE
+        tv_re_sub_tail.visibility=View.INVISIBLE
+        iv_popup.visibility=View.INVISIBLE
+
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -228,11 +235,19 @@ class OrderWriteActivity : AppCompatActivity() {
                 if (data != null) {
 
                     if (data.getStringExtra("medoYn") == "Y") {
+
                         stock = data.getSerializableExtra("stock") as Stock.ResultMap
                         stockName.text = stock?.STK_NM
                         ableCount.text = stock?.TRSF_ABLE_QTY
 
-                        limit.visibility = View.VISIBLE
+                        //limit.visibility = View.GONE
+
+                        tv_re_title.visibility=View.VISIBLE
+                        tv_re_sub_title.visibility=View.VISIBLE
+                        ableCount.visibility=View.VISIBLE
+                        tv_re_sub_tail.visibility=View.VISIBLE
+                        iv_popup.visibility=View.VISIBLE
+
                     } else {
                         var intent = Intent(this, BuyWriteActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -241,7 +256,6 @@ class OrderWriteActivity : AppCompatActivity() {
 
                         finish()
                     }
-
                 }
             }
         }

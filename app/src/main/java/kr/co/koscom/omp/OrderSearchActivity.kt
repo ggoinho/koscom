@@ -131,7 +131,7 @@ class OrderSearchActivity : AppCompatActivity() {
         horizontalDivider.setDrawable(ContextCompat.getDrawable(this, R.drawable.my_divider2)!!)
         list!!.addItemDecoration(horizontalDivider)
 
-        list!!.adapter = SearchAdapter(listData)
+        list!!.adapter = OrderSearchAdapter(listData)
 
         search()
     }
@@ -216,8 +216,8 @@ class OrderSearchActivity : AppCompatActivity() {
         disposable.clear()
     }
 
-    internal inner class SearchAdapter(val list: ArrayList<Stock.ResultMap>) :
-        RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+    internal inner class OrderSearchAdapter(val list: ArrayList<Stock.ResultMap>) :
+        RecyclerView.Adapter<OrderSearchAdapter.ViewHolder>() {
 
 
         inner class ViewHolder
@@ -228,7 +228,7 @@ class OrderSearchActivity : AppCompatActivity() {
             var btnFavorite = itemView.findViewById<AppCompatImageView>(R.id.btnFavorite)
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdapter.ViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderSearchAdapter.ViewHolder {
             val context = parent.context
             val inflater =
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -238,7 +238,7 @@ class OrderSearchActivity : AppCompatActivity() {
             return ViewHolder(view)
         }
 
-        override fun onBindViewHolder(holder: SearchAdapter.ViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: OrderSearchAdapter.ViewHolder, position: Int) {
             val data = list!![position]
 
             holder.code.text = data.STK_CODE
@@ -250,6 +250,7 @@ class OrderSearchActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_OK, intent)
                 finish()
             }
+
             if(!data.FAV_CORP_NO.isNullOrEmpty()){
                 holder.btnFavorite.setImageResource(R.drawable.ico_start_y)
             }
