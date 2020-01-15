@@ -41,6 +41,7 @@ import kotlinx.android.synthetic.main.activity_order_list.search
 import kotlinx.android.synthetic.main.activity_order_list.tabLayout
 import kotlinx.android.synthetic.main.activity_order_popup.*
 import kotlinx.android.synthetic.main.activity_search2.*
+import kotlinx.android.synthetic.main.list_item_ordered.view.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.model.Order
@@ -71,7 +72,11 @@ class OrderListActivity : AppCompatActivity() {
     private val PAGE_SIZE = 30
     private var loading = false
     private var lastPage = false
+    private var isCreate = true
+    private var isCreateTab = true
+
     val listData = ArrayList<Order.OrderItem>()
+
     private val contractList = ArrayList<OrderContract.OrderContractItem>()
 
     private val numberFormat = DecimalFormat("#,###")
@@ -130,13 +135,15 @@ class OrderListActivity : AppCompatActivity() {
         }
 
         btnSearch.setOnClickListener {
-
             if(tabLayout.selectedTabPosition == 0){
                 ll_orderList.visibility = View.VISIBLE
 
                 filterAllUnderBar.visibility = View.VISIBLE
                 filterSellUnderBar.visibility = View.INVISIBLE
                 filterBuyUnderBar.visibility = View.INVISIBLE
+
+                if(!isCreate) search.setText("")
+                isCreate = false
 
                 listData.clear()
                 search("")
@@ -224,47 +231,50 @@ class OrderListActivity : AppCompatActivity() {
         }
 
         tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+
             override fun onTabReselected(tab: TabLayout.Tab?) {
-                val text = tab?.customView as TextView?
+                Log.i("tabLayout", "onTabSelected:" + isCreateTab)
+                if(!isCreateTab) {
+                    val text = tab?.customView as TextView?
 
-                text?.setTypeface(null, Typeface.BOLD)
-                text?.setTextColor(Color.parseColor("#ffffff"))
+                    text?.setTypeface(null, Typeface.BOLD)
+                    text?.setTextColor(Color.parseColor("#ffffff"))
 
-                lastPage = false
+                    lastPage = false
+                    search.setText("")
+                    listData.clear()
+                    contractList.clear()
 
-                search.text = ""
-                listData.clear()
-                contractList.clear()
+                    if(tab!!.position == 0){
+                        subFragment.visibility = View.INVISIBLE
 
+                        search("")
 
-                if(tab!!.position == 0){
-                    subFragment.visibility = View.INVISIBLE
-
-                    search("")
-
-                    ll_orderList.visibility = View.VISIBLE
-                }
-                else if(tab.position == 1){
-                    subFragment.visibility = View.INVISIBLE
-
-                    searchContract()
-
-                    ll_orderList.visibility = View.GONE
-                }
-                else if(tab.position == 2){
-
-                    if(fragment == null){
-                        val transaction = supportFragmentManager.beginTransaction()
-                        fragment = WebFragment()
-                        var bundle = Bundle()
-                        bundle.putString("url", BuildConfig.SERVER_URL + "/mobile/invst/nltdAllStockTrdSt")
-                        fragment!!.arguments = bundle
-                        transaction.replace(R.id.subFragment, fragment!!)
-                        transaction.commitAllowingStateLoss()
+                        ll_orderList.visibility = View.VISIBLE
                     }
+                    else if(tab.position == 1){
+                        subFragment.visibility = View.INVISIBLE
 
-                    subFragment.visibility = View.VISIBLE
+                        searchContract()
+
+                        ll_orderList.visibility = View.GONE
+                    }
+                    else if(tab.position == 2){
+
+                        if(fragment == null){
+                            val transaction = supportFragmentManager.beginTransaction()
+                            fragment = WebFragment()
+                            var bundle = Bundle()
+                            bundle.putString("url", BuildConfig.SERVER_URL + "/mobile/invst/nltdAllStockTrdSt")
+                            fragment!!.arguments = bundle
+                            transaction.replace(R.id.subFragment, fragment!!)
+                            transaction.commitAllowingStateLoss()
+                        }
+
+                        subFragment.visibility = View.VISIBLE
+                    }
                 }
+                isCreateTab = false
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -275,6 +285,7 @@ class OrderListActivity : AppCompatActivity() {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                Log.i("tabLayout", "onTabSelected")
                 val text = tab?.customView as TextView?
 
                 text?.setTypeface(null, Typeface.BOLD)
@@ -323,7 +334,7 @@ class OrderListActivity : AppCompatActivity() {
 
         listOrder!!.addItemDecoration(horizontalDivider)
 
-        listOrder!!.adapter = OrderAdapter(listData)
+        //listOrder!!.adapter = OrderAdapter(listData)
         listOrder!!.addOnScrollListener(object : PaginationListener(listOrder!!.layoutManager!! as LinearLayoutManager, PAGE_SIZE) {
             override fun loadMoreItems() {
                 loading = true
@@ -349,7 +360,6 @@ class OrderListActivity : AppCompatActivity() {
                 Log.d(AlarmFragment::class.simpleName, "viewItem($itemIndex)")
             }
         })
-
     }
 
     override fun onResume() {
@@ -677,6 +687,7 @@ class OrderListActivity : AppCompatActivity() {
                 if(data != null){
                     stock = data.getSerializableExtra("stock") as Stock.ResultMap
                     search.text = stock?.STK_NM
+                    isCreate = true
                     btnSearch.callOnClick()
                 }
             }

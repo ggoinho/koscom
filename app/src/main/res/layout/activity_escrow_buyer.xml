@@ -99,7 +99,7 @@
                 android:textStyle="bold"
                 android:textColor="#e8055a"
                 android:lineSpacingExtra="11sp"
-                android:text="2019년 8월 22일"/>
+                android:text=""/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -134,7 +134,7 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="#3348ae"
-                android:text="하나은행\n123-21-1234-123"
+                android:text=""
                 android:gravity="right"/>
 
         </RelativeLayout>
@@ -204,7 +204,7 @@
                     android:textStyle="bold"
                     android:textColor="#3348ae"
                     android:lineSpacingExtra="26sp"
-                    android:text="100,000" />
+                    android:text="" />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <View
                 android:layout_width="match_parent"
@@ -233,7 +233,7 @@
                     android:textStyle="bold"
                     android:textColor="#333333"
                     android:lineSpacingExtra="26sp"
-                    android:text="200,000" />
+                    android:text="" />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <View
                 android:layout_width="match_parent"
@@ -262,7 +262,7 @@
                     android:textStyle="bold"
                     android:textColor="#333333"
                     android:lineSpacingExtra="26sp"
-                    android:text="300,000" />
+                    android:text="" />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <View
                 android:layout_width="match_parent"
@@ -291,7 +291,7 @@
                     android:textStyle="bold"
                     android:textColor="#333333"
                     android:lineSpacingExtra="26sp"
-                    android:text="400,000" />
+                    android:text="" />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <View
                 android:layout_width="match_parent"
@@ -319,7 +319,7 @@
                     android:textStyle="bold"
                     android:textColor="#333333"
                     android:lineSpacingExtra="26sp"
-                    android:text="1,000,000" />
+                    android:text="" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View

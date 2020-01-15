@@ -196,7 +196,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="24dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:src="@drawable/ico_expand_close_w" />
             </LinearLayout>

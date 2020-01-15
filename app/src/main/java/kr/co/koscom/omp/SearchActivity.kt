@@ -69,13 +69,19 @@ class SearchActivity : AppCompatActivity() {
 
         tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
             override fun onTabReselected(tab: TabLayout.Tab?) {
+                search.setText("")
+                listData.clear()
+                list!!.adapter = SearchAdapter(listData)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                search()
+                search.setText("")
+                listData.clear()
+                list!!.adapter = SearchAdapter(listData)
+                //search()
             }
         })
 
@@ -133,7 +139,7 @@ class SearchActivity : AppCompatActivity() {
 
         list!!.adapter = SearchAdapter(listData)
 
-        search()
+        //search()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

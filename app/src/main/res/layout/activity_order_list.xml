@@ -90,21 +90,22 @@
                                 android:letterSpacing="-0.03"
                                 android:lineSpacingExtra="5sp"
                                 android:text="종목명"/>
+
                             <TextView
                                 android:id="@+id/search"
                                 android:layout_width="0dp"
-                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
-                                android:background="#FFFFFF"
                                 android:layout_marginBottom="1dp"
-                                android:textSize="14sp"
-                                android:textColor="#0e1d64"
-                                android:lineSpacingExtra="1sp"
-                                android:hint="종목명 입력"
+                                android:layout_weight="1"
+                                android:background="#FFFFFF"
                                 android:gravity="center"
-                                android:maxLines="1"
+                                android:hint="종목명 입력"
+                                android:imeOptions="actionSearch"
                                 android:inputType="text"
-                                android:imeOptions="actionSearch"/>
+                                android:lineSpacingExtra="1sp"
+                                android:maxLines="1"
+                                android:textColor="#0e1d64"
+                                android:textSize="14sp" />
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/btnSearch"
                                 android:layout_width="24dp"

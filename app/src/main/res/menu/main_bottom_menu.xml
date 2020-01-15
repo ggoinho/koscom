@@ -3,10 +3,10 @@
 
     <item
         android:id="@+id/navigation_orders"
+        android:checked="false"
         android:icon="@drawable/ico_bt_menu_01"
         android:textSize="13sp"
-        android:title="주문"
-        android:checked="false" />
+        android:title="주문" />
 
     <item
         android:id="@+id/navigation_order"
