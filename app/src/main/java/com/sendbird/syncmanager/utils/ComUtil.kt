@@ -16,7 +16,8 @@ class ComUtil {
 
         var stringUrl : String? = null
 
-        var policyMode : Int = SKConstant.POLICY_MODE_GENERAL_PRIVATE + SKConstant.POLICY_MODE_GENERAL_BUSINESS + SKConstant.POLICY_MODE_SECURITIES_ONLY
+        //var policyMode : Int = SKConstant.POLICY_MODE_GENERAL_PRIVATE + SKConstant.POLICY_MODE_GENERAL_BUSINESS + SKConstant.POLICY_MODE_SECURITIES_ONLY
+        var policyMode : Int = SKConstant.POLICY_MODE_ALL
 
     }
 

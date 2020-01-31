@@ -140,7 +140,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         chkDid.setOnClickListener {
-
+            //DID 서버 기동 오류로 인한 임시 주석처리
+            /*
             chkIntegrated.setBackgroundResource(R.drawable.shape_rect_fill33)
             integratedCheckbox.isChecked = false
             integratedTitle.setTextColor(Color.parseColor("#000000"))
@@ -152,8 +153,10 @@ class LoginActivity : AppCompatActivity() {
             didIcon.setImageResource(R.drawable.ico_login_did_b)
 
             PreferenceUtils.setLoginType("did")
+            */
         }
 
+        //chkDid!!.visibility = View.INVISIBLE
         chkIntegrated.callOnClick()
 
         btnLogin!!.setOnClickListener {
