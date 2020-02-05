@@ -22,7 +22,7 @@ class AgreementActivity : AppCompatActivity() {
 
         btnOk!!.setOnClickListener { finish() }
         btnClose!!.setOnClickListener { finish() }
-
+ 
 
     }
 }
