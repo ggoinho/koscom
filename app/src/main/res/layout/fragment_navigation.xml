@@ -310,7 +310,7 @@
                         android:textSize="14sp"
                         android:textColor="#333333"
                         android:lineSpacingExtra="4sp"
-                        android:text="My Page"/>
+                        android:text="마이페이지"/>
                     <ImageView
                         android:tag="more"
                         android:layout_width="24dp"
