@@ -281,7 +281,7 @@
                         android:textSize="14sp"
                         android:textColor="#333333"
                         android:lineSpacingExtra="4sp"
-                        android:text="채팅"/>
+                        android:text="협상채팅"/>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"

@@ -1,7 +1,9 @@
 package kr.co.koscom.omp
 
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -20,7 +22,9 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.core.widget.NestedScrollView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,6 +41,7 @@ import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.progress_bar_login
 import kotlinx.android.synthetic.main.fragment_web.*
+import kr.co.koscom.omp.data.Constants
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.model.Main
@@ -321,6 +326,14 @@ class MainActivity : AppCompatActivity() {
 
         processDeepLink()
 
+        LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiver, IntentFilter(Constants.pushMessageReceived))
+    }
+
+    private val messageReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            Log.d("", Constants.pushMessageReceived)
+            searchAlram()
+        }
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -487,7 +500,7 @@ class MainActivity : AppCompatActivity() {
 
             view = inflater.inflate(R.layout.page_mydeal, container, false)
             view.findViewById<TextView>(R.id.stockName).text = data.CORP_HANGL_NM
-            view.findViewById<TextView>(R.id.stockName2).text = data.STOCK_TP_CODE_NM
+//            view.findViewById<TextView>(R.id.stockName2).text = data.STOCK_TP_CODE_NM
             view.findViewById<TextView>(R.id.stockGubn).text = data.STOCK_TP_CODE_NM + if(data.SEC_KIND_DTL_TP_CODE == "02"){"(상환)"}else if(data.SEC_KIND_DTL_TP_CODE == "03"){"(전환상환)"}else{""}
             view.findViewById<TextView>(R.id.count).text = data.DEAL_QTY
             view.findViewById<TextView>(R.id.price).text = data.DEAL_UPRC
@@ -774,6 +787,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(messageReceiver)
 
         mainActivity = null
 
