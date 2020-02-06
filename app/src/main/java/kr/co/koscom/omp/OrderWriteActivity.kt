@@ -240,6 +240,11 @@ class OrderWriteActivity : AppCompatActivity() {
                         stockName.text = stock?.STK_NM
                         ableCount.text = stock?.TRSF_ABLE_QTY
 
+
+                        countOrder.setText("")
+                        priceOrder.setText("")
+                        amountOrder.setText("")
+                        message   .setText("")
                         //limit.visibility = View.GONE
 
                         tv_re_title.visibility=View.VISIBLE
@@ -247,6 +252,7 @@ class OrderWriteActivity : AppCompatActivity() {
                         ableCount.visibility=View.VISIBLE
                         tv_re_sub_tail.visibility=View.VISIBLE
                         iv_popup.visibility=View.VISIBLE
+
 
                     } else {
                         var intent = Intent(this, BuyWriteActivity::class.java)

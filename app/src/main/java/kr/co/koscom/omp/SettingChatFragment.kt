@@ -1,6 +1,7 @@
 package kr.co.koscom.omp
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -43,7 +44,15 @@ class SettingChatFragment : Fragment() {
                         mygubnTitle.text = if("order".equals(member.order_req)){"주문게시자"}else{"협상상대자"}
                         myname.text = member.nickname
                         mygubn.text = if("10".equals(member.deal_tp)){"매도"}else{"매수"}
-
+                        if("10".equals(member.deal_tp)){
+                            mygubn.setTextColor(Color.parseColor("#3348ae"))
+                            mygubn.setLinkTextColor(Color.parseColor("#3348ae"))
+                            mygubn.setBackgroundResource(R.drawable.shape_rect_fill12)
+                        }else{
+                            mygubn.setTextColor(Color.parseColor("#e8055a"))
+                            mygubn.setLinkTextColor(Color.parseColor("#e8055a"))
+                            mygubn.setBackgroundResource(R.drawable.shape_rect_fill11)
+                        }
                         (activity as GroupChannelActivity).myDealTp = member.deal_tp
 
                         Log.d("SettingChatFragment", "myDealTp setted : " + member.deal_tp)
@@ -52,6 +61,15 @@ class SettingChatFragment : Fragment() {
                         hisGubnTitle.text = if("order".equals(member.order_req)){"주문게시자"}else{"협상상대자"}
                         hisname.text = member.nickname
                         hisGubn.text = if("10".equals(member.deal_tp)){"매도"}else{"매수"}
+                        if("10".equals(member.deal_tp)){
+                            hisGubn.setTextColor(Color.parseColor("#3348ae"))
+                            hisGubn.setLinkTextColor(Color.parseColor("#3348ae"))
+                            hisGubn.setBackgroundResource(R.drawable.shape_rect_fill12)
+                        }else{
+                            hisGubn.setTextColor(Color.parseColor("#e8055a"))
+                            hisGubn.setLinkTextColor(Color.parseColor("#e8055a"))
+                            hisGubn.setBackgroundResource(R.drawable.shape_rect_fill11)
+                        }
                     }
                 }
             }
