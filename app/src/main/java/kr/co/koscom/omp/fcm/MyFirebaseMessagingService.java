@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -47,6 +48,7 @@ import kr.co.koscom.omp.MainActivity;
 import kr.co.koscom.omp.MyPageActivity;
 import kr.co.koscom.omp.R;
 import kr.co.koscom.omp.SplashActivity;
+import kr.co.koscom.omp.data.Constants;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -103,6 +105,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             sendNotification(this, remoteMessage.getData().get("message"), channelUrl);
         }
 
+        Intent intent = new Intent(Constants.pushMessageReceived);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
     // [END receive_message]
 

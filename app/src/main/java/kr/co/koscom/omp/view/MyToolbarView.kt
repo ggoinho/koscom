@@ -1,7 +1,9 @@
 package kr.co.koscom.omp.view
 
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +13,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProviders
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.scsoft.boribori.data.viewmodel.AlarmViewModel
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,6 +23,7 @@ import kotlinx.android.synthetic.main.view_toolbar.view.*
 import kr.co.koscom.omp.LoginActivity
 import kr.co.koscom.omp.MyPageActivity
 import kr.co.koscom.omp.R
+import kr.co.koscom.omp.data.Constants
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import org.apache.commons.lang3.StringUtils
@@ -31,11 +35,22 @@ class MyToolbarView @JvmOverloads constructor(
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var alarmViewModel: AlarmViewModel
     private val disposable = CompositeDisposable()
+    private var mContext: Context
+    private val messageReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            Log.d("", Constants.pushMessageReceived)
+
+            searchAlarm()
+        }
+    }
 
     init {
+        mContext = context
         var inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var view = inflater.inflate(R.layout.view_toolbar, null, false)
         addView(view)
+
+        LocalBroadcastManager.getInstance(mContext).registerReceiver(messageReceiver, IntentFilter(Constants.pushMessageReceived))
     }
 
     fun initData(activity: FragmentActivity){
@@ -56,6 +71,22 @@ class MyToolbarView @JvmOverloads constructor(
         viewModelFactory = Injection.provideViewModelFactory(context)
         alarmViewModel = ViewModelProviders.of(activity, viewModelFactory).get(AlarmViewModel::class.java)
 
+        searchAlarm()
+
+    }
+
+    fun initTitle(title: String){
+        subject.text = title
+        Log.d("MyToolbarView", "initTitle : ${title}")
+    }
+
+    fun hideMenu(){
+        btnAlarm.visibility = View.INVISIBLE
+        btnMenu.visibility = View.INVISIBLE
+        alarm.visibility = View.INVISIBLE
+    }
+
+    fun searchAlarm() {
         if(!PreferenceUtils.getUserId().isNullOrEmpty()){
             disposable.add(alarmViewModel.searchNotReadCount(PreferenceUtils.getUserId())
                 .subscribeOn(Schedulers.io())
@@ -72,21 +103,11 @@ class MyToolbarView @JvmOverloads constructor(
                 }))
 
         }
-
-    }
-
-    fun initTitle(title: String){
-        subject.text = title
-        Log.d("MyToolbarView", "initTitle : ${title}")
-    }
-
-    fun hideMenu(){
-        btnAlarm.visibility = View.INVISIBLE
-        btnMenu.visibility = View.INVISIBLE
-        alarm.visibility = View.INVISIBLE
     }
 
     fun dispose(){
+        LocalBroadcastManager.getInstance(mContext).unregisterReceiver(messageReceiver)
+
         disposable.clear()
     }
 }
