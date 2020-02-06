@@ -500,7 +500,7 @@ class MainActivity : AppCompatActivity() {
 
             view = inflater.inflate(R.layout.page_mydeal, container, false)
             view.findViewById<TextView>(R.id.stockName).text = data.CORP_HANGL_NM
-            view.findViewById<TextView>(R.id.stockName2).text = data.STOCK_TP_CODE_NM
+//            view.findViewById<TextView>(R.id.stockName2).text = data.STOCK_TP_CODE_NM
             view.findViewById<TextView>(R.id.stockGubn).text = data.STOCK_TP_CODE_NM + if(data.SEC_KIND_DTL_TP_CODE == "02"){"(상환)"}else if(data.SEC_KIND_DTL_TP_CODE == "03"){"(전환상환)"}else{""}
             view.findViewById<TextView>(R.id.count).text = data.DEAL_QTY
             view.findViewById<TextView>(R.id.price).text = data.DEAL_UPRC
