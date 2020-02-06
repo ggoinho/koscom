@@ -37,6 +37,13 @@ class ContractFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        myname.text = null
+        hisname.text = null
+        count.text = null
+        price.text = null
+        amount.text = null
+        payEndDate.text = null
+
         btnClose.setOnClickListener {
             ContractDetailActivity.contractDetailActivity?.hideNavigation()
         }
@@ -149,7 +156,10 @@ class ContractFragment : Fragment() {
                     sellerWarning.text = Html.fromHtml(sellerWarningFormatted)
                 }
 
+                btnSign.isEnabled = false
                 if((activity as ContractDetailActivity).contract!!.RESULT_CONFIRMUNISSUEDVO != null){
+
+
                     if((activity as ContractDetailActivity).contract!!.RESULT_CONFIRMUNISSUEDVO!!.UNISSUED_STAT_CODE == "01"){
                         rightStatusReady.visibility = View.VISIBLE
                         rightStatusDeny.visibility = View.GONE
@@ -164,6 +174,7 @@ class ContractFragment : Fragment() {
                         rightStatusOk.visibility = View.VISIBLE
                         rightStatusReady.visibility = View.GONE
                         rightStatusDeny.visibility = View.GONE
+                        btnSign.isEnabled = true
                     }
                 }
             }
