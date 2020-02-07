@@ -174,7 +174,8 @@ class ContractFragment : Fragment() {
                         rightStatusOk.visibility = View.VISIBLE
                         rightStatusReady.visibility = View.GONE
                         rightStatusDeny.visibility = View.GONE
-                        btnSign.isEnabled = true
+
+                        btnSign.isEnabled = (mySign.text.contains("완료") == false)
                     }
                 }
             }
