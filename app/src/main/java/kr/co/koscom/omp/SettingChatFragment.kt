@@ -26,6 +26,9 @@ class SettingChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        myname.text = null
+        hisname.text = null
+
         btnHide.setOnClickListener {
             GroupChannelActivity.groupChannelActivity.hideNavigation()
         }
