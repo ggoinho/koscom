@@ -123,6 +123,7 @@ class WebFragment : Fragment() {
 
         webView = wbWebView
 
+        wbWebView.settings.textZoom = 100
         /*scrollView.post {
             Log.d(WebFragment::class.simpleName, "scrollView.height : ${scrollView.height}")
             var layoutParams = wbWebView.layoutParams as FrameLayout.LayoutParams
