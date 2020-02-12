@@ -50,6 +50,13 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <kr.co.koscom.omp.view.MyBottomNavigationView
+            android:id="@+id/bottom_navigation_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"/>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <FrameLayout
