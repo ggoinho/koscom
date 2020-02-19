@@ -53,6 +53,13 @@
 
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:textSize">15dp</item>
-        <item name="android:textStyle">bold</item>
+<!--        <item name="android:textStyle">bold</item>-->
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLines">1</item>
     </style>
+
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">13dp</item>
+    </style>
+
 </resources>

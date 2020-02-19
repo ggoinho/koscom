@@ -39,9 +39,9 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:textColor="#000000"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:text="공지사항"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -59,9 +59,9 @@
                     android:background="@drawable/shape_rect_fill29"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:textColor="#038085"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:text="기업알림"
                     android:gravity="center"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -69,19 +69,19 @@
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 android:textColor="#757575"
                 android:letterSpacing="-0.03"
-                android:lineSpacingExtra="6sp"
+                android:lineSpacingExtra="6dp"
                 android:text="2019-06-07"/>
             <TextView
                 android:id="@+id/readYn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 android:textColor="#e8055a"
-                android:lineSpacingExtra="39sp"
+                android:lineSpacingExtra="39dp"
                 android:gravity="center_horizontal"
                 android:text="N"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -90,9 +90,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:textColor="#333333"
-            android:lineSpacingExtra="4sp"
+            android:lineSpacingExtra="4dp"
             android:text="새로운 공지사항이 등록되었습니다"/>
     </LinearLayout>
 

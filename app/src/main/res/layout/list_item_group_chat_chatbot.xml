@@ -33,9 +33,9 @@
 
         <TextView
             android:id="@+id/text_group_chat_nickname"
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:textColor="#666666"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="6dp"
             android:text="챗봇"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,9 +67,9 @@
                     android:paddingTop="8dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:textColor="#333333"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:text="Hi, how are you today?"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -92,18 +92,18 @@
                             android:id="@+id/titleSeller"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="#3348ae"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:text="매도자"/>
                         <TextView
                             android:id="@+id/seller"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="#333333"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:gravity="end"
                             android:text="홍길동"/>
                     </RelativeLayout>
@@ -115,18 +115,18 @@
                             android:id="@+id/titleBuyer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="#e8055a"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:text="매수자"/>
                         <TextView
                             android:id="@+id/buyer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="#333333"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:gravity="end"
                             android:text="이수영"/>
                     </RelativeLayout>
@@ -138,18 +138,18 @@
                             android:id="@+id/titleCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="#333333"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:text="주문수량"/>
                         <TextView
                             android:id="@+id/countTit"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="#333333"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:gravity="end"
                             android:text="주"/>
                         <TextView
@@ -157,10 +157,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toLeftOf="@id/countTit"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textStyle="bold"
                             android:textColor="#333333"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:text="100"/>
                     </RelativeLayout>
                     <RelativeLayout
@@ -171,18 +171,18 @@
                             android:id="@+id/titleAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="#333333"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:text="단가"/>
                         <TextView
                             android:id="@+id/amountTit"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="#333333"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:gravity="end"
                             android:text="원"/>
                         <TextView
@@ -190,10 +190,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toLeftOf="@id/amountTit"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textStyle="bold"
                             android:textColor="#333333"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:text="5,000"/>
                     </RelativeLayout>
                     <RelativeLayout
@@ -204,18 +204,18 @@
                             android:id="@+id/titleTotalAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="#333333"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:text="금액"/>
                         <TextView
                             android:id="@+id/totalAmountTit"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="#333333"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:gravity="end"
                             android:text="원"/>
                         <TextView
@@ -223,10 +223,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toLeftOf="@id/totalAmountTit"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textStyle="bold"
                             android:textColor="#333333"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:text="50,000"/>
                     </RelativeLayout>
                     <RelativeLayout
@@ -237,19 +237,19 @@
                             android:id="@+id/titlePayEndDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="#333333"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:text="결제마감일"/>
                         <TextView
                             android:id="@+id/payEndDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textStyle="bold"
                             android:textColor="#333333"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:gravity="end"
                             android:text="2019-08-15"/>
                     </RelativeLayout>
@@ -260,9 +260,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:textSize="13sp"
+                        android:textSize="13dp"
                         android:textColor="#333333"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:text="확인 버튼을 누르면 계약서가 생성됩니다. 계약서 생성 후에는 취소가 불가합니다."/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -271,7 +271,7 @@
                     android:text="(edited)"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textColor="#828282"
                     android:visibility="gone"
                     android:paddingLeft="12dp"
@@ -303,10 +303,10 @@
                         android:paddingRight="12dp"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:text="\@Reddit"
                         android:textColor="#333333"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxWidth="200dp"
@@ -317,10 +317,10 @@
                         android:paddingRight="12dp"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         android:text="Title will be here."
                         android:textColor="#333333"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxWidth="200dp"
@@ -332,9 +332,9 @@
                         android:paddingBottom="4dp"
                         android:maxLines="3"
                         android:ellipsize="end"
-                        android:textSize="13sp"
+                        android:textSize="13dp"
                         android:textColor="#333333"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:text="Description will be here. Blah Blah WWW Blah Wl Blah W WW WW ABCD EFG WW WW WW W Third Line. WWW Z XCVB QWER"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -357,10 +357,10 @@
                     android:gravity="center"
                     android:paddingTop="9dp"
                     android:paddingBottom="9dp"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textStyle="bold"
                     android:textColor="#ffffff"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="4dp"
                     android:text="계약서 확인"
                     android:visibility="gone"/>
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -377,7 +377,7 @@
                         android:background="@drawable/shape_rect_fill19"
                         android:gravity="center"
                         android:text="취소"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="#333333"/>
                     <TextView
                         android:id="@+id/btnOk"
@@ -387,7 +387,7 @@
                         android:background="@drawable/shape_rect_fill20"
                         android:gravity="center"
                         android:text="확인"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="#ffffff"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </LinearLayout>
@@ -397,7 +397,7 @@
         <TextView
             android:id="@+id/text_group_chat_time"
             android:text="21:27"
-            android:textSize="11sp"
+            android:textSize="11dp"
             android:textColor="#666666"
             android:layout_toRightOf="@id/card_group_chat_message"
             android:layout_alignBottom="@id/card_group_chat_message"

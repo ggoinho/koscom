@@ -21,6 +21,8 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.util.TypedValue
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -123,7 +125,7 @@ class AlarmFragment : Fragment() {
         }
 
         listView.setOnClickListener {
-            var alertBuilder = AlertDialog.Builder(activity!!);
+            var alertBuilder = AlertDialog.Builder(activity!!)
 
             var adapter = ArrayAdapter<String>(activity!!, android.R.layout.select_dialog_singlechoice);
             adapter.add("전체")

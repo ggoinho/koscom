@@ -25,10 +25,10 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="9dp"
                 android:ellipsize="end"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="4dp"
                 android:text="코스콤"
                 android:textColor="#000000"
-                android:textSize="15sp" />
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/stockName2"
@@ -38,10 +38,10 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="9dp"
                 android:ellipsize="end"
-                android:lineSpacingExtra="5sp"
+                android:lineSpacingExtra="5dp"
                 android:text="1우선주"
                 android:textColor="#757575"
-                android:textSize="13sp" />
+                android:textSize="13dp" />
 
         </LinearLayout>
         <LinearLayout
@@ -57,7 +57,7 @@
                 android:gravity="right"
                 android:text="100,000,000"
                 android:textColor="#333333"
-                android:textSize="14sp" />
+                android:textSize="14dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="30pt"
@@ -70,10 +70,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="4dp"
                 android:text="100,000,000"
                 android:textColor="#000000"
-                android:textSize="14sp" />
+                android:textSize="14dp" />
         </LinearLayout>
     </LinearLayout>
 

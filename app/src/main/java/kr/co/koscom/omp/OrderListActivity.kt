@@ -10,6 +10,7 @@ import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.util.TypedValue
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -219,6 +220,7 @@ class OrderListActivity : AppCompatActivity() {
 
                 tabTextView.text = tab.text
                 tabTextView.setTextColor(Color.parseColor("#ffffff"))
+                tabTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15F)
 
                 // First tab is the selected tab, so if i==0 then set BOLD typeface
                 if (i == 0) {

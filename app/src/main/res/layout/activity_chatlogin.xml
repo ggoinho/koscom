@@ -13,7 +13,7 @@
         android:id="@+id/text_login_versions"
         android:text="all_app_version"
         android:textColor="#a0a0a0"
-        android:textSize="12sp"
+        android:textSize="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"

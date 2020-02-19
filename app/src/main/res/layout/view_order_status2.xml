@@ -24,10 +24,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="11sp"
+            android:textSize="11dp"
             android:textColor="#e8055a"
             android:letterSpacing="-0.03"
-            android:lineSpacingExtra="5sp"
+            android:lineSpacingExtra="5dp"
             android:gravity="center_horizontal"
             android:text="협상대기"/>
     </androidx.appcompat.widget.LinearLayoutCompat>

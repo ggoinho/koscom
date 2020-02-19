@@ -48,8 +48,12 @@
                             android:orientation="horizontal">
                             <com.google.android.material.tabs.TabLayout
                                 android:id="@+id/tabLayout"
-                                android:layout_width="600dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
+                                app:tabMaxWidth="0dp"
+                                app:tabGravity="center"
+                                app:tabMode="fixed"
+                                app:tabTextAppearance="@style/tab_text"
                                 app:tabIndicatorColor="#FFFFFF"
                                 app:tabIndicatorFullWidth="false"
                                 app:tabSelectedTextColor="#FFFFFF"

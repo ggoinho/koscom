@@ -5,34 +5,34 @@
         android:id="@+id/navigation_orders"
         android:checked="false"
         android:icon="@drawable/ico_bt_menu_01"
-        android:textSize="13sp"
+        android:textSize="13dp"
         android:title="주문" />
 
     <item
         android:id="@+id/navigation_order"
         android:icon="@drawable/ico_bt_menu_02"
-        android:textSize="13sp"
+        android:textSize="13dp"
         android:title="주문등록"
         android:checked="false" />
 
     <item
         android:id="@+id/navigation_chat"
         android:icon="@drawable/ico_bt_menu_03"
-        android:textSize="13sp"
+        android:textSize="13dp"
         android:title="협상채팅"
         android:checked="false" />
 
     <item
         android:id="@+id/navigation_info"
         android:icon="@drawable/ico_bt_menu_04"
-        android:textSize="13sp"
+        android:textSize="13dp"
         android:title="투자정보"
         android:checked="false" />
 
     <item
         android:id="@+id/navigation_mypage"
         android:icon="@drawable/ico_bt_menu_05"
-        android:textSize="13sp"
+        android:textSize="13dp"
         android:title="마이페이지"
         android:checked="false" />
 

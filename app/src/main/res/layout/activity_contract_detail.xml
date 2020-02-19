@@ -22,6 +22,7 @@
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="33dp"
+                app:tabTextAppearance="@style/tab_text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tabIndicatorColor="#000000"
@@ -69,9 +70,9 @@
                 android:layout_width="11dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 android:textColor="#ffffff"
-                android:lineSpacingExtra="3sp"
+                android:lineSpacingExtra="3dp"
                 android:text="계약내용"/>
         </LinearLayout>
 
@@ -112,9 +113,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="17sp"
+                android:textSize="17dp"
                 android:textColor="#000826"
-                android:lineSpacingExtra="3sp"
+                android:lineSpacingExtra="3dp"
                 android:text="계약서 확인"/>
             <ImageView
                 android:id="@+id/btnClose"

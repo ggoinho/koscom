@@ -16,6 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="#FFFFFF"
+        app:itemTextAppearanceInactive="@style/BottomNavigationView"
+        app:itemTextAppearanceActive="@style/BottomNavigationView"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/main_bottom_menu"/>
 </androidx.appcompat.widget.LinearLayoutCompat>

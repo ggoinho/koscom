@@ -29,9 +29,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:lineSpacingExtra="-1sp"
+                android:lineSpacingExtra="-1dp"
                 android:textColor="#000826"
-                android:textSize="21sp"
+                android:textSize="21dp"
                 android:textStyle="bold"
                 tools:text="계약 내용" />
 
@@ -47,10 +47,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="10dp"
-            android:lineSpacingExtra="5sp"
+            android:lineSpacingExtra="5dp"
             android:text="계약자 정보"
             android:textColor="#333333"
-            android:textSize="15sp"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
         <View
@@ -89,10 +89,10 @@
                     android:id="@+id/myname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="4dp"
                     android:text="나아나(김희응)"
                     android:textColor="#3348ae"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/mygubnTitle" />
@@ -103,14 +103,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:background="@drawable/shape_rect_fill11"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:paddingLeft="8dp"
                     android:paddingTop="1dp"
                     android:paddingRight="8dp"
                     android:paddingBottom="1dp"
                     android:text="매수"
                     android:textColor="#e8055a"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -119,10 +119,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="4dp"
-                    android:lineSpacingExtra="21sp"
+                    android:lineSpacingExtra="21dp"
                     android:text="나"
                     android:textColor="#333333"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -163,10 +163,10 @@
                     android:id="@+id/hisname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="4dp"
                     android:text="닉네임(조정석)"
                     android:textColor="#3348ae"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/hisGubnTitle" />
@@ -177,14 +177,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:background="@drawable/shape_rect_fill12"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:paddingLeft="8dp"
                     android:paddingTop="1dp"
                     android:paddingRight="8dp"
                     android:paddingBottom="1dp"
                     android:text="매수"
                     android:textColor="#3348ae"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -204,10 +204,10 @@
             android:layout_marginTop="10.5dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="3.5dp"
-            android:lineSpacingExtra="5sp"
+            android:lineSpacingExtra="5dp"
             android:text="협상내역"
             android:textColor="#333333"
-            android:textSize="15sp"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
         <View
@@ -235,11 +235,11 @@
                     android:layout_height="30dp"
                     android:background="#f8f8f8"
                     android:gravity="center_vertical"
-                    android:lineSpacingExtra="17sp"
+                    android:lineSpacingExtra="17dp"
                     android:paddingLeft="10dp"
                     android:text="수량"
                     android:textColor="#333333"
-                    android:textSize="13sp" />
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/count"
@@ -247,10 +247,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="4dp"
                     android:text="2,000"
                     android:textColor="#333333"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -258,10 +258,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
                     android:gravity="end"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="4dp"
                     android:text="주"
                     android:textColor="#333333"
-                    android:textSize="14sp" />
+                    android:textSize="14dp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
@@ -280,11 +280,11 @@
                     android:layout_height="30dp"
                     android:background="#f8f8f8"
                     android:gravity="center_vertical"
-                    android:lineSpacingExtra="17sp"
+                    android:lineSpacingExtra="17dp"
                     android:paddingLeft="10dp"
                     android:text="가격"
                     android:textColor="#333333"
-                    android:textSize="13sp" />
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/price"
@@ -292,10 +292,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="4dp"
                     android:text="5,000"
                     android:textColor="#333333"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -303,10 +303,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
                     android:gravity="end"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="4dp"
                     android:text="원"
                     android:textColor="#333333"
-                    android:textSize="14sp" />
+                    android:textSize="14dp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
@@ -325,11 +325,11 @@
                     android:layout_height="30dp"
                     android:background="#f8f8f8"
                     android:gravity="center_vertical"
-                    android:lineSpacingExtra="17sp"
+                    android:lineSpacingExtra="17dp"
                     android:paddingLeft="10dp"
                     android:text="금액"
                     android:textColor="#333333"
-                    android:textSize="13sp" />
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/amount"
@@ -337,10 +337,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="4dp"
                     android:text="10,000,000"
                     android:textColor="#333333"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -348,10 +348,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
                     android:gravity="end"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="4dp"
                     android:text="원"
                     android:textColor="#333333"
-                    android:textSize="14sp" />
+                    android:textSize="14dp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
@@ -370,11 +370,11 @@
                     android:layout_height="30dp"
                     android:background="#f8f8f8"
                     android:gravity="center_vertical"
-                    android:lineSpacingExtra="17sp"
+                    android:lineSpacingExtra="17dp"
                     android:paddingLeft="10dp"
                     android:text="결제마감일"
                     android:textColor="#333333"
-                    android:textSize="13sp" />
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/payEndDate"
@@ -382,9 +382,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="4dp"
                     android:textColor="#e8055a"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textStyle="bold"
                     tools:text="2019.08.20" />
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -412,12 +412,12 @@
                 android:background="@drawable/shape_rect_fill15"
                 android:gravity="center_horizontal"
                 android:letterSpacing="-0.03"
-                android:lineSpacingExtra="2sp"
+                android:lineSpacingExtra="2dp"
                 android:paddingTop="9dp"
                 android:paddingBottom="9dp"
                 android:text="주권미발행확인서 미발급"
                 android:textColor="#3348ae"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 android:textStyle="bold"
                 android:visibility="gone" />
 
@@ -431,12 +431,12 @@
                 android:background="@drawable/shape_rect_fill15"
                 android:gravity="center_horizontal"
                 android:letterSpacing="-0.03"
-                android:lineSpacingExtra="2sp"
+                android:lineSpacingExtra="2dp"
                 android:paddingTop="9dp"
                 android:paddingBottom="9dp"
                 android:text="주권미발행확인서 발급완료"
                 android:textColor="#3348ae"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 android:textStyle="bold"
                 android:visibility="gone" />
 
@@ -458,20 +458,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="2sp"
+                    android:lineSpacingExtra="2dp"
                     android:text="주권미발행확인서 "
                     android:textColor="#3348ae"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="2sp"
+                    android:lineSpacingExtra="2dp"
                     android:text="발급거부"
                     android:textColor="#e8055a"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -494,10 +494,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:lineSpacingExtra="4sp"
+                        android:lineSpacingExtra="4dp"
                         android:text="상대의 서명상태"
                         android:textColor="#333333"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -516,10 +516,10 @@
                             android:elevation="1dp"
                             android:gravity="center"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:text="서명 대기중입니다"
                             android:textColor="#555555"
-                            android:textSize="13sp" />
+                            android:textSize="13dp" />
                     </LinearLayout>
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -535,10 +535,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:lineSpacingExtra="4sp"
+                        android:lineSpacingExtra="4dp"
                         android:text="나의 서명 상태"
                         android:textColor="#333333"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -557,10 +557,10 @@
                             android:elevation="1dp"
                             android:gravity="center"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:text="서명 대기중입니다"
                             android:textColor="#555555"
-                            android:textSize="13sp" />
+                            android:textSize="13dp" />
                     </LinearLayout>
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -588,10 +588,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:text="전자서명"
                     android:textColor="#ffffff"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -637,7 +637,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:text="※ 매도자의 주주정합성은 등록기업에서 입력
 한 주주명부를 기반으로 진행되었습니다. 안전
 한 거래를 위해 등록기업으로 부터 매도자의 주
@@ -646,17 +646,17 @@
 있더라도 발급일을 잘 확인하시고 전자서명을
 진행하시기 바랍니다."
                             android:textColor="#333333"
-                            android:textSize="13sp" />
+                            android:textSize="13dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:letterSpacing="-0.05"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:text="※ 매도자만 등록기업에 주권미발행확인서 발급요청을 할 수 있습니다. 아래 발급요청을 클릭 하시면 매도자에게 주권미발행 확인서 확인요청이 가능합니다."
                             android:textColor="#333333"
-                            android:textSize="13sp" />
+                            android:textSize="13dp" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
@@ -669,21 +669,21 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:text="※ 보유하고 있는 주식의 해당 회사에게 주권미발행확인서 발급요청이 가능합니다."
                             android:textColor="#333333"
-                            android:textSize="13sp" />
+                            android:textSize="13dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:letterSpacing="-0.05"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:text="※ 발급요청 시 필수로 아래 1개 항목에 체크하
 셔야 주권미발행확인서 발급요청 가능합니다."
                             android:textColor="#333333"
-                            android:textSize="13sp" />
+                            android:textSize="13dp" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -702,10 +702,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:letterSpacing="-0.03"
-                                android:lineSpacingExtra="5sp"
+                                android:lineSpacingExtra="5dp"
                                 android:text="@string/seller_warning"
                                 android:textColor="#333333"
-                                android:textSize="13sp" />
+                                android:textSize="13dp" />
                         </RelativeLayout>
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -737,10 +737,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:text="발급요청"
                     android:textColor="#ffffff"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -767,9 +767,9 @@
             android:layout_width="11dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:lineSpacingExtra="3sp"
+            android:lineSpacingExtra="3dp"
             android:text="계약내용"
             android:textColor="#ffffff"
-            android:textSize="12sp" />
+            android:textSize="12dp" />
     </LinearLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>

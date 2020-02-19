@@ -50,9 +50,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:textColor="#666666"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:text="협상 목록이 없습니다"/>
                 <View
                     android:layout_width="match_parent"
@@ -98,7 +98,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="17sp"
+                android:textSize="17dp"
                 android:textColor="#000826"
                 android:text="협상 목록"/>
             <LinearLayout
@@ -156,7 +156,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="40dp"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textColor="#333333"
                     android:hint="검색어 입력"
                     android:maxLines="1"

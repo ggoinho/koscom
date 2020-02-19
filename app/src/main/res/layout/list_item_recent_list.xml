@@ -20,9 +20,9 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:text="아가방컴퍼니"
-            android:textSize="15sp"
+            android:textSize="15dp"
             android:textColor="#0e1d64"
-            android:lineSpacingExtra="3sp"
+            android:lineSpacingExtra="3dp"
             android:gravity="center_vertical"/>
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/btnRemove"

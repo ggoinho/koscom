@@ -22,18 +22,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="22dp"
-            android:textSize="15sp"
+            android:textSize="15dp"
             android:textColor="#000000"
-            android:lineSpacingExtra="5sp"
+            android:lineSpacingExtra="5dp"
             android:text="엘앤제이"/>
 
         <TextView
             android:id="@+id/stockGubn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:textSize="13dp"
             android:textColor="#757575"
-            android:lineSpacingExtra="7sp"
+            android:lineSpacingExtra="7dp"
             android:text="3우선주(전환상환)"
             />
         <RelativeLayout
@@ -44,17 +44,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
+                android:textSize="13dp"
                 android:textColor="#757575"
-                android:lineSpacingExtra="21sp"
+                android:lineSpacingExtra="21dp"
                 android:text="수량"/>
             <TextView
                 android:id="@+id/count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="#333333"
-                android:lineSpacingExtra="20sp"
+                android:lineSpacingExtra="20dp"
                 android:gravity="end"
                 android:text="500주"
                 android:layout_alignParentRight="true"/>
@@ -70,17 +70,17 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="0dp"
-                android:lineSpacingExtra="21sp"
+                android:lineSpacingExtra="21dp"
                 android:text="가격"
                 android:textColor="#757575"
-                android:textSize="13sp" />
+                android:textSize="13dp" />
             <TextView
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="#000000"
-                android:lineSpacingExtra="20sp"
+                android:lineSpacingExtra="20dp"
                 android:gravity="end"
                 android:text="5,000원"
                 android:layout_alignParentRight="true"/>

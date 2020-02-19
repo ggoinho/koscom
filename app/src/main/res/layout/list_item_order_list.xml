@@ -30,10 +30,10 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:ems="5"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="4dp"
                 android:text="코스콤"
                 android:textColor="#000000"
-                android:textSize="15sp" />
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/stockName2"
@@ -45,10 +45,10 @@
                 android:maxLines="1"
                 android:ems="5"
                 android:ellipsize="end"
-                android:lineSpacingExtra="5sp"
+                android:lineSpacingExtra="5dp"
                 android:text="1우선주"
                 android:textColor="#757575"
-                android:textSize="13sp" />
+                android:textSize="13dp" />
 
         </LinearLayout>
         <TextView
@@ -57,9 +57,9 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:textColor="#333333"
-            android:lineSpacingExtra="4sp"
+            android:lineSpacingExtra="4dp"
             android:gravity="end"
             android:text="1,000,000"/>
         <TextView
@@ -68,9 +68,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingRight="15dp"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:textColor="#333333"
-            android:lineSpacingExtra="4sp"
+            android:lineSpacingExtra="4dp"
             android:gravity="end"
             android:text="1,000,000"/>
         <RelativeLayout

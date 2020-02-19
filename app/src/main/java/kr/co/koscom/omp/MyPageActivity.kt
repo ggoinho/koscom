@@ -7,6 +7,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -71,12 +72,13 @@ class MyPageActivity : AppCompatActivity() {
                 val tabTextView = TextView(this)
                 tab.customView = tabTextView
 
-                tabTextView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+                tabTextView.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
                 tabTextView.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
 
                 tabTextView.text = tab.text
                 tabTextView.setTextColor(Color.parseColor("#ffffff"))
-                tabTextView.textSize = 13f
+//                tabTextView.textSize = 13f
+                tabTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15F)
 
                 // First tab is the selected tab, so if i==0 then set BOLD typeface
                 if (i == 0) {

@@ -31,27 +31,27 @@
                 android:id="@+id/nicname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 android:textColor="#333333"
-                android:lineSpacingExtra="5sp"
+                android:lineSpacingExtra="5dp"
                 android:text="코스콤"/>
             <TextView
                 android:id="@+id/userid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:textSize="13sp"
+                android:textSize="13dp"
                 android:textColor="#3348ae"
-                android:lineSpacingExtra="5sp"
+                android:lineSpacingExtra="5dp"
                 android:text="나야나(김희응)"/>
             <TextView
                 android:id="@+id/channelUrl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:textSize="13sp"
+                android:textSize="13dp"
                 android:textColor="#3348ae"
-                android:lineSpacingExtra="5sp"
+                android:lineSpacingExtra="5dp"
                 android:visibility="gone"/>
         </LinearLayout>
         <LinearLayout
@@ -66,7 +66,7 @@
                 android:background="@drawable/shape_rect_fill6"
                 android:gravity="center"
                 android:text="0"
-                android:textSize="10sp"
+                android:textSize="10dp"
                 android:textColor="#ffffff"
                 android:visibility="visible"/>
             <TextView
@@ -75,7 +75,7 @@
                 android:layout_height="24dp"
                 android:background="@drawable/shape_rect_fill7"
                 android:text="완료"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="#757575"
                 android:gravity="center"
                 android:visibility="gone"/>
@@ -84,9 +84,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 android:textColor="#666666"
-                android:lineSpacingExtra="6sp"
+                android:lineSpacingExtra="6dp"
                 android:gravity="end"
                 android:text=""/>
         </LinearLayout>

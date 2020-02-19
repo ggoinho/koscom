@@ -29,10 +29,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:textColor="#000826"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="4dp"
                 android:gravity="center_horizontal"
                 android:text="에스크로 정보 안내"/>
 
@@ -63,9 +63,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="14.3dp"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:textColor="#3348ae"
-            android:lineSpacingExtra="4sp"
+            android:lineSpacingExtra="4dp"
             android:text="※ 매도계좌 이체 지시 후 실 계좌 이체까지
 는 24시간이상 소요됩니다."/>
 
@@ -87,9 +87,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="#555555"
-                android:lineSpacingExtra="11sp"
+                android:lineSpacingExtra="11dp"
                 android:text="입금 계좌정보"/>
             <TextView
                 android:id="@+id/account"
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
                 android:layout_alignParentRight="true"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textStyle="bold"
                 android:textColor="#3348ae"
                 android:text="하나은행\n123-21-1234-123"
@@ -121,17 +121,17 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4.8dp"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="#555555"
-                android:lineSpacingExtra="11sp"
+                android:lineSpacingExtra="11dp"
                 android:text="상세정보"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="#555555"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="4dp"
                 android:gravity="end"
                 android:text="단위 : 원"/>
 
@@ -155,9 +155,9 @@
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:textColor="#555555"
-                    android:lineSpacingExtra="27sp"
+                    android:lineSpacingExtra="27dp"
                     android:text="총 입금 금액"/>
                 <TextView
                     android:id="@+id/dealAmount"
@@ -166,10 +166,10 @@
                     android:layout_height="match_parent"
                     android:paddingLeft="10dp"
                     android:gravity="center_vertical|end"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textStyle="bold"
                     android:textColor="#3348ae"
-                    android:lineSpacingExtra="26sp"
+                    android:lineSpacingExtra="26dp"
                     android:text="100,000" />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <View
@@ -184,9 +184,9 @@
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:textColor="#555555"
-                    android:lineSpacingExtra="27sp"
+                    android:lineSpacingExtra="27dp"
                     android:text="거래금액"/>
                 <TextView
                     android:id="@+id/fee"
@@ -195,10 +195,10 @@
                     android:layout_height="match_parent"
                     android:paddingLeft="10dp"
                     android:gravity="center_vertical|end"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textStyle="bold"
                     android:textColor="#333333"
-                    android:lineSpacingExtra="26sp"
+                    android:lineSpacingExtra="26dp"
                     android:text="200,000" />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <View
@@ -214,7 +214,7 @@
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:textColor="#555555"
                     android:text="플랫폼 이용료\n(거래금액 1%)"/>
                 <TextView
@@ -224,10 +224,10 @@
                     android:layout_height="match_parent"
                     android:paddingLeft="10dp"
                     android:gravity="center_vertical|end"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textStyle="bold"
                     android:textColor="#333333"
-                    android:lineSpacingExtra="26sp"
+                    android:lineSpacingExtra="26dp"
                     android:text="300,000" />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <View
@@ -243,7 +243,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:textColor="#555555"
                     android:text="계약서 자동작성\n서비스 수수료"/>
                 <TextView
@@ -253,10 +253,10 @@
                     android:layout_height="match_parent"
                     android:paddingLeft="10dp"
                     android:gravity="center_vertical|end"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textStyle="bold"
                     android:textColor="#333333"
-                    android:lineSpacingExtra="26sp"
+                    android:lineSpacingExtra="26dp"
                     android:text="400,000" />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <View
@@ -271,7 +271,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:textColor="#555555"
                     android:text="주권미발행확인서 발급\n서비스 수수료"/>
                 <TextView
@@ -281,10 +281,10 @@
                     android:layout_height="match_parent"
                     android:paddingLeft="10dp"
                     android:gravity="center_vertical|end"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textStyle="bold"
                     android:textColor="#333333"
-                    android:lineSpacingExtra="26sp"
+                    android:lineSpacingExtra="26dp"
                     android:text="1,000,000" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -300,10 +300,10 @@
             android:layout_height="40dp"
             android:layout_marginTop="16.5dp"
             android:background="@drawable/shape_rect_fill16"
-            android:textSize="15sp"
+            android:textSize="15dp"
             android:textStyle="bold"
             android:textColor="#ffffff"
-            android:lineSpacingExtra="5sp"
+            android:lineSpacingExtra="5dp"
             android:gravity="center"
             android:text="확인"/>
 

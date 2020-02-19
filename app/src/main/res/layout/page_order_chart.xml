@@ -42,29 +42,29 @@
                         android:paddingRight="6dp"
                         android:paddingTop="2dp"
                         android:paddingBottom="2dp"
-                        android:textSize="13sp"
+                        android:textSize="13dp"
                         android:textColor="#4e4e9e"
-                        android:lineSpacingExtra="21sp"
+                        android:lineSpacingExtra="21dp"
                         android:text="기업정보"/>
                     <TextView
                         android:id="@+id/stockCode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="#b8c0db"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="4sp"
+                        android:lineSpacingExtra="4dp"
                         android:text="123456"/>
                     <TextView
                         android:id="@+id/stockKind"
                         android:layout_width="50dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="11dp"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="#b8c0db"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="4sp"
+                        android:lineSpacingExtra="4dp"
                         android:text="업종"
                         android:visibility="gone"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -83,20 +83,20 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="13sp"
+                        android:textSize="13dp"
                         android:textColor="#dfe2ee"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:gravity="center_horizontal"
                         android:text="수량(주)"/>
                     <TextView
                         android:id="@+id/count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17sp"
+                        android:textSize="17dp"
                         android:textStyle="bold"
                         android:textColor="#ffffff"
-                        android:lineSpacingExtra="8sp"
+                        android:lineSpacingExtra="8dp"
                         android:gravity="center_horizontal"
                         android:text="10,000,000"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -110,20 +110,20 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="13sp"
+                        android:textSize="13dp"
                         android:textColor="#dfe2ee"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:gravity="center_horizontal"
                         android:text="가격(원)"/>
                     <TextView
                         android:id="@+id/price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17sp"
+                        android:textSize="17dp"
                         android:textStyle="bold"
                         android:textColor="#ffffff"
-                        android:lineSpacingExtra="8sp"
+                        android:lineSpacingExtra="8dp"
                         android:gravity="center_horizontal"
                         android:text="500"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -173,10 +173,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="7dp"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:textColor="#ffffff"
                     android:letterSpacing="-0.05"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:gravity="center_horizontal"
                     android:text="협상요청"/>
             </androidx.appcompat.widget.LinearLayoutCompat>

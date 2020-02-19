@@ -36,9 +36,9 @@
                 android:layout_width="196dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 android:textColor="#333333"
-                android:lineSpacingExtra="5sp"
+                android:lineSpacingExtra="5dp"
                 android:gravity="center_horizontal"
                 android:text="@string/contract_right_deny"/>
 
@@ -46,10 +46,10 @@
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
-                android:textSize="13sp"
+                android:textSize="13dp"
                 android:textColor="#333333"
                 android:letterSpacing="-0.03"
-                android:lineSpacingExtra="7sp"
+                android:lineSpacingExtra="7dp"
                 android:text="위 요청이 온 시점까지, 위 OOO 주주의 보통주
 1,000주에 대해 본 플랫폼 외에서 매매 등 처분
 통지나 기타 질권설정 통지 등을 회사가 받은 사
@@ -60,10 +60,10 @@
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:textSize="13sp"
+                android:textSize="13dp"
                 android:textColor="#e8055a"
                 android:letterSpacing="-0.03"
-                android:lineSpacingExtra="7sp"
+                android:lineSpacingExtra="7dp"
                 android:text="※ 확인 클릭하시면 본 협상은 결렬로 종료되며
 채팅방 또한 사라지게 됩니다. "/>
 
@@ -73,10 +73,10 @@
                 android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:background="@drawable/shape_rect_fill15"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textStyle="bold"
                 android:textColor="#3348ae"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="4dp"
                 android:text="확인"/>
         </LinearLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>

@@ -54,9 +54,9 @@
         <TextView
             android:id="@+id/text_group_chat_time"
             android:text="21:27"
-            android:textSize="11sp"
+            android:textSize="11dp"
             android:textColor="#666666"
-            android:lineSpacingExtra="7sp"
+            android:lineSpacingExtra="7dp"
             android:layout_toLeftOf="@id/card_group_chat_message"
             android:layout_alignBottom="@id/card_group_chat_message"
             android:layout_marginBottom="8dp"

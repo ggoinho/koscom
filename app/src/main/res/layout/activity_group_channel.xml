@@ -39,7 +39,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="17sp"
+                android:textSize="17dp"
                 android:textColor="#000826"
                 android:text="코스콤"/>
             <ImageView
@@ -93,7 +93,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="40dp"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textColor="#333333"
                     android:maxLines="1"
                     android:inputType="text"

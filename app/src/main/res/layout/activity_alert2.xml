@@ -29,10 +29,10 @@
             android:paddingBottom="24dp"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
-            android:textSize="15sp"
+            android:textSize="15dp"
             android:textColor="#333333"
             android:letterSpacing="-0.03"
-            android:lineSpacingExtra="5sp"
+            android:lineSpacingExtra="5dp"
             android:gravity="center"
             android:text="새로운 업데이트 버전이 있습니다.\n
 업데이트 후 사용바랍니다."/>
@@ -49,9 +49,9 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_rect_fill19"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="#333333"
-                android:lineSpacingExtra="3sp"
+                android:lineSpacingExtra="3dp"
                 android:gravity="center"
                 android:text="취소"/>
             <TextView
@@ -60,10 +60,10 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_rect_fill28"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:lineSpacingExtra="2sp"
+                android:lineSpacingExtra="2dp"
                 android:gravity="center"
                 android:text="확인"/>
         </LinearLayout>
@@ -73,10 +73,10 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/shape_rect_fill16"
-            android:textSize="15sp"
+            android:textSize="15dp"
             android:textStyle="bold"
             android:textColor="#ffffff"
-            android:lineSpacingExtra="2sp"
+            android:lineSpacingExtra="2dp"
             android:gravity="center"
             android:text="확인" />
 

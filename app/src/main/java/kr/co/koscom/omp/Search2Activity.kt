@@ -8,6 +8,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.util.TypedValue
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -91,6 +92,7 @@ class Search2Activity : AppCompatActivity() {
                 tabTextView.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
 
                 tabTextView.text = tab.text
+                tabTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15F)
 
                 // First tab is the selected tab, so if i==0 then set BOLD typeface
                 if (i == 0) {

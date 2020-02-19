@@ -67,9 +67,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textColor="#ffffff"
-                    android:lineSpacingExtra="6sp"
+                    android:lineSpacingExtra="6dp"
                     android:gravity="center_horizontal"
                     android:text="THE NEW STANDARD IN \nSTART-UP INVESTMENT"
                     android:visibility="invisible"
@@ -100,9 +100,9 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:textSize="11sp"
+                android:textSize="11dp"
                 android:textColor="#000826"
-                android:lineSpacingExtra="7sp"
+                android:lineSpacingExtra="7dp"
                 android:text="V.0.0.1"/>
             <TextView
                 android:id="@+id/percent"
@@ -110,9 +110,9 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="11sp"
+                android:textSize="11dp"
                 android:textColor="#000826"
-                android:lineSpacingExtra="7sp"
+                android:lineSpacingExtra="7dp"
                 android:gravity="end"
                 android:text="0%"/>
             <View

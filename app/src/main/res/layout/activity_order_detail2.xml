@@ -93,19 +93,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="16dp"
-                                android:textSize="13sp"
+                                android:textSize="13dp"
                                 android:textColor="#dfe2ee"
                                 android:letterSpacing="-0.03"
-                                android:lineSpacingExtra="5sp"
+                                android:lineSpacingExtra="5dp"
                                 android:text="종목명"/>
                             <TextView
                                 android:id="@+id/stockName"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content"
-                                android:textSize="19sp"
+                                android:textSize="19dp"
                                 android:textColor="#ffffff"
-                                android:lineSpacingExtra="1sp"
+                                android:lineSpacingExtra="1dp"
                                 android:text="코스콤"
                                 android:gravity="center"/>
                             <ImageView
@@ -166,6 +166,7 @@
                                     android:layout_width="match_parent"
                                     android:minWidth="400dp"
                                     android:layout_height="36dp"
+                                    app:tabTextAppearance="@style/tab_text"
                                     app:tabTextColor="#FFFFFF"
                                     app:tabSelectedTextColor="#FFFFFF"
                                     app:tabIndicatorColor="#e6e8f4">

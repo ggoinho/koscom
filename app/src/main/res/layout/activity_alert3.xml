@@ -27,7 +27,7 @@
             android:paddingTop="24dp"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
-            android:textSize="15sp"
+            android:textSize="15dp"
             android:textColor="#333333"
             android:gravity="center"
             android:text="Be My Unicorn에서 알림을 보내고자 합니다."/>
@@ -38,7 +38,7 @@
             android:paddingBottom="24dp"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:textColor="#333333"
             android:text="경고 : 사운드 및 아이콘 배치가 알림에 포함될 수 있습니다. 설정에서 변경가능합니다."/>
 
@@ -53,9 +53,9 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_rect_fill19"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="#333333"
-                android:lineSpacingExtra="3sp"
+                android:lineSpacingExtra="3dp"
                 android:gravity="center"
                 android:text="허용안함"/>
             <TextView
@@ -64,10 +64,10 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_rect_fill28"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:lineSpacingExtra="2sp"
+                android:lineSpacingExtra="2dp"
                 android:gravity="center"
                 android:text="허용"/>
         </LinearLayout>

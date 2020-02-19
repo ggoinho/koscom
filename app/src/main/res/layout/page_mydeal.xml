@@ -18,11 +18,11 @@
             android:id="@+id/stockName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="#132475"
             android:letterSpacing="-0.03"
-            android:lineSpacingExtra="2sp"
+            android:lineSpacingExtra="2dp"
             android:gravity="center_horizontal"
             android:text="코스콤"/>
 
@@ -30,9 +30,9 @@
             android:id="@+id/stockGubn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:textSize="13dp"
             android:textColor="#555555"
-            android:lineSpacingExtra="7sp"
+            android:lineSpacingExtra="7dp"
             android:gravity="center_horizontal"
             android:text="3우선주(전환상황)"/>
         <LinearLayout
@@ -51,18 +51,18 @@
                     android:id="@+id/count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
+                    android:textSize="17dp"
                     android:textStyle="bold"
                     android:textColor="#333333"
-                    android:lineSpacingExtra="17sp"
+                    android:lineSpacingExtra="17dp"
                     android:gravity="end"
                     android:text="15,000"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textColor="#333333"
-                    android:lineSpacingExtra="20sp"
+                    android:lineSpacingExtra="20dp"
                     android:gravity="end"
                     android:text="주"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -76,18 +76,18 @@
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
+                    android:textSize="17dp"
                     android:textStyle="bold"
                     android:textColor="#000000"
-                    android:lineSpacingExtra="17sp"
+                    android:lineSpacingExtra="17dp"
                     android:gravity="end"
                     android:text="4,500"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textColor="#000000"
-                    android:lineSpacingExtra="20sp"
+                    android:lineSpacingExtra="20dp"
                     android:gravity="end"
                     android:text="원"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -96,9 +96,9 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="#333333"
-                android:lineSpacingExtra="20sp"
+                android:lineSpacingExtra="20dp"
                 android:gravity="center"
                 android:text="김*표"/>
         </LinearLayout>
@@ -113,9 +113,9 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="#757575"
-                android:lineSpacingExtra="37sp"
+                android:lineSpacingExtra="37dp"
                 android:gravity="center"
                 android:text="거절" />
             <View
@@ -138,10 +138,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textStyle="bold"
                     android:textColor="#3348ae"
-                    android:lineSpacingExtra="35sp"
+                    android:lineSpacingExtra="35dp"
                     android:gravity="center_horizontal"
                     android:text="수락"/>
             </androidx.appcompat.widget.LinearLayoutCompat>

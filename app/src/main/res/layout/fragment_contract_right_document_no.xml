@@ -37,9 +37,9 @@
                 android:layout_width="185dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="#555555"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="4dp"
                 android:gravity="center_horizontal"
                 android:text="등록기업에서 발급승인을 받은
 주권미발행확인서가 없습니다"/>

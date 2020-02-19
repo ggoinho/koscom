@@ -27,9 +27,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginLeft="16dp"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textColor="#000000"
-                    android:lineSpacingExtra="8sp"
+                    android:lineSpacingExtra="8dp"
                     android:textStyle="bold"
                     android:gravity="left|center_vertical"
                     android:text="서비 해지" />

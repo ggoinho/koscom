@@ -37,10 +37,10 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:textSize="15sp"
+                        android:textSize="15dp"
                         android:textColor="#333333"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:text="통합인증 간편로그인 등록 및 변경"/>
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -69,10 +69,10 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:textSize="15sp"
+                        android:textSize="15dp"
                         android:textColor="#333333"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:text="알림 설정 (Push)"/>
 
                     <ToggleButton
@@ -106,10 +106,10 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:textSize="15sp"
+                        android:textSize="15dp"
                         android:textColor="#333333"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:text="마케팅 수신 동의"/>
 
                     <ToggleButton
@@ -142,10 +142,10 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:textSize="15sp"
+                        android:textSize="15dp"
                         android:textColor="#333333"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:text="버전정보"/>
 
                     <TextView
@@ -155,9 +155,9 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="#333333"
-                        android:lineSpacingExtra="6sp"
+                        android:lineSpacingExtra="6dp"
                         android:gravity="end"
                         android:text="V2.0.10"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -180,10 +180,10 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:textSize="15sp"
+                        android:textSize="15dp"
                         android:textColor="#333333"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:text="서비스이용약관"/>
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -213,10 +213,10 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:textSize="15sp"
+                        android:textSize="15dp"
                         android:textColor="#333333"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:text="개인정보취급처리방침"/>
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -246,10 +246,10 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:textSize="15sp"
+                        android:textSize="15dp"
                         android:textColor="#333333"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:text="저작권보호방침"/>
 
                     <androidx.appcompat.widget.AppCompatImageView

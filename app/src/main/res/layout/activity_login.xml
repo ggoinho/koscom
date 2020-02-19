@@ -31,10 +31,10 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:letterSpacing="-0.03"
-                android:lineSpacingExtra="1sp"
+                android:lineSpacingExtra="1dp"
                 android:text="로그인"
                 android:textColor="#000826"
-                android:textSize="19sp"
+                android:textSize="19dp"
                 android:textStyle="bold" />
 
             <ImageView
@@ -53,10 +53,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:letterSpacing="-0.05"
-            android:lineSpacingExtra="4sp"
+            android:lineSpacingExtra="4dp"
             android:text="투자자 유형을 선택하여 주십시오"
             android:textColor="#111111"
-            android:textSize="16sp" />
+            android:textSize="16dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -83,10 +83,10 @@
                     android:id="@+id/personTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:text="개인"
                     android:textColor="#3348ae"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -116,10 +116,10 @@
                     android:id="@+id/companyTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:text="법인"
                     android:textColor="#333333"
-                    android:textSize="15sp" />
+                    android:textSize="15dp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="32dp"
@@ -145,10 +145,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:letterSpacing="-0.05"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="4dp"
                 android:text="가입시 인증한 인증방법을 선택하여 주십시오"
                 android:textColor="#111111"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -175,10 +175,10 @@
                         android:id="@+id/integratedTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:text="통합인증앱"
                         android:textColor="#3348ae"
-                        android:textSize="15sp" />
+                        android:textSize="15dp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/integratedIcon"
@@ -208,10 +208,10 @@
                         android:id="@+id/didTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:text="DID인증"
                         android:textColor="#333333"
-                        android:textSize="15sp" />
+                        android:textSize="15dp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/didIcon"
@@ -243,10 +243,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:text="@string/login_auth_desc"
                     android:textColor="#555555"
-                    android:textSize="13sp" />
+                    android:textSize="13dp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -267,10 +267,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:lineSpacingExtra="17sp"
+                android:lineSpacingExtra="17dp"
                 android:text="로그인"
                 android:textColor="#ffffff"
-                android:textSize="17sp"
+                android:textSize="17dp"
                 android:textStyle="bold"
                 android:visibility="visible"/>
 
@@ -294,10 +294,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:lineSpacingExtra="17sp"
+                android:lineSpacingExtra="17dp"
                 android:text="통합인증 로그인"
                 android:textColor="#ffffff"
-                android:textSize="17sp"
+                android:textSize="17dp"
                 android:textStyle="bold"
                 android:visibility="gone"
                 />
@@ -310,10 +310,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:letterSpacing="-0.08"
-            android:lineSpacingExtra="4sp"
+            android:lineSpacingExtra="4dp"
             android:text="아직 서비스 가입을 하지 않으셨나요?"
             android:textColor="#666666"
-            android:textSize="14sp" />
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/btnRegist"
@@ -322,10 +322,10 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/shape_rect_fill33"
             android:gravity="center"
-            android:lineSpacingExtra="1sp"
+            android:lineSpacingExtra="1dp"
             android:text="서비스 가입"
             android:textColor="#333333"
-            android:textSize="16sp" />
+            android:textSize="16dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -402,10 +402,10 @@
         android:layout_marginBottom="20dp"
         android:gravity="center_horizontal"
         android:letterSpacing="-0.03"
-        android:lineSpacingExtra="9sp"
+        android:lineSpacingExtra="9dp"
         android:text="© KOSCOM CORP."
         android:textColor="#757575"
-        android:textSize="11sp"
+        android:textSize="11dp"
         app:layout_constraintBottom_toBottomOf="@+id/layout_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

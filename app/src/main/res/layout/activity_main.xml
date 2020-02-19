@@ -72,10 +72,10 @@
                 android:background="@drawable/shape_rect_fill6"
                 android:gravity="center"
                 android:letterSpacing="-0.03"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="4dp"
                 android:text="0"
                 android:textColor="#ffffff"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -128,10 +128,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="47dp"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:text="비상장주식거래 마켓 플랫폼 Be My Unicorn 오픈"
                         android:textColor="#ffffff"
-                        android:textSize="13sp"
+                        android:textSize="13dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -162,10 +162,10 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginBottom="10dp"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="8sp"
+                            android:lineSpacingExtra="8dp"
                             android:text="나의 협상 관리"
                             android:textColor="#ffffff"
-                            android:textSize="16sp"
+                            android:textSize="16dp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -186,10 +186,10 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="end"
                                 android:letterSpacing="-0.03"
-                                android:lineSpacingExtra="7sp"
+                                android:lineSpacingExtra="7dp"
                                 android:text="협상관리 &gt;"
                                 android:textColor="#ffffff"
-                                android:textSize="13sp" />
+                                android:textSize="13dp" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -217,29 +217,29 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:text="1"
                             android:textColor="#ffffff"
-                            android:textSize="12sp" />
+                            android:textSize="12dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:text="/"
                             android:textColor="#e9e9e9"
-                            android:textSize="12sp" />
+                            android:textSize="12dp" />
 
                         <TextView
                             android:id="@+id/dealTotal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:text="15"
                             android:textColor="#e9e9e9"
-                            android:textSize="12sp" />
+                            android:textSize="12dp" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -260,10 +260,10 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginBottom="10dp"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="8sp"
+                            android:lineSpacingExtra="8dp"
                             android:text="나의 계약 및 체결 관리"
                             android:textColor="#000000"
-                            android:textSize="16sp"
+                            android:textSize="16dp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -286,10 +286,10 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:letterSpacing="-0.03"
-                                android:lineSpacingExtra="7sp"
+                                android:lineSpacingExtra="7dp"
                                 android:text="계약 및 체결관리>"
                                 android:textColor="#000826"
-                                android:textSize="13sp" />
+                                android:textSize="13dp" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -317,29 +317,29 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:text="1"
                             android:textColor="#000000"
-                            android:textSize="12sp" />
+                            android:textSize="12dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:text="/"
                             android:textColor="#666666"
-                            android:textSize="12sp" />
+                            android:textSize="12dp" />
 
                         <TextView
                             android:id="@+id/contractTotal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:text="15"
                             android:textColor="#666666"
-                            android:textSize="12sp" />
+                            android:textSize="12dp" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <ImageView
@@ -369,10 +369,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="8sp"
+                        android:lineSpacingExtra="8dp"
                         android:text="주문현황"
                         android:textColor="#000000"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -395,10 +395,10 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="7sp"
+                            android:lineSpacingExtra="7dp"
                             android:text="더보기 &gt;"
                             android:textColor="#000826"
-                            android:textSize="13sp" />
+                            android:textSize="13dp" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -434,10 +434,10 @@
                             android:layout_marginTop="9dp"
                             android:gravity="center_horizontal"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:text="조회된 내용이 없습니다"
                             android:textColor="#555555"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </RelativeLayout>
 
@@ -457,10 +457,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="8sp"
+                        android:lineSpacingExtra="8dp"
                         android:text="체결 현황"
                         android:textColor="#000000"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -481,10 +481,10 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="7sp"
+                            android:lineSpacingExtra="7dp"
                             android:text="더보기 &gt;"
                             android:textColor="#000826"
-                            android:textSize="13sp" />
+                            android:textSize="13dp" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -522,10 +522,10 @@
                             android:layout_marginTop="9dp"
                             android:gravity="center_horizontal"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:text="조회된 내용이 없습니다"
                             android:textColor="#555555"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </RelativeLayout>
 
@@ -546,10 +546,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="14sp"
+                        android:lineSpacingExtra="14dp"
                         android:text="이용약관"
                         android:textColor="#555555"
-                        android:textSize="14sp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/btnInfoAgreement"
@@ -557,10 +557,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="14sp"
+                        android:lineSpacingExtra="14dp"
                         android:text="개인정보처리방침"
                         android:textColor="#2b366d"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -569,10 +569,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="14sp"
+                        android:lineSpacingExtra="14dp"
                         android:text="저작권보호방침"
                         android:textColor="#555555"
-                        android:textSize="14sp" />
+                        android:textSize="14dp" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -594,10 +594,10 @@
                         android:layout_marginTop="10dp"
                         android:gravity="center_horizontal"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="21sp"
+                        android:lineSpacingExtra="21dp"
                         android:text="서울시 영등포구 여의나루로 76 (주)코스콤"
                         android:textColor="#ffffff"
-                        android:textSize="13sp" />
+                        android:textSize="13dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -605,10 +605,10 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="21sp"
+                        android:lineSpacingExtra="21dp"
                         android:text=" 대표전화  02-767-7650"
                         android:textColor="#ffffff"
-                        android:textSize="13sp" />
+                        android:textSize="13dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -616,10 +616,10 @@
                         android:layout_marginTop="10dp"
                         android:gravity="center_horizontal"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="9sp"
+                        android:lineSpacingExtra="9dp"
                         android:text="© 2019 KOSCOM CORP."
                         android:textColor="#dddee3"
-                        android:textSize="11sp" />
+                        android:textSize="11dp" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

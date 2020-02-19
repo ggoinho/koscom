@@ -39,10 +39,10 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:text="모두 읽음"
                         android:textColor="#3348ae"
-                        android:textSize="13sp"
+                        android:textSize="13dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -61,10 +61,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="5sp"
+                        android:lineSpacingExtra="5dp"
                         android:text="전체"
                         android:textColor="#333333"
-                        android:textSize="15sp"
+                        android:textSize="15dp"
                         app:layout_constraintBottom_toBottomOf="@+id/listView"
                         app:layout_constraintStart_toStartOf="@+id/listView"
                         app:layout_constraintTop_toTopOf="@+id/listView" />
@@ -110,10 +110,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="9dp"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="#555555"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="4sp"
+                        android:lineSpacingExtra="4dp"
                         android:gravity="center_horizontal"
                         android:text="조회된 내용이 없습니다"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>

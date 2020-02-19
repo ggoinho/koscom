@@ -32,9 +32,9 @@
         <TextView
             android:text="Daniel Silberschatz"
             android:id="@+id/text_group_chat_nickname"
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:textColor="#666666"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/image_group_chat_profile"
@@ -75,9 +75,9 @@
         <TextView
             android:id="@+id/text_group_chat_time"
             android:text="21:27"
-            android:textSize="11sp"
+            android:textSize="11dp"
             android:textColor="#666666"
-            android:lineSpacingExtra="7sp"
+            android:lineSpacingExtra="7dp"
             android:layout_toRightOf="@id/card_group_chat_message"
             android:layout_alignBottom="@id/card_group_chat_message"
             android:layout_marginBottom="8dp"

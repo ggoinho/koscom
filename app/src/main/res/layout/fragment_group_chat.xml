@@ -42,9 +42,9 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:minHeight="44dp"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:textColor="#000000"
-            android:lineSpacingExtra="4sp"
+            android:lineSpacingExtra="4dp"
             android:maxLines="6"/>
 
         <ImageButton
@@ -74,27 +74,27 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
+                android:textSize="13dp"
                 android:textColor="#666666"
-                android:lineSpacingExtra="5sp"
+                android:lineSpacingExtra="5dp"
                 android:text="직전체결가"/>
             <TextView
                 android:id="@+id/prePrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="9dp"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="#333333"
-                android:lineSpacingExtra="4sp"
+                android:lineSpacingExtra="4dp"
                 android:text="4,900"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="1dp"
-                android:textSize="13sp"
+                android:textSize="13dp"
                 android:textColor="#333333"
-                android:lineSpacingExtra="5sp"
+                android:lineSpacingExtra="5dp"
                 android:text="원"/>
             <LinearLayout
                 android:id="@+id/btnShowPrice"
@@ -108,9 +108,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     android:textColor="#666666"
-                    android:lineSpacingExtra="6sp"
+                    android:lineSpacingExtra="6dp"
                     android:text="수량/가격/금액"/>
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/showPriceArrow"
@@ -142,18 +142,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     android:textColor="#555555"
-                    android:lineSpacingExtra="6sp"
+                    android:lineSpacingExtra="6dp"
                     android:gravity="center_horizontal"
                     android:text="수량(주)"/>
                 <TextView
                     android:id="@+id/count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:textColor="#333333"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:gravity="center_horizontal"
                     android:text="1,000"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -172,18 +172,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     android:textColor="#555555"
-                    android:lineSpacingExtra="6sp"
+                    android:lineSpacingExtra="6dp"
                     android:gravity="center_horizontal"
                     android:text="가격(원)"/>
                 <TextView
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:textColor="#333333"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:gravity="center_horizontal"
                     android:text="5,000"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -201,18 +201,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     android:textColor="#555555"
-                    android:lineSpacingExtra="6sp"
+                    android:lineSpacingExtra="6dp"
                     android:gravity="center_horizontal"
                     android:text="금액(원)"/>
                 <TextView
                     android:id="@+id/totalAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:textColor="#333333"
-                    android:lineSpacingExtra="5sp"
+                    android:lineSpacingExtra="5dp"
                     android:gravity="center_horizontal"
                     android:text="5,000,000"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -257,9 +257,9 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textColor="#ffffff"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="4dp"
                     android:text="협상내역 입력"/>
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivShowContact"
@@ -300,7 +300,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="수량"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="#000000"/>
                     <RelativeLayout
                         android:layout_width="0dp"
@@ -315,7 +315,7 @@
                             android:inputType="number"
                             android:layout_centerVertical="true"
                             android:paddingRight="23dp"
-                            android:textSize="15sp"
+                            android:textSize="15dp"
                             android:textStyle="bold"
                             android:textColor="#3348ae"
                             android:gravity="end|center_vertical"
@@ -326,7 +326,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="4dp"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="#000000"
                             android:text="주"/>
                     </RelativeLayout>
@@ -344,7 +344,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="가격"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="#000000"/>
                     <RelativeLayout
                         android:layout_width="0dp"
@@ -359,10 +359,10 @@
                             android:inputType="number"
                             android:layout_centerVertical="true"
                             android:paddingRight="23dp"
-                            android:textSize="15sp"
+                            android:textSize="15dp"
                             android:textStyle="bold"
                             android:textColor="#3348ae"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:gravity="end|center_vertical"
                             android:hint="0"/>
                         <TextView
@@ -371,9 +371,9 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="4dp"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="#000000"
-                            android:lineSpacingExtra="4sp"
+                            android:lineSpacingExtra="4dp"
                             android:text="원"/>
                     </RelativeLayout>
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -395,7 +395,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="결제마감일"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="#000000"/>
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/btnTooltip"
@@ -415,10 +415,10 @@
                             android:id="@+id/payEndDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="15sp"
+                            android:textSize="15dp"
                             android:textStyle="bold"
                             android:textColor="#e8055a"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:gravity="end"
                             android:hint="2019-10-15"/>
                         <ImageView
@@ -450,8 +450,8 @@
                         android:layout_marginLeft="7dp"
                         android:layout_marginRight="10dp"
                         android:text="@string/contact_desc"
-                        android:lineSpacingExtra="5sp"
-                        android:textSize="13sp"
+                        android:lineSpacingExtra="5dp"
+                        android:textSize="13dp"
                         android:textColor="#555555"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -466,9 +466,9 @@
                         android:background="#f2f2f2"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="#333333"
-                        android:lineSpacingExtra="4sp"
+                        android:lineSpacingExtra="4dp"
                         android:gravity="center"
                         android:text="취소"/>
                     <androidx.appcompat.widget.LinearLayoutCompat
@@ -489,9 +489,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:textSize="15sp"
+                            android:textSize="15dp"
                             android:textColor="#ffffff"
-                            android:lineSpacingExtra="5sp"
+                            android:lineSpacingExtra="5dp"
                             android:text="확인"/>
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -525,10 +525,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="16dp"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textColor="#333333"
                     android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="6sp"
+                    android:lineSpacingExtra="6dp"
                     android:text="결제 마감일은 매수자의 \n에스크로 입금 마감일입니다."
                     />
             </RelativeLayout>

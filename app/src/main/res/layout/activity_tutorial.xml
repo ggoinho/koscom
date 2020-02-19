@@ -39,11 +39,11 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="41dp"
                 android:letterSpacing="-0.03"
-                android:lineSpacingExtra="5sp"
+                android:lineSpacingExtra="5dp"
                 android:gravity="center"
                 android:text="다시 보지 않기"
                 android:textColor="#ffffff"
-                android:textSize="13sp" />
+                android:textSize="13dp" />
 
             <CheckBox
                 android:id="@+id/checkBox"
@@ -78,10 +78,10 @@
         <!--            android:layout_height="wrap_content"-->
         <!--            android:gravity="center_horizontal"-->
         <!--            android:letterSpacing="-0.03"-->
-        <!--            android:lineSpacingExtra="7sp"-->
+        <!--            android:lineSpacingExtra="7dp"-->
         <!--            android:text="이미 가입하셨나요? 로그인하러가기"-->
         <!--            android:textColor="#ffffff"-->
-        <!--            android:textSize="13sp" />-->
+        <!--            android:textSize="13dp" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,10 +96,10 @@
                 android:layout_weight="1"
                 android:background="#3348ae"
                 android:gravity="center"
-                android:lineSpacingExtra="3sp"
+                android:lineSpacingExtra="3dp"
                 android:text="로그인"
                 android:textColor="#ffffff"
-                android:textSize="17sp"
+                android:textSize="17dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -109,10 +109,10 @@
                 android:layout_weight="1"
                 android:background="#3348ae"
                 android:gravity="center"
-                android:lineSpacingExtra="3sp"
+                android:lineSpacingExtra="3dp"
                 android:text="서비스가입"
                 android:textColor="#ffffff"
-                android:textSize="17sp"
+                android:textSize="17dp"
                 android:textStyle="bold" />
         </LinearLayout>
 

@@ -57,12 +57,12 @@
                     android:hint="종목명 검색"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="4dp"
                     android:maxLines="1"
                     android:paddingLeft="10dp"
                     android:paddingRight="35dp"
                     android:textColor="#757575"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -138,10 +138,10 @@
                         android:layout_marginTop="9dp"
                         android:gravity="center_horizontal"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="4sp"
+                        android:lineSpacingExtra="4dp"
                         android:text="조회된 내용이 없습니다"
                         android:textColor="#555555"
-                        android:textSize="14sp" />
+                        android:textSize="14dp" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </RelativeLayout>
 
@@ -174,10 +174,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:lineSpacingExtra="3sp"
+                android:lineSpacingExtra="3dp"
                 android:text="종목검색"
                 android:textColor="#ffffff"
-                android:textSize="17sp"
+                android:textSize="17dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
