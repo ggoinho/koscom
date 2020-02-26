@@ -178,6 +178,13 @@ class ContractFragment : Fragment() {
                         btnSign.isEnabled = (mySign.text.contains("완료") == false)
                     }
                 }
+
+                if (btnSign.isEnabled) {
+                    btnSign.alpha = 1.0f
+                }
+                else {
+                    btnSign.alpha = 0.4f
+                }
             }
         })
 
