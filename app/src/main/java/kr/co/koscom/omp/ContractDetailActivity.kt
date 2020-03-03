@@ -227,7 +227,7 @@ class ContractDetailActivity : AppCompatActivity() {
         }
 
         if (SKConstant.RESULT_CODE_OK != nResult) {
-            Toast.makeText(this, "OpenPass 초기화 중 오류가 발생하였습니다.($nResult)", Toast.LENGTH_SHORT)
+            Toast.makeText(this, "MyPass 초기화 중 오류가 발생하였습니다.($nResult)", Toast.LENGTH_SHORT)
                 .show()
             progress_bar_login?.visibility = View.INVISIBLE
 

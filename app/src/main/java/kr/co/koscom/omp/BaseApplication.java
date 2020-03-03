@@ -2,7 +2,11 @@ package kr.co.koscom.omp;
 
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Build;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.multidex.MultiDexApplication;
@@ -31,6 +35,9 @@ public class BaseApplication extends MultiDexApplication {
 
         SendBird.init(APP_ID, getApplicationContext());
         SendBirdSyncManager.setLoggerLevel(98765);
+
+        createNotificationChannel();
+
     }
 
     public boolean isSyncManagerSetup() {
@@ -43,5 +50,21 @@ public class BaseApplication extends MultiDexApplication {
 
     public static Context getAppContext() {
         return context;
+    }
+
+
+    /**
+     * Oreo 이상 버전 Notification 채널 생성작업.
+     */
+    private void createNotificationChannel(){
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        final String CHANNEL_ID = "CHANNEL_ID";
+        if (Build.VERSION.SDK_INT >= 26) {  // Build.VERSION_CODES.O
+            if(notificationManager.getNotificationChannel(CHANNEL_ID) == null){
+                NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, "CHANNEL_NAME", NotificationManager.IMPORTANCE_HIGH);
+                mChannel.setShowBadge(false);
+                notificationManager.createNotificationChannel(mChannel);
+            }
+        }
     }
 }

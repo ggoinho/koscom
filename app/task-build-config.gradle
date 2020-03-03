@@ -38,14 +38,14 @@ android {
 
 
 //            TEST2
-            buildConfigField "String", SERVER_URL, '\"https://test2.bemyunicorn.io:8080\"'
-            buildConfigField "String", LOGIN_URL, '\"https://test2.bemyunicorn.io:8080/api/ompMobilLogin\"'
-            buildConfigField "String", LOGOUT_URL, '\"https://test2.bemyunicorn.io:8080/api/ompMobilLogOut\"'
+//            buildConfigField "String", SERVER_URL, '\"https://test2.bemyunicorn.io:8080\"'
+//            buildConfigField "String", LOGIN_URL, '\"https://test2.bemyunicorn.io:8080/api/ompMobilLogin\"'
+//            buildConfigField "String", LOGOUT_URL, '\"https://test2.bemyunicorn.io:8080/api/ompMobilLogOut\"'
 
             //TEST3
-//            buildConfigField "String", SERVER_URL, '\"https://test3.bemyunicorn.io\"'
-//            buildConfigField "String", LOGIN_URL, '\"https://test3.bemyunicorn.io/api/ompMobilLogin\"'
-//            buildConfigField "String", LOGOUT_URL, '\"https://test3.bemyunicorn.io/api/ompMobilLogOut\"'
+            buildConfigField "String", SERVER_URL, '\"https://test3.bemyunicorn.io\"'
+            buildConfigField "String", LOGIN_URL, '\"https://test3.bemyunicorn.io/api/ompMobilLogin\"'
+            buildConfigField "String", LOGOUT_URL, '\"https://test3.bemyunicorn.io/api/ompMobilLogOut\"'
         }
 
         release {

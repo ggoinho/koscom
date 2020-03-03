@@ -719,7 +719,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         if (SKConstant.RESULT_CODE_OK != nResult) {
-            Toast.makeText(applicationContext, "OpenPass 초기화 중 오류가 발생하였습니다.($nResult)", Toast.LENGTH_SHORT)
+            Toast.makeText(applicationContext, "MyPass 초기화 중 오류가 발생하였습니다.($nResult)", Toast.LENGTH_SHORT)
                 .show()
             mainProgress?.dismiss()
 
@@ -740,7 +740,7 @@ class LoginActivity : AppCompatActivity() {
      * OpenPass의 버전을 확인하고 아직 설치가 되어 있지 않다면 설치 의사를 묻는 팝업을 표시합니다.
      */
     private fun checkOpenPassVersion() {
-        showProgressDialog("", "OpenPass 버전을 확인합니다.")
+        showProgressDialog("", "MyPass 버전을 확인합니다.")
 
         SKCertManager.getOpenPassVersion(this
         ) { requestCode, resultCode, resultMessage ->
@@ -748,7 +748,7 @@ class LoginActivity : AppCompatActivity() {
             mainProgress?.dismiss()
 
             if (resultCode == SKConstant.RESULT_CODE_OK) {
-                Toast.makeText(applicationContext, "설치된 OpenPass의 버전은 $resultMessage 입니다.", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "설치된 MyPass의 버전은 $resultMessage 입니다.", Toast.LENGTH_LONG).show()
                 proceedNextStep()
             } else if ((resultCode == SKConstant.RESULT_CODE_ERROR_NOT_INSTALL ||
                         resultCode == SKConstant.RESULT_CODE_ERROR_NEED_UPDATE ||

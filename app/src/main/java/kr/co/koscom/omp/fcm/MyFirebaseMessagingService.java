@@ -119,10 +119,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         final String CHANNEL_ID = "CHANNEL_ID";
-        if (Build.VERSION.SDK_INT >= 26) {  // Build.VERSION_CODES.O
-            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, "CHANNEL_NAME", NotificationManager.IMPORTANCE_HIGH);
-            notificationManager.createNotificationChannel(mChannel);
-        }
 
         Log.d(MyFirebaseMessagingService.class.getSimpleName(), "channelUrl : " + channelUrl);
 
@@ -156,10 +152,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         final String CHANNEL_ID = "CHANNEL_ID";
-        if (Build.VERSION.SDK_INT >= 26) {  // Build.VERSION_CODES.O
-            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, "CHANNEL_NAME", NotificationManager.IMPORTANCE_HIGH);
-            notificationManager.createNotificationChannel(mChannel);
-        }
 
         Log.d(MyFirebaseMessagingService.class.getSimpleName(), "messageBody : " + messageBody);
 
