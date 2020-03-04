@@ -669,6 +669,8 @@ class SplashActivity : AppCompatActivity() {
             mainProgress!!.cancel()
             mainProgress!!.dismiss()
         }
+
+        disposable.clear()
     }
 
     companion object{

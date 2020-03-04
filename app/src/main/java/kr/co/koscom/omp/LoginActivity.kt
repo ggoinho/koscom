@@ -69,6 +69,12 @@ class LoginActivity : AppCompatActivity() {
     private var mCurrentStep = _STEP_IDLE
 
 
+    private val METHOD_PERSON = 0                           //개인
+    private val METHOD_COMPANY = 1                          //법인
+    private val METHOD_INTERGRATED = 2                      //통합인증 앱
+    private val METHOD_DID = 3                              //DID
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -84,84 +90,43 @@ class LoginActivity : AppCompatActivity() {
         chatViewModel = ViewModelProviders.of(this, viewModelFactory).get(ChatViewModel::class.java)
         loginViewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
 
-        personCheck!!.setOnCheckedChangeListener { compoundButton, b ->
-            if (b) {
-                loginWayZone!!.visibility = View.VISIBLE
-                btnPersonalLogin!!.visibility = View.VISIBLE
-                imgLoginKey!!.visibility = View.GONE
-                btnCompanyLogin!!.visibility = View.GONE
-            }
-        }
-        companyCheck!!.setOnCheckedChangeListener { compoundButton, b ->
-            if (b) {
-                loginWayZone!!.visibility = View.GONE
-                btnPersonalLogin!!.visibility = View.GONE
-                imgLoginKey!!.visibility = View.VISIBLE
-                btnCompanyLogin!!.visibility = View.VISIBLE
-            }
-        }
+//        personCheck!!.setOnCheckedChangeListener { compoundButton, b ->
+//            if (b) {
+//                loginWayZone!!.visibility = View.VISIBLE
+//                btnPersonalLogin!!.visibility = View.VISIBLE
+//                imgLoginKey!!.visibility = View.GONE
+//                btnCompanyLogin!!.visibility = View.GONE
+//            }
+//        }
+//        companyCheck!!.setOnCheckedChangeListener { compoundButton, b ->
+//            if (b) {
+//                loginWayZone!!.visibility = View.GONE
+//                btnPersonalLogin!!.visibility = View.GONE
+//                imgLoginKey!!.visibility = View.VISIBLE
+//                btnCompanyLogin!!.visibility = View.VISIBLE
+//            }
+//        }
 
         chkPerson.setOnClickListener {
-
-            chkCompany.setBackgroundResource(R.drawable.shape_rect_fill33)
-            companyCheck.isChecked = false
-            companyTitle.setTextColor(Color.parseColor("#333333"))
-
-            chkPerson.setBackgroundResource(R.drawable.shape_rect_fill31)
-            personCheck.isChecked = true
-            personTitle.setTextColor(Color.parseColor("#3348ae"))
+            clickMethod(METHOD_PERSON)
         }
         chkCompany.setOnClickListener {
-
-            chkPerson.setBackgroundResource(R.drawable.shape_rect_fill33)
-            personCheck.isChecked = false
-            personTitle.setTextColor(Color.parseColor("#333333"))
-
-            chkCompany.setBackgroundResource(R.drawable.shape_rect_fill31)
-            companyCheck.isChecked = true
-            companyTitle.setTextColor(Color.parseColor("#3348ae"))
+            clickMethod(METHOD_COMPANY)
         }
-
         chkIntegrated.setOnClickListener {
-
-            chkDid.setBackgroundResource(R.drawable.shape_rect_fill33)
-            didCheckbox.isChecked = false
-            didTitle.setTextColor(Color.parseColor("#000000"))
-            didIcon.setImageResource(R.drawable.ico_login_did)
-
-            chkIntegrated.setBackgroundResource(R.drawable.shape_rect_fill31)
-            integratedCheckbox.isChecked = true
-            integratedTitle.setTextColor(Color.parseColor("#3348ae"))
-            integratedIcon.setImageResource(R.drawable.ico_login_key_b)
-
-            btnLogin
-
-            PreferenceUtils.setLoginType("openpass")
+            clickMethod(METHOD_INTERGRATED)
         }
-
         chkDid.setOnClickListener {
-            //DID 서버 기동 오류로 인한 임시 주석처리
-            /*
-            chkIntegrated.setBackgroundResource(R.drawable.shape_rect_fill33)
-            integratedCheckbox.isChecked = false
-            integratedTitle.setTextColor(Color.parseColor("#000000"))
-            integratedIcon.setImageResource(R.drawable.ico_login_key)
-
-            chkDid.setBackgroundResource(R.drawable.shape_rect_fill31)
-            didCheckbox.isChecked = true
-            didTitle.setTextColor(Color.parseColor("#3348ae"))
-            didIcon.setImageResource(R.drawable.ico_login_did_b)
-
-            PreferenceUtils.setLoginType("did")
-            */
+            clickMethod(METHOD_DID)
         }
 
+        chkPerson.callOnClick()
         //chkDid!!.visibility = View.INVISIBLE
         chkIntegrated.callOnClick()
 
         btnLogin!!.setOnClickListener {
 
-            if(integratedCheckbox.isChecked){
+            if(integratedCheckbox.isSelected){
 
 //                if(BuildConfig.DEBUG){
 //                    login("1","2222")
@@ -235,6 +200,71 @@ class LoginActivity : AppCompatActivity() {
             var intent = Intent(this, RegistActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
+        }
+
+    }
+
+    private fun clickMethod(method: Int){
+
+        when(method){
+            METHOD_PERSON ->{   //개인 클릭
+                loginWayZone!!.visibility = View.VISIBLE
+                btnPersonalLogin!!.visibility = View.VISIBLE
+                imgLoginKey!!.visibility = View.GONE
+                btnCompanyLogin!!.visibility = View.GONE
+
+                chkCompany.setBackgroundResource(R.drawable.shape_rect_fill33)
+                companyCheck.isSelected = false
+                companyTitle.setTextColor(Color.parseColor("#333333"))
+
+                chkPerson.setBackgroundResource(R.drawable.shape_rect_fill31)
+                personCheck.isSelected = true
+                personTitle.setTextColor(Color.parseColor("#3348ae"))
+            }
+            METHOD_COMPANY ->{  //법인 클릭
+                loginWayZone!!.visibility = View.GONE
+                btnPersonalLogin!!.visibility = View.GONE
+                imgLoginKey!!.visibility = View.VISIBLE
+                btnCompanyLogin!!.visibility = View.VISIBLE
+
+                chkPerson.setBackgroundResource(R.drawable.shape_rect_fill33)
+                personCheck.isSelected = false
+                personTitle.setTextColor(Color.parseColor("#333333"))
+
+                chkCompany.setBackgroundResource(R.drawable.shape_rect_fill31)
+                companyCheck.isSelected = true
+                companyTitle.setTextColor(Color.parseColor("#3348ae"))
+            }
+            METHOD_INTERGRATED ->{  //통합인증 앱
+                chkDid.setBackgroundResource(R.drawable.shape_rect_fill33)
+                didCheckbox.isSelected = false
+                didTitle.setTextColor(Color.parseColor("#000000"))
+                didIcon.setImageResource(R.drawable.ico_login_did)
+
+                chkIntegrated.setBackgroundResource(R.drawable.shape_rect_fill31)
+                integratedCheckbox.isSelected = true
+                integratedTitle.setTextColor(Color.parseColor("#3348ae"))
+                integratedIcon.setImageResource(R.drawable.ico_login_key_b)
+
+                PreferenceUtils.setLoginType("openpass")
+            }
+            METHOD_DID ->{  //DID
+                //DID 서버 기동 오류로 인한 임시 주석처리
+                /*
+                chkIntegrated.setBackgroundResource(R.drawable.shape_rect_fill33)
+                integratedCheckbox.isSelected = false
+                integratedTitle.setTextColor(Color.parseColor("#000000"))
+                integratedIcon.setImageResource(R.drawable.ico_login_key)
+
+                chkDid.setBackgroundResource(R.drawable.shape_rect_fill31)
+                didCheckbox.isSelected = true
+                didTitle.setTextColor(Color.parseColor("#3348ae"))
+                didIcon.setImageResource(R.drawable.ico_login_did_b)
+
+                PreferenceUtils.setLoginType("did")
+                */
+            }
+
         }
 
     }
@@ -837,6 +867,8 @@ class LoginActivity : AppCompatActivity() {
             mainProgress!!.cancel()
             mainProgress!!.dismiss()
         }
+
+        disposable.clear()
     }
 
     companion object{

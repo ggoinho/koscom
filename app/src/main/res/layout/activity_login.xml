@@ -72,12 +72,11 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <CheckBox
+                <ImageView
                     android:id="@+id/personCheck"
                     android:layout_width="28dp"
                     android:layout_height="32dp"
-                    android:button="@drawable/checkbox"
-                    android:checked="true" />
+                    android:background="@drawable/checkbox"/>
 
                 <TextView
                     android:id="@+id/personTitle"
@@ -105,12 +104,11 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <CheckBox
+                <ImageView
                     android:id="@+id/companyCheck"
                     android:layout_width="28dp"
                     android:layout_height="32dp"
-                    android:button="@drawable/checkbox"
-                    android:checked="false" />
+                    android:background="@drawable/checkbox"/>
 
                 <TextView
                     android:id="@+id/companyTitle"
@@ -164,12 +162,11 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <CheckBox
+                    <ImageView
                         android:id="@+id/integratedCheckbox"
                         android:layout_width="28dp"
                         android:layout_height="32dp"
-                        android:button="@drawable/checkbox2"
-                        android:checked="true" />
+                        android:background="@drawable/checkbox2"/>
 
                     <TextView
                         android:id="@+id/integratedTitle"
@@ -197,12 +194,11 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <CheckBox
+                    <ImageView
                         android:id="@+id/didCheckbox"
                         android:layout_width="28dp"
                         android:layout_height="32dp"
-                        android:button="@drawable/checkbox2"
-                        android:checked="false" />
+                        android:background="@drawable/checkbox2"/>
 
                     <TextView
                         android:id="@+id/didTitle"
