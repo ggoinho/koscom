@@ -90,22 +90,6 @@ class LoginActivity : AppCompatActivity() {
         chatViewModel = ViewModelProviders.of(this, viewModelFactory).get(ChatViewModel::class.java)
         loginViewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
 
-//        personCheck!!.setOnCheckedChangeListener { compoundButton, b ->
-//            if (b) {
-//                loginWayZone!!.visibility = View.VISIBLE
-//                btnPersonalLogin!!.visibility = View.VISIBLE
-//                imgLoginKey!!.visibility = View.GONE
-//                btnCompanyLogin!!.visibility = View.GONE
-//            }
-//        }
-//        companyCheck!!.setOnCheckedChangeListener { compoundButton, b ->
-//            if (b) {
-//                loginWayZone!!.visibility = View.GONE
-//                btnPersonalLogin!!.visibility = View.GONE
-//                imgLoginKey!!.visibility = View.VISIBLE
-//                btnCompanyLogin!!.visibility = View.VISIBLE
-//            }
-//        }
 
         chkPerson.setOnClickListener {
             clickMethod(METHOD_PERSON)
@@ -204,10 +188,13 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * 상단 로그인 방법 선택
+     */
     private fun clickMethod(method: Int){
 
         when(method){
-            METHOD_PERSON ->{   //개인 클릭
+            METHOD_PERSON ->{   //개인
                 loginWayZone!!.visibility = View.VISIBLE
                 btnPersonalLogin!!.visibility = View.VISIBLE
                 imgLoginKey!!.visibility = View.GONE
@@ -221,7 +208,7 @@ class LoginActivity : AppCompatActivity() {
                 personCheck.isSelected = true
                 personTitle.setTextColor(Color.parseColor("#3348ae"))
             }
-            METHOD_COMPANY ->{  //법인 클릭
+            METHOD_COMPANY ->{  //법인
                 loginWayZone!!.visibility = View.GONE
                 btnPersonalLogin!!.visibility = View.GONE
                 imgLoginKey!!.visibility = View.VISIBLE

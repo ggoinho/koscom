@@ -235,13 +235,12 @@ class WebFragment : Fragment() {
             }
 
             override fun onReceivedSslError(view: WebView, handler: SslErrorHandler, error: SslError) {
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    Log.w(WebFragment::class.simpleName, "onReceivedSslError("+view.url+") : " + error.toString())
-                }
-                else{
-                    Log.w(WebFragment::class.simpleName, "onReceivedSslError("+view.url+") : " + error.toString())
-                }
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                    Log.w(WebFragment::class.simpleName, "onReceivedSslError("+view.url+") : " + error.toString())
+//                }
+//                else{
+//                    Log.w(WebFragment::class.simpleName, "onReceivedSslError("+view.url+") : " + error.toString())
+//                }
 
                 /*val builder = AlertDialog.Builder(activity)
                 builder.setMessage("신뢰하는 보안 인증서가 아닙니다. 계속하시겠습니까?")
@@ -250,9 +249,10 @@ class WebFragment : Fragment() {
                 builder.setNegativeButton("취소",
                     DialogInterface.OnClickListener { dialog, which -> handler.cancel() })
                 val dialog = builder.create()
-                dialog.show()*/
+                dialog.show()
+                 */
 
-                handler.proceed()
+//                handler.proceed()
             }
         }
         webView!!.addJavascriptInterface(AndroidBridge(), "HybridApp")
