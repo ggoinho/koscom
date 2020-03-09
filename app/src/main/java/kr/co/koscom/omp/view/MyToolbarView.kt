@@ -26,6 +26,9 @@ import kr.co.koscom.omp.R
 import kr.co.koscom.omp.data.Constants
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
+import kr.co.koscom.omp.extension.toGone
+import kr.co.koscom.omp.extension.toInvisible
+import kr.co.koscom.omp.extension.toVisible
 import org.apache.commons.lang3.StringUtils
 
 class MyToolbarView @JvmOverloads constructor(
@@ -96,7 +99,17 @@ class MyToolbarView @JvmOverloads constructor(
                     Log.d(LoginActivity::class.simpleName, "response : " + it)
 
                     if("0000".equals(it.rCode)){
-                        alarm.text = it.datas!!.result.toString()
+                        it.datas?.let {data->
+                            if(0 < data.result?: 0){
+                                alarm.toVisible()
+                                alarm.text = data.result.toString()
+                            }else{
+                                alarm.toInvisible()
+                                alarm.text = ""
+                            }
+                        }?: run{
+                            alarm.toInvisible()
+                        }
                     }
                 }, {
                     it.printStackTrace()

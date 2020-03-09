@@ -41,6 +41,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.scsoft.boribori.data.viewmodel.AlarmViewModel
 import com.scsoft.boribori.data.viewmodel.CodeViewModel
 import com.sendbird.syncmanager.utils.PreferenceUtils
+import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -50,9 +52,10 @@ import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.model.Alarm
 import kr.co.koscom.omp.data.model.Code
+import kr.co.koscom.omp.extension.enableView
 import kr.co.koscom.omp.view.PaginationListener
 import kr.co.koscom.omp.view.ViewUtils
-import java.util.ArrayList
+import java.util.*
 
 
 /**
@@ -223,8 +226,11 @@ class AlarmFragment : Fragment() {
         disposable.add(alarmViewModel.searchList(PreferenceUtils.getUserId(), listData.size, PAGE_SIZE, code)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .map{
+                searchAlarm()
+                return@map it
+            }
             .subscribe({
-
                 Log.d(LoginActivity::class.simpleName, "response(${it.datas?.resultList!!.size}) : " + it)
 
                 if("0000".equals(it.rCode)){
@@ -255,6 +261,36 @@ class AlarmFragment : Fragment() {
                 it.printStackTrace()
                 ViewUtils.alertDialog(activity!!, "네트워크상태를 확인해주세요."){}
             }))
+    }
+
+
+    /**
+     * Alarm 안읽은 메시지 카운트
+     */
+    private fun searchAlarm() {
+        if(!PreferenceUtils.getUserId().isNullOrEmpty()){
+            disposable.add(alarmViewModel.searchNotReadCount(PreferenceUtils.getUserId())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+
+                    Log.d(LoginActivity::class.simpleName, "response : " + it)
+
+                    if("0000".equals(it.rCode)){
+                        it.datas?.let {data->
+                            if(0 < data.result?: 0){
+                                readAll.enableView(true)
+                            }else{
+                                readAll.enableView(false)
+                            }
+                        }?: run{
+                            readAll.enableView(false)
+                        }
+                    }
+                }, {
+                    it.printStackTrace()
+                }))
+        }
     }
 
     override fun onStop() {

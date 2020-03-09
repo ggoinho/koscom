@@ -41,12 +41,15 @@ import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.progress_bar_login
 import kotlinx.android.synthetic.main.fragment_web.*
+import kotlinx.android.synthetic.main.view_toolbar.view.*
 import kr.co.koscom.omp.data.Constants
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.model.Main
 import kr.co.koscom.omp.data.model.Order
 import kr.co.koscom.omp.data.model.OrderContract
+import kr.co.koscom.omp.extension.toInvisible
+import kr.co.koscom.omp.extension.toVisible
 import kr.co.koscom.omp.view.ViewUtils
 import java.text.DecimalFormat
 import java.util.*
@@ -464,7 +467,17 @@ class MainActivity : AppCompatActivity() {
                 Log.d(LoginActivity::class.simpleName, "response : " + it)
 
                 if("0000".equals(it.rCode)){
-                    alarm.text = it.datas!!.result.toString()
+                    it.datas?.let {data->
+                        if(0 < data.result?: 0){
+                            alarm.toVisible()
+                            alarm.text = data.result.toString()
+                        }else{
+                            alarm.toInvisible()
+                            alarm.text = ""
+                        }
+                    }?: run{
+                        alarm.toInvisible()
+                    }
                 }
             }, {
                 it.printStackTrace()

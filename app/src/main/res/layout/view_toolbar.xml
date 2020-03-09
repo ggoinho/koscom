@@ -75,6 +75,7 @@
             android:textColor="#ffffff"
             android:letterSpacing="-0.03"
             android:lineSpacingExtra="4dp"
+            android:visibility="invisible"
             android:text="0"/>
     </RelativeLayout>
 

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.fragment_contract_confirm.*
+import kr.co.koscom.omp.extension.enableView
 import kr.co.koscom.omp.view.ViewUtils
 import org.apache.commons.lang3.StringUtils
 import org.apache.commons.lang3.time.DateUtils
@@ -165,16 +166,19 @@ class ContractFragment : Fragment() {
                         rightStatusReady.visibility = View.GONE
                         rightStatusDeny.visibility = View.GONE
 
-                        btnSign.isEnabled = (mySign.text.contains("완료") == false)
+                        btnSign.isEnabled = (!mySign.text.contains("완료"))
                     }
                 }
 
-                if (btnSign.isEnabled) {
-                    btnSign.alpha = 1.0f
-                }
-                else {
-                    btnSign.alpha = 0.4f
-                }
+
+                btnSign.enableView(btnSign.isEnabled)
+
+//                if (btnSign.isEnabled) {
+//                    btnSign.alpha = 1.0f
+//                }
+//                else {
+//                    btnSign.alpha = 0.4f
+//                }
             }
         })
 
