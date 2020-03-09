@@ -809,9 +809,9 @@ class WebFragment : Fragment() {
                     var json = JSONObject(arg)
 
                     requestPaperOfBuyer(json.getString("ORDER_NO"), json.getString("CHANNEL_URL")){
-                        ViewUtils.alertDialog(activity!!, "성공적으로 발급요청했습니다."){
-
-                        }
+//                        ViewUtils.alertDialog(activity!!, "성공적으로 발급요청했습니다."){
+//
+//                        }
                     }
                 }
             });
@@ -827,9 +827,7 @@ class WebFragment : Fragment() {
                     var json = JSONObject(arg)
 
                     requestPaperOfSeller(json.getString("ORDER_NO"), json.getString("CHANNEL_URL")){
-                        ViewUtils.alertDialog(activity!!, "성공적으로 발급요청했습니다."){
-
-                        }
+                        ViewUtils.alertDialog(activity!!, it){}
                     }
                 }
             });
@@ -1087,7 +1085,7 @@ class WebFragment : Fragment() {
             }))
     }
 
-    fun requestPaperOfSeller(orderNo: String, channelUrl: String, listener: () -> Unit) {
+    fun requestPaperOfSeller(orderNo: String, channelUrl: String, listener: (msg: String?) -> Unit) {
 
         disposable.add(chatViewModel.requestPaperOfSeller(
             PreferenceUtils.getUserId(),
@@ -1101,7 +1099,7 @@ class WebFragment : Fragment() {
 
                 if ("0000" == response.rCode) {
 
-                    listener.invoke()
+                    listener.invoke(response.rMsg)
                 } else {
                     ViewUtils.showErrorMsg(
                         activity!!,
@@ -1129,7 +1127,7 @@ class WebFragment : Fragment() {
                 Log.d(GroupChannelActivity::class.java.simpleName, "response : $response")
 
                 if ("0000" == response.rCode) {
-
+                    ViewUtils.alertDialog(activity!!, response.rMsg){}
                     listener.invoke()
                 } else {
                     ViewUtils.showErrorMsg(

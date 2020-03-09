@@ -50,13 +50,11 @@ class ContractFragment : Fragment() {
 
         btnSign.setOnClickListener {
             (activity as ContractDetailActivity).signContract(Runnable {
-                btnSign.visibility = View.INVISIBLE
+//                btnSign.visibility = View.INVISIBLE
                 mySign.setTextColor(Color.parseColor("#3348ae"))
                 mySign.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14F)
                 mySign.text = "서명 완료했습니다"
 
-                ViewUtils.alertDialog(activity!!, "성공적으로 전자서명했습니다."){
-                }
             })
         }
 
@@ -65,11 +63,7 @@ class ContractFragment : Fragment() {
             if(ContractDetailActivity.contractDetailActivity!!.myDealTp == "10"){
                 if(chkConfirm.isChecked){
                     (activity as ContractDetailActivity).requestPaper(){
-
-                        ViewUtils.alertDialog(activity!!, "성공적으로 발급요청했습니다."){
-
-                        }
-
+                        ViewUtils.alertDialog(activity!!, it){}
                     }
                 }
                 else{
@@ -78,11 +72,7 @@ class ContractFragment : Fragment() {
             }
             else{
                 (activity as ContractDetailActivity).requestPaper(){
-
-                    ViewUtils.alertDialog(activity!!, "성공적으로 발급요청했습니다."){
-
-                    }
-
+                    ViewUtils.alertDialog(activity!!, it){}
                 }
             }
         }
@@ -101,9 +91,9 @@ class ContractFragment : Fragment() {
                             "서명 완료했습니다"
                         }else if(member.sign_yn == "204"){"서명 대기중입니다"}else{""}
 
-                        if(member.sign_yn != "204"){
-                            btnSign.visibility = View.INVISIBLE
-                        }
+//                        if(member.sign_yn != "204"){
+//                            btnSign.visibility = View.INVISIBLE
+//                        }
 
                         if("10".equals(member.deal_tp)){
                             sellerZone.visibility = View.VISIBLE

@@ -81,17 +81,7 @@ class BuyWriteActivity : AppCompatActivity() {
             finish()
         }
         btnSave.setOnClickListener {
-            submit(object: Runnable{
-                override fun run() {
-
-                    ViewUtils.alertDialog(this@BuyWriteActivity, "성공적으로 주문등록했습니다."){
-                        OrderListActivity.REQUIRE_REFRESH = true
-
-                        finish()
-                    }
-
-                }
-            })
+            submit()
         }
 
         btnCloseCountBuy.setOnClickListener {
@@ -224,7 +214,7 @@ class BuyWriteActivity : AppCompatActivity() {
         }
     }
 
-    private fun submit(listener: Runnable?){
+    private fun submit(){
 
         if(stock != null){
 
@@ -235,9 +225,10 @@ class BuyWriteActivity : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if("0000".equals(it.rCode)){
+                        ViewUtils.alertDialog(this@BuyWriteActivity, it.rMsg){
+                            OrderListActivity.REQUIRE_REFRESH = true
 
-                        if(listener != null){
-                            listener.run()
+                            finish()
                         }
                     }else{
                         ViewUtils.showErrorMsg(this, it.rCode, it.rMsg)

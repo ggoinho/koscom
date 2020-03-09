@@ -515,7 +515,7 @@ class MainActivity : AppCompatActivity() {
                         Log.d(LoginActivity::class.simpleName, "response : " + it)
 
                         if("0000".equals(it.rCode)){
-                            ViewUtils.alertDialog(this@MainActivity, "거절했습니다."){}
+                            ViewUtils.alertDialog(this@MainActivity, it.rMsg){}
 
 
                         }else{
@@ -539,11 +539,7 @@ class MainActivity : AppCompatActivity() {
                         Log.d(LoginActivity::class.simpleName, "response : " + it)
 
                         if("0000".equals(it.rCode)){
-
-                            ViewUtils.alertDialog(this@MainActivity, "성공적으로 수락했습니다."){
-
-                            }
-
+                            ViewUtils.alertDialog(this@MainActivity, it.rMsg){}
                         }else{
                             ViewUtils.showErrorMsg(this@MainActivity, it.rCode, it.rMsg)
 

@@ -49,7 +49,7 @@ class ViewUtils {
             }
         }
 
-        fun alertDialog(context: Context, info: String, listener: () -> Unit){
+        fun alertDialog(context: Context, info: String?, listener: () -> Unit){
             var dlg = Dialog(context)
             dlg.setCancelable(true)
 
@@ -68,7 +68,7 @@ class ViewUtils {
             var btnConfirm = dlg.findViewById<TextView>(R.id.btnConfirm)
             var btnOk = dlg.findViewById<TextView>(R.id.btnOk)
             var message = dlg.findViewById<TextView>(R.id.message)
-            message.setText(info)
+            message.setText(info?:"")
             Log.d("viewutils", "message settext.. " + info)
 
             btnOk.setOnClickListener {
@@ -88,7 +88,7 @@ class ViewUtils {
             }
         }
 
-        fun alertLogoutDialog(context: Context, info: String, listener: () -> Unit){
+        fun alertLogoutDialog(context: Context, info: String?, listener: () -> Unit){
             var dlg = Dialog(context);
             dlg.setCancelable(true)
 
@@ -107,7 +107,7 @@ class ViewUtils {
             var btnConfirm = dlg.findViewById<TextView>(R.id.btnConfirm)
             var btnOk = dlg.findViewById<TextView>(R.id.btnOk)
             var message = dlg.findViewById<TextView>(R.id.message)
-            message.setText(info)
+            message.setText(info?: "")
             Log.d("viewutils", "message settext.. " + info)
 
             confirmZone.visibility = View.VISIBLE
@@ -149,7 +149,7 @@ class ViewUtils {
             }
         }
 
-        fun alertUpdateDialog(context: Context, info: String, cancelListener: () -> Unit, confirmListener: () -> Unit){
+        fun alertUpdateDialog(context: Context, info: String?, cancelListener: () -> Unit, confirmListener: () -> Unit){
             var dlg = Dialog(context);
             dlg.setCancelable(false)
 
@@ -166,7 +166,7 @@ class ViewUtils {
             var btnCancel = dlg.findViewById<TextView>(R.id.btnCancel)
             var btnConfirm = dlg.findViewById<TextView>(R.id.btnConfirm)
             var message = dlg.findViewById<TextView>(R.id.message)
-            message.setText(info)
+            message.setText(info?: "")
 
             btnConfirm.setOnClickListener {
                 dlg.dismiss()

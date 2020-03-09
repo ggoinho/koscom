@@ -171,7 +171,7 @@ class OrderPopupActivity : AppCompatActivity() {
 
                 if("0000".equals(it.rCode)){
 
-                    ViewUtils.alertDialog(this, "성공적으로 협상요청했습니다."){
+                    ViewUtils.alertDialog(this, it.rMsg){
                         finish()
                     }
 

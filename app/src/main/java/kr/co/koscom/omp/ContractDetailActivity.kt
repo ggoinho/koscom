@@ -292,6 +292,7 @@ class ContractDetailActivity : AppCompatActivity() {
                                             if ("0000".equals(response.rCode)) {
 
                                                 if (listener != null) {
+                                                    ViewUtils.alertDialog(this, response.rMsg){}
                                                     listener.run()
                                                 }
                                             } else {
@@ -414,7 +415,7 @@ class ContractDetailActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun requestPaper(listener: () -> Unit){
+    fun requestPaper(listener: (msg: String?) -> Unit){
         if ("10" == myDealTp) {
             disposable.add(chatViewModel!!.requestPaperOfSeller(PreferenceUtils.getUserId(),orderNo!!, channelUrl!!)
                 .subscribeOn(Schedulers.io())
@@ -423,7 +424,7 @@ class ContractDetailActivity : AppCompatActivity() {
                     Log.d(GroupChannelActivity::class.java.simpleName, "response : $response")
 
                     if ("0000" == response.rCode) {
-                        listener.invoke()
+                        listener.invoke(response.rMsg)
                     } else {
 
                         ViewUtils.showErrorMsg(
@@ -446,7 +447,7 @@ class ContractDetailActivity : AppCompatActivity() {
 
                     if ("0000" == response.rCode) {
 
-                        listener.invoke()
+                        listener.invoke(response.rMsg)
                     } else {
 
                         ViewUtils.showErrorMsg(

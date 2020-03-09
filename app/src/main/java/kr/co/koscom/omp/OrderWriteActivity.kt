@@ -97,17 +97,7 @@ class OrderWriteActivity : AppCompatActivity() {
             finish()
         }
         btnSave.setOnClickListener {
-            submit(object : Runnable {
-                override fun run() {
-
-                    ViewUtils.alertDialog(this@OrderWriteActivity, "성공적으로 주문등록했습니다.") {
-                        OrderListActivity.REQUIRE_REFRESH = true
-
-                        finish()
-                    }
-
-                }
-            })
+            submit()
         }
         iv_popup.setOnClickListener {
             frame_popup.visibility = View.VISIBLE
@@ -267,7 +257,7 @@ class OrderWriteActivity : AppCompatActivity() {
         }
     }
 
-    private fun submit(listener: Runnable?) {
+    private fun submit() {
 
         if (stock != null) {
 
@@ -296,8 +286,10 @@ class OrderWriteActivity : AppCompatActivity() {
                         .subscribe({
                             if ("0000".equals(it.rCode)) {
 
-                                if (listener != null) {
-                                    listener.run()
+                                ViewUtils.alertDialog(this@OrderWriteActivity, it.rMsg) {
+                                    OrderListActivity.REQUIRE_REFRESH = true
+
+                                    finish()
                                 }
                             } else {
                                 ViewUtils.showErrorMsg(this, it.rCode, it.rMsg)

@@ -436,7 +436,7 @@ class OrderDetailActivity : AppCompatActivity() {
 
                 if("0000".equals(it.rCode)){
 
-                    ViewUtils.alertDialog(this, "성공적으로 협상요청했습니다."){
+                    ViewUtils.alertDialog(this,  it.rMsg){
 
                     }
 
@@ -477,7 +477,7 @@ class OrderDetailActivity : AppCompatActivity() {
                         //}
                     } else { 
                         btnStar.setImageResource(R.drawable.ico_start_y)
-                        ViewUtils.alertDialog(this, "성공적으로 등록했습니다."){
+                        ViewUtils.alertDialog(this, it.rMsg){
 
                         }
                     }
