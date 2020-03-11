@@ -56,6 +56,8 @@ class ContractFragment : Fragment() {
                 mySign.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14F)
                 mySign.text = "서명 완료했습니다"
 
+                btnSign.isEnabled = (!mySign.text.contains("완료"))
+                btnSign.enableView(btnSign.isEnabled)
             })
         }
 

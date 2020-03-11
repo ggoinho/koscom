@@ -78,6 +78,12 @@ class ContractDetailActivity : AppCompatActivity() {
         channelUrl = intent.getStringExtra("groupChannelUrl")
         orderNo = intent.getStringExtra("orderNo")
 
+        Log.e("JHTEST", "ContractDetailActivity channelTitle : " + channelTitle)
+        Log.e("JHTEST", "ContractDetailActivity channelUrl : " + channelUrl)
+        Log.e("JHTEST", "ContractDetailActivity orderNo : " + orderNo)
+
+
+
         viewModelFactory = Injection.provideViewModelFactory(this)
         chatViewModel = ViewModelProviders.of(this, viewModelFactory).get(ChatViewModel::class.java)
         loginViewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
@@ -126,10 +132,13 @@ class ContractDetailActivity : AppCompatActivity() {
         })
 
         if (savedInstanceState == null) {
+            Log.e("JHTEST", "savedInstanceState == null")
             val transaction = supportFragmentManager.beginTransaction()
             myContractFragment = ContractFragment()
             transaction.replace(R.id.nav_view, myContractFragment!!)
             transaction.commitAllowingStateLoss()
+        }else{
+            Log.e("JHTEST", "savedInstanceState not null")
         }
 
 
@@ -168,16 +177,16 @@ class ContractDetailActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
 
-        Log.d(MyPageActivity::class.java.simpleName, "onNewIntent()")
+        Log.d(ContractDetailActivity::class.java.simpleName, "onNewIntent()")
 
         var pairwiseDID = intent?.getStringExtra("pairwiseDID")
         var publicKey = intent?.getStringExtra("publicKey")
         var clientName = intent?.getStringExtra("clientName")
         var signature = intent?.getStringExtra("signature")
-        Log.d(MyPageActivity::class.java.simpleName, "pairwiseDID : $pairwiseDID")
-        Log.d(MyPageActivity::class.java.simpleName, "publicKey : $publicKey")
-        Log.d(MyPageActivity::class.java.simpleName, "clientName : $clientName")
-        Log.d(MyPageActivity::class.java.simpleName, "signature : $signature")
+        Log.d(ContractDetailActivity::class.java.simpleName, "pairwiseDID : $pairwiseDID")
+        Log.d(ContractDetailActivity::class.java.simpleName, "publicKey : $publicKey")
+        Log.d(ContractDetailActivity::class.java.simpleName, "clientName : $clientName")
+        Log.d(ContractDetailActivity::class.java.simpleName, "signature : $signature")
 
 
         ComUtil.signHandler(pairwiseDID,publicKey,signature)

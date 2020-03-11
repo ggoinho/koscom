@@ -267,7 +267,7 @@ class AlarmFragment : Fragment() {
     /**
      * Alarm 안읽은 메시지 카운트
      */
-    private fun searchAlarm() {
+    fun searchAlarm() {
         if(!PreferenceUtils.getUserId().isNullOrEmpty()){
             disposable.add(alarmViewModel.searchNotReadCount(PreferenceUtils.getUserId())
                 .subscribeOn(Schedulers.io())

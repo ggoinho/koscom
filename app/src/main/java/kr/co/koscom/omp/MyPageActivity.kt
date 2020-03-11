@@ -142,6 +142,9 @@ class MyPageActivity : AppCompatActivity() {
 
     fun refreshAlarmCount(){
         toolbar.initData(this)
+        if(fragment is AlarmFragment){
+            (fragment as AlarmFragment).searchAlarm()
+        }
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

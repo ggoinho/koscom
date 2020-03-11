@@ -16,6 +16,7 @@
 
 package com.scsoft.boribori.data.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import io.reactivex.Flowable
 import kr.co.koscom.omp.data.ServiceFactory
@@ -115,6 +116,11 @@ class ChatViewModel() : ViewModel() {
         request.ORDER_NO = orderNo
         request.CHANNEL_URL = channelUrl
         request.CHANNEL_TITLE = channelTitle
+
+
+        Log.e("JHTEST", "ChatViewModel channelTitle : " + channelTitle)
+        Log.e("JHTEST", "ChatViewModel channelUrl : " + channelUrl)
+        Log.e("JHTEST", "ChatViewModel orderNo : " + orderNo)
 
         return chatService.getContract(request)
     }
