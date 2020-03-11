@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.fragment_contract_confirm.*
 import kr.co.koscom.omp.extension.enableView
+import kr.co.koscom.omp.extension.toNumberFormat
 import kr.co.koscom.omp.view.ViewUtils
 import org.apache.commons.lang3.StringUtils
 import org.apache.commons.lang3.time.DateUtils
@@ -137,10 +138,10 @@ class ContractFragment : Fragment() {
 
                 val sellerWarningFormatted = String.format(getString(R.string.seller_warning),
                     (activity as ContractDetailActivity).contract!!.RESULT_GETTRANDTLINFOVIEW!!.TRSF_PSN_NM,
-                    dateFormat.format(Date()),
                     (activity as ContractDetailActivity).contract!!.RESULT_GETTRANDTLINFOVIEW!!.ENTP_HANGL_NM,
-                    (activity as ContractDetailActivity).contract!!.RESULT_GETTRANDTLINFOVIEW!!.DEAL_QTY,
-                    (activity as ContractDetailActivity).contract!!.RESULT_GETTRANDTLINFOVIEW!!.DEAL_QTY,
+                    (activity as ContractDetailActivity).contract!!.SEC_KIND_TP_CODE_NM,
+                    (activity as ContractDetailActivity).contract!!.HLD_QTY?.toNumberFormat(),
+                    (activity as ContractDetailActivity).contract!!.HLD_QTY?.toNumberFormat(),
                     (activity as ContractDetailActivity).contract!!.RESULT_GETTRANDTLINFOVIEW!!.ENTP_HANGL_NM)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     sellerWarning.text = Html.fromHtml(sellerWarningFormatted, Html.FROM_HTML_MODE_LEGACY)
@@ -175,12 +176,6 @@ class ContractFragment : Fragment() {
 
                 btnSign.enableView(btnSign.isEnabled)
 
-//                if (btnSign.isEnabled) {
-//                    btnSign.alpha = 1.0f
-//                }
-//                else {
-//                    btnSign.alpha = 0.4f
-//                }
             }
         })
 

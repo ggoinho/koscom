@@ -78,11 +78,6 @@ class ContractDetailActivity : AppCompatActivity() {
         channelUrl = intent.getStringExtra("groupChannelUrl")
         orderNo = intent.getStringExtra("orderNo")
 
-        Log.e("JHTEST", "ContractDetailActivity channelTitle : " + channelTitle)
-        Log.e("JHTEST", "ContractDetailActivity channelUrl : " + channelUrl)
-        Log.e("JHTEST", "ContractDetailActivity orderNo : " + orderNo)
-
-
 
         viewModelFactory = Injection.provideViewModelFactory(this)
         chatViewModel = ViewModelProviders.of(this, viewModelFactory).get(ChatViewModel::class.java)
@@ -132,13 +127,10 @@ class ContractDetailActivity : AppCompatActivity() {
         })
 
         if (savedInstanceState == null) {
-            Log.e("JHTEST", "savedInstanceState == null")
             val transaction = supportFragmentManager.beginTransaction()
             myContractFragment = ContractFragment()
             transaction.replace(R.id.nav_view, myContractFragment!!)
             transaction.commitAllowingStateLoss()
-        }else{
-            Log.e("JHTEST", "savedInstanceState not null")
         }
 
 

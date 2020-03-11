@@ -106,6 +106,8 @@ class ChatViewModel() : ViewModel() {
         request.CHANNEL_URL = channelUrl
         request.CHANNEL_TITLE = channelTitle
 
+        Log.e("JHTEST", "LOGIN_ID  : "+ loginId + " , ORDER_NO : " + orderNo + " , CHANNEL_URL : " + channelUrl + " , CHANNEL_TITLE : " +  channelTitle)
+
         return chatService.openChannel(request)
     }
 
@@ -116,11 +118,6 @@ class ChatViewModel() : ViewModel() {
         request.ORDER_NO = orderNo
         request.CHANNEL_URL = channelUrl
         request.CHANNEL_TITLE = channelTitle
-
-
-        Log.e("JHTEST", "ChatViewModel channelTitle : " + channelTitle)
-        Log.e("JHTEST", "ChatViewModel channelUrl : " + channelUrl)
-        Log.e("JHTEST", "ChatViewModel orderNo : " + orderNo)
 
         return chatService.getContract(request)
     }
