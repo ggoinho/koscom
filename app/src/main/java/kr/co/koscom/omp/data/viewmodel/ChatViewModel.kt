@@ -106,8 +106,6 @@ class ChatViewModel() : ViewModel() {
         request.CHANNEL_URL = channelUrl
         request.CHANNEL_TITLE = channelTitle
 
-        Log.e("JHTEST", "LOGIN_ID  : "+ loginId + " , ORDER_NO : " + orderNo + " , CHANNEL_URL : " + channelUrl + " , CHANNEL_TITLE : " +  channelTitle)
-
         return chatService.openChannel(request)
     }
 

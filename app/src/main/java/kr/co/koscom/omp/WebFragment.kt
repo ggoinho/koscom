@@ -42,6 +42,7 @@ import android.content.Context.DOWNLOAD_SERVICE
 import androidx.core.content.ContextCompat.getSystemService
 import android.app.DownloadManager
 import android.content.DialogInterface
+import android.net.MailTo
 import android.net.Uri
 import android.os.Environment
 import android.webkit.URLUtil.guessFileName
@@ -49,6 +50,7 @@ import android.os.Environment.DIRECTORY_DOWNLOADS
 import android.util.Base64
 import android.view.Window
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat.getExternalFilesDirs
 import androidx.core.content.FileProvider
 import androidx.drawerlayout.widget.DrawerLayout
@@ -172,6 +174,41 @@ class WebFragment : Fragment() {
             }
         }
         webView!!.webViewClient = object : WebViewClient() {
+
+            @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+
+                val url = request?.url.toString() ?: ""
+                if (url.startsWith("http:") || url.startsWith("https:")) {
+                    return super.shouldOverrideUrlLoading(view, request)
+                }
+                else if (url.toLowerCase().startsWith("mailto:")) {
+                    val mt = MailTo.parse(url)
+                    Intent(Intent.ACTION_SEND).apply {
+                        type = "text/plain"
+                        putExtra(Intent.EXTRA_EMAIL, arrayOf(mt.to))
+                        startActivity(this)
+                    }
+                }
+                return true
+            }
+
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                url?.let {urlData->
+                    if (urlData.startsWith("http:") || urlData.startsWith("https:")) {
+                        return super.shouldOverrideUrlLoading(view, urlData)
+                    }
+                    else if (urlData.toLowerCase().startsWith("mailto:")) {
+                        val mt = MailTo.parse(urlData)
+                        Intent(Intent.ACTION_SEND).apply {
+                            type = "text/plain"
+                            putExtra(Intent.EXTRA_EMAIL, arrayOf(mt.to))
+                            startActivity(this)
+                        }
+                    }
+                }
+                return true
+            }
 
             /*override fun shouldOverrideUrlLoading(webView: WebView?,request: WebResourceRequest?): Boolean {
                 Log.d(WebFragment::class.simpleName, "shouldOverrideUrlLoading1 : " + webView?.url)
