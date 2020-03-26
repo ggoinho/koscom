@@ -71,11 +71,17 @@ class OrderSearchActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
 
+            override fun equals(other: Any?): Boolean {
+                return super.equals(other)
+            }
+
             override fun onTabUnselected(tab: TabLayout.Tab?) {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                search()
+                listData.clear()
+                list!!.adapter?.notifyDataSetChanged()
+//                search()
             }
         })
 
@@ -133,7 +139,7 @@ class OrderSearchActivity : AppCompatActivity() {
 
         list!!.adapter = OrderSearchAdapter(listData)
 
-        search()
+//        search()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

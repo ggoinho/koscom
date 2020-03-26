@@ -24,16 +24,15 @@ class MyBottomNavigationView @JvmOverloads constructor(
     }
 
     private fun initNavigation(view: View) {
-        val bottom_navigation_view =
-            view.findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+        val custom_bottom_navigation_view = view.findViewById<BottomNavigationView>(R.id.custom_bottom_navigation_view)
 
-        bottom_navigation_view.menu.setGroupCheckable(0, false, true)
+        custom_bottom_navigation_view.menu.setGroupCheckable(0, false, true)
 
-        for (i in 0 until bottom_navigation_view.menu.size()) {
-            bottom_navigation_view.menu.getItem(i).isChecked = false
+        for (i in 0 until custom_bottom_navigation_view.menu.size()) {
+            custom_bottom_navigation_view.menu.getItem(i).isChecked = false
         }
 
-        bottom_navigation_view.setOnNavigationItemSelectedListener(this)
+        custom_bottom_navigation_view.setOnNavigationItemSelectedListener(this)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

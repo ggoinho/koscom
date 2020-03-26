@@ -15,6 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_web.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
+import kr.co.koscom.omp.view.MyBottomNavigationView
 
 // kr.co.koscom.omp
 // BeMyUNICORN
@@ -28,6 +29,7 @@ class RegistActivity : AppCompatActivity() {
     private val disposable = CompositeDisposable()
 
     private var webFragment: WebFragment? = null
+    var bottomNavView: MyBottomNavigationView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +51,10 @@ class RegistActivity : AppCompatActivity() {
             transaction.replace(R.id.webFragment, webFragment!!)
             transaction.commitAllowingStateLoss()
         }
-        
+
+        bottomNavView = findViewById(R.id.bottom_navigation_view)
     }
+
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)

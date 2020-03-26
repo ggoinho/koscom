@@ -16,17 +16,19 @@
 
 package kr.co.koscom.omp
 
-import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.AlertDialog
-import android.app.Dialog
+import android.app.DownloadManager
 import android.content.Context
+import android.content.Context.DOWNLOAD_SERVICE
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.graphics.Bitmap
+import android.net.MailTo
+import android.net.Uri
 import android.net.http.SslError
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
@@ -34,26 +36,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import android.webkit.WebView
-import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_web.*
-import org.json.JSONObject
-import java.lang.Exception
-import android.content.Context.DOWNLOAD_SERVICE
-import androidx.core.content.ContextCompat.getSystemService
-import android.app.DownloadManager
-import android.content.DialogInterface
-import android.net.MailTo
-import android.net.Uri
-import android.os.Environment
-import android.webkit.URLUtil.guessFileName
-import android.os.Environment.DIRECTORY_DOWNLOADS
-import android.util.Base64
-import android.view.Window
-import android.widget.*
+import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat.getExternalFilesDirs
 import androidx.core.content.FileProvider
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import com.scsoft.boribori.data.viewmodel.ChatViewModel
@@ -63,24 +49,19 @@ import com.sendbird.syncmanager.utils.ComUtil
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import com.signkorea.openpass.interfacelib.SKCertManager
 import com.signkorea.openpass.interfacelib.SKConstant
-import com.signkorea.openpass.sksystemcrypto.SKSecureChannel
 import com.signkorea.openpass.sksystemcrypto.SKSystemCertInfo
 import com.signkorea.openpass.sksystemcrypto.SKUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_web.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
-import kr.co.koscom.omp.data.model.Response
 import kr.co.koscom.omp.data.model.Stock
-import kr.co.koscom.omp.view.MyBottomNavigationView
-import kr.co.koscom.omp.view.NestedWebView
 import kr.co.koscom.omp.view.ViewUtils
 import kr.co.koscom.omp.view.WebUtil
 import org.apache.commons.lang3.StringUtils
-import java.io.File
-import java.nio.charset.Charset
+import org.json.JSONObject
 
 
 /**
@@ -105,6 +86,8 @@ class WebFragment : Fragment() {
 
     var getIntent : Intent?= null
 
+    var fileUriArray: Array<Uri>? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         Log.d(WebFragment::class.simpleName, "onCreateView()")
         return inflater.inflate(R.layout.fragment_web, container, false)
@@ -118,10 +101,10 @@ class WebFragment : Fragment() {
         loginViewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
         chatViewModel = ViewModelProviders.of(this, viewModelFactory).get(ChatViewModel::class.java)
 
-        if(activity!!.window.decorView.getRootView().findViewById<View>(R.id.bottom_navigation_view) == null){
-            Log.d(WebFragment::class.simpleName, "bottom_navigation_view is null")
-            margin.visibility = View.GONE
-        }
+//        if(activity!!.window.decorView.getRootView().findViewById<View>(R.id.bottom_navigation_view) == null){
+//            Log.d(WebFragment::class.simpleName, "bottom_navigation_view is null")
+//            margin.visibility = View.GONE
+//        }
 
         webView = wbWebView
 
@@ -148,13 +131,13 @@ class WebFragment : Fragment() {
         webView!!.webChromeClient = object : WebChromeClient() {
 
             override fun onShowFileChooser(webView: WebView?, filePathCallback: ValueCallback<Array<Uri>>?, fileChooserParams: FileChooserParams?): Boolean {
-
                 mFilePathCallback = filePathCallback
 
                 val intent = Intent(Intent.ACTION_GET_CONTENT)
                 intent.setType("*/*")
 
-                startActivityForResult(intent, REQUEST_CODE_FILE_CHOOSE)
+                startActivityForResult(Intent.createChooser(intent, "Get Album"), REQUEST_CODE_FILE_CHOOSE);
+//                startActivityForResult(intent, REQUEST_CODE_FILE_CHOOSE)
 
                 return true
             }
@@ -1045,26 +1028,35 @@ class WebFragment : Fragment() {
 
         Log.d(WebFragment::class.simpleName, "onActivityResult($requestCode, $resultCode, $data)")
 
-        if(resultCode == Activity.RESULT_OK){
-            if(requestCode == OrderWriteActivity.STOCK_SEARCH){
-                if(data != null){
-                    var stock = data.getSerializableExtra("stock") as Stock.ResultMap
-                    //stockName.text = stock?.STK_NM
-                    //ableCount.text = stock?.RSTRCT_QTY
-                    evaluateJavascript("returnData", "{\"STK_NM\":\"${stock?.STK_NM}\",\"STK_CODE\":\"${stock?.STK_CODE}\"}")
-                }
-            }
-            else if(requestCode == REQUEST_CODE_FILE_CHOOSE){
-                if(data?.data != null){
-                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-                        mFilePathCallback?.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, data))
-                    }
-                    else{
-                        mFilePathCallback?.onReceiveValue(arrayOf(data.data!!))
-                    }
-                }
+        if(requestCode == OrderWriteActivity.STOCK_SEARCH){
+            if(resultCode != Activity.RESULT_OK) return
+
+            if(data != null){
+                var stock = data.getSerializableExtra("stock") as Stock.ResultMap
+                //stockName.text = stock?.STK_NM
+                //ableCount.text = stock?.RSTRCT_QTY
+                evaluateJavascript("returnData", "{\"STK_NM\":\"${stock?.STK_NM}\",\"STK_CODE\":\"${stock?.STK_CODE}\"}")
             }
         }
+        else if(requestCode == REQUEST_CODE_FILE_CHOOSE){
+            data?.let {
+                if(it.data != null){
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+
+                        fileUriArray = WebChromeClient.FileChooserParams.parseResult(resultCode, it)
+                        mFilePathCallback?.onReceiveValue(fileUriArray)
+                    }
+                    else{
+                        fileUriArray = arrayOf(it.data!!)
+                        mFilePathCallback?.onReceiveValue(fileUriArray)
+                    }
+                }
+            }?: run {
+                mFilePathCallback?.onReceiveValue(null)
+            }
+
+        }
+
     }
 
     private fun resultCertify(opCode: String, signData: String, snData: String, listener: (securityNum: String?, dn: String, signature: String, publicKey: String, name: String) -> Unit){
