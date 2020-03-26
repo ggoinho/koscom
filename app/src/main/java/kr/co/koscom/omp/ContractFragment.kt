@@ -9,19 +9,16 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.fragment_contract_confirm.*
 import kr.co.koscom.omp.extension.enableView
+import kr.co.koscom.omp.extension.toDrawable
 import kr.co.koscom.omp.extension.toNumberFormat
 import kr.co.koscom.omp.view.ViewUtils
 import org.apache.commons.lang3.StringUtils
-import org.apache.commons.lang3.time.DateUtils
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
-import java.util.*
 
 class ContractFragment : Fragment() {
 
@@ -88,7 +85,21 @@ class ContractFragment : Fragment() {
                     if(PreferenceUtils.getUserId().equals(member.user_id)){
                         mygubnTitle.text = if("order".equals(member.order_req)){"주문게시자"}else{"협상상대자"}
                         myname.text = member.nickname
-                        mygubn.text = if("10".equals(member.deal_tp)){"매도"}else{"매수"}
+
+                        if("10".equals(member.deal_tp)){
+                            mygubn.apply {
+                                text = "매도"
+                                background = R.drawable.shape_rect_fill12.toDrawable()
+                                setTextColor(Color.parseColor("#3348ae"))
+                            }
+                        }else{
+                            mygubn.apply {
+                                text = "매수"
+                                background = R.drawable.shape_rect_fill11.toDrawable()
+                                setTextColor(Color.parseColor("#e8055a"))
+                            }
+                        }
+
                         mySign.text = if(member.sign_yn == "205"){
                             mySign.setTextColor(Color.parseColor("#3348ae"))
                             mySign.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14F)
@@ -114,7 +125,21 @@ class ContractFragment : Fragment() {
                     else{
                         hisGubnTitle.text = if("order".equals(member.order_req)){"주문게시자"}else{"협상상대자"}
                         hisname.text = member.nickname
-                        hisGubn.text = if("10".equals(member.deal_tp)){"매도"}else{"매수"}
+                        if("10".equals(member.deal_tp)){
+                            hisGubn.apply {
+                                text = "매도"
+                                background = R.drawable.shape_rect_fill12.toDrawable()
+                                setTextColor(Color.parseColor("#3348ae"))
+                            }
+
+                        }else{
+                            hisGubn.apply {
+                                text = "매수"
+                                background = R.drawable.shape_rect_fill11.toDrawable()
+                                setTextColor(Color.parseColor("#e8055a"))
+                            }
+                        }
+
                         hisSign.text = if(member.sign_yn == "205"){
                             hisSign.setTextColor(Color.parseColor("#3348ae"))
                             hisSign.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14F)
