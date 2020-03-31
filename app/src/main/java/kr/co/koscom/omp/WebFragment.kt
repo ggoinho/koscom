@@ -86,7 +86,6 @@ class WebFragment : Fragment() {
 
     var getIntent : Intent?= null
 
-    var fileUriArray: Array<Uri>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         Log.d(WebFragment::class.simpleName, "onCreateView()")
@@ -1042,13 +1041,10 @@ class WebFragment : Fragment() {
             data?.let {
                 if(it.data != null){
                     if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-
-                        fileUriArray = WebChromeClient.FileChooserParams.parseResult(resultCode, it)
-                        mFilePathCallback?.onReceiveValue(fileUriArray)
+                        mFilePathCallback?.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, it))
                     }
                     else{
-                        fileUriArray = arrayOf(it.data!!)
-                        mFilePathCallback?.onReceiveValue(fileUriArray)
+                        mFilePathCallback?.onReceiveValue(arrayOf(it.data!!))
                     }
                 }
             }?: run {
