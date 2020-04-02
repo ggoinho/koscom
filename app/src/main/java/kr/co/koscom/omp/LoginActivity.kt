@@ -26,6 +26,7 @@ import com.sendbird.syncmanager.ConnectionManager
 import com.sendbird.syncmanager.utils.Base64Utils
 import com.sendbird.syncmanager.utils.ComUtil
 import com.sendbird.syncmanager.utils.PreferenceUtils
+import com.signkorea.openpass.interfacelib.SKCallback
 import com.signkorea.openpass.interfacelib.SKCertManager
 import com.signkorea.openpass.interfacelib.SKConstant
 import com.signkorea.openpass.sksystemcrypto.SKSystemCertInfo
@@ -714,7 +715,8 @@ class LoginActivity : AppCompatActivity() {
         showProgressDialog("", "초기화 중입니다.")
 
         // 초기화 함수 호출.
-        val nResult = SKCertManager.initOpenPass(this, OPENPASS_LICENSE, OPENPASS_LAUNCHMODE) { requestCode, resultCode, resultMessage ->
+        val nResult = SKCertManager.initOpenPass(this, OPENPASS_LICENSE, OPENPASS_LAUNCHMODE,
+            SKCallback.MessageCallback { requestCode, resultCode, resultMessage ->
 
             mainProgress?.dismiss()
 
@@ -733,7 +735,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, resultMessage, Toast.LENGTH_LONG).show()
                 mainProgress?.dismiss()
             }
-        }
+        })
 
         if (SKConstant.RESULT_CODE_OK != nResult) {
             Toast.makeText(applicationContext, "MyPass 초기화 중 오류가 발생하였습니다.($nResult)", Toast.LENGTH_SHORT)
@@ -760,7 +762,7 @@ class LoginActivity : AppCompatActivity() {
         showProgressDialog("", "MyPass 버전을 확인합니다.")
 
         SKCertManager.getOpenPassVersion(this
-        ) { requestCode, resultCode, resultMessage ->
+        , SKCallback.MessageCallback{ requestCode, resultCode, resultMessage ->
 
             mainProgress?.dismiss()
 
@@ -773,7 +775,7 @@ class LoginActivity : AppCompatActivity() {
                 mainProgress?.dismiss()
                 SKCertManager.showErrorPopup(resultCode)
             }
-        }
+        })
     }
 
     private fun requestSign() {
@@ -784,50 +786,73 @@ class LoginActivity : AppCompatActivity() {
 
 
             SKCertManager.sign(SKConstant.REQUEST_CODE_KOSCOM_FULL_SIGN, null, "ServerRandom".toByteArray(), SKConstant.AUTH_TYPE_ALL, true,
-                ComUtil.policyMode , null) { requestCode, resultCode, resultMessage, binSignData, b64Cert, isTrustZone ->
+                ComUtil.policyMode , null,
+                SKCallback.SignCallback { requestCode, resultCode, resultMessage, binSignData, b64Cert, isTrustZone ->
 
-                mainProgress?.dismiss()
+                    mainProgress?.dismiss()
 
-                if (resultCode == SKConstant.RESULT_CODE_OK) {
+                    if (resultCode == SKConstant.RESULT_CODE_OK) {
 
-                    //Log.v("OpenPassClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
-                    //Log.v("OpenPassClient", "signData : " + signData)
-                    // 샘플 앱에서는 서명 검증 구현이 생략되어 있습니다.
-                    // 서명 검증은 서버 모듈의 기능을 참조하여 주십시오.
-                    Log.d(LoginActivity::class.simpleName, binSignData)
+                        //Log.v("OpenPassClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
+                        //Log.v("OpenPassClient", "signData : " + signData)
+                        // 샘플 앱에서는 서명 검증 구현이 생략되어 있습니다.
+                        // 서명 검증은 서버 모듈의 기능을 참조하여 주십시오.
+                        Log.d(LoginActivity::class.simpleName, binSignData)
 
-                    val certInfo = SKSystemCertInfo(SKUtil.b642bin(b64Cert))
-                    //val certInfo = binSignData
-                    Log.d(LoginActivity::class.simpleName, "certInfo.issuerDN : " + certInfo.issuerDN)
-                    Log.d(LoginActivity::class.simpleName, "certInfo.b64PublicKeyInfo : " + certInfo.b64PublicKeyInfo)
-                    Log.d(LoginActivity::class.simpleName, "certInfo.subjectDN : " + certInfo.subjectDN)
-                    Log.d(LoginActivity::class.simpleName, "certInfo.serialNumber : " + certInfo.serialNumber)
-                    Log.d(LoginActivity::class.simpleName, "certInfo.certPolicyIdString : " + certInfo.certPolicyIdString)
+                        val certInfo = SKSystemCertInfo(SKUtil.b642bin(b64Cert))
+                        //val certInfo = binSignData
+                        Log.d(
+                            LoginActivity::class.simpleName,
+                            "certInfo.issuerDN : " + certInfo.issuerDN
+                        )
+                        Log.d(
+                            LoginActivity::class.simpleName,
+                            "certInfo.b64PublicKeyInfo : " + certInfo.b64PublicKeyInfo
+                        )
+                        Log.d(
+                            LoginActivity::class.simpleName,
+                            "certInfo.subjectDN : " + certInfo.subjectDN
+                        )
+                        Log.d(
+                            LoginActivity::class.simpleName,
+                            "certInfo.serialNumber : " + certInfo.serialNumber
+                        )
+                        Log.d(
+                            LoginActivity::class.simpleName,
+                            "certInfo.certPolicyIdString : " + certInfo.certPolicyIdString
+                        )
 
-                    // 서명 검증, 비식별 아이디 전달 완료 후 로그인 완료 페이지로 이동
-                    val strSubjectDN = if ((certInfo == null)) "" else certInfo.subjectDN
+                        // 서명 검증, 비식별 아이디 전달 완료 후 로그인 완료 페이지로 이동
+                        val strSubjectDN = if ((certInfo == null)) "" else certInfo.subjectDN
 
-                    Log.d(LoginActivity::class.simpleName, "certInfo.subjectDN : " + strSubjectDN)
+                        Log.d(
+                            LoginActivity::class.simpleName,
+                            "certInfo.subjectDN : " + strSubjectDN
+                        )
 
-                    login("1","",binSignData,"1")
+                        login("1", "", binSignData, "1")
 
-                    /* 2019.12.19
-                    resultCertify("1", signData, "", { securityNum: String?, dn: String, signature: String, publicKey: String, name: String ->
+                        /* 2019.12.19
+                        resultCertify("1", signData, "", { securityNum: String?, dn: String, signature: String, publicKey: String, name: String ->
 
-                        login("1", dn)
-                    })
-                     */
+                            login("1", dn)
+                        })
+                         */
 
-                } else if (resultCode == SKConstant.RESULT_CODE_ERROR_SESSION_EXPIRED) {
-                    Log.e(LoginActivity::class.simpleName, "RESULT_CODE_ERROR_SESSION_EXPIRED")
-                } else {
-                    // 에러 처리
-                    // 만들어진 단축서명용 전자서명 생성키 삭제
-                    // SKCertManager.clear();
+                    } else if (resultCode == SKConstant.RESULT_CODE_ERROR_SESSION_EXPIRED) {
+                        Log.e(LoginActivity::class.simpleName, "RESULT_CODE_ERROR_SESSION_EXPIRED")
+                    } else {
+                        // 에러 처리
+                        // 만들어진 단축서명용 전자서명 생성키 삭제
+                        // SKCertManager.clear();
 
-                    Toast.makeText(getApplicationContext(), "[SKCertManager.sign()] ERR($resultCode\n$resultMessage)", Toast.LENGTH_SHORT).show()
-                }
-            }
+                        Toast.makeText(
+                            getApplicationContext(),
+                            "[SKCertManager.sign()] ERR($resultCode\n$resultMessage)",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                })
         }
         catch (e:Exception) {
             e.printStackTrace()

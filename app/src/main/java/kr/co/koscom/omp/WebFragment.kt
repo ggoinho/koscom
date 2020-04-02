@@ -47,6 +47,7 @@ import com.scsoft.boribori.data.viewmodel.LoginViewModel
 import com.sendbird.syncmanager.utils.Base64Utils
 import com.sendbird.syncmanager.utils.ComUtil
 import com.sendbird.syncmanager.utils.PreferenceUtils
+import com.signkorea.openpass.interfacelib.SKCallback
 import com.signkorea.openpass.interfacelib.SKCertManager
 import com.signkorea.openpass.interfacelib.SKConstant
 import com.signkorea.openpass.sksystemcrypto.SKSystemCertInfo
@@ -512,50 +513,102 @@ class WebFragment : Fragment() {
 
                     initializeOpenPass {
                         Log.d(WebFragment::class.simpleName, "SKCertManager.sign invoke")
-                        SKCertManager.sign(SKConstant.REQUEST_CODE_RANDOM_KOSCOM, null, "ServerRandom".toByteArray(), SKConstant.AUTH_TYPE_ALL, false, ComUtil.policyMode, null) { requestCode, resultCode, resultMessage, binSignData, b64Cert, isTrustZone ->
+                        SKCertManager.sign(SKConstant.REQUEST_CODE_RANDOM_KOSCOM, null, "ServerRandom".toByteArray(), SKConstant.AUTH_TYPE_ALL, false, ComUtil.policyMode, null,
+                            SKCallback.SignCallback { requestCode, resultCode, resultMessage, binSignData, b64Cert, isTrustZone ->
 
-                            Log.d(LoginActivity::class.simpleName, "SKCertManager.sign result : " + resultCode)
+                                Log.d(
+                                    LoginActivity::class.simpleName,
+                                    "SKCertManager.sign result : " + resultCode
+                                )
 
-                            if (resultCode == SKConstant.RESULT_CODE_OK) {
-                                //Log.v("OpenPassClient", "binSignData : " + String(binSignData))
-                                //Log.v("OpenPassClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
+                                if (resultCode == SKConstant.RESULT_CODE_OK) {
+                                    //Log.v("OpenPassClient", "binSignData : " + String(binSignData))
+                                    //Log.v("OpenPassClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
 
-                                // 샘플 앱에서는 서명 검증 구현이 생략되어 있습니다.
-                                // 서명 검증은 서버 모듈의 기능을 참조하여 주십시오.
+                                    // 샘플 앱에서는 서명 검증 구현이 생략되어 있습니다.
+                                    // 서명 검증은 서버 모듈의 기능을 참조하여 주십시오.
 
-                                val certInfo = SKSystemCertInfo(SKUtil.b642bin(b64Cert))
+                                    val certInfo = SKSystemCertInfo(SKUtil.b642bin(b64Cert))
 
-                                Log.d(LoginActivity::class.simpleName, "certInfo.subjectDN : " + certInfo.subjectDN)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.issuerDN : " + certInfo.issuerDN)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.b64PublicKeyInfo : " + certInfo.b64PublicKeyInfo)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.serialNumber : " + certInfo.serialNumber)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.certPolicyIdString : " + certInfo.certPolicyIdString)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.issuerName : " + certInfo.issuerName)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.signAlgorithmOidString : " + certInfo.signAlgorithmOidString)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.signAlgorithmName : " + certInfo.signAlgorithmName)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.subjectCommonName : " + certInfo.subjectCommonName)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.version : " + certInfo.version)
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.subjectDN : " + certInfo.subjectDN
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.issuerDN : " + certInfo.issuerDN
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.b64PublicKeyInfo : " + certInfo.b64PublicKeyInfo
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.serialNumber : " + certInfo.serialNumber
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.certPolicyIdString : " + certInfo.certPolicyIdString
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.issuerName : " + certInfo.issuerName
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.signAlgorithmOidString : " + certInfo.signAlgorithmOidString
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.signAlgorithmName : " + certInfo.signAlgorithmName
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.subjectCommonName : " + certInfo.subjectCommonName
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.version : " + certInfo.version
+                                    )
 
-                                // 서명 검증, 비식별 아이디 전달 완료 후 로그인 완료 페이지로 이동
-                                val strSubjectDN = if ((certInfo == null)) "" else certInfo.subjectDN
+                                    // 서명 검증, 비식별 아이디 전달 완료 후 로그인 완료 페이지로 이동
+                                    val strSubjectDN =
+                                        if ((certInfo == null)) "" else certInfo.subjectDN
 
-                                Log.d(LoginActivity::class.simpleName, "certInfo.subjectDN : " + strSubjectDN)
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.subjectDN : " + strSubjectDN
+                                    )
 
-                                resultCertify("4", binSignData, json.getString("CLNT_CNF_NO"), { securityNum: String?, dn: String, signature: String, publicKey: String, name: String ->
+                                    resultCertify(
+                                        "4",
+                                        binSignData,
+                                        json.getString("CLNT_CNF_NO"),
+                                        { securityNum: String?, dn: String, signature: String, publicKey: String, name: String ->
 
-                                    evaluateJavascript("getOpenPassData", "{\"DN\":\""+dn+"\", \"PUBLIC_KEY\":\""+publicKey+"\", \"NAME\":\""+name+"\"}")
-                                })
+                                            evaluateJavascript(
+                                                "getOpenPassData",
+                                                "{\"DN\":\"" + dn + "\", \"PUBLIC_KEY\":\"" + publicKey + "\", \"NAME\":\"" + name + "\"}"
+                                            )
+                                        })
 
-                            } else if (resultCode == SKConstant.RESULT_CODE_ERROR_SESSION_EXPIRED) {
-                                Log.d(LoginActivity::class.simpleName, "RESULT_CODE_ERROR_SESSION_EXPIRED")
-                            } else {
-                                // 에러 처리
-                                // 만들어진 단축서명용 전자서명 생성키 삭제
-                                // SKCertManager.clear();
+                                } else if (resultCode == SKConstant.RESULT_CODE_ERROR_SESSION_EXPIRED) {
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "RESULT_CODE_ERROR_SESSION_EXPIRED"
+                                    )
+                                } else {
+                                    // 에러 처리
+                                    // 만들어진 단축서명용 전자서명 생성키 삭제
+                                    // SKCertManager.clear();
 
-                                Toast.makeText(activity!!.getApplicationContext(), "[SKCertManager.sign()] ERR($resultCode\n$resultMessage)", Toast.LENGTH_SHORT).show()
-                            }
-                        }
+                                    Toast.makeText(
+                                        activity!!.getApplicationContext(),
+                                        "[SKCertManager.sign()] ERR($resultCode\n$resultMessage)",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            })
                     }
                 }
             });
@@ -570,50 +623,102 @@ class WebFragment : Fragment() {
 
                     initializeOpenPass {
                         Log.d(WebFragment::class.simpleName, "SKCertManager.sign invoke")
-                        SKCertManager.sign(SKConstant.REQUEST_CODE_KOSCOM_FULL_SIGN, null, "ServerRandom".toByteArray(), SKConstant.AUTH_TYPE_ALL, false,ComUtil.policyMode,null) { requestCode, resultCode, resultMessage, binSignData, b64Cert, isTrustZone ->
+                        SKCertManager.sign(SKConstant.REQUEST_CODE_KOSCOM_FULL_SIGN, null, "ServerRandom".toByteArray(), SKConstant.AUTH_TYPE_ALL, false,ComUtil.policyMode,null,
+                            SKCallback.SignCallback { requestCode, resultCode, resultMessage, binSignData, b64Cert, isTrustZone ->
 
-                            Log.d(LoginActivity::class.simpleName, "SKCertManager.sign result : " + resultCode)
+                                Log.d(
+                                    LoginActivity::class.simpleName,
+                                    "SKCertManager.sign result : " + resultCode
+                                )
 
-                            if (resultCode == SKConstant.RESULT_CODE_OK) {
-                                //Log.v("OpenPassClient", "binSignData : " + String(binSignData))
-                                //Log.v("OpenPassClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
+                                if (resultCode == SKConstant.RESULT_CODE_OK) {
+                                    //Log.v("OpenPassClient", "binSignData : " + String(binSignData))
+                                    //Log.v("OpenPassClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
 
-                                // 샘플 앱에서는 서명 검증 구현이 생략되어 있습니다.
-                                // 서명 검증은 서버 모듈의 기능을 참조하여 주십시오.
+                                    // 샘플 앱에서는 서명 검증 구현이 생략되어 있습니다.
+                                    // 서명 검증은 서버 모듈의 기능을 참조하여 주십시오.
 
-                                val certInfo = SKSystemCertInfo(SKUtil.b642bin(b64Cert))
+                                    val certInfo = SKSystemCertInfo(SKUtil.b642bin(b64Cert))
 
-                                Log.d(LoginActivity::class.simpleName, "certInfo.subjectDN : " + certInfo.subjectDN)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.issuerDN : " + certInfo.issuerDN)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.b64PublicKeyInfo : " + certInfo.b64PublicKeyInfo)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.serialNumber : " + certInfo.serialNumber)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.certPolicyIdString : " + certInfo.certPolicyIdString)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.issuerName : " + certInfo.issuerName)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.signAlgorithmOidString : " + certInfo.signAlgorithmOidString)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.signAlgorithmName : " + certInfo.signAlgorithmName)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.subjectCommonName : " + certInfo.subjectCommonName)
-                                Log.d(LoginActivity::class.simpleName, "certInfo.version : " + certInfo.version)
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.subjectDN : " + certInfo.subjectDN
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.issuerDN : " + certInfo.issuerDN
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.b64PublicKeyInfo : " + certInfo.b64PublicKeyInfo
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.serialNumber : " + certInfo.serialNumber
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.certPolicyIdString : " + certInfo.certPolicyIdString
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.issuerName : " + certInfo.issuerName
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.signAlgorithmOidString : " + certInfo.signAlgorithmOidString
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.signAlgorithmName : " + certInfo.signAlgorithmName
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.subjectCommonName : " + certInfo.subjectCommonName
+                                    )
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.version : " + certInfo.version
+                                    )
 
-                                // 서명 검증, 비식별 아이디 전달 완료 후 로그인 완료 페이지로 이동
-                                val strSubjectDN = if ((certInfo == null)) "" else certInfo.subjectDN
+                                    // 서명 검증, 비식별 아이디 전달 완료 후 로그인 완료 페이지로 이동
+                                    val strSubjectDN =
+                                        if ((certInfo == null)) "" else certInfo.subjectDN
 
-                                Log.d(LoginActivity::class.simpleName, "certInfo.subjectDN : " + strSubjectDN)
+                                    Log.d(
+                                        LoginActivity::class.simpleName,
+                                        "certInfo.subjectDN : " + strSubjectDN
+                                    )
 
-                                resultCertify("1", binSignData, "", { securityNum: String?, dn: String, signature: String, publicKey: String, name: String ->
+                                    resultCertify(
+                                        "1",
+                                        binSignData,
+                                        "",
+                                        { securityNum: String?, dn: String, signature: String, publicKey: String, name: String ->
 
-                                    evaluateJavascript("getOpenPassData", "{\"DN\":\""+dn+"\", \"PUBLIC_KEY\":\""+publicKey+"\", \"NAME\":\""+name+"\"}")
-                                })
+                                            evaluateJavascript(
+                                                "getOpenPassData",
+                                                "{\"DN\":\"" + dn + "\", \"PUBLIC_KEY\":\"" + publicKey + "\", \"NAME\":\"" + name + "\"}"
+                                            )
+                                        })
 
-                            } else if (resultCode == SKConstant.RESULT_CODE_ERROR_SESSION_EXPIRED) {
-                                Log.e(LoginActivity::class.simpleName, "RESULT_CODE_ERROR_SESSION_EXPIRED")
-                            } else {
-                                // 에러 처리
-                                // 만들어진 단축서명용 전자서명 생성키 삭제
-                                // SKCertManager.clear();
+                                } else if (resultCode == SKConstant.RESULT_CODE_ERROR_SESSION_EXPIRED) {
+                                    Log.e(
+                                        LoginActivity::class.simpleName,
+                                        "RESULT_CODE_ERROR_SESSION_EXPIRED"
+                                    )
+                                } else {
+                                    // 에러 처리
+                                    // 만들어진 단축서명용 전자서명 생성키 삭제
+                                    // SKCertManager.clear();
 
-                                Toast.makeText(activity!!.getApplicationContext(), "[SKCertManager.sign()] ERR($resultCode\n$resultMessage)", Toast.LENGTH_SHORT).show()
-                            }
-                        }
+                                    Toast.makeText(
+                                        activity!!.getApplicationContext(),
+                                        "[SKCertManager.sign()] ERR($resultCode\n$resultMessage)",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            })
                     }
                 }
             });
@@ -634,50 +739,99 @@ class WebFragment : Fragment() {
 
                     initializeOpenPass {
                         Log.d(WebFragment::class.simpleName, "SKCertManager.sign invoke")
-                        SKCertManager.sign(SKConstant.REQUEST_CODE_RANDOM_KOSCOM, null, "ServerRandom".toByteArray(), SKConstant.AUTH_TYPE_ALL, false,ComUtil.policyMode,null) { requestCode, resultCode, resultMessage, binSignData, b64Cert, isTrustZone ->
+                        SKCertManager.sign(SKConstant.REQUEST_CODE_RANDOM_KOSCOM, null, "ServerRandom".toByteArray(), SKConstant.AUTH_TYPE_ALL, false,ComUtil.policyMode,null,
+                            SKCallback.SignCallback { requestCode, resultCode, resultMessage, binSignData, b64Cert, isTrustZone ->
 
-                            Log.d(RegistActivity::class.simpleName, "SKCertManager.sign result : " + resultCode)
+                                Log.d(
+                                    RegistActivity::class.simpleName,
+                                    "SKCertManager.sign result : " + resultCode
+                                )
 
-                            if (resultCode == SKConstant.RESULT_CODE_OK) {
-                                //Log.v("DidClient", "binSignData : " + String(binSignData))
-                                //Log.v("DidClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
+                                if (resultCode == SKConstant.RESULT_CODE_OK) {
+                                    //Log.v("DidClient", "binSignData : " + String(binSignData))
+                                    //Log.v("DidClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
 
-                                // 샘플 앱에서는 서명 검증 구현이 생략되어 있습니다.
-                                // 서명 검증은 서버 모듈의 기능을 참조하여 주십시오.
+                                    // 샘플 앱에서는 서명 검증 구현이 생략되어 있습니다.
+                                    // 서명 검증은 서버 모듈의 기능을 참조하여 주십시오.
 
-                                val certInfo = SKSystemCertInfo(SKUtil.b642bin(b64Cert))
+                                    val certInfo = SKSystemCertInfo(SKUtil.b642bin(b64Cert))
 
-                                Log.d(RegistActivity::class.simpleName, "certInfo.subjectDN : " + certInfo.subjectDN)
-                                Log.d(RegistActivity::class.simpleName, "certInfo.issuerDN : " + certInfo.issuerDN)
-                                Log.d(RegistActivity::class.simpleName, "certInfo.b64PublicKeyInfo : " + certInfo.b64PublicKeyInfo)
-                                Log.d(RegistActivity::class.simpleName, "certInfo.serialNumber : " + certInfo.serialNumber)
-                                Log.d(RegistActivity::class.simpleName, "certInfo.certPolicyIdString : " + certInfo.certPolicyIdString)
-                                Log.d(RegistActivity::class.simpleName, "certInfo.issuerName : " + certInfo.issuerName)
-                                Log.d(RegistActivity::class.simpleName, "certInfo.signAlgorithmOidString : " + certInfo.signAlgorithmOidString)
-                                Log.d(RegistActivity::class.simpleName, "certInfo.signAlgorithmName : " + certInfo.signAlgorithmName)
-                                Log.d(RegistActivity::class.simpleName, "certInfo.subjectCommonName : " + certInfo.subjectCommonName)
-                                Log.d(RegistActivity::class.simpleName, "certInfo.version : " + certInfo.version)
+                                    Log.d(
+                                        RegistActivity::class.simpleName,
+                                        "certInfo.subjectDN : " + certInfo.subjectDN
+                                    )
+                                    Log.d(
+                                        RegistActivity::class.simpleName,
+                                        "certInfo.issuerDN : " + certInfo.issuerDN
+                                    )
+                                    Log.d(
+                                        RegistActivity::class.simpleName,
+                                        "certInfo.b64PublicKeyInfo : " + certInfo.b64PublicKeyInfo
+                                    )
+                                    Log.d(
+                                        RegistActivity::class.simpleName,
+                                        "certInfo.serialNumber : " + certInfo.serialNumber
+                                    )
+                                    Log.d(
+                                        RegistActivity::class.simpleName,
+                                        "certInfo.certPolicyIdString : " + certInfo.certPolicyIdString
+                                    )
+                                    Log.d(
+                                        RegistActivity::class.simpleName,
+                                        "certInfo.issuerName : " + certInfo.issuerName
+                                    )
+                                    Log.d(
+                                        RegistActivity::class.simpleName,
+                                        "certInfo.signAlgorithmOidString : " + certInfo.signAlgorithmOidString
+                                    )
+                                    Log.d(
+                                        RegistActivity::class.simpleName,
+                                        "certInfo.signAlgorithmName : " + certInfo.signAlgorithmName
+                                    )
+                                    Log.d(
+                                        RegistActivity::class.simpleName,
+                                        "certInfo.subjectCommonName : " + certInfo.subjectCommonName
+                                    )
+                                    Log.d(
+                                        RegistActivity::class.simpleName,
+                                        "certInfo.version : " + certInfo.version
+                                    )
 
-                                // 서명 검증, 비식별 아이디 전달 완료 후 로그인 완료 페이지로 이동
-                                val strSubjectDN = if ((certInfo == null)) "" else certInfo.subjectDN
+                                    // 서명 검증, 비식별 아이디 전달 완료 후 로그인 완료 페이지로 이동
+                                    val strSubjectDN =
+                                        if ((certInfo == null)) "" else certInfo.subjectDN
 
-                                Log.d(RegistActivity::class.simpleName, "certInfo.subjectDN : " + strSubjectDN)
+                                    Log.d(
+                                        RegistActivity::class.simpleName,
+                                        "certInfo.subjectDN : " + strSubjectDN
+                                    )
 
-                                resultCertifyDID("4", binSignData, json.getString("CLNT_CNF_NO"), { securityNum: String?, dn: String, signature: String, publicKey: String, name: String ->
+                                    resultCertifyDID(
+                                        "4",
+                                        binSignData,
+                                        json.getString("CLNT_CNF_NO"),
+                                        { securityNum: String?, dn: String, signature: String, publicKey: String, name: String ->
 
-                                    //evaluateJavascript("getOpenPassData", "{\"DN\":\""+dn+"\", \"PUBLIC_KEY\":\""+publicKey+"\", \"NAME\":\""+name+"\"}")
-                                })
+                                            //evaluateJavascript("getOpenPassData", "{\"DN\":\""+dn+"\", \"PUBLIC_KEY\":\""+publicKey+"\", \"NAME\":\""+name+"\"}")
+                                        })
 
-                            } else if (resultCode == SKConstant.RESULT_CODE_ERROR_SESSION_EXPIRED) {
-                                Log.e(RegistActivity::class.simpleName, "RESULT_CODE_ERROR_SESSION_EXPIRED")
-                            } else {
-                                // 에러 처리
-                                // 만들어진 단축서명용 전자서명 생성키 삭제
-                                // SKCertManager.clear();
+                                } else if (resultCode == SKConstant.RESULT_CODE_ERROR_SESSION_EXPIRED) {
+                                    Log.e(
+                                        RegistActivity::class.simpleName,
+                                        "RESULT_CODE_ERROR_SESSION_EXPIRED"
+                                    )
+                                } else {
+                                    // 에러 처리
+                                    // 만들어진 단축서명용 전자서명 생성키 삭제
+                                    // SKCertManager.clear();
 
-                                Toast.makeText(activity!!.getApplicationContext(), "[SKCertManager.sign()] ERR($resultCode\n$resultMessage)", Toast.LENGTH_SHORT).show()
-                            }
-                        }
+                                    Toast.makeText(
+                                        activity!!.getApplicationContext(),
+                                        "[SKCertManager.sign()] ERR($resultCode\n$resultMessage)",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            })
                     }
                 }
             });
@@ -986,8 +1140,8 @@ class WebFragment : Fragment() {
         // 초기화 함수 호출.
         val nResult = SKCertManager.initOpenPass(webView!!.context,
             LoginActivity.OPENPASS_LICENSE,
-            LoginActivity.OPENPASS_LAUNCHMODE
-        ) { requestCode, resultCode, resultMessage ->
+            LoginActivity.OPENPASS_LAUNCHMODE,
+            SKCallback.MessageCallback { requestCode, resultCode, resultMessage ->
 
             progress_bar_login?.visibility = View.INVISIBLE
 
@@ -1006,7 +1160,7 @@ class WebFragment : Fragment() {
                 Toast.makeText(activity!!.applicationContext, resultMessage, Toast.LENGTH_LONG).show()
                 progress_bar_login?.visibility = View.INVISIBLE
             }
-        }
+        })
 
         if (SKConstant.RESULT_CODE_OK != nResult) {
             Toast.makeText(activity!!.applicationContext, "MyPass 초기화 중 오류가 발생하였습니다.($nResult)", Toast.LENGTH_SHORT)

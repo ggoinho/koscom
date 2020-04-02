@@ -11,6 +11,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.sendbird.syncmanager.utils.ComUtil
+import com.signkorea.openpass.interfacelib.SKCallback
 import com.signkorea.openpass.interfacelib.SKCertManager
 import com.signkorea.openpass.interfacelib.SKConstant
 import io.reactivex.disposables.CompositeDisposable
@@ -105,8 +106,8 @@ class SignLaunchActivity : AppCompatActivity() {
         // 초기화 함수 호출.
         val nResult = SKCertManager.initOpenPass(this,
             LoginActivity.OPENPASS_LICENSE,
-            LoginActivity.OPENPASS_LAUNCHMODE
-        ) { requestCode, resultCode, resultMessage ->
+            LoginActivity.OPENPASS_LAUNCHMODE,
+            SKCallback.MessageCallback { requestCode, resultCode, resultMessage ->
 
             mainProgress?.dismiss()
 
@@ -124,7 +125,7 @@ class SignLaunchActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, resultMessage, Toast.LENGTH_LONG).show()
                 mainProgress?.dismiss()
             }
-        }
+        })
 
         if (SKConstant.RESULT_CODE_OK != nResult) {
             Toast.makeText(applicationContext, "MyPass 초기화 중 오류가 발생하였습니다.($nResult)", Toast.LENGTH_SHORT)

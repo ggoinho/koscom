@@ -25,6 +25,7 @@ import com.scsoft.boribori.data.viewmodel.LoginViewModel
 import com.sendbird.syncmanager.utils.Base64Utils
 import com.sendbird.syncmanager.utils.ComUtil
 import com.sendbird.syncmanager.utils.PreferenceUtils
+import com.signkorea.openpass.interfacelib.SKCallback
 import com.signkorea.openpass.interfacelib.SKCertManager
 import com.signkorea.openpass.interfacelib.SKConstant
 import com.signkorea.openpass.sksystemcrypto.SKSystemCertInfo
@@ -205,27 +206,25 @@ class ContractDetailActivity : AppCompatActivity() {
         // 초기화 함수 호출.
         val nResult = SKCertManager.initOpenPass(this,
             LoginActivity.OPENPASS_LICENSE,
-            LoginActivity.OPENPASS_LAUNCHMODE
-        ) { requestCode, resultCode, resultMessage ->
-
-            progress_bar_login?.visibility = View.INVISIBLE
-
-            if (resultCode == SKConstant.RESULT_CODE_ERROR_NOT_INSTALL ||
-                resultCode == SKConstant.RESULT_CODE_ERROR_APP_DISABLED ||
-                resultCode == SKConstant.RESULT_CODE_ERROR_NEED_UPDATE){
-                // OpenPass 설치 등 상태 관련 오류
-                SKCertManager.showErrorPopup(resultCode)
-            }
-            else if (resultCode == SKConstant.RESULT_CODE_OK){
-                Log.d(WebFragment::class.simpleName, "initializeOpenPass success.")
-                listener.invoke()
-            }
-            else {
-                // OpenPass 초기화 실패
-                Toast.makeText(this, resultMessage, Toast.LENGTH_LONG).show()
+            LoginActivity.OPENPASS_LAUNCHMODE,
+            SKCallback.MessageCallback { requestCode, resultCode, resultMessage ->
                 progress_bar_login?.visibility = View.INVISIBLE
-            }
-        }
+
+                if (resultCode == SKConstant.RESULT_CODE_ERROR_NOT_INSTALL ||
+                    resultCode == SKConstant.RESULT_CODE_ERROR_APP_DISABLED ||
+                    resultCode == SKConstant.RESULT_CODE_ERROR_NEED_UPDATE){
+                    // OpenPass 설치 등 상태 관련 오류
+                    SKCertManager.showErrorPopup(resultCode)
+                } else if (resultCode == SKConstant.RESULT_CODE_OK){
+                    Log.d(WebFragment::class.simpleName, "initializeOpenPass success.")
+                    listener.invoke()
+                } else {
+                    // OpenPass 초기화 실패
+                    Toast.makeText(this@ContractDetailActivity, resultMessage, Toast.LENGTH_LONG).show()
+
+                    progress_bar_login?.visibility = View.INVISIBLE
+                }
+            })
 
         if (SKConstant.RESULT_CODE_OK != nResult) {
             Toast.makeText(this, "MyPass 초기화 중 오류가 발생하였습니다.($nResult)", Toast.LENGTH_SHORT)
@@ -253,8 +252,8 @@ class ContractDetailActivity : AppCompatActivity() {
                     SKConstant.AUTH_TYPE_ALL,
                     false,
                     ComUtil.policyMode,
-                    null
-                ) { requestCode, resultCode, resultMessage, binSignData, b64Cert, isTrustZone ->
+                    null,
+                    SKCallback.SignCallback { requestCode, resultCode, resultMessage, binSignData, b64Cert, isTrustZone ->
 
                     Log.e(
                         LoginActivity::class.simpleName,
@@ -328,7 +327,7 @@ class ContractDetailActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-                }
+                })
             } else {
 
                 getSkdid("S",contract!!.RESULT_GETTRANDTLINFOVIEW!!.CVNT_NO) {didNonce: String, didSvcPublic: String ->
