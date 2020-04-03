@@ -17,9 +17,11 @@
 package kr.co.koscom.omp
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.DownloadManager
 import android.content.Context
 import android.content.Context.DOWNLOAD_SERVICE
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.graphics.Bitmap
@@ -262,7 +264,7 @@ class WebFragment : Fragment() {
 //                    Log.w(WebFragment::class.simpleName, "onReceivedSslError("+view.url+") : " + error.toString())
 //                }
 
-                /*val builder = AlertDialog.Builder(activity)
+                val builder = AlertDialog.Builder(activity)
                 builder.setMessage("신뢰하는 보안 인증서가 아닙니다. 계속하시겠습니까?")
                 builder.setPositiveButton("확인",
                     DialogInterface.OnClickListener { dialog, which -> handler.proceed() })
@@ -270,7 +272,7 @@ class WebFragment : Fragment() {
                     DialogInterface.OnClickListener { dialog, which -> handler.cancel() })
                 val dialog = builder.create()
                 dialog.show()
-                 */
+
 
 //                handler.proceed()
             }
