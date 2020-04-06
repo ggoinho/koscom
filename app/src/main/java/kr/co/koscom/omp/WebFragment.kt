@@ -264,11 +264,29 @@ class WebFragment : Fragment() {
 //                    Log.w(WebFragment::class.simpleName, "onReceivedSslError("+view.url+") : " + error.toString())
 //                }
 
+                var msg = ""
+                if (error.primaryError === SslError.SSL_DATE_INVALID || error.primaryError === SslError.SSL_EXPIRED || error.primaryError === SslError.SSL_IDMISMATCH || error.primaryError === SslError.SSL_INVALID || error.primaryError === SslError.SSL_NOTYETVALID || error.primaryError === SslError.SSL_UNTRUSTED
+                ) {
+                    if (error.primaryError === SslError.SSL_DATE_INVALID) {
+                        msg = "The date of the certificate is invalid"
+                    } else if (error.primaryError === SslError.SSL_INVALID) {
+                        msg = "A generic error occurred"
+                    } else if (error.primaryError === SslError.SSL_EXPIRED) {
+                        msg = "The certificate has expired"
+                    } else if (error.primaryError === SslError.SSL_IDMISMATCH) {
+                        msg = "Hostname mismatch"
+                    } else if (error.primaryError === SslError.SSL_NOTYETVALID) {
+                        msg = "The certificate is not yet valid"
+                    } else if (error.primaryError === SslError.SSL_UNTRUSTED) {
+                        msg = "The certificate authority is not trusted"
+                    }
+                }
+
                 val builder = AlertDialog.Builder(activity)
-                builder.setMessage("신뢰하는 보안 인증서가 아닙니다. 계속하시겠습니까?")
-                builder.setPositiveButton("확인",
+                builder.setMessage(msg)
+                builder.setPositiveButton("continue",
                     DialogInterface.OnClickListener { dialog, which -> handler.proceed() })
-                builder.setNegativeButton("취소",
+                builder.setNegativeButton("cancel",
                     DialogInterface.OnClickListener { dialog, which -> handler.cancel() })
                 val dialog = builder.create()
                 dialog.show()
