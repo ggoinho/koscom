@@ -36,6 +36,7 @@ class InvestmentActivity : AppCompatActivity() {
 
         toolbar.initTitle("투자정보")
         toolbar.initData(this)
+        //test
 
         intent?.extras?.let {
             if(it.getBoolean("isFirstMain")){
