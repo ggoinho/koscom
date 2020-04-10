@@ -109,6 +109,10 @@ class WebFragment : Fragment() {
 //        }
 
         webView = wbWebView
+        webView?.apply {
+            this.clearCache(true)
+            this.clearHistory()
+        }
 
         wbWebView.settings.textZoom = 100
         /*scrollView.post {
@@ -460,12 +464,13 @@ class WebFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        if(webView != null){
-            webView!!.destroy()
 
+        webView?.let {
+            it.clearCache(true)
+            it.clearHistory()
+            it.destroy()
             hideProgress()
         }
-
         super.onDestroy()
     }
 

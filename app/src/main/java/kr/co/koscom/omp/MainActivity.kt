@@ -363,6 +363,11 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("message", message)
 
             startActivity(intent)
+        }else{
+            var intent = Intent(this, InvestmentActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("isFirstMain", true)
+            startActivity(intent)
         }
 
     }

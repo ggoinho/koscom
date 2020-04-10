@@ -300,6 +300,17 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/btnSetAlarm"
+            android:layout_width="315dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/shape_rect_fill33"
+            android:gravity="center"
+            android:lineSpacingExtra="1dp"
+            android:text="간편 로그인 등록"
+            android:textColor="#333333"
+            android:textSize="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -322,6 +333,8 @@
             android:text="서비스 가입"
             android:textColor="#333333"
             android:textSize="16dp" />
+
+
 
         <LinearLayout
             android:layout_width="match_parent"

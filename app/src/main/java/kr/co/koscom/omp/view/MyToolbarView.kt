@@ -26,6 +26,7 @@ import kr.co.koscom.omp.R
 import kr.co.koscom.omp.data.Constants
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
+import kr.co.koscom.omp.extension.toDrawable
 import kr.co.koscom.omp.extension.toGone
 import kr.co.koscom.omp.extension.toInvisible
 import kr.co.koscom.omp.extension.toVisible
@@ -116,6 +117,10 @@ class MyToolbarView @JvmOverloads constructor(
                 }))
 
         }
+    }
+
+    fun setBackButtonImg(res: Int = R.drawable.ico_arrow_back){
+        ivBack.background = res.toDrawable()
     }
 
     fun dispose(){

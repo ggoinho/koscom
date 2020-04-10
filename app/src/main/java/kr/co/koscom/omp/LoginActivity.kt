@@ -146,6 +146,12 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        btnSetAlarm.setOnClickListener{
+            var intent = Intent(this, SignLaunchActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
+
         btnClose!!.setOnClickListener {
             closeScreen()
         }

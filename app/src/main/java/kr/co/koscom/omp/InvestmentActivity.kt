@@ -37,6 +37,12 @@ class InvestmentActivity : AppCompatActivity() {
         toolbar.initTitle("투자정보")
         toolbar.initData(this)
 
+        intent?.extras?.let {
+            if(it.getBoolean("isFirstMain")){
+                toolbar.setBackButtonImg(R.drawable.icon_home_logo)
+            }
+        }
+
         if (savedInstanceState == null) {
             val transaction = supportFragmentManager.beginTransaction()
             val fragment = NavigationFragment()
@@ -110,7 +116,7 @@ class InvestmentActivity : AppCompatActivity() {
     }
 
     override fun onStop() {
-        super.onStop()
+        super.onStop() 
 
         disposable.clear()
         toolbar.dispose()
