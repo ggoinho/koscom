@@ -80,7 +80,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
-                android:paddingLeft="14dp">
+                android:paddingLeft="14dp"
+                >
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/quick"
                     android:layout_width="wrap_content"

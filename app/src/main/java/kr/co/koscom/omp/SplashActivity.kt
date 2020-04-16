@@ -32,6 +32,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_intro.*
 import kotlinx.android.synthetic.main.activity_intro.progress_bar_login
+import kotlinx.android.synthetic.main.activity_intro.version
+import kotlinx.android.synthetic.main.activity_login.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.viewmodel.UpdateViewModel
@@ -73,7 +75,7 @@ class SplashActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_intro)
 
-        version.text = BuildConfig.VERSION_NAME
+        version.text = "V.${BuildConfig.VERSION_NAME}"
 
         viewModelFactory = Injection.provideViewModelFactory(this)
         updateViewModel = ViewModelProviders.of(this, viewModelFactory).get(UpdateViewModel::class.java)

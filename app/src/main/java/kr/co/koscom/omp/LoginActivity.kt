@@ -36,7 +36,10 @@ import com.softforum.xecurekeypad.XKKeypadCustomInterface
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_intro.*
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.progress_bar_login
+import kotlinx.android.synthetic.main.activity_login.version
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.view.MyDialog
@@ -82,6 +85,8 @@ class LoginActivity : AppCompatActivity() {
         loginActivity = this
 
         setContentView(R.layout.activity_login)
+
+        version.text = "V.${BuildConfig.VERSION_NAME}"
 
         tv_title.setText(Html.fromHtml(getString(R.string.login_title)))
         tv_sub_title.setText(Html.fromHtml(getString(R.string.login_auth_type)))

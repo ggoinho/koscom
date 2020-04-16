@@ -23,7 +23,7 @@
                 android:id="@+id/ivBack"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ico_arrow_back"/>
+                android:background="@drawable/ico_arrow_back"/>
         </LinearLayout>
         <TextView
             android:id="@+id/subject"

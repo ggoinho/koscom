@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_escrow_buyer.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.model.Escrow
+import kr.co.koscom.omp.extension.toYYYYMMDDSSHHMMSS
 import kr.co.koscom.omp.view.ViewUtils
 import java.text.DecimalFormat
 
@@ -68,14 +69,17 @@ class EscrowBuyerActivity : AppCompatActivity() {
 
         escrowListeners.add(object: Runnable{
             override fun run() {
-                submitEndDate.text = escrow!!.resultMap!!.DEPOSIT_CLOSE_DT!!.substring(0, 4) + "년 " + escrow!!.resultMap!!.DEPOSIT_CLOSE_DT!!.substring(5, 7) + "월 " + escrow!!.resultMap!!.DEPOSIT_CLOSE_DT!!.substring(8, 11) + "일"
-                account.text = escrow!!.resultMap!!.VR_BNK_CODE_NM + "\n" + escrow!!.resultMap!!.VR_ACCNT_NO
 
-                dealAmount.text = numberFormat.format(escrow!!.resultMap!!.DEPOSIT_AMT!!.toFloat())
-                fee.text = numberFormat.format(escrow!!.resultMap!!.TRD_AMT!!.toFloat())
-                fee1.text = numberFormat.format(escrow!!.resultMap!!.TKOV_SYS_UTLFEE_RT!!.toFloat())
-                fee2.text = numberFormat.format(escrow!!.resultMap!!.TKOV_ESCRO_SMSN_AMT!!.toFloat())
-                totalAmount.text = numberFormat.format(escrow!!.resultMap!!.TKOV_WRT_SMSN_AMT!!.toFloat())
+                escrow?.resultMap?.let { result ->
+                    submitEndDate.text = result.DEPOSIT_CLOSE_DT.toYYYYMMDDSSHHMMSS()
+                    account.text = result.VR_BNK_CODE_NM + "\n" + result.VR_ACCNT_NO
+
+                    dealAmount.text = numberFormat.format(result.DEPOSIT_AMT!!.toFloat())
+                    fee.text = numberFormat.format(result.TRD_AMT!!.toFloat())
+                    fee1.text = numberFormat.format(result.TKOV_SYS_UTLFEE_RT!!.toFloat())
+                    fee2.text = numberFormat.format(result.TKOV_ESCRO_SMSN_AMT!!.toFloat())
+                    totalAmount.text = numberFormat.format(result.TKOV_WRT_SMSN_AMT!!.toFloat())
+                }
             }
         })
 

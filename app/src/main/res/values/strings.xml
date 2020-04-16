@@ -11,5 +11,7 @@
     <string name="login_auth_type"><![CDATA[가입 시 인증한 인증방법<font color=#757575>을 선택하여 주십시오</font>]]></string>
     <string name="login_auth_desc">개인의 경우 인증방식은 2가지 모두 등록할 수 있습니다.\n가입 시 인증한 인증방식으로 로그인 한 후 My Page에서\n인증방식 추가가 가능합니다.</string>
     <string name="seller_warning"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;귀하 <font color=\'#e8055a\'>%1$s</font><font color=\'#333333\'>(매도의향자)가</font> 현재 <font color=\'#e8055a\'>%2$s</font> %3$s 주식의 <font color=\'#e8055a\'>%4$s</font>주 (바로 전 주주명부에 나타난 수량 전체)에 대해 현재 별도 매매 등 처분을 하지 아니하여 %5$s주 전체에 대해 보유하고 있음을 <font color=\'#e8055a\'>%6$s</font>에 확인요청을 하고자 함.]]></string>
+
+    <string name="escrow_alarm_msg_delay_contents">알림 메세지는 약 3~5분정도 지연될 수 있습니다.</string>
 </resources>
 

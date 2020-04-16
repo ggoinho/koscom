@@ -408,16 +408,29 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="6dp"
         android:gravity="center_horizontal"
         android:letterSpacing="-0.03"
         android:lineSpacingExtra="9dp"
         android:text="© KOSCOM CORP."
         android:textColor="#757575"
         android:textSize="11dp"
-        app:layout_constraintBottom_toBottomOf="@+id/layout_login"
+        app:layout_constraintBottom_toTopOf="@+id/version"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/layout_login"
+        android:textSize="11dp"
+        android:textColor="#000826"
+        android:lineSpacingExtra="7dp"
+        android:text="V.0.0.1"/>
 
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/progress_bar_login"

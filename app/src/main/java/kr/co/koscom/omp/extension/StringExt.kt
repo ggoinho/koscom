@@ -3,6 +3,7 @@ package kr.co.koscom.omp.extension
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 fun String.toNumberFormat(): String {
@@ -68,3 +69,52 @@ fun Int.toStringNumberFormat(): String {
 
     return number.toNumberFormat()
 }
+
+
+/**
+ * Date Format 변경 - yyyy-MM-dd hh:mm:ss -> yyyy년 MM월 dd일 hh시 mm분 ss초
+ *
+ * @param strDate
+ * @return
+ */
+fun String?.toYYYYMMDDSSHHMMSS(): String {
+    return this?.let {date->
+        val timestamp = getTimestampFromStringFormat(this, "yyyy-MM-dd hh:mm:ss")
+        return getDateFormatFromTimestamp(timestamp, "yyyy년 MM월 dd일 hh시 mm분 ss초")
+    }?: ""
+}
+
+/**
+ * 날짜 포맷 변경
+ *
+ * @param time   Timestamp
+ * @param format 지정 포맷
+ * @return String
+ */
+private fun getDateFormatFromTimestamp(time: Long, format: String): String {
+    val calendar = Calendar.getInstance()
+    calendar.timeInMillis = time
+    val formatter = SimpleDateFormat(format)
+
+    return formatter.format(calendar.time)
+}
+
+/**
+ * String Date -> Timestamp
+ *
+ * @param strDate 날짜 문자열
+ * @param format  날짜 포맷
+ * @return Timestamp
+ */
+private fun getTimestampFromStringFormat(strDate: String, format: String): Long {
+    var date = Date()
+    try {
+        val simpleDateFormat = SimpleDateFormat(format)
+        date = simpleDateFormat.parse(strDate)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+
+    return date.time
+}
+

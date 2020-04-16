@@ -15,6 +15,8 @@ class Escrow {
         var DEPOSIT_CLOSE_DT: String? = null
         var TKOV_ESCRO_SMSN_AMT: String? = null
         var VR_BNK_CODE_NM: String? = null
+        var TRSF_BNK_CODE_NM: String? = null
+        var TRSF_BNK_ACNT: String? = null
         var TKOV_SYS_UTLFEE_RT: String? = null
         var VR_ACCNT_NO: String? = null
         var TRSF_BNK_AMT: String? = null
