@@ -246,6 +246,7 @@ class OrderListActivity : AppCompatActivity() {
                     search.setText("")
                     listData.clear()
                     contractList.clear()
+                    listOrder.adapter?.notifyDataSetChanged()
 
                     if(tab!!.position == 0){
                         subFragment.visibility = View.INVISIBLE
@@ -297,6 +298,7 @@ class OrderListActivity : AppCompatActivity() {
 
                 listData.clear()
                 contractList.clear()
+                listOrder.adapter?.notifyDataSetChanged()
 
                 if(tab!!.position == 0){
                     subFragment.visibility = View.INVISIBLE
@@ -374,6 +376,7 @@ class OrderListActivity : AppCompatActivity() {
 
             listData.clear()
             contractList.clear()
+            listOrder.adapter?.notifyDataSetChanged()
 
             if(gubn == 1){
                 tabLayout.getTabAt(0)?.select()

@@ -71,7 +71,7 @@ class BuyWriteActivity : AppCompatActivity() {
         orderViewModel = ViewModelProviders.of(this, viewModelFactory).get(OrderViewModel::class.java)
 
         btnSearch.setOnClickListener {
-            startActivityForResult(Intent(this@BuyWriteActivity, SearchActivity::class.java), STOCK_SEARCH)
+            startActivityForResult(Intent(this@BuyWriteActivity, OrderSearchActivity::class.java), STOCK_SEARCH)
         }
         stockName.setOnClickListener {
             btnSearch.callOnClick()
