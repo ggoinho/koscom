@@ -27,10 +27,8 @@ import kr.co.koscom.omp.data.Constants
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.extension.toDrawable
-import kr.co.koscom.omp.extension.toGone
 import kr.co.koscom.omp.extension.toInvisible
 import kr.co.koscom.omp.extension.toVisible
-import org.apache.commons.lang3.StringUtils
 
 class MyToolbarView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -69,14 +67,13 @@ class MyToolbarView @JvmOverloads constructor(
         }
 
         btnMenu.setOnClickListener {
-            getRootView().findViewById<DrawerLayout>(R.id.drawer_layout).openDrawer(GravityCompat.END)
+            rootView.findViewById<DrawerLayout>(R.id.drawer_layout).openDrawer(GravityCompat.END)
         }
 
         viewModelFactory = Injection.provideViewModelFactory(context)
         alarmViewModel = ViewModelProviders.of(activity, viewModelFactory).get(AlarmViewModel::class.java)
 
         searchAlarm()
-
     }
 
     fun initTitle(title: String){

@@ -8,12 +8,10 @@ import android.os.Handler
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProviders
 import com.scsoft.boribori.data.viewmodel.ChatViewModel
@@ -22,11 +20,9 @@ import com.sendbird.syncmanager.utils.PreferenceUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_order_detail.toolbar
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.activity_setting.progress_bar_login
-import kotlinx.android.synthetic.main.activity_setting.version
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.view.ViewUtils
@@ -65,7 +61,6 @@ class SettingActivity : AppCompatActivity() {
         chatViewModel = ViewModelProviders.of(this, viewModelFactory).get(ChatViewModel::class.java)
         loginViewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
 
-        version.text = "V.${BuildConfig.VERSION_NAME}"
 
         btnUseAgreement.setOnClickListener {
             var intent = Intent(this, WebActivity::class.java)
@@ -92,6 +87,12 @@ class SettingActivity : AppCompatActivity() {
             var intent = Intent(this, SignLaunchActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
+        }
+
+        layoutVersionInfo.setOnClickListener {
+            Intent(this, VersionInfoActivity::class.java).run {
+                startActivity(this)
+            }
         }
 
         getUserPush()

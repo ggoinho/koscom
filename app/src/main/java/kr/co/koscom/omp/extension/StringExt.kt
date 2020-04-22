@@ -1,10 +1,16 @@
 package kr.co.koscom.omp.extension
 
+import android.content.Context
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
+
+
+fun Int.toResString(context: Context): String {
+    return context.resources.getString(this)
+}
 
 fun String.toNumberFormat(): String {
     val number = Integer.parseInt(this)

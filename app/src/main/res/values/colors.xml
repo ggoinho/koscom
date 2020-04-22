@@ -31,4 +31,10 @@
     <color name="btn_edit_disabled">#c1acff</color>
     <color name="btn_send">#774df2</color>
     <color name="btn_send_disabled">#8e8e8e</color>
+
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="gray_333333">#333333</color>
+
 </resources>

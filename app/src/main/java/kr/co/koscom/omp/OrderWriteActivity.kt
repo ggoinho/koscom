@@ -38,6 +38,7 @@ import kotlinx.android.synthetic.main.activity_order_write.toolbar
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.model.Stock
+import kr.co.koscom.omp.extension.toNumberFormat
 import kr.co.koscom.omp.view.NumberTextWatcher
 import kr.co.koscom.omp.view.ViewUtils
 import org.apache.commons.lang3.StringUtils
@@ -183,9 +184,8 @@ class OrderWriteActivity : AppCompatActivity() {
         stock = intent.getSerializableExtra("stock") as? Stock.ResultMap
         if (stock != null) {
             stockName.text = stock?.STK_NM
-            ableCount.text = stock?.TRSF_ABLE_QTY
+            ableCount.text = stock?.TRSF_ABLE_QTY?.toNumberFormat()
 
-            limit.visibility = View.VISIBLE
         }
 
         tv_re_title.visibility=View.INVISIBLE
@@ -228,7 +228,7 @@ class OrderWriteActivity : AppCompatActivity() {
 
                         stock = data.getSerializableExtra("stock") as Stock.ResultMap
                         stockName.text = stock?.STK_NM
-                        ableCount.text = stock?.TRSF_ABLE_QTY
+                        ableCount.text = stock?.TRSF_ABLE_QTY?.toNumberFormat()
 
 
                         countOrder.setText("")

@@ -65,6 +65,7 @@ import kr.co.koscom.omp.view.ViewUtils
 import kr.co.koscom.omp.view.WebUtil
 import org.apache.commons.lang3.StringUtils
 import org.json.JSONObject
+import java.security.cert.Certificate
 
 
 /**
@@ -247,6 +248,22 @@ class WebFragment : Fragment() {
                 hideProgress()
             }
 
+            override fun onReceivedClientCertRequest(view: WebView?, request: ClientCertRequest?) {
+                super.onReceivedClientCertRequest(view, request)
+                //forcing my private key
+                Toast.makeText(activity, "onReceivedClientCertRequest call", Toast.LENGTH_SHORT).show()
+
+
+//                X509Certificate cert = CertificateKey.getCertificate();
+//                X509Certificate[] mCertificates = new X509Certificate[1];
+//                mCertificates[0] = (X509Certificate)cert;
+//
+//                request.proceed(CertificateKey.getKey(), mCertificates);
+
+            }
+
+
+
             override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceError) {
                 super.onReceivedError(view, request, error)
 
@@ -269,20 +286,27 @@ class WebFragment : Fragment() {
 //                }
 
                 var msg = ""
-                if (error.primaryError === SslError.SSL_DATE_INVALID || error.primaryError === SslError.SSL_EXPIRED || error.primaryError === SslError.SSL_IDMISMATCH || error.primaryError === SslError.SSL_INVALID || error.primaryError === SslError.SSL_NOTYETVALID || error.primaryError === SslError.SSL_UNTRUSTED
+                if (error.primaryError == SslError.SSL_DATE_INVALID || error.primaryError == SslError.SSL_EXPIRED || error.primaryError == SslError.SSL_IDMISMATCH || error.primaryError == SslError.SSL_INVALID || error.primaryError == SslError.SSL_NOTYETVALID || error.primaryError == SslError.SSL_UNTRUSTED
                 ) {
-                    if (error.primaryError === SslError.SSL_DATE_INVALID) {
-                        msg = "The date of the certificate is invalid"
-                    } else if (error.primaryError === SslError.SSL_INVALID) {
-                        msg = "A generic error occurred"
-                    } else if (error.primaryError === SslError.SSL_EXPIRED) {
-                        msg = "The certificate has expired"
-                    } else if (error.primaryError === SslError.SSL_IDMISMATCH) {
-                        msg = "Hostname mismatch"
-                    } else if (error.primaryError === SslError.SSL_NOTYETVALID) {
-                        msg = "The certificate is not yet valid"
-                    } else if (error.primaryError === SslError.SSL_UNTRUSTED) {
-                        msg = "The certificate authority is not trusted"
+                    when (error.primaryError) {
+                        SslError.SSL_DATE_INVALID -> {
+                            msg = "The date of the certificate is invalid"
+                        }
+                        SslError.SSL_INVALID -> {
+                            msg = "A generic error occurred"
+                        }
+                        SslError.SSL_EXPIRED -> {
+                            msg = "The certificate has expired"
+                        }
+                        SslError.SSL_IDMISMATCH -> {
+                            msg = "Hostname mismatch"
+                        }
+                        SslError.SSL_NOTYETVALID -> {
+                            msg = "The certificate is not yet valid"
+                        }
+                        SslError.SSL_UNTRUSTED -> {
+                            msg = "The certificate authority is not trusted"
+                        }
                     }
                 }
 
