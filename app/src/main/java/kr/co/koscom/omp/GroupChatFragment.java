@@ -31,7 +31,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -88,7 +87,6 @@ import java.util.List;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
-import kr.co.koscom.omp.view.NumberEditText;
 import kr.co.koscom.omp.view.NumberTextWatcher;
 import kr.co.koscom.omp.view.ViewUtils;
 import kr.co.koscom.omp.view.WebUtil;
@@ -142,7 +140,7 @@ public class GroupChatFragment extends Fragment {
     private EditText requestCount;
     private EditText requestPrice;
 
-    private TextView prePrice;
+    private TextView tvTotalCount;
     private TextView count;
     private TextView price;
     private TextView totalAmount;
@@ -231,7 +229,7 @@ public class GroupChatFragment extends Fragment {
         mMessageSendButton = rootView.findViewById(R.id.button_group_chat_send);
         mUploadFileButton = rootView.findViewById(R.id.button_group_chat_upload);
 
-        prePrice = rootView.findViewById(R.id.prePrice);
+        tvTotalCount = rootView.findViewById(R.id.tvTotalCount);
         count = rootView.findViewById(R.id.count);
         price = rootView.findViewById(R.id.price);
         totalAmount = rootView.findViewById(R.id.totalAmount);
@@ -463,8 +461,8 @@ public class GroupChatFragment extends Fragment {
         ((GroupChannelActivity)getActivity()).apiListeners.add(new Runnable() {
             @Override
             public void run() {
-                prePrice.setText(((GroupChannelActivity)getActivity()).channel.getR_DEAL_UPRC());
-                prePrice.setText(numberFormat.format(Long.parseLong(prePrice.getText().toString())));
+                tvTotalCount.setText(((GroupChannelActivity)getActivity()).channel.getR_FLTN_QTY());
+                tvTotalCount.setText(numberFormat.format(Long.parseLong(tvTotalCount.getText().toString())));
 
                 count.setText(((GroupChannelActivity)getActivity()).channel.getDEAL_QTY());
                 requestCount.setText(count.getText().toString());
@@ -999,10 +997,12 @@ public class GroupChatFragment extends Fragment {
             i.putExtra("url", message.getUrl());
             i.putExtra("type", message.getType());
             startActivity(i);
+            requireActivity().overridePendingTransition(R.anim.slide_in_from_right, android.R.anim.fade_out);
         } else if (type.startsWith("video")) {
             Intent intent = new Intent(getActivity(), MediaPlayerActivity.class);
             intent.putExtra("url", message.getUrl());
             startActivity(intent);
+            requireActivity().overridePendingTransition(R.anim.slide_in_from_right, android.R.anim.fade_out);
         } else {
             showDownloadConfirmDialog(message);
         }

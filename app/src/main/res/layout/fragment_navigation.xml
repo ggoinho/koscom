@@ -74,6 +74,7 @@
                     android:layout_height="24dp"
                     android:src="@drawable/ico_logout_w"/>
             </LinearLayout>
+
         </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
@@ -132,7 +133,7 @@
                         android:textSize="14dp"
                         android:textColor="#333333"
                         android:lineSpacingExtra="4dp"
-                        android:text="비상장주식거래"/>
+                        android:text="주문"/>
                     <ImageView
                         android:tag="more"
                         android:layout_width="24dp"
@@ -173,7 +174,7 @@
                             android:textSize="13dp"
                             android:textColor="#333333"
                             android:gravity="center_vertical"
-                            android:text="계약 및 체결현황"/>
+                            android:text="계약 및 체결 현황"/>
                         <TextView
                             android:id="@+id/btnTrading3"
                             android:layout_width="match_parent"
@@ -181,7 +182,7 @@
                             android:textSize="13dp"
                             android:textColor="#333333"
                             android:gravity="center_vertical"
-                            android:text="전종목 거래현황"/>
+                            android:text="주문등록"/>
                     </LinearLayout>
                     <View
                         android:layout_width="match_parent"
@@ -211,7 +212,7 @@
                         android:textSize="14dp"
                         android:textColor="#333333"
                         android:lineSpacingExtra="4dp"
-                        android:text="투자정보"/>
+                        android:text="종목정보"/>
                     <ImageView
                         android:tag="more"
                         android:layout_width="24dp"
@@ -245,6 +246,15 @@
                             android:textColor="#333333"
                             android:gravity="center_vertical"
                             android:text="기업정보"/>
+
+                        <TextView
+                            android:id="@+id/btnExpertDiagnosis"
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            style="@style/F13R_333333"
+                            android:gravity="center_vertical"
+                            android:text="@string/drawer_expert_diagnosis"/>
+
                         <TextView
                             android:id="@+id/btnInvestment2"
                             android:layout_width="match_parent"
@@ -252,7 +262,32 @@
                             android:textSize="13dp"
                             android:textColor="#333333"
                             android:gravity="center_vertical"
-                            android:text="기업알림 및 홍보자료"/>
+                            android:text="@string/drawer_corporate_alert"/>
+
+                        <TextView
+                            android:id="@+id/btnDiscussion"
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            style="@style/F13R_333333"
+                            android:gravity="center_vertical"
+                            android:text="@string/drawer_discussion_board"/>
+
+                        <TextView
+                            android:id="@+id/btnNews"
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            style="@style/F13R_333333"
+                            android:gravity="center_vertical"
+                            android:text="@string/drawer_news"/>
+
+                        <TextView
+                            android:id="@+id/btnPatent"
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            style="@style/F13R_333333"
+                            android:gravity="center_vertical"
+                            android:text="@string/drawer_patent"/>
+
                     </LinearLayout>
                     <View
                         android:layout_width="match_parent"
@@ -269,7 +304,9 @@
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    >
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
@@ -286,6 +323,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:visibility="gone"
                     android:background="#eeeeee"/>
 
                 <LinearLayout
@@ -336,14 +374,7 @@
                         android:paddingTop="11dp"
                         android:paddingBottom="10dp"
                         android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/btnAlarmList"
-                            android:layout_width="match_parent"
-                            android:layout_height="33dp"
-                            android:textSize="13dp"
-                            android:textColor="#333333"
-                            android:gravity="center_vertical"
-                            android:text="알림수신함"/>
+
                         <TextView
                             android:id="@+id/btnRegist"
                             android:layout_width="match_parent"
@@ -353,21 +384,39 @@
                             android:gravity="center_vertical"
                             android:text="가입정보관리"/>
                         <TextView
-                            android:id="@+id/btnOrder"
+                            android:id="@+id/btnMyOrder"
                             android:layout_width="match_parent"
                             android:layout_height="33dp"
                             android:textSize="13dp"
                             android:textColor="#333333"
                             android:gravity="center_vertical"
-                            android:text="거래정보관리"/>
+                            android:text="나의 주문"/>
                         <TextView
-                            android:id="@+id/btnFavorite"
+                            android:id="@+id/btnMyNego"
                             android:layout_width="match_parent"
                             android:layout_height="33dp"
                             android:textSize="13dp"
                             android:textColor="#333333"
                             android:gravity="center_vertical"
-                            android:text="관심기업관리"/>
+                            android:text="나의 협상"/>
+
+                        <TextView
+                            android:id="@+id/btnMyContractAndConclusion"
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:textSize="13dp"
+                            android:textColor="#333333"
+                            android:gravity="center_vertical"
+                            android:text="나의 계약 및 체결"/>
+
+                        <TextView
+                            android:id="@+id/btnBalance"
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:textSize="13dp"
+                            android:textColor="#333333"
+                            android:gravity="center_vertical"
+                            android:text="보유잔고"/>
                         <TextView
                             android:id="@+id/btnFile"
                             android:layout_width="match_parent"
@@ -376,14 +425,7 @@
                             android:textColor="#333333"
                             android:gravity="center_vertical"
                             android:text="증빙서류관리"/>
-                        <TextView
-                            android:id="@+id/btnQna"
-                            android:layout_width="match_parent"
-                            android:layout_height="33dp"
-                            android:textSize="13dp"
-                            android:textColor="#333333"
-                            android:gravity="center_vertical"
-                            android:text="1:1 문의"/>
+
                         <TextView
                             android:id="@+id/btnOut"
                             android:layout_width="match_parent"
@@ -392,6 +434,16 @@
                             android:textColor="#333333"
                             android:gravity="center_vertical"
                             android:text="서비스해지"/>
+
+                        <TextView
+                            android:id="@+id/btnAlarmList"
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:textSize="13dp"
+                            android:textColor="#333333"
+                            android:gravity="center_vertical"
+                            android:text="알림수신함"/>
+
                     </LinearLayout>
                     <View
                         android:layout_width="match_parent"
@@ -399,34 +451,6 @@
                         android:background="#eeeeee"/>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/menu5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="13dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ico_menu_05"/>
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:textSize="14dp"
-                        android:textColor="#333333"
-                        android:lineSpacingExtra="4dp"
-                        android:text="서비스소개"/>
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#eeeeee"/>
 
                 <LinearLayout
                     android:id="@+id/sub5"
@@ -540,6 +564,17 @@
                             android:textColor="#333333"
                             android:gravity="center_vertical"
                             android:text="공지사항"/>
+
+                        <TextView
+                            android:id="@+id/btnServiceInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:textSize="13dp"
+                            android:textColor="#333333"
+                            android:gravity="center_vertical"
+                            android:text="서비스소개"/>
+
+
                         <TextView
                             android:id="@+id/btnFaq"
                             android:layout_width="match_parent"
@@ -548,6 +583,15 @@
                             android:textColor="#333333"
                             android:gravity="center_vertical"
                             android:text="FAQ"/>
+
+                        <TextView
+                            android:id="@+id/btnQna"
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:textSize="13dp"
+                            android:textColor="#333333"
+                            android:gravity="center_vertical"
+                            android:text="1:1 문의"/>
                     </LinearLayout>
                     <View
                         android:layout_width="match_parent"
@@ -577,7 +621,7 @@
                         android:textSize="14dp"
                         android:textColor="#333333"
                         android:lineSpacingExtra="4dp"
-                        android:text="알림 및 서비스설정"/>
+                        android:text="설정"/>
                     <ImageView
                         android:tag="more"
                         android:layout_width="24dp"
@@ -626,7 +670,7 @@
                             android:textSize="13dp"
                             android:textColor="#333333"
                             android:gravity="center_vertical"
-                            android:text="버젼정보"/>
+                            android:text="버전정보"/>
                         <TextView
                             android:id="@+id/btnUseAgreement"
                             android:layout_width="match_parent"
@@ -634,7 +678,7 @@
                             android:textSize="13dp"
                             android:textColor="#333333"
                             android:gravity="center_vertical"
-                            android:text="서비스 이용약관"/>
+                            android:text="서비스이용약관"/>
                         <TextView
                             android:id="@+id/btnInfoAgreement"
                             android:layout_width="match_parent"
@@ -651,11 +695,22 @@
                             android:textColor="#333333"
                             android:gravity="center_vertical"
                             android:text="저작권보호방침"/>
+
+                        <TextView
+                            android:id="@+id/btnEasyLogin"
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:textSize="13dp"
+                            android:textColor="#333333"
+                            android:gravity="center_vertical"
+                            android:text="간편로그인"/>
                     </LinearLayout>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#eeeeee"/>
+                    
+
                 </LinearLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

@@ -19,6 +19,7 @@ package kr.co.koscom.omp
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DownloadManager
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Context.DOWNLOAD_SERVICE
 import android.content.DialogInterface
@@ -43,7 +44,6 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.material.snackbar.Snackbar
 import com.scsoft.boribori.data.viewmodel.ChatViewModel
 import com.scsoft.boribori.data.viewmodel.LoginViewModel
 import com.sendbird.syncmanager.utils.Base64Utils
@@ -61,11 +61,13 @@ import kotlinx.android.synthetic.main.fragment_web.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.model.Stock
+import kr.co.koscom.omp.extension.toGone
+import kr.co.koscom.omp.extension.toResString
+import kr.co.koscom.omp.extension.toVisible
+import kr.co.koscom.omp.util.ActivityUtil
 import kr.co.koscom.omp.view.ViewUtils
 import kr.co.koscom.omp.view.WebUtil
-import org.apache.commons.lang3.StringUtils
 import org.json.JSONObject
-import java.security.cert.Certificate
 
 
 /**
@@ -90,6 +92,8 @@ class WebFragment : Fragment() {
 
     var getIntent : Intent?= null
 
+    var isCleanHistory = false
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         Log.d(WebFragment::class.simpleName, "onCreateView()")
@@ -109,10 +113,20 @@ class WebFragment : Fragment() {
 //            margin.visibility = View.GONE
 //        }
 
+        arguments?.run {this
+            if(getBoolean("isBottomHideView", false)){
+                margin.toGone()
+            }else{
+                margin.toVisible()
+            }
+        }
+
+
+
         webView = wbWebView
+        isCleanHistory = true
         webView?.apply {
             this.clearCache(true)
-            this.clearHistory()
         }
 
         wbWebView.settings.textZoom = 100
@@ -128,7 +142,13 @@ class WebFragment : Fragment() {
         if(arguments != null) {
             loadUrl(arguments!!.getString("url")!!)
         }
+    }
 
+    /**
+     * 웹뷰 히스토리 클리어 변수 true
+     */
+    fun clearHistory(){
+        isCleanHistory = true
     }
 
     fun loadUrl(url: String){
@@ -179,6 +199,11 @@ class WebFragment : Fragment() {
                         putExtra(Intent.EXTRA_EMAIL, arrayOf(mt.to))
                         startActivity(this)
                     }
+                }else if (url.toLowerCase().startsWith("browser:")) {
+                    Intent(Intent.ACTION_VIEW).apply {
+                        data = Uri.parse(url.replace("browser:", ""))
+                        startActivity(this)
+                    }
                 }
                 return true
             }
@@ -195,6 +220,14 @@ class WebFragment : Fragment() {
                             putExtra(Intent.EXTRA_EMAIL, arrayOf(mt.to))
                             startActivity(this)
                         }
+                    }
+                    else if (url.toLowerCase().startsWith("browser:")) {
+                        Intent(Intent.ACTION_VIEW).apply {
+                            data = Uri.parse(url.replace("browser:", ""))
+                            startActivity(this)
+                        }
+                    }else{
+
                     }
                 }
                 return true
@@ -242,6 +275,11 @@ class WebFragment : Fragment() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 Log.d(WebFragment::class.simpleName, "history onPageFinished : " + url)
+
+                if(isCleanHistory){
+                    isCleanHistory = false
+                    webView?.clearHistory()
+                }
 
                 urlLast = url
 
@@ -359,6 +397,8 @@ class WebFragment : Fragment() {
         webView!!.loadUrl(url +if(url.contains("?")){"&"}else{"?"}+ querystringCertifyToken())
     }
 
+
+
     private fun querystringCertifyToken(): String{
 
         val CLNT_NO = PreferenceUtils.getUserId()
@@ -468,8 +508,9 @@ class WebFragment : Fragment() {
         settings.userAgentString = defaultUserAgent
 
         settings.allowFileAccess = true
-        settings.setSupportMultipleWindows(true)
-        settings.setJavaScriptCanOpenWindowsAutomatically(true)
+        settings.setSupportMultipleWindows(false)
+
+
         //settings.setBuiltInZoomControls(true)
         //settings.setLoadWithOverviewMode(true)
         //settings.setUseWideViewPort(true)
@@ -491,7 +532,6 @@ class WebFragment : Fragment() {
 
         webView?.let {
             it.clearCache(true)
-            it.clearHistory()
             it.destroy()
             hideProgress()
         }
@@ -508,10 +548,12 @@ class WebFragment : Fragment() {
                 override fun run() {
                     var json = JSONObject(arg)
 
-                    var intent = Intent(context, ChatListActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    intent.putExtra("loginId", json.getString("LOGIN_ID"))
-                    context?.startActivity(intent)
+                    ActivityUtil.startChatListActivity(requireActivity(), loginId = json.getString("LOGIN_ID"))
+
+//                    var intent = Intent(context, ChatListActivity::class.java)
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                    intent.putExtra("loginId", json.getString("LOGIN_ID"))
+//                    context?.startActivity(intent)
                 }
             });
 
@@ -525,13 +567,19 @@ class WebFragment : Fragment() {
                 override fun run() {
                     var json = JSONObject(arg)
 
-                    val intent = Intent(context, GroupChannelActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    intent.putExtra("groupChannelUrl", json.getString("CHANNEL_URL"))
-                    intent.putExtra("groupChannelTitle", try{json.getString("CHANNEL_TITLE")}catch(e:Exception){""})
-                    intent.putExtra("orderNo", json.getString("ORDER_NO"))
-                    intent.putExtra("loginId", json.getString("LOGIN_ID"))
-                    context?.startActivity(intent)
+
+                    ActivityUtil.startChatListActivity(requireActivity(), json.getString("CHANNEL_URL"), json.getString("CHANNEL_TITLE"), json.getString("ORDER_NO"), json.getString("LOGIN_ID"), true)
+
+//                    Intent(context, ChatListActivity::class.java).apply {
+//                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                        putExtra("groupChannelUrl", json.getString("CHANNEL_URL"))
+//                        putExtra("groupChannelTitle", try{json.getString("CHANNEL_TITLE")}catch(e:Exception){""})
+//                        putExtra("orderNo", json.getString("ORDER_NO"))
+//                        putExtra("loginId", json.getString("LOGIN_ID"))
+//                        putExtra("detailMove", true)
+//                        context?.startActivity(this)
+//                    }
+
                 }
             });
 
@@ -544,9 +592,11 @@ class WebFragment : Fragment() {
             mHandler.post(object: Runnable{
                 override fun run() {
 
-                    startActivityForResult(Intent(activity, SearchActivity::class.java),
-                        OrderWriteActivity.STOCK_SEARCH
-                    )
+                    ActivityUtil.startSearchActivityResult(requireActivity(), OrderWriteActivity.STOCK_SEARCH)
+
+//                    startActivityForResult(Intent(activity, SearchActivity::class.java),
+//                        OrderWriteActivity.STOCK_SEARCH
+//                    )
                 }
             });
 
@@ -560,7 +610,7 @@ class WebFragment : Fragment() {
                 override fun run() {
                     var json = JSONObject(arg)
 
-                    initializeOpenPass {
+                    initializeMyPass {
                         Log.d(WebFragment::class.simpleName, "SKCertManager.sign invoke")
                         SKCertManager.sign(SKConstant.REQUEST_CODE_RANDOM_KOSCOM, null, "ServerRandom".toByteArray(), SKConstant.AUTH_TYPE_ALL, false, ComUtil.policyMode, null,
                             SKCallback.SignCallback { requestCode, resultCode, resultMessage, binSignData, b64Cert, isTrustZone ->
@@ -571,8 +621,8 @@ class WebFragment : Fragment() {
                                 )
 
                                 if (resultCode == SKConstant.RESULT_CODE_OK) {
-                                    //Log.v("OpenPassClient", "binSignData : " + String(binSignData))
-                                    //Log.v("OpenPassClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
+                                    //Log.v("MyPassClient", "binSignData : " + String(binSignData))
+                                    //Log.v("MyPassClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
 
                                     // 샘플 앱에서는 서명 검증 구현이 생략되어 있습니다.
                                     // 서명 검증은 서버 모듈의 기능을 참조하여 주십시오.
@@ -670,7 +720,7 @@ class WebFragment : Fragment() {
                 override fun run() {
                     var json = JSONObject(arg)
 
-                    initializeOpenPass {
+                    initializeMyPass {
                         Log.d(WebFragment::class.simpleName, "SKCertManager.sign invoke")
                         SKCertManager.sign(SKConstant.REQUEST_CODE_KOSCOM_FULL_SIGN, null, "ServerRandom".toByteArray(), SKConstant.AUTH_TYPE_ALL, false,ComUtil.policyMode,null,
                             SKCallback.SignCallback { requestCode, resultCode, resultMessage, binSignData, b64Cert, isTrustZone ->
@@ -681,7 +731,7 @@ class WebFragment : Fragment() {
                                 )
 
                                 if (resultCode == SKConstant.RESULT_CODE_OK) {
-                                    //Log.v("OpenPassClient", "binSignData : " + String(binSignData))
+                                    //Log.v("MyPassClient", "binSignData : " + String(binSignData))
                                     //Log.v("OpenPassClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
 
                                     // 샘플 앱에서는 서명 검증 구현이 생략되어 있습니다.
@@ -786,7 +836,7 @@ class WebFragment : Fragment() {
                 override fun run() {
                     var json = JSONObject(arg)
 
-                    initializeOpenPass {
+                    initializeMyPass {
                         Log.d(WebFragment::class.simpleName, "SKCertManager.sign invoke")
                         SKCertManager.sign(SKConstant.REQUEST_CODE_RANDOM_KOSCOM, null, "ServerRandom".toByteArray(), SKConstant.AUTH_TYPE_ALL, false,ComUtil.policyMode,null,
                             SKCallback.SignCallback { requestCode, resultCode, resultMessage, binSignData, b64Cert, isTrustZone ->
@@ -947,28 +997,51 @@ class WebFragment : Fragment() {
 
                     kr.co.koscom.omp.view.DownloadManager().download(json.getString("file_path"), json.getString("org_file_name"), json.getString("sys_file_name"),
                         PreferenceUtils.getUserId(), Preference.getServerToken(activity!!.applicationContext)!!) { file ->
-                        var snackbar = Snackbar.make(activity!!.window.decorView.getRootView(), StringUtils.substringAfterLast(file.parent,"/") + "에 다운로드를 완료했습니다.\n" +
-                                "파일을 열겠습니까?", Snackbar.LENGTH_LONG)
 
-                        snackbar.setAction("확인", object : View.OnClickListener{
-                            override fun onClick(v: View?) {
-                                snackbar.dismiss()
+                        try {
+                            val data = FileProvider.getUriForFile(activity!!.applicationContext, BuildConfig.APPLICATION_ID+".fileProvider", file)
+                            val type = WebUtil.getMimeType(data.toString())
 
-                                try {
-                                    val data = FileProvider.getUriForFile(activity!!.applicationContext, BuildConfig.APPLICATION_ID+".fileProvider", file)
-                                    val type = WebUtil.getMimeType(data.toString())
 
-                                    val intent = Intent(android.content.Intent.ACTION_VIEW)
-                                    intent.setDataAndType(data, type)
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-                                    startActivity(intent)
+                            val intent = Intent(android.content.Intent.ACTION_VIEW)
+                            intent.setDataAndType(data, type)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                            startActivity(intent)
 
-                                } catch (e: Exception) {
-                                    e.printStackTrace()
-                                }
-                            }
-                        })
-                        snackbar.show()
+                        } catch (e: ActivityNotFoundException) {
+                            val position = file.name.lastIndexOf(".")
+                            val searchWord = file.name.substring(position+1, file.name.length)
+                            ViewUtils.alertCustomDialog(activity!!, R.string.web_not_form_file_contents.toResString(),null, R.string.search.toResString(),{
+
+                            },{
+                                ActivityUtil.startMarketSearch(activity!!, searchWord)
+                            })
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+
+//                        var snackbar = Snackbar.make(activity!!.window.decorView.getRootView(), StringUtils.substringAfterLast(file.parent,"/") + "에 다운로드를 완료했습니다.\n" +
+//                                "파일을 열겠습니까?", Snackbar.LENGTH_LONG)
+//
+//                        snackbar.setAction("확인", object : View.OnClickListener{
+//                            override fun onClick(v: View?) {
+//                                snackbar.dismiss()
+//
+//                                try {
+//                                    val data = FileProvider.getUriForFile(activity!!.applicationContext, BuildConfig.APPLICATION_ID+".fileProvider", file)
+//                                    val type = WebUtil.getMimeType(data.toString())
+//
+//                                    val intent = Intent(android.content.Intent.ACTION_VIEW)
+//                                    intent.setDataAndType(data, type)
+//                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+//                                    startActivity(intent)
+//
+//                                } catch (e: Exception) {
+//                                    e.printStackTrace()
+//                                }
+//                            }
+//                        })
+//                        snackbar.show()
                     }
 
                     Toast.makeText(activity!!.applicationContext, "downloading file...", Toast.LENGTH_SHORT).show()
@@ -989,28 +1062,51 @@ class WebFragment : Fragment() {
                     //var json = JSONObject(arg)
 
                     kr.co.koscom.omp.view.DownloadManager().downloadExcel(PreferenceUtils.getUserId(), Preference.getServerToken(activity!!.applicationContext)!!) { file ->
-                        var snackbar = Snackbar.make(activity!!.window.decorView.rootView, StringUtils.substringAfterLast(file.parent,"/") + "에 ${file.name}를 다운로드했습니다.\n" +
-                                "파일을 열겠습니까?", Snackbar.LENGTH_LONG)
 
-                        snackbar.setAction("확인", object : View.OnClickListener{
-                            override fun onClick(v: View?) {
-                                snackbar.dismiss()
+                        try {
+                            val data = FileProvider.getUriForFile(activity!!.applicationContext, BuildConfig.APPLICATION_ID+".fileProvider", file)
+                            val type = WebUtil.getMimeType(data.toString())
 
-                                try {
-                                    val data = FileProvider.getUriForFile(activity!!.applicationContext, BuildConfig.APPLICATION_ID+".fileProvider", file)
-                                    val type = WebUtil.getMimeType(data.toString())
+                            val intent = Intent(android.content.Intent.ACTION_VIEW)
+                            intent.setDataAndType(data, type)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                            startActivity(intent)
 
-                                    val intent = Intent(android.content.Intent.ACTION_VIEW)
-                                    intent.setDataAndType(data, type)
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-                                    startActivity(intent)
+                        } catch (e: ActivityNotFoundException) {
+                            val position = file.name.lastIndexOf(".")
+                            val searchWord = file.name.substring(position+1, file.name.length)
+                            ViewUtils.alertCustomDialog(activity!!, R.string.web_not_form_file_contents.toResString(),null, R.string.search.toResString(),{
 
-                                } catch (e: Exception) {
-                                    e.printStackTrace()
-                                }
-                            }
-                        })
-                        snackbar.show()
+                            },{
+                                ActivityUtil.startMarketSearch(activity!!, searchWord)
+                            })
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+
+
+//                        var snackbar = Snackbar.make(activity!!.window.decorView.rootView, StringUtils.substringAfterLast(file.parent,"/") + "에 ${file.name}를 다운로드했습니다.\n" +
+//                                "파일을 열겠습니까?", Snackbar.LENGTH_LONG)
+//
+//                        snackbar.setAction("확인", object : View.OnClickListener{
+//                            override fun onClick(v: View?) {
+//                                snackbar.dismiss()
+//
+//                                try {
+//                                    val data = FileProvider.getUriForFile(activity!!.applicationContext, BuildConfig.APPLICATION_ID+".fileProvider", file)
+//                                    val type = WebUtil.getMimeType(data.toString())
+//
+//                                    val intent = Intent(android.content.Intent.ACTION_VIEW)
+//                                    intent.setDataAndType(data, type)
+//                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+//                                    startActivity(intent)
+//
+//                                } catch (e: Exception) {
+//                                    e.printStackTrace()
+//                                }
+//                            }
+//                        })
+//                        snackbar.show()
                     }
 
                     Toast.makeText(activity!!.applicationContext, "downloading file...", Toast.LENGTH_SHORT).show()
@@ -1066,9 +1162,11 @@ class WebFragment : Fragment() {
 
                     exitChannel(json.getString("ORDER_NO"), json.getString("CHANNEL_URL")){
 
-                        var intent = Intent(context, ChatListActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        context!!.startActivity(intent)
+                        ActivityUtil.startChatListActivity(requireActivity())
+
+//                        var intent = Intent(context, ChatListActivity::class.java)
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                        context!!.startActivity(intent)
                     }
                 }
             });
@@ -1084,26 +1182,39 @@ class WebFragment : Fragment() {
 
                     var open = json.getString("APPSCHEME")
                     if(open == "LOGIN"){
-                        var intent = Intent(context, LoginActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        context!!.startActivity(intent)
+                        ActivityUtil.startLoginActivity(requireActivity())
+
+//                        var intent = Intent(context, LoginActivity::class.java)
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                        context!!.startActivity(intent)
                     }
                     else if(open == "MAIN"){
-                        var intent = Intent(context, MainActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                        context!!.startActivity(intent)
+                        ActivityUtil.startMainNewActivity(activity!!)
+//                        var intent = Intent(context, MainActivity::class.java)
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+//                        context!!.startActivity(intent)
                     }
                     else if(open == "LOGIN_TOKEN"){
 
-                        ViewUtils.alertDialog(activity!!, "세션이 만료되었습니다.\n로그인 페이지로 이동합니다.", {
-                            var intent = Intent(context, LoginActivity::class.java)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            context!!.startActivity(intent)
+                        ViewUtils.alertDialog(activity!!, "세션이 만료되었습니다.\n로그인 페이지로 이동합니다.") {
+                            ActivityUtil.startLoginActivity(requireActivity())
+                    //                            var intent = Intent(context, LoginActivity::class.java)
+                    //                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    //                            context!!.startActivity(intent)
 
                             activity?.finish()
-                        })
-
+                            activity?.overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
+                        }
+                    }
+                    else if(open == "LOGOUT"){
+                        ActivityUtil.startCleanLoginActivity(requireActivity())
+//                        val intent = Intent(activity, LoginActivity::class.java)
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                        startActivity(intent)
+                        activity?.finish()
+                        activity?.overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
                     }
                 }
             });
@@ -1113,6 +1224,27 @@ class WebFragment : Fragment() {
         @JavascriptInterface
         fun fnOpenXkeypad(arg: String?){
             Log.d(WebFragment::class.java.simpleName, "fnOpenXkeypad 호출 $arg")
+            webView?.scrollTo(0,99999999)
+        }
+
+        @JavascriptInterface
+        fun fnJoinInfoMng(arg: String?){
+            Log.d(WebFragment::class.simpleName, "fnJoinInfoMng(arg: String)")
+            isCleanHistory = true
+            webView?.post {
+                loadUrl(BuildConfig.SERVER_URL + "/mobile/mypage/joinInfoMng?LOGIN_ID="+PreferenceUtils.getUserId()+"&AUTH_TYPE="+PreferenceUtils.getLoginType())
+            }
+        }
+
+        @JavascriptInterface
+        fun fnReload(arg: String?){
+            Log.d(WebFragment::class.simpleName, "fnReload(arg: String)")
+            webView?.post {
+                webView?.evaluateJavascript("javascript:location.reload()") {
+
+                }
+            }
+
         }
 
     }
@@ -1183,13 +1315,13 @@ class WebFragment : Fragment() {
         progress_bar_login?.visibility = View.VISIBLE
     }
 
-    private fun initializeOpenPass(listener: () -> Unit) {
+    private fun initializeMyPass(listener: () -> Unit) {
         showProgressDialog("", "초기화 중입니다.")
 
         // 초기화 함수 호출.
-        val nResult = SKCertManager.initOpenPass(webView!!.context,
-            LoginActivity.OPENPASS_LICENSE,
-            LoginActivity.OPENPASS_LAUNCHMODE,
+        val nResult = SKCertManager.initMyPass(webView!!.context,
+            LoginActivity.MY_LICENSE,
+            LoginActivity.MY_LAUNCHMODE,
             SKCallback.MessageCallback { requestCode, resultCode, resultMessage ->
 
             progress_bar_login?.visibility = View.INVISIBLE
@@ -1197,15 +1329,15 @@ class WebFragment : Fragment() {
             if (resultCode == SKConstant.RESULT_CODE_ERROR_NOT_INSTALL ||
                 resultCode == SKConstant.RESULT_CODE_ERROR_APP_DISABLED ||
                 resultCode == SKConstant.RESULT_CODE_ERROR_NEED_UPDATE){
-                // OpenPass 설치 등 상태 관련 오류
+                // MyPass 설치 등 상태 관련 오류
                 SKCertManager.showErrorPopup(resultCode)
             }
             else if (resultCode == SKConstant.RESULT_CODE_OK){
-                Log.d(WebFragment::class.simpleName, "initializeOpenPass success.")
+                Log.d(WebFragment::class.simpleName, "initializeMyPass success.")
                 listener.invoke()
             }
             else {
-                // OpenPass 초기화 실패
+                // MyPass 초기화 실패
                 Toast.makeText(activity!!.applicationContext, resultMessage, Toast.LENGTH_LONG).show()
                 progress_bar_login?.visibility = View.INVISIBLE
             }
@@ -1259,7 +1391,7 @@ class WebFragment : Fragment() {
     }
 
     private fun resultCertify(opCode: String, signData: String, snData: String, listener: (securityNum: String?, dn: String, signature: String, publicKey: String, name: String) -> Unit){
-        disposable.add(loginViewModel.resultCertOpenPass(opCode, signData, snData)
+        disposable.add(loginViewModel.resultCertMyPass(opCode, signData, snData)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -1280,7 +1412,7 @@ class WebFragment : Fragment() {
     }
 
     private fun resultCertifyDID(opCode: String, signData: String, snData: String, listener: (securityNum: String?, dn: String, signature: String, publicKey: String, name: String) -> Unit){
-        disposable.add(loginViewModel.resultCertOpenPass(opCode, signData, snData)
+        disposable.add(loginViewModel.resultCertMyPass(opCode, signData, snData)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

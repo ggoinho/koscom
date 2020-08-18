@@ -97,6 +97,7 @@ class ServiceOutActivity : AppCompatActivity() {
         }
         else{
             super.onBackPressed()
+            overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
         }
     }
 

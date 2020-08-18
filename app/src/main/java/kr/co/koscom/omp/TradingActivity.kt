@@ -65,6 +65,7 @@ class TradingActivity : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val transaction = supportFragmentManager.beginTransaction()
 
+                fragment?.clearHistory()
                 when(tab!!.position){
                     0 -> fragment!!.loadUrl(BuildConfig.SERVER_URL + "/mobile/corpInfo/infoMng")
                     1 -> fragment!!.loadUrl(BuildConfig.SERVER_URL + "/mobile/corpInfo/infoMng")
@@ -129,11 +130,13 @@ class TradingActivity : AppCompatActivity() {
                 }
                 else{
                     super.onBackPressed()
+                    overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
                 }
             }
             else{
 
                 super.onBackPressed()
+                overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
             }
         }
     }

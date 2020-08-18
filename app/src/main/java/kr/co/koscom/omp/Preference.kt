@@ -60,6 +60,19 @@ class Preference {
             return pref.getString("SERVER_TOKEN", null)
         }
 
+
+        fun setRecentlyDrawerMenu(context: Context, value: String) {
+            val pref = context.getSharedPreferences(PREFERENCE, MODE_PRIVATE)
+            val editor = pref.edit()
+            editor.putString("RECENTLY_DRAWER_MENU", value)
+            editor.commit()
+        }
+
+        fun getRecentlyDrawerMenu(context: Context): String?{
+            val pref = context.getSharedPreferences(PREFERENCE, MODE_PRIVATE)
+            return pref.getString("RECENTLY_DRAWER_MENU", "")
+        }
+
         fun addRecentStock(context: Context, value: String): Boolean {
 
             var recentStock = StringUtils.defaultIfEmpty(getRecentStock(context),"")

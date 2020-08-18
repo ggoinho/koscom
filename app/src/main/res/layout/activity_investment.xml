@@ -27,40 +27,63 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
-                    android:background="#4e4e9e">
-
-                    <View
-                        android:layout_width="0dp"
-                        app:layout_constraintWidth_percent="0.2"
-                        android:layout_height="match_parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:background="@drawable/gradient2"/>
+                    android:background="@color/gray_f2f2f2">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        >
+
                         <com.google.android.material.tabs.TabLayout
                             android:id="@+id/tabLayout"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             app:tabTextAppearance="@style/tab_text"
-                            app:tabIndicatorColor="#FFFFFF"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
                             app:tabIndicatorFullWidth="false"
                             app:tabSelectedTextColor="#FFFFFF"
-                            app:tabTextColor="#FFFFFF">
+                            app:tabIndicatorHeight="0dp"
+                            android:scrollbars="horizontal"
+                            app:tabBackground="@drawable/select_rectangle_round_gray_575bb2"
+                            app:tabMode="scrollable"
+                            app:tabTextColor="#555555">
 
                             <com.google.android.material.tabs.TabItem
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=" 기업정보 " />
+                                android:text="@string/drawer_contents_business_info" />
 
                             <com.google.android.material.tabs.TabItem
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="기업알림 및 홍보자료" />
+                                android:text="@string/drawer_contents_expert" />
+
+                            <com.google.android.material.tabs.TabItem
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/drawer_contents_business_alarm" />
+
+                            <com.google.android.material.tabs.TabItem
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/drawer_contents_discussion" />
+
+                            <com.google.android.material.tabs.TabItem
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/drawer_contents_news" />
+
+                            <com.google.android.material.tabs.TabItem
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/drawer_contents_patent" />
+
                         </com.google.android.material.tabs.TabLayout>
                     </androidx.appcompat.widget.LinearLayoutCompat>
 

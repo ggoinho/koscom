@@ -15,6 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_web.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
+import kr.co.koscom.omp.extension.toGone
 import kr.co.koscom.omp.view.MyBottomNavigationView
 
 // kr.co.koscom.omp
@@ -47,12 +48,14 @@ class RegistActivity : AppCompatActivity() {
             webFragment = WebFragment()
             var bundle = Bundle()
             bundle.putString("url", BuildConfig.SERVER_URL + "/mobile/join/invstIndivSvJoinCertifi")
+            bundle.putBoolean("isBottomHideView", true)
             webFragment!!.arguments = bundle
             transaction.replace(R.id.webFragment, webFragment!!)
             transaction.commitAllowingStateLoss()
         }
 
         bottomNavView = findViewById(R.id.bottom_navigation_view)
+        bottomNavView?.toGone()
     }
 
 
@@ -73,14 +76,14 @@ class RegistActivity : AppCompatActivity() {
 
     }
 
-    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        if (getCurrentFocus() != null) {
-            var imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(getCurrentFocus()!!.getWindowToken(), 0);
-        }
-
-        return super.dispatchTouchEvent(ev);
-    }
+//    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+//        if (getCurrentFocus() != null) {
+//            var imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//            imm.hideSoftInputFromWindow(getCurrentFocus()!!.getWindowToken(), 0);
+//        }
+//
+//        return super.dispatchTouchEvent(ev);
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -107,11 +110,13 @@ class RegistActivity : AppCompatActivity() {
             }
             else{
                 super.onBackPressed()
+                overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
             }
         }
         else{
 
             super.onBackPressed()
+            overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
         }
     }
 

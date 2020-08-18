@@ -9,83 +9,110 @@
         android:id="@+id/llRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:minHeight="39dp"
-        android:padding="5dp"
-        app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal"
+        android:padding="5dp"
         android:weightSum="5"
-        android:gravity="center">
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
-            android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="9dp">
 
-            <TextView
-                android:id="@+id/stockName"
+
+            <ImageView
+                android:id="@+id/ivSecret"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="9dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:ems="5"
-                android:lineSpacingExtra="4dp"
-                android:text="코스콤"
-                android:textColor="#000000"
-                android:textSize="15dp" />
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/icon_lock"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/layoutOrderStatus"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/stockName2"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginBottom="9dp"
-                android:maxLines="1"
-                android:ems="5"
-                android:ellipsize="end"
-                android:lineSpacingExtra="5dp"
-                android:text="1우선주"
-                android:textColor="#757575"
-                android:textSize="13dp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stockName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="4dp"
+                    android:maxLines="1"
+                    android:text="코스콤"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/stockName2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginBottom="9dp"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="5dp"
+                    android:maxLines="1"
+                    android:text="1우선주"
+                    android:textColor="#757575"
+                    android:textSize="13dp" />
+            </LinearLayout>
 
         </LinearLayout>
+
         <TextView
             android:id="@+id/count"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:paddingRight="10dp"
-            android:textSize="14dp"
-            android:textColor="#333333"
-            android:lineSpacingExtra="4dp"
+            android:layout_weight="1"
             android:gravity="end"
-            android:text="1,000,000"/>
+            android:lineSpacingExtra="4dp"
+            android:paddingRight="10dp"
+            android:text="1,000,000"
+            android:textColor="#333333"
+            android:textSize="14dp" />
+
         <TextView
             android:id="@+id/price"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingRight="15dp"
-            android:textSize="14dp"
-            android:textColor="#333333"
-            android:lineSpacingExtra="4dp"
+            android:layout_weight="1"
             android:gravity="end"
-            android:text="1,000,000"/>
+            android:lineSpacingExtra="4dp"
+            android:paddingRight="15dp"
+            android:text="1,000,000"
+            android:textColor="#333333"
+            android:textSize="14dp" />
+
         <RelativeLayout
             android:id="@+id/btnNego"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-            <include layout="@layout/view_order_status1"/>
-            <include layout="@layout/view_order_status2"/>
-            <include layout="@layout/view_order_status3"/>
-            <include layout="@layout/view_order_status4"/>
-            <include layout="@layout/view_contract_status1"/>
-            <include layout="@layout/view_contract_status2"/>
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <include layout="@layout/view_order_status1" />
+
+            <include layout="@layout/view_order_status2" />
+
+            <include layout="@layout/view_order_status3" />
+
+            <include layout="@layout/view_order_status4" />
+
+            <include layout="@layout/view_contract_status1" />
+
+            <include layout="@layout/view_contract_status2" />
         </RelativeLayout>
     </LinearLayout>
 

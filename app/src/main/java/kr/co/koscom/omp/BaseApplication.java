@@ -16,6 +16,7 @@ import com.sendbird.syncmanager.SendBirdSyncManager;
 import com.sendbird.syncmanager.utils.PreferenceUtils;
 
 import kr.co.sdk.vguard2.VGuard;
+import timber.log.Timber;
 
 public class BaseApplication extends MultiDexApplication {
 
@@ -37,6 +38,10 @@ public class BaseApplication extends MultiDexApplication {
         SendBirdSyncManager.setLoggerLevel(98765);
 
         createNotificationChannel();
+
+        Timber.uprootAll();
+        Timber.plant(new Timber.DebugTree());
+
 
     }
 

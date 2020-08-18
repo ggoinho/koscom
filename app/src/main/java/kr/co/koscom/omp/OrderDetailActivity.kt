@@ -15,16 +15,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
-import androidx.core.widget.NestedScrollView
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.github.mikephil.charting.data.Entry
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.scsoft.boribori.data.viewmodel.ChatViewModel
-import com.scsoft.boribori.data.viewmodel.OrderViewModel
+import kr.co.koscom.omp.data.viewmodel.OrderViewModel
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -32,9 +29,13 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_order_detail.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
+import kr.co.koscom.omp.data.model.NegotiationData
 import kr.co.koscom.omp.data.model.Order
-import kr.co.koscom.omp.data.model.OrderDetail
 import kr.co.koscom.omp.data.model.Stock
+import kr.co.koscom.omp.enums.NegotiationEnterType
+import kr.co.koscom.omp.enums.TransactionTargetType
+import kr.co.koscom.omp.extension.toResString
+import kr.co.koscom.omp.util.ActivityUtil
 import kr.co.koscom.omp.view.MyLineChart
 import kr.co.koscom.omp.view.ViewUtils
 import java.text.DecimalFormat
@@ -100,9 +101,11 @@ class OrderDetailActivity : AppCompatActivity() {
         orderViewModel = ViewModelProviders.of(this, viewModelFactory).get(OrderViewModel::class.java)
 
         btnSearch.setOnClickListener {
-            var intent = Intent(this, Search2Activity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivityForResult(intent, BuyWriteActivity.STOCK_SEARCH)
+
+            ActivityUtil.startSearch2ActivityResult(this, BuyWriteActivity.STOCK_SEARCH)
+//            var intent = Intent(this, Search2Activity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            startActivityForResult(intent, BuyWriteActivity.STOCK_SEARCH)
         }
 
         btnStar.setOnClickListener {
@@ -126,6 +129,67 @@ class OrderDetailActivity : AppCompatActivity() {
             else{
                 vpCompany.setCurrentItem(0)
             }
+        }
+
+        footer.setOnTouchListener { v, event ->
+            Log.d("OrderDetailActivity", "onTouch")
+
+            if(touchX == 0f){
+                touchX = event.rawX
+            }
+            if(touchY == 0f){
+                touchY = event.rawY
+            }
+
+            var eventaction = event.getAction()
+            when (eventaction) {
+
+                MotionEvent.ACTION_DOWN -> {
+                    touchY2 = 0f
+                }
+
+                MotionEvent.ACTION_MOVE -> {
+                    Log.d("OrderDetailActivity", "tabLayout onTouch move")
+
+                    if(touchY2 != 0f){
+                        Log.d("OrderDetailActivity", "(${event.rawY}, $touchY2)")
+
+                        var layoutParams = content.layoutParams as ConstraintLayout.LayoutParams
+                        layoutParams.height = layoutParams.height + (event.rawY - touchY2).toInt()
+                        if(layoutParams.height > height87.height){
+                            layoutParams.height = height87.height
+                        }
+                        if(layoutParams.height < height53.height){
+                            layoutParams.height = height53.height
+                        }
+                        content.layoutParams = layoutParams
+
+                        touchY2 = event.rawY
+                    }
+                    else{
+                        touchY2 = event.rawY
+                    }
+
+                }
+
+                MotionEvent.ACTION_UP -> {
+                    Log.d("OrderDetailActivity", "onTouch up")
+
+                    if(event.rawY != touchY){
+                        if(event.rawY < touchY){
+                            borderArrow.setImageResource(R.drawable.ico_list_down)
+                        }
+                        else if(event.rawY > touchY){
+                            borderArrow.setImageResource(R.drawable.ico_list_up)
+                        }
+                    }
+
+                    touchX = 0f
+                    touchY = 0f
+                }
+            }
+
+            return@setOnTouchListener true
         }
 
         border.setOnTouchListener { view, event ->
@@ -424,10 +488,10 @@ class OrderDetailActivity : AppCompatActivity() {
             }))
     }
 
-    private fun requestNego(orderNo: String){
+    private fun requestNego(orderNo: String, certiNum: String = ""){
         progress_bar_login.visibility = View.VISIBLE
 
-        disposable.add(chatViewModel.requestNego(PreferenceUtils.getUserId(), orderNo)
+        disposable.add(chatViewModel.requestNego(PreferenceUtils.getUserId(), orderNo, certiNum)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -496,6 +560,7 @@ class OrderDetailActivity : AppCompatActivity() {
                 it.printStackTrace()
                 ViewUtils.alertDialog(this, "네트워크상태를 확인해주세요."){}
             }))
+
     }
 
     private fun loadWeb(tabPosition: Int){
@@ -539,6 +604,7 @@ class OrderDetailActivity : AppCompatActivity() {
         }
         else{
             super.onBackPressed()
+            overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
         }
     }
 
@@ -563,17 +629,60 @@ class OrderDetailActivity : AppCompatActivity() {
             //view.findViewById<TextView>(R.id.stockCode).text = data.ENTP_NO
             view.findViewById<TextView>(R.id.stockCode).text = data.STK_CODE
             //view.findViewById<TextView>(R.id.stockKind).text = data.CORP_HANGL_NM
-            view.findViewById<TextView>(R.id.count).text = numberFormat.format(data.DEAL_QTY ?: 0)
-            view.findViewById<TextView>(R.id.price).text = numberFormat.format(data.DEAL_UPRC ?: 0)
+
+            if(data?.PUBLIC_YN == "Y"){
+                view.findViewById<TextView>(R.id.count).text = numberFormat.format(data.DEAL_QTY ?: 0)
+                view.findViewById<TextView>(R.id.price).text = numberFormat.format(data.DEAL_UPRC ?: 0)
+            }else{
+                view.findViewById<TextView>(R.id.count).text = R.string.star6.toResString()
+                view.findViewById<TextView>(R.id.price).text = R.string.star6.toResString()
+            }
+
 
             view.findViewById<LinearLayoutCompat>(R.id.btnNego).setOnClickListener {
-                requestNego(data.ORDER_NO!!)
+                data?.let {
+                    when (it.PUBLIC_YN) {
+                        "N" -> {
+                            //비공개
+                            if(PreferenceUtils.getUserId() == it.PBLS_CLNT_NO){
+                                ViewUtils.alertDialog(this@OrderDetailActivity, R.string.orderpopup_popup_contents1.toResString()){}
+                                return@setOnClickListener
+                            }
+
+                            ActivityUtil.startNegotiationPopupActivity(this@OrderDetailActivity, NegotiationData().apply {
+                                orderNo = it.ORDER_NO ?:""
+                                enterType = NegotiationEnterType.DETAIL
+                                transactionTargetType = if(it.SECRET_CERTI_YN == "Y") TransactionTargetType.SPECIFIC else TransactionTargetType.UNSPECIFIC
+                                registNickName = it.NICKNAME ?: ""
+                                stockTpCodeNm = it.STOCK_TP_CODE_NM?: ""
+                            })
+
+//                            var intent = Intent(this@OrderDetailActivity, NegotiationPopupActivity::class.java)
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                            intent.putExtra("negotiationData", NegotiationData().apply {
+//                                orderNo = it.ORDER_NO ?:""
+//                                enterType = NegotiationEnterType.DETAIL
+//                                transactionTargetType = if(it.SECRET_CERTI_YN == "Y") TransactionTargetType.SPECIFIC else TransactionTargetType.UNSPECIFIC
+//                                registNickName = it.NICKNAME ?: ""
+//                                stockTpCodeNm = it.STOCK_TP_CODE_NM?: ""
+//                            })
+//                            startActivity(intent)
+                        }
+                        "Y" -> {
+                            //공개
+                            requestNego(data.ORDER_NO!!)
+                        }
+                        else ->{}
+                    }
+                }
             }
             view.findViewById<TextView>(R.id.btnCompany).setOnClickListener {
-                var intent = Intent(this@OrderDetailActivity, InvestmentActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                intent.putExtra("ENTP_NO", entpNo)
-                startActivity(intent)
+                ActivityUtil.startInvestmentActivity(this@OrderDetailActivity)
+
+//                var intent = Intent(this@OrderDetailActivity, InvestmentActivity::class.java)
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                intent.putExtra("ENTP_NO", entpNo)
+//                startActivity(intent)
             }
 
             val chart = view.findViewById<MyLineChart>(R.id.chart)

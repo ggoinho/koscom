@@ -87,6 +87,7 @@ public class CreateGroupChannelActivity extends AppCompatActivity {
                     Intent intent = new Intent(CreateGroupChannelActivity.this, GroupChannelActivity.class);
                     intent.putExtra("groupChannelUrl", groupChannel.getUrl());
                     startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_from_right, android.R.anim.fade_out);
 
                     finish();
                 }

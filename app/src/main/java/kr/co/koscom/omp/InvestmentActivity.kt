@@ -12,11 +12,14 @@ import androidx.core.view.GravityCompat
 import com.google.android.material.tabs.TabLayout
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_investment.*
+import kr.co.koscom.omp.constants.Constants
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
+import kr.co.koscom.omp.enums.InvestTabType
+import kr.co.koscom.omp.extension.toResString
 
 /**
- * 투자정보
+ * 종목정보
  */
 
 class InvestmentActivity : AppCompatActivity() {
@@ -34,7 +37,7 @@ class InvestmentActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_investment)
 
-        toolbar.initTitle("투자정보")
+        toolbar.initTitle(R.string.invest_title.toResString())
         toolbar.initData(this)
         //test
 
@@ -73,9 +76,22 @@ class InvestmentActivity : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val transaction = supportFragmentManager.beginTransaction()
 
-                when(tab!!.position){
-                    0 -> fragment!!.loadUrl(BuildConfig.SERVER_URL + "/mobile/corpInfo/infoMng")
-                    1 -> fragment!!.loadUrl(BuildConfig.SERVER_URL + "/mobile/corpInfo/dclsr")
+                /**
+                 * 0: 기업정보
+                 * 1: 전문가진단
+                 * 2: 기업알림/홍보/평가자료
+                 * 3: 토론게시판
+                 * 4: 뉴스
+                 * 5: 특허
+                 */
+                fragment?.clearHistory()
+                when(InvestTabType.getType(tab!!.position)){
+                    InvestTabType.BUSINESS_INFO -> fragment!!.loadUrl(Constants.URL_BUSINESS_INFO)
+                    InvestTabType.EXPERT -> fragment!!.loadUrl(Constants.URL_EXPERT_DIAGNOSIS)
+                    InvestTabType.CORPORATE_PROMOTION -> fragment!!.loadUrl(Constants.URL_CORPORATE_PROMOTION)
+                    InvestTabType.DISCUSSION_BOARD -> fragment!!.loadUrl(Constants.URL_DISCUSSION_BOARD)
+                    InvestTabType.NEWS -> fragment!!.loadUrl(Constants.URL_NEWS)
+                    InvestTabType.PATENT -> fragment!!.loadUrl(Constants.URL_PATENT)
                 }
                 transaction.replace(R.id.subFragment, fragment!!)
                 transaction.commitAllowingStateLoss()
@@ -136,11 +152,13 @@ class InvestmentActivity : AppCompatActivity() {
                 }
                 else{
                     super.onBackPressed()
+                    overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
                 }
             }
             else{
 
                 super.onBackPressed()
+                overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
             }
         }
     }

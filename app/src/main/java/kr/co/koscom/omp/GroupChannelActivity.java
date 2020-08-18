@@ -6,12 +6,12 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
@@ -58,7 +58,7 @@ public class GroupChannelActivity extends AppCompatActivity {
     private DrawerLayout drawer_layout;
     private ConstraintLayout defaultToolbar;
     private AppCompatImageView btnBack;
-    private AppCompatTextView tvTitle;
+    private TextView tvTitle;
     private ImageView btnSetting;
     private ImageView btnSearch;
     private LinearLayoutCompat searchToolbar;
@@ -66,6 +66,7 @@ public class GroupChannelActivity extends AppCompatActivity {
     private AppCompatImageView backSearch;
     private AppCompatImageView clearSearch;
     private AppCompatImageView search;
+    private ImageView ivSecret;
 
 
     public String channelTitle = null;
@@ -91,16 +92,17 @@ public class GroupChannelActivity extends AppCompatActivity {
         chatViewModel = ViewModelProviders.of(this, viewModelFactory).get(ChatViewModel.class);
 
         drawer_layout = findViewById(R.id.drawer_layout);
-         defaultToolbar = findViewById(R.id.defaultToolbar);
-         btnBack = findViewById(R.id.btnBack);
-         tvTitle = findViewById(R.id.tvTitle);
-         btnSetting = findViewById(R.id.btnSetting);
-         btnSearch = findViewById(R.id.btnSearch);
-         searchToolbar = findViewById(R.id.searchToolbar);
-         backSearch = findViewById(R.id.backSearch);
-         inputSearch = findViewById(R.id.inputSearch);
-         clearSearch = findViewById(R.id.clearSearch);
-         search = findViewById(R.id.search);
+        defaultToolbar = findViewById(R.id.defaultToolbar);
+        btnBack = findViewById(R.id.btnBack);
+        tvTitle = findViewById(R.id.tvTitle);
+        btnSetting = findViewById(R.id.btnSetting);
+        btnSearch = findViewById(R.id.btnSearch);
+        searchToolbar = findViewById(R.id.searchToolbar);
+        backSearch = findViewById(R.id.backSearch);
+        inputSearch = findViewById(R.id.inputSearch);
+        clearSearch = findViewById(R.id.clearSearch);
+        search = findViewById(R.id.search);
+        ivSecret = findViewById(R.id.ivSecret);
 
          btnSetting.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -177,6 +179,16 @@ public class GroupChannelActivity extends AppCompatActivity {
                                     tvTitle.setText(channel.getCHANNEL_TITLE());
 
                                     GroupChannelActivity.this.channel = channel;
+                                    try{
+                                        if(channel.getPUBLIC_YN().equals("Y")){
+                                            ivSecret.setVisibility(View.GONE);
+                                        }else{
+                                            ivSecret.setVisibility(View.VISIBLE);
+                                        }
+                                    }catch (Exception e){
+                                        e.printStackTrace();
+                                    }
+
 
                                     for (Runnable listener: apiListeners) {
                                         listener.run();
@@ -457,6 +469,7 @@ public class GroupChannelActivity extends AppCompatActivity {
             return;
         }
         super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right);
     }
 
     @Override

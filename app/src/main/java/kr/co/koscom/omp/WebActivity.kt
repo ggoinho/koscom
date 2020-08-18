@@ -16,6 +16,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_web.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
+import kr.co.koscom.omp.extension.toGone
 
 /**
  * 웹뷰 단독 화면
@@ -36,8 +37,14 @@ class WebActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_web)
 
+
         toolbar.initTitle(intent.getStringExtra("title"))
         toolbar.initData(this)
+        if(intent.getBooleanExtra("isBottomHide", false)){
+            bottom_navigation_view.toGone()
+            toolbar.hideMenu()
+        }
+
 
         if (savedInstanceState == null) {
             val transaction = supportFragmentManager.beginTransaction()
@@ -45,6 +52,8 @@ class WebActivity : AppCompatActivity() {
             transaction.replace(R.id.nav_view, fragment)
             transaction.commitAllowingStateLoss()
         }
+
+
 
         viewModelFactory = Injection.provideViewModelFactory(this)
 
@@ -98,11 +107,12 @@ class WebActivity : AppCompatActivity() {
                 }
                 else{
                     super.onBackPressed()
+                    overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
                 }
             }
             else{
-
                 super.onBackPressed()
+                overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
             }
         }
     }

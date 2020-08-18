@@ -6,431 +6,226 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/layout_login"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:background="#f7f7f8"
-        android:orientation="vertical">
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:background="#ffffff">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="100dp"
-                android:layout_height="28dp"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/logo_top" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:letterSpacing="-0.03"
-                android:lineSpacingExtra="1dp"
-                android:text="로그인"
-                android:textColor="#000826"
-                android:textSize="19dp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/btnClose"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/ico_expand_close" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:letterSpacing="-0.05"
-            android:lineSpacingExtra="4dp"
-            android:text="투자자 유형을 선택하여 주십시오"
-            android:textColor="#111111"
-            android:textSize="16dp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/chkPerson"
-                android:layout_width="155dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/shape_rect_fill31"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/personCheck"
-                    android:layout_width="28dp"
-                    android:layout_height="32dp"
-                    android:background="@drawable/checkbox"/>
-
-                <TextView
-                    android:id="@+id/personTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:lineSpacingExtra="5dp"
-                    android:text="개인"
-                    android:textColor="#3348ae"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginLeft="53dp"
-                    android:src="@drawable/ico_login_people" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/chkCompany"
-                android:layout_width="155dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/shape_rect_fill33"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/companyCheck"
-                    android:layout_width="28dp"
-                    android:layout_height="32dp"
-                    android:background="@drawable/checkbox"/>
-
-                <TextView
-                    android:id="@+id/companyTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:lineSpacingExtra="5dp"
-                    android:text="법인"
-                    android:textColor="#333333"
-                    android:textSize="15dp" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginLeft="53dp"
-                    android:src="@drawable/ico_login_company" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/loginWayZone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_sub_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:letterSpacing="-0.05"
-                android:lineSpacingExtra="4dp"
-                android:text="가입시 인증한 인증방법을 선택하여 주십시오"
-                android:textColor="#111111"
-                android:textSize="16dp" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/chkIntegrated"
-                    android:layout_width="155dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/shape_rect_fill31"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/integratedCheckbox"
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:background="@drawable/checkbox2"/>
-
-                    <TextView
-                        android:id="@+id/integratedTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:lineSpacingExtra="5dp"
-                        android:text="통합인증앱"
-                        android:textColor="#3348ae"
-                        android:textSize="15dp" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/integratedIcon"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="13dp"
-                        android:src="@drawable/ico_login_key_b" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/chkDid"
-                    android:layout_width="155dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:background="@drawable/shape_rect_fill33"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/didCheckbox"
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:background="@drawable/checkbox2"/>
-
-                    <TextView
-                        android:id="@+id/didTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:lineSpacingExtra="5dp"
-                        android:text="DID인증"
-                        android:textColor="#333333"
-                        android:textSize="15dp" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/didIcon"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/ico_login_did" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_l">
-
-                </androidx.appcompat.widget.AppCompatImageView>
-
-                <TextView
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="5dp"
-                    android:text="@string/login_auth_desc"
-                    android:textColor="#555555"
-                    android:textSize="13dp" />
-            </LinearLayout>
-
-        </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/btnLogin"
-            android:layout_width="315dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/shape_rect_fill32"
-            android:gravity="center">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/btnPersonalLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutClose"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:lineSpacingExtra="17dp"
-                android:text="로그인"
-                android:textColor="#ffffff"
-                android:textSize="17dp"
-                android:textStyle="bold"
-                android:visibility="visible"/>
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ico_expand_close"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
-                android:id="@+id/imgLoginKey"
+                android:id="@+id/ivTopLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ico_login_key_w"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/btnCompanyLogin"
-                android:layout_marginRight="11dp"
-                android:visibility="gone"
-                />
+                android:layout_marginTop="30dp"
+                android:background="@drawable/icon_login_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/btnCompanyLogin"
+                android:id="@+id/tvTitleIndividual"
+                style="@style/F20R_black_111111"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="58dp"
+                android:layout_marginTop="46dp"
+                android:layout_marginEnd="58dp"
+                android:text="@string/login_individual"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivTopLogo" />
+
+
+            <TextView
+                android:id="@+id/tvIndividualIntegraded"
+                style="@style/F16R_black_white"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="58dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="58dp"
+                android:background="@drawable/roundfill_rt_lb_white_3348ae"
+                android:drawableLeft="@drawable/ico_check_login_on"
+                android:drawableRight="@drawable/login_key"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:paddingStart="18dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="18dp"
+                android:paddingBottom="10dp"
+                android:text="@string/login_integrated_auth_login"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:lineSpacingExtra="17dp"
-                android:text="통합인증 로그인"
-                android:textColor="#ffffff"
-                android:textSize="17dp"
-                android:textStyle="bold"
-                android:visibility="gone"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleIndividual" />
+
+            <TextView
+                android:id="@+id/tvIndividualDid"
+                style="@style/F16R_black_white"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="58dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="58dp"
+                android:background="@drawable/roundfill_rt_lb_white_3348ae"
+                android:drawableLeft="@drawable/ico_check_login_on"
+                android:drawableRight="@drawable/login_did"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:paddingStart="18dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="18dp"
+                android:paddingBottom="10dp"
+                android:text="@string/login_did_auth_login"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvIndividualIntegraded" />
+
+            <View
+                android:id="@+id/vDivideTop"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="58dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="58dp"
+                android:background="@color/gray_cccccc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvIndividualDid" />
+
+
+            <TextView
+                android:id="@+id/tvTitleCorporation"
+                style="@style/F20R_black_111111"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="58dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="58dp"
+                android:text="@string/login_corporation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vDivideTop" />
+
+            <TextView
+                android:id="@+id/tvCoporationIntegraded"
+                style="@style/F16R_black_white"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="58dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="58dp"
+                android:background="@drawable/roundfill_rt_lb_white_4bada0"
+                android:drawableLeft="@drawable/ico_check_login_on"
+                android:drawableRight="@drawable/login_key"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:paddingStart="18dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="18dp"
+                android:paddingBottom="10dp"
+                android:text="@string/login_integrated_auth_login"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleCorporation" />
+
+            <TextView
+                android:id="@+id/tvEasyLoginRegist"
+                style="@style/F14R_555555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:drawableTop="@drawable/login_icon_01"
+                android:drawablePadding="9dp"
+                android:text="@string/login_easy_login_regist"
+                app:layout_constraintEnd_toStartOf="@+id/tvServiceSign"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCoporationIntegraded" />
+
+            <TextView
+                android:id="@+id/tvServiceSign"
+                style="@style/F14R_555555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="52dp"
+                android:drawableTop="@drawable/join_icon_01"
+                android:drawablePadding="9dp"
+                android:text="@string/login_service_sign"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvEasyLoginRegist"
+                app:layout_constraintTop_toTopOf="@+id/tvEasyLoginRegist" />
+
+
+            <View
+                android:id="@+id/vDivideBottom"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="32dp"
+                android:background="@color/gray_ebebeb"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvEasyLoginRegist" />
+
+            <TextView
+                android:id="@+id/tvCompany"
+                style="@style/F11R_757575"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/login_company"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vDivideBottom" />
+
+            <TextView
+                android:id="@+id/tvVersion"
+                style="@style/F11R_757575"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCompany" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvVersion" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/btnSetAlarm"
-            android:layout_width="315dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/shape_rect_fill33"
-            android:gravity="center"
-            android:lineSpacingExtra="1dp"
-            android:text="간편 로그인 등록"
-            android:textColor="#333333"
-            android:textSize="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:letterSpacing="-0.08"
-            android:lineSpacingExtra="4dp"
-            android:text="아직 서비스 가입을 하지 않으셨나요?"
-            android:textColor="#666666"
-            android:textSize="14dp" />
-
-        <TextView
-            android:id="@+id/btnRegist"
-            android:layout_width="315dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shape_rect_fill33"
-            android:gravity="center"
-            android:lineSpacingExtra="1dp"
-            android:text="서비스 가입"
-            android:textColor="#333333"
-            android:textSize="16dp" />
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <EditText
-                android:id="@+id/edittext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="12345678"
-                android:inputType="number"
-                android:text="" />
-
-            <com.softforum.xecurekeypad.XKEditText
-                android:id="@+id/password_chatId"
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="10dip"
-                android:layout_weight="4"
-                android:inputType="text"
-                android:visibility="visible" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/password"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="14dp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/chatIdDeprecated"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="CL0000010"
-                android:textSize="14dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="푸시Token : " />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/token"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:minWidth="130dp"
-                android:text=""
-                android:textSize="10dp" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:gravity="center_horizontal"
-        android:letterSpacing="-0.03"
-        android:lineSpacingExtra="9dp"
-        android:text="© KOSCOM CORP."
-        android:textColor="#757575"
-        android:textSize="11dp"
-        app:layout_constraintBottom_toTopOf="@+id/version"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/version"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/layout_login"
-        android:textSize="11dp"
-        android:textColor="#000826"
-        android:lineSpacingExtra="7dp"
-        android:text="V.0.0.1"/>
+    </ScrollView>
 
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/progress_bar_login"

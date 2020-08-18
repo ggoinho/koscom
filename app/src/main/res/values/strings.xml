@@ -19,5 +19,297 @@
     <string name="versioninfo_update">최신 버전 업데이트</string>
     <string name="versioninfo_version_contents">OS 버전명 : %s\n현재 버전명 : %s\n최신 버전명 : %s\n모델 명 : %s</string>
 
+
+    <!-- COMMON -->
+    <string name="main_contract_confirmation">계약서 확인</string>
+    <string name="total">전체</string>
+    <string name="buying">매수</string>
+    <string name="sell">매도</string>
+    <string name="confirm">확인</string>
+    <string name="star6">******</string>
+    <string name="unit_stock">주</string>
+    <string name="unit_won">원</string>
+    <string name="network_error">네트워크상태를 확인해주세요.</string>
+    <string name="unit_repayment">(상환)</string>
+    <string name="unit_conversion_payment">(전환상환)</string>
+    <string name="unit_title_count">수량</string>
+    <string name="unit_title_totalstock_count">총주식수</string>
+    <string name="unit_title_won">가격</string>
+    <string name="contract">계약</string>
+    <string name="conclusion">체결</string>
+    <string name="search">검색</string>
+    <string name="cancel">취소</string>
+    <string name="regist">등록</string>
+    <string name="yes">예</string>
+    <string name="no">아니오</string>
+    <string name="zero">0</string>
+    <string name="negotiation_request">협상요청</string>
+    <string name="no_data_contents">데이터가 없습니다.</string>
+    <string name="bold_regular_contents"><![CDATA[<b>%1$s</b> %2$s]]></string>
+    <string name="complete">완료</string>
+
+
+    <!-- Status -->
+    <string name="status_complete">완료</string>
+    <string name="status_contract_cancel">계약취소</string>
+    <string name="status_request_cancel">요청취소</string>
+    <string name="status_auto_breakdown">자동결렬</string>
+    <string name="status_breakdown">결렬</string>
+    <string name="status_nego_wait">협상대기</string>
+    <string name="status_nego_request">협상요청</string>
+
+
+
+    <!-- MainActivity -->
+    <string name="main_tab_nego_management">협상관리</string>
+    <string name="main_tab_contract_conclusion_management">계약 및 체결관리</string>
+    <string name="main_tab_order_status">주문현황</string>
+    <string name="main_tab_nego_progress">나의 협상 진행상황</string>
+    <string name="main_tab_conclusion_status">체결현황</string>
+    <string name="main_negotiable">협상가능</string>
+    <string name="main_my">MY</string>
+    <string name="main_order_total_count"><![CDATA[총 <font color=#3348ae>%s</font>건]]></string>
+    <string name="main_order_detail_view">상세보기 ></string>
+    <string name="main_logout_contents">로그아웃하시겠습니까?</string>
+    <string name="main_viewpager_indicator_count"><![CDATA[<b>%1$s</b> / %2$s]]></string>
+    <string name="main_viewpager_opponent">상대방 : %s</string>
+    <string name="main_viewpager_stock"><![CDATA[<b>%1$s</b>주]]></string>
+    <string name="main_viewpager_won"><![CDATA[<b>%1$s</b>원]]></string>
+    <string name="main_reject">거절</string>
+    <string name="main_accepct">수락</string>
+    <string name="main_contract_confirm">계약서 확인</string>
+    <string name="main_nego_wait">협상대기</string>
+    <string name="main_nego">협상</string>
+    <string name="main_view">보기</string>
+    <string name="main_contract">계약</string>
+    <string name="main_depositwait">입금대기</string>
+    <string name="main_conclusion">체결</string>
+    <string name="main_request_cancel">요청취소</string>
+    <string name="main_start_end_time">시작&#160;&#160;%1$s\n종료&#160;&#160;%2$s</string>
+    <string name="main_empty">조회된 데이터가 없습니다.</string>
+    <string name="main_useterms">이용약관</string>
+    <string name="main_userinfo_policy">개인정보처리방침</string>
+    <string name="main_copyright_protrection_policy">저작권보호방침</string>
+    <string name="main_footer_address">서울시 영등포구 여의나루로 76 (주)코스콤</string>
+    <string name="main_footer_phone"> 대표전화  02-767-7650</string>
+    <string name="main_footer_corp">© 2019 KOSCOM CORP.</string>
+    <string name="main_yocheong_cancel">협상 요청을 취소하시겠습니까?</string>
+    <string name="main_hidden_top_contents">협상관리 <![CDATA[<font color=#ffc000>%1$d</font>]]>건<![CDATA[<br>]]>계약 및 체결관리가 <![CDATA[<font color=#ffc000>%2$d</font>]]>건 있습니다.</string>
+    <string name="main_hidden_bottom_contents">확인하시 려면 위에 탭을 눌러주세요.</string>
+
+
+
+
+    <!-- LoginActivity -->
+    <string name="login_individual">개인</string>
+    <string name="login_integrated_auth_login">통합인증 로그인</string>
+    <string name="login_did_auth_login">DID 인증 로그인</string>
+    <string name="login_corporation">법인</string>
+    <string name="login_easy_login_regist">간편 로그인 등록</string>
+    <string name="login_service_sign">서비스 가입</string>
+    <string name="login_company">© KOSCOM CORP.</string>
+
+    <!-- Drawer Menu -->
+    <string name="drawer_title_unlisted_stock_trade">주문</string>
+    <string name="drawer_contents_order_status">주문현황</string>
+    <string name="drawer_contents_contract_conclusion">계약 및 체결현황</string>
+    <string name="drawer_contents_overall_status">종합현황</string>
+    <string name="drawer_contents_order_regist">주문등록</string>
+
+    <string name="drawer_title_investment_info">종목정보</string>
+    <string name="drawer_contents_business_info">기업정보</string>
+    <string name="drawer_contents_expert">전문가진단</string>
+    <string name="drawer_contents_business_alarm">기업알림/홍보/평가자료</string>
+    <string name="drawer_contents_discussion">토론게시판</string>
+    <string name="drawer_contents_news">뉴스</string>
+    <string name="drawer_contents_patent">특허</string>
+
+    <string name="drawer_title_mypage_info">마이페이지</string>
+    <string name="drawer_contents_sign_info_management">가입정보관리</string>
+    <string name="drawer_contents_my_order">나의 주문</string>
+    <string name="drawer_contents_my_nego">나의 협상</string>
+    <string name="drawer_contents_my_contract_conclusion">나의 계약 및 체결</string>
+    <string name="drawer_contents_balance">보유잔고</string>
+    <string name="drawer_contents_document_management">증빙서류관리</string>
+    <string name="drawer_contents_service_termination">서비스해지</string>
+    <string name="drawer_contents_alarm">알림수신함</string>
+
+    <string name="drawer_title_customer">고객센터</string>
+    <string name="drawer_contents_gongji">공지사항</string>
+    <string name="drawer_contents_service">서비스소개</string>
+    <string name="drawer_contents_faq">FAQ</string>
+    <string name="drawer_contents_one_and_one">1:1문의</string>
+
+    <string name="drawer_title_setting">설정</string>
+    <string name="drawer_contents_alarm_setting">알림설정</string>
+    <string name="drawer_contents_marketting">마케팅수신동의</string>
+    <string name="drawer_contents_version_info">버전정보</string>
+    <string name="drawer_contents_service_terms">서비스이용약관</string>
+    <string name="drawer_contents_userinfo_policy">개인정보취급처리방침</string>
+    <string name="drawer_contents_copyright_protrection_policy">저작권보호방침</string>
+    <string name="drawer_contents_easy_login">간편로그인</string>
+
+    <string name="drawer_title_header">최근 본 메뉴</string>
+    <string name="drawer_contents_remove_all">전체삭제 ></string>
+
+    <string name="drawer_search_empty">검색결과가 없습니다.</string>
+    <string name="drawer_search_contents">%1$s > %2$s</string>
+    <string name="drawer_logout_contents">로그아웃하시겠습니까?</string>
+
+
+
+
+    <string name="drawer_expert_diagnosis">전문가진단</string>
+    <string name="drawer_discussion_board">토론게시판</string>
+    <string name="drawer_corporate_alert">기업알림/홍보/평가자료</string>
+    <string name="drawer_news">뉴스</string>
+    <string name="drawer_patent">특허</string>
+    <string name="drawer_one_and_one_question">1:1문의</string>
+
+    <string name="drawer_logout">로그아웃</string>
+    <string name="drawer_search_hint">메뉴명을 검색해주세요.</string>
+    <string name="drawer_bottom_chat">협상채팅</string>
+    <string name="drawer_bottom_service_introduce">서비스소개</string>
+    <string name="drawer_bottom_one_and_one">1:1문의</string>
+    <string name="drawer_bottom_quick_menu">퀵메뉴편집</string>
+    <string name="drawer_bottom_close">닫기</string>
+
+
+
+    <!-- OrderPopupActivity -->
+    <string name="orderpopup_title">주문정보</string>
+    <string name="orderpopup_popup_contents1">자신의 주문에는 협상요청을 할 수 없습니다</string>
+    <string name="orderpopup_regist_date">등록일시</string>
+    <string name="orderpopup_title_total_stock_count">총주식수</string>
+    <string name="orderpopup_title_count_stock">수량(주)</string>
+    <string name="orderpopup_title_won">가격(주)</string>
+    <string name="orderpopup_title_remain">잔량(주)</string>
+    <string name="orderpopup_title_direct_price">직전체결가(원)</string>
+    <string name="orderpopup_title_trade_condition">거래조건</string>
+
+
+    <!-- OrderWriteActivity -->
+    <string name="orderwrite_public_order">공개주문</string>
+    <string name="orderwrite_private_order">비공개주문</string>
+    <string name="orderwrite_password">인증번호</string>
+    <string name="orderwrite_password_explain">인증번호는 거래 상대방이 협상 요청할 때 사용됩니다.\n거래 상대방과 공유해 주십시오.</string>
+
+    <!-- TransactionTargetDialog -->
+    <string name="transaction_target_title">거래상대방 유무 선택</string>
+    <string name="transaction_target_specific_transaction">거래 상대방이\n있는 경우</string>
+    <string name="transaction_target_unspecified_multiple_transactions">거래 상대방이\n없는 경우</string>
+    <string name="transaction_target_contents1">수량, 가격, 금액 등의 주문 정보가\n비공개되는 거래입니다.</string>
+    <string name="transaction_target_contents2">거래 상대방이 정해져있습니까?</string>
+
+    <!-- NegotiationRequestDialog -->
+    <string name="negotiation_request_contents1"><![CDATA[<font color=#3348ae>%1$s</font>]]>님에게 <![CDATA[<font color=#3348ae>%2$s</font>]]> 주식거래에 대한협상 요청을 하시겠습니까?</string>
+    <string name="negotiation_request_contents1_2">협상 요청을 하시겠습니까?</string>
+    <string name="negotiation_request_contents2">본 거래는 가격, 수량, 금액 등의 주문정보가\n공개되지 않는 비공개 거래입니다</string>
+    <string name="negotiation_request_agree_after_input"><![CDATA[<font color=#111111><b>이용 동의 후</b></font>]]> 인증번호를 입력하십시오</string>
+    <string name="negotiation_request_agree_contents">비공개거래에 동의합니다</string>
+    <string name="negotiation_request_agree_plz">※ 비공개거래에 동의 후 진행해주세요.</string>
+    <string name="negotiation_request_password">인증번호</string>
+    <string name="negotiation_request_password_input_plz">※ 인증번호를 입력해주세요</string>
+    <string name="negotiation_request_contents3">당 서비스는 이용자 간 거래에 일체 개입하지 않으며, 거래에 대한 손익 책임은 투자자 본인에게 있습니다</string>
+    <string name="negotiation_request_contents4">당 서비스는 어떠한 경우에도 특정종목(기업)에 대한 투자를 추천하거나 권유하지 않습니다</string>
+
+
+    <!-- WebActivity -->
+    <string name="web_title_useterm">서비스 이용약관</string>
+    <string name="web_title_userinfo_policy">개인정보취급처리방침</string>
+    <string name="web_title_copyright_policy">저작권보호방침</string>
+    <string name="web_not_form_file_contents">이 형식의 파일을 열 수 있는 앱이 없어요. Play스토어에서 필요한 앱을 찾을 수 있어요.</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- MyPageActivity -->
+    <string name="mypage_sign_info_management">가입정보관리</string>
+    <string name="mypage_my_order">나의 주문</string>
+    <string name="mypage_my_nego">나의 협상</string>
+    <string name="mypage_my_contract_conclusion">나의 계약 및 체결</string>
+    <string name="mypage_balance">보유잔고</string>
+    <string name="mypage_document_management">증빙서류관리</string>
+    <string name="mypage_service_termination">서비스해지</string>
+    <string name="mypage_alarm">알림수신함</string>
+
+
+    <!-- InvestActivity -->
+    <string name="invest_title">종목정보</string>
+
+    <!-- SettingNewActivity -->
+    <string name="setting_new_title">설정</string>
+    <string name="setting_new_alarm">알림 설정 및 마케팅 수신동의</string>
+    <string name="setting_new_version">버전정보</string>
+    <string name="setting_new_service_useterm">서비스 이용약관</string>
+    <string name="setting_new_userinfo_policy">개인정보 취급처리방침</string>
+    <string name="setting_new_copyright">저작권 보호방침</string>
+    <string name="setting_new_easy_login">간편 로그인</string>
+
+    <!-- CustomerCenterActivity -->
+    <string name="customer_title">고객센터</string>
+    <string name="customer_tab_gongji">공지사항</string>
+    <string name="customer_tab_service">서비스소개</string>
+    <string name="customer_tab_faq">FAQ</string>
+    <string name="customer_tab_one_and_one">1:1문의</string>
+
+    <!-- OrderListActivity -->
+    <string name="orderlist_title">비상장주식거래</string>
+    <string name="orderlist_tab_orderstatus">주문현황</string>
+    <string name="orderlist_tab_contract_conclusion">계약 및 체결현황</string>
+    <string name="orderlist_tab_transaction_status">전종목 거래현황</string>
+    <string name="orderlist_search_input">종목명 입력</string>
+    <string name="orderlist_order_regist">주문등록</string>
+
+    <!-- OrderDetailActivity -->
+    <string name="orderdetail_order_detail">주문상세</string>
+    <string name="orderdetail_stock_conclusion">종목체결</string>
+    <string name="orderdetail_order_conclusion">주문체결</string>
+    <string name="orderdetail_expert_info">전문가정보</string>
+    <string name="orderdetail_discussion_board">토론게시판</string>
+    <string name="orderdetail_nice">나이스</string>
+    <string name="orderdetail_notation">기보</string>
+    <string name="orderdetail_expert">전문가</string>
+    <string name="orderdetail_company_info">기업정보</string>
+    <string name="orderdetail_no_data_query">조회된 데이터가 없습니다.</string>
+
+    <!-- OrderRegistActivity -->
+    <string name="orderregist_title">비상장주식거래</string>
+    <string name="orderregist_order_regist">주문등록</string>
+    <string name="orderregist_public_order">공개주문</string>
+    <string name="orderregist_private_order">비공개주문</string>
+    <string name="orderregist_password">인증번호</string>
+    <string name="orderregist_password_explain">인증번호는 거래 상대방이 협상 요청할 때 사용됩니다.\n거래 상대방과 공유해 주십시오.</string>
+    <string name="orderregist_stock_name">종목명</string>
+    <string name="orderregist_stock_name_input">종목명 입력</string>
+    <string name="orderregist_totalcount_contents"><![CDATA[(총 주식수 : <b>%s</b>)]]></string>
+    <string name="orderregist_sellcount_contents"><![CDATA[(매도가능 수량 : <b>%s</b>주)]]></string>
+    <string name="orderregist_gubn">구분</string>
+    <string name="orderregist_title_count">수량(주)</string>
+    <string name="orderregist_title_price">가격(원)</string>
+    <string name="orderregist_title_total_price">금액(원)</string>
+    <string name="orderregist_title_trade_condition">거래조건</string>
+    <string name="orderregist_tradecount_contents">(%d/300byte)</string>
+    <string name="orderregist_question_contents">매도가능 수량은 플랫폼 내 등록기업이 등록한 주주명부를 기반으로 체크되어 노출되어 집니다. 해당 수량 전체 또는 일부에 대해 별도 매매 등 처분을 진행 한 경우에는 투명한 비상장주식거래 환경을 만들어가기 위해 해당 등록기업에 통보하여 해당 내용을 수정할 수 있도록 고지하여야 할 의무가 매도자에게 있음을 알려드립니다.</string>
+    <string name="orderregist_notify_exceed_number">매도가능 수량을 초과할 수 없습니다.</string>
+
+    <!-- QuickMenuActivity -->
+    <string name="qucikmenu_title">퀵 메뉴 설정</string>
+    <string name="qucikmenu_menu_location_select">메뉴 위치 선택</string>
+    <string name="qucikmenu_homebtn_exposure_select">홈 버튼 노출 설정</string>
+    <string name="qucikmenu_home_contents_select">홈 내용 선택</string>
+    <string name="qucikmenu_left">왼쪽</string>
+    <string name="qucikmenu_right">오른쪽</string>
+    <string name="qucikmenu_order_status">주문현황</string>
+    <string name="qucikmenu_business_info">기업정보</string>
+    <string name="qucikmenu_init">초기화</string>
+    <string name="qucikmenu_remove_all">전체삭제 ></string>
+    <string name="qucikmenu_totalcount">10</string>
+    <string name="qucikmenu_count_alert_contents">퀵 메뉴는 최소 5개부터 최대 10개까지 등록할 수 있습니다.</string>
+
+
+
+
+
+
 </resources>
 

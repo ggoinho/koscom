@@ -9,6 +9,18 @@
         <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
+
+
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+        <item name="android:editTextStyle">@style/EditTextStyle</item>
+        <item name="android:radioButtonStyle">@style/RadioButtonStyle</item>
+        <item name="android:checkboxStyle">@style/CheckboxStyle</item>
+        <item name="android:tabWidgetStyle">@style/tab_text</item>
+        <item name="android:spinnerItemStyle">@style/spinnerTextStyle</item>
+        <item name="android:alertDialogStyle">@style/AlertDialogTheme</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogTheme</item>
+
     </style>
 
 
@@ -52,14 +64,582 @@
     </style>
 
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/spoqa_han_sans</item>
         <item name="android:textSize">15dp</item>
 <!--        <item name="android:textStyle">bold</item>-->
         <item name="android:singleLine">true</item>
         <item name="android:maxLines">1</item>
     </style>
 
+    <style name="spinnerTextStyle" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+        <item name="android:fontFamily">@font/spoqa_han_sans</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="android:Theme.Dialog">
+        <item name="android:fontFamily">@font/spoqa_han_sans</item>
+    </style>
+
     <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:fontFamily">@font/spoqa_han_sans</item>
         <item name="android:textSize">13dp</item>
     </style>
+
+
+    <!-- DialogStyle -->
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/fade_in_dialog</item>
+        <item name="android:windowExitAnimation">@anim/fade_out_dialog</item>
+    </style>
+
+    <style name="DialogFadeAnim" parent="@android:style/Theme.Translucent">
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+
+
+    <!-- TextStyle -->
+    <style name="F13R_000826">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/black_000826</item>
+    </style>
+
+    <style name="F14R_000826">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/black_000826</item>
+    </style>
+
+    <style name="F19B_000826">
+        <item name="android:textSize">19dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/black_000826</item>
+    </style>
+
+
+
+    <style name="F10R_white">
+        <item name="android:textSize">10dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="F11R_white">
+        <item name="android:textSize">11dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="F13R_white">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="F14R_white">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="F15R_white">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="F15B_white">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="F16R_white">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="F16B_white">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="F20R_white">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="F24R_white">
+        <item name="android:textSize">24dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
+    <style name="F11R_666666">
+        <item name="android:textSize">11dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_666666</item>
+    </style>
+
+    <style name="F13R_666666">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_666666</item>
+    </style>
+
+
+    <style name="F13R_e9e9e9">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_e9e9e9</item>
+    </style>
+
+
+    <style name="F12R_9e9e9e">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_9e9e9e</item>
+    </style>
+
+    <style name="F12R_5e5e5e">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_5e5e5e</item>
+    </style>
+
+
+
+    <style name="F11R_757575">
+        <item name="android:textSize">11dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_757575</item>
+    </style>
+
+    <style name="F12R_757575">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_757575</item>
+    </style>
+
+    <style name="F13R_757575">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_757575</item>
+    </style>
+
+    <style name="F14R_757575">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_757575</item>
+    </style>
+
+
+    <style name="F13R_333333">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_333333</item>
+    </style>
+
+    <style name="F14R_333333">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_333333</item>
+    </style>
+
+    <style name="F15R_333333">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_333333</item>
+    </style>
+
+
+    <style name="F15B_333333">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_333333</item>
+    </style>
+
+    <style name="F16R_333333">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_333333</item>
+    </style>
+
+    <style name="F17R_333333">
+        <item name="android:textSize">17dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_333333</item>
+    </style>
+
+    <style name="F17B_333333">
+        <item name="android:textSize">17dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_333333</item>
+    </style>
+
+    <style name="F18R_333333">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_333333</item>
+    </style>
+
+    <style name="F20B_333333">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_333333</item>
+    </style>
+
+
+    <style name="F13R_555555">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_555555</item>
+    </style>
+
+    <style name="F14R_555555">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_555555</item>
+    </style>
+
+
+    <style name="F13R_727272">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_727272</item>
+    </style>
+
+
+    <style name="F14R_8f8f91">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/gray_8f8f91</item>
+    </style>
+
+
+    <style name="F12R_black">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="F14R_black">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="F14B_black">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="F15R_black">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="F16R_black">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="F16B_black">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="F17B_black">
+        <item name="android:textSize">17dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- black 0c0f1b -->
+
+    <style name="F14R_black_0c0f1b">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/black_0c0f1b</item>
+    </style>
+
+    <!-- black 111111 -->
+
+    <style name="F20R_black_111111">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/black_111111</item>
+    </style>
+
+
+    <style name="F16R_blue_132475">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/blue_132475</item>
+    </style>
+
+    <style name="F16B_blue_132475">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/blue_132475</item>
+    </style>
+
+    <style name="F13R_blue_3348ae">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/blue_3348ae</item>
+    </style>
+
+    <style name="F14R_blue_3348ae">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/blue_3348ae</item>
+    </style>
+
+    <style name="F14B_blue_3348ae">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/blue_3348ae</item>
+    </style>
+
+    <style name="F15R_blue_3348ae">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/blue_3348ae</item>
+    </style>
+
+    <style name="F15B_blue_3348ae">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/blue_3348ae</item>
+    </style>
+
+    <style name="F16B_blue_3348ae">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/blue_3348ae</item>
+    </style>
+
+    <style name="F17R_blue_3348ae">
+        <item name="android:textSize">17dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/blue_3348ae</item>
+    </style>
+
+    <style name="F20B_blue_3348ae">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/blue_3348ae</item>
+    </style>
+
+
+
+    <style name="F13R_blue_4747c3">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/blue_4747c3</item>
+    </style>
+
+
+    <style name="F16R_blue_4747c3">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/blue_4747c3</item>
+    </style>
+
+
+    <style name="F19R_blue_0e1d64">
+        <item name="android:textSize">19dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/blue_0e1d64</item>
+    </style>
+
+
+
+
+    <style name="F13R_green_038085">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/green_038085</item>
+    </style>
+
+    <style name="F15B_green_4bada0">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/green_4bada0</item>
+    </style>
+
+    <style name="F16B_green_4bada0">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/green_4bada0</item>
+    </style>
+
+
+
+
+    <style name="F12R_e8055a">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/red_e8055a</item>
+    </style>
+
+    <style name="F13R_e8055a">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/red_e8055a</item>
+    </style>
+
+    <style name="F15B_e8055a">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/red_e8055a</item>
+    </style>
+
+    <style name="F17R_e8055a">
+        <item name="android:textSize">17dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/red_e8055a</item>
+    </style>
+
+    <style name="F20B_e8055a">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/red_e8055a</item>
+    </style>
+
+    <style name="F13R_purple_7e84a7">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/purple_7e84a7</item>
+    </style>
+
+    <style name="F14R_purple_c2c2f9">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/purple_c2c2f9</item>
+    </style>
+
+
+    <style name="F18B_purple_4e4e9e">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/purple_4e4e9e</item>
+    </style>
+
+
+
+
+
+
+
+    <!-- Selector -->
+    <style name="F16R_black_white">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/color_black_white</item>
+    </style>
+
+    <style name="F14R_333333_blue">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/color_333333_blue</item>
+    </style>
+
+
+    <style name="main_filter_tab">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/color_555555_blue</item>
+    </style>
+
+
+    <style name="drawer_right_title">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/color_333333_blue</item>
+    </style>
+
+
+
 
 </resources>

@@ -1,22 +1,17 @@
 package kr.co.koscom.omp
 
-import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.sendbird.syncmanager.utils.ComUtil
 import com.signkorea.openpass.interfacelib.SKCallback
 import com.signkorea.openpass.interfacelib.SKCertManager
 import com.signkorea.openpass.interfacelib.SKConstant
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_order_detail.toolbar
-import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.activity_sign_launch.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
@@ -51,27 +46,27 @@ class SignLaunchActivity : AppCompatActivity() {
         val test : String? = ""
 
         btnFingerRegist.setOnClickListener {
-            SKCertManager.callOpenPassPage(120, ComUtil.policyMode,null, { i: Int, i1: Int, s: String ->
+            SKCertManager.callMyPassPage(120, ComUtil.policyMode,null, SKCallback.MessageCallback { requestCode, resultCode, resultMessage ->
             })
         }
         btnPinRegist.setOnClickListener {
-            SKCertManager.callOpenPassPage(117,ComUtil.policyMode,null, { i: Int, i1: Int, s: String ->
+            SKCertManager.callMyPassPage(117,ComUtil.policyMode,null, SKCallback.MessageCallback { requestCode, resultCode, resultMessage ->
             })
         }
         btnPinChange.setOnClickListener {
-            SKCertManager.callOpenPassPage(118,ComUtil.policyMode,null, { i: Int, i1: Int, s: String ->
+            SKCertManager.callMyPassPage(118,ComUtil.policyMode,null, SKCallback.MessageCallback { requestCode, resultCode, resultMessage ->
             })
         }
         btnPatternRegist.setOnClickListener {
-            SKCertManager.callOpenPassPage(141,ComUtil.policyMode,null, { i: Int, i1: Int, s: String ->
+            SKCertManager.callMyPassPage(141,ComUtil.policyMode,null, SKCallback.MessageCallback { requestCode, resultCode, resultMessage ->
             })
         }
         btnPatternChange.setOnClickListener {
-            SKCertManager.callOpenPassPage(142,ComUtil.policyMode,null, { i: Int, i1: Int, s: String ->
+            SKCertManager.callMyPassPage(142,ComUtil.policyMode,null, SKCallback.MessageCallback { requestCode, resultCode, resultMessage ->
             })
         }
 
-        initializeOpenPass()
+        initializeMyPass()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -100,13 +95,13 @@ class SignLaunchActivity : AppCompatActivity() {
         }
     }
 
-    private fun initializeOpenPass() {
+    private fun initializeMyPass() {
         showProgressDialog("", "초기화 중입니다.")
 
         // 초기화 함수 호출.
-        val nResult = SKCertManager.initOpenPass(this,
-            LoginActivity.OPENPASS_LICENSE,
-            LoginActivity.OPENPASS_LAUNCHMODE,
+        val nResult = SKCertManager.initMyPass(this,
+            LoginActivity.MY_LICENSE,
+            LoginActivity.MY_LAUNCHMODE,
             SKCallback.MessageCallback { requestCode, resultCode, resultMessage ->
 
             mainProgress?.dismiss()
@@ -114,14 +109,14 @@ class SignLaunchActivity : AppCompatActivity() {
             if (resultCode == SKConstant.RESULT_CODE_ERROR_NOT_INSTALL ||
                 resultCode == SKConstant.RESULT_CODE_ERROR_APP_DISABLED ||
                 resultCode == SKConstant.RESULT_CODE_ERROR_NEED_UPDATE){
-                // OpenPass 설치 등 상태 관련 오류
+                // MyPass 설치 등 상태 관련 오류
                 SKCertManager.showErrorPopup(resultCode)
             }
             else if (resultCode == SKConstant.RESULT_CODE_OK){
-                // OpenPass 초기화 성공
+                // MyPass 초기화 성공
             }
             else {
-                // OpenPass 초기화 실패
+                // MyPass 초기화 실패
                 Toast.makeText(applicationContext, resultMessage, Toast.LENGTH_LONG).show()
                 mainProgress?.dismiss()
             }

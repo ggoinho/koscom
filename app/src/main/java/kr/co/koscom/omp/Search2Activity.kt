@@ -18,19 +18,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
-import com.scsoft.boribori.data.viewmodel.OrderViewModel
+import kr.co.koscom.omp.data.viewmodel.OrderViewModel
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.activity_search2.*
 import kotlinx.android.synthetic.main.activity_search2.btnClose
 import kotlinx.android.synthetic.main.activity_search2.btnCloseSearch
@@ -40,10 +38,11 @@ import kotlinx.android.synthetic.main.activity_search2.progress_bar_login
 import kotlinx.android.synthetic.main.activity_search2.quick
 import kotlinx.android.synthetic.main.activity_search2.search
 import kotlinx.android.synthetic.main.activity_search2.tabLayout
-import kotlinx.android.synthetic.main.list_item_recent_list.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.model.Stock
+import kr.co.koscom.omp.extension.toGone
+import kr.co.koscom.omp.extension.toVisible
 import kr.co.koscom.omp.view.ViewUtils
 import org.apache.commons.lang3.StringUtils
 import java.util.*
@@ -96,7 +95,9 @@ class Search2Activity : AppCompatActivity() {
 
                 // First tab is the selected tab, so if i==0 then set BOLD typeface
                 if (i == 0) {
-                    tabTextView.setTypeface(null, Typeface.BOLD)
+                    tabTextView.setTypeface(ResourcesCompat.getFont(this, R.font.spoqa_han_sans), Typeface.BOLD)
+                }else{
+                    tabTextView.setTypeface(ResourcesCompat.getFont(this, R.font.spoqa_han_sans), Typeface.NORMAL)
                 }
 
             }
@@ -110,15 +111,27 @@ class Search2Activity : AppCompatActivity() {
             override fun onTabUnselected(tab: TabLayout.Tab?) {
                 val text = tab?.customView as TextView?
 
-                text?.setTypeface(null, Typeface.NORMAL)
+                text?.setTypeface(ResourcesCompat.getFont(this@Search2Activity, R.font.spoqa_han_sans), Typeface.NORMAL)
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
+
+                when(tab?.position){
+                    0 ->{
+                        layoutSearch.toVisible()
+                        svQuick.toVisible()
+                    }
+                    else ->{
+                        layoutSearch.toGone()
+                        svQuick.toGone()
+                    }
+                }
+
                 search()
 
                 val text = tab?.customView as TextView?
 
-                text?.setTypeface(null, Typeface.BOLD)
+                text?.setTypeface(ResourcesCompat.getFont(this@Search2Activity, R.font.spoqa_han_sans), Typeface.BOLD)
             }
         })
 
@@ -232,8 +245,8 @@ class Search2Activity : AppCompatActivity() {
         disposable.add(orderViewModel.searchStock(
             PreferenceUtils.getUserId(),
             if(tabLayout.selectedTabPosition == 0){"A"}else{"F"},
-            type(),
-            search.text.toString())
+            if(tabLayout.selectedTabPosition == 0) type() else null,
+            if(tabLayout.selectedTabPosition == 0) search.text.toString() else "")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

@@ -48,7 +48,8 @@ import kr.co.koscom.omp.MainActivity;
 import kr.co.koscom.omp.MyPageActivity;
 import kr.co.koscom.omp.R;
 import kr.co.koscom.omp.SplashActivity;
-import kr.co.koscom.omp.data.Constants;
+import kr.co.koscom.omp.constants.Constants;
+import kr.co.koscom.omp.ui.main.MainNewActivity;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -156,7 +157,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(MyFirebaseMessagingService.class.getSimpleName(), "messageBody : " + messageBody);
 
         Intent intent = new Intent(context, SplashActivity.class);
-        if(MainActivity.Companion.getMainActivity() != null){
+        if(MainNewActivity.Companion.getMainActivity() != null){
             intent = new Intent(context, MyPageActivity.class);
         }
         else{

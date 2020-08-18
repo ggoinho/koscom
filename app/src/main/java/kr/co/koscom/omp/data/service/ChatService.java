@@ -144,4 +144,14 @@ public interface ChatService {
     @POST("/api/login")
     Flowable<Response> logintest(@Body Request request);
 
+
+    @Headers({
+            "Accept: application/json",
+            "Content-type: application/json",
+            "Charset: UTF-8"
+    })
+    @POST("/api/invst/chatModal/yocheongCancel")
+    Flowable<Response> yocheongCancel(@Body Request request);
+
+
 }

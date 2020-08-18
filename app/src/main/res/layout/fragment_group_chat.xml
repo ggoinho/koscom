@@ -77,16 +77,16 @@
                 android:textSize="13dp"
                 android:textColor="#666666"
                 android:lineSpacingExtra="5dp"
-                android:text="직전체결가"/>
+                android:text="총 주식수"/>
             <TextView
-                android:id="@+id/prePrice"
+                android:id="@+id/tvTotalCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="9dp"
                 android:textSize="14dp"
                 android:textColor="#333333"
                 android:lineSpacingExtra="4dp"
-                android:text="4,900"/>
+                android:text=""/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -95,7 +95,7 @@
                 android:textSize="13dp"
                 android:textColor="#333333"
                 android:lineSpacingExtra="5dp"
-                android:text="원"/>
+                android:text=""/>
             <LinearLayout
                 android:id="@+id/btnShowPrice"
                 android:clickable="true"

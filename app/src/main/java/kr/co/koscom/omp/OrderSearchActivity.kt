@@ -14,25 +14,25 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
-import com.scsoft.boribori.data.viewmodel.OrderViewModel
+import kr.co.koscom.omp.data.viewmodel.OrderViewModel
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_order_detail.toolbar
 import kotlinx.android.synthetic.main.activity_order_search.*
+import kr.co.koscom.omp.constants.Keys
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.model.Stock
+import kr.co.koscom.omp.enums.DealType
+import kr.co.koscom.omp.extension.toGone
+import kr.co.koscom.omp.extension.toVisible
 import kr.co.koscom.omp.view.ViewUtils
 import java.util.*
 
@@ -58,6 +58,8 @@ class OrderSearchActivity : AppCompatActivity() {
 
         btnClose.setOnClickListener {
             finish()
+            overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_bottom)
+
         }
 
         btnCloseSearch.setOnClickListener {
@@ -81,7 +83,20 @@ class OrderSearchActivity : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 listData.clear()
                 list!!.adapter?.notifyDataSetChanged()
-//                search()
+
+                when(tab?.position){
+                    0 ->{
+                        layoutSearch.toVisible()
+                        svQuick.toVisible()
+                    }
+                    else ->{
+                        layoutSearch.toGone()
+                        svQuick.toGone()
+                    }
+                }
+
+
+                search()
             }
         })
 
@@ -139,7 +154,7 @@ class OrderSearchActivity : AppCompatActivity() {
 
         list!!.adapter = OrderSearchAdapter(listData)
 
-//        search()
+        search()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -165,10 +180,12 @@ class OrderSearchActivity : AppCompatActivity() {
     private fun search(){
         progress_bar_login.visibility = View.VISIBLE
 
+//        if(tabLayout.selectedTabPosition != 1){type()}else{null},
+//        if(tabLayout.selectedTabPosition != 1){search.text.toString()}else{null})
         disposable.add(orderViewModel.searchStock(PreferenceUtils.getUserId(),
             if(tabLayout.selectedTabPosition == 0){"A"}else if(tabLayout.selectedTabPosition == 1){"P"}else{"F"},
-            if(tabLayout.selectedTabPosition != 1){type()}else{null},
-            if(tabLayout.selectedTabPosition != 1){search.text.toString()}else{null})
+            if(tabLayout.selectedTabPosition == 0) type() else null,
+            if(tabLayout.selectedTabPosition == 0) search.text.toString() else "")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -221,6 +238,11 @@ class OrderSearchActivity : AppCompatActivity() {
 
         disposable.clear()
     }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_bottom)
+
+    }
 
     internal inner class OrderSearchAdapter(val list: ArrayList<Stock.ResultMap>) :
         RecyclerView.Adapter<OrderSearchAdapter.ViewHolder>() {
@@ -251,10 +273,12 @@ class OrderSearchActivity : AppCompatActivity() {
             holder.name.text = data.STK_NM
             holder.name.setOnClickListener {
                 var intent = Intent()
-                intent.putExtra("stock", data)
-                intent.putExtra("medoYn", if(tabLayout.selectedTabPosition == 1){"Y"}else{"N"})
+                intent.putExtra(Keys.INTENT_STOCK, data)
+                intent.putExtra(Keys.INTENT_DEAL_TYPE, if(tabLayout.selectedTabPosition == 1){DealType.SELL}else{DealType.BUYING})
+//                intent.putExtra("medoYn", if(tabLayout.selectedTabPosition == 1){"Y"}else{"N"})
                 setResult(Activity.RESULT_OK, intent)
                 finish()
+                overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_bottom)
             }
 
             if(!data.FAV_CORP_NO.isNullOrEmpty()){

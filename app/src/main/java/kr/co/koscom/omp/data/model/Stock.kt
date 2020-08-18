@@ -19,7 +19,7 @@ class Stock {
         var SEC_KIND_TP_CODE: String? = null
         var STK_NM: String? = null
         var ENTP_NO: String? = null
-        var SEC_KIND_DTL_TP_CODE: String? = null
+        var SEC_KIND_DTL_TP_CODE: String = ""
         var FLTN_QTY: String? = null
         var CORP_HANGL_NM: String? = null
         var TRSF_ABLE_QTY: String? = null

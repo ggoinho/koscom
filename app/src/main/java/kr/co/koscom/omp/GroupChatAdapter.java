@@ -1,5 +1,6 @@
 package kr.co.koscom.omp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -746,6 +747,7 @@ class GroupChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         intent.putExtra("orderNo", ((GroupChannelActivity)context).orderNo);
 
                         context.startActivity(intent);
+                        ((Activity)context).overridePendingTransition(R.anim.slide_in_from_right, android.R.anim.fade_out);
 
                     }
                 });
@@ -769,6 +771,7 @@ class GroupChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         intent.putExtra("groupChannelUrl", ((GroupChannelActivity)context).channelUrl);
                         intent.putExtra("orderNo", ((GroupChannelActivity)context).orderNo);
                         context.startActivity(intent);
+                        ((Activity)context).overridePendingTransition(R.anim.slide_in_from_right, android.R.anim.fade_out);
                     }
                 });
             }

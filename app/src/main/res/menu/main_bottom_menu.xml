@@ -26,7 +26,7 @@
         android:id="@+id/navigation_info"
         android:icon="@drawable/ico_bt_menu_04"
         android:textSize="13dp"
-        android:title="투자정보"
+        android:title="@string/invest_title"
         android:checked="false" />
 
     <item

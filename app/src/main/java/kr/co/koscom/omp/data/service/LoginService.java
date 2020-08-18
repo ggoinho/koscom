@@ -37,7 +37,7 @@ public interface LoginService {
             "Charset: UTF-8"
     })
     @POST("/api/getOpenPassCertResult1")
-    Flowable<Response> resultCertOpenPass(@Body Request request);
+    Flowable<Response> resultCertMyPass(@Body Request request);
 
     @Headers({
             "Accept: application/json",

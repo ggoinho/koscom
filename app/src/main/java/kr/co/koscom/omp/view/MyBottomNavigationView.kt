@@ -1,5 +1,6 @@
 package kr.co.koscom.omp.view
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.AttributeSet
@@ -10,6 +11,7 @@ import android.view.View
 import android.widget.RelativeLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kr.co.koscom.omp.*
+import kr.co.koscom.omp.util.ActivityUtil
 
 class MyBottomNavigationView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -38,29 +40,37 @@ class MyBottomNavigationView @JvmOverloads constructor(
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         if (item.itemId == R.id.navigation_chat) {
-            var intent = Intent(context, ChatListActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            context.startActivity(intent)
+            ActivityUtil.startChatListActivity(context as Activity)
+//            var intent = Intent(context, ChatListActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            context.startActivity(intent)
             return true
         } else if (item.itemId == R.id.navigation_orders) {
-            var intent = Intent(context, OrderListActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            context.startActivity(intent)
+            ActivityUtil.startOrderListActivity(context as Activity)
+//            var intent = Intent(context, OrderListActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            context.startActivity(intent)
             return true
         } else if (item.itemId == R.id.navigation_order) {
-            var intent = Intent(context, OrderWriteActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            context.startActivity(intent)
+
+            ActivityUtil.startOrderRegistActivity(context as Activity)
+
+//            ActivityUtil.startOrderWriteActivity(context as Activity)
+//            var intent = Intent(context, OrderWriteActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            context.startActivity(intent)
             return true
         } else if (item.itemId == R.id.navigation_info) {
-            var intent = Intent(context, InvestmentActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            context.startActivity(intent)
+            ActivityUtil.startInvestmentActivity(context as Activity)
+//            var intent = Intent(context, InvestmentActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            context.startActivity(intent)
             return true
         } else if (item.itemId == R.id.navigation_mypage) {
-            var intent = Intent(context, MyPageActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            context.startActivity(intent)
+            ActivityUtil.startMyPageActivity(context as Activity)
+//            var intent = Intent(context, MyPageActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            context.startActivity(intent)
             return true
         }
 

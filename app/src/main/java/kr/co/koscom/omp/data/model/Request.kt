@@ -7,6 +7,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder
 
 class Request {
 
+    var USER_TP: String = ""
+    var DEVICE_TP: String = ""
+
     var TYPE: String? = null
 
     var CERTI_MTHD_TP: String? = null
@@ -23,6 +26,7 @@ class Request {
     var CHANNEL_URL: String? = null
     var channelUrl: String? = null
     var CHANNEL_TITLE: String? = null
+    var CERTI_NUM: String? = null
 
     var DEAL_QTY: String? = null
     var DEAL_UPRC: String? = null
@@ -62,6 +66,8 @@ class Request {
     var orderQty: String? = null
     var stockCode: String? = null
     var startDate: String? = null
+    var publicYn: String? = null    //공개:Y, 비공개:N
+    var certiNum: String? = null
 
     var ancTpCode: String? = null
     var seqno: String? = null
@@ -91,6 +97,14 @@ class Request {
     var DEVICE: String? = null
 
     var dealTpCode : String? = null
+    var negoSettStat: String = ""
+
+    var isNegotiable: String? = null
+    var isMyOrder: String? = null
+
+    var stk_nm: String? = null
+    var searchRequstDeBgn: String? = null
+    var searchRequstDeEnd: String? = null
 
 
     override fun toString(): String {

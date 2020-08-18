@@ -1,6 +1,5 @@
 package kr.co.koscom.omp.extension
 
-import android.content.Context
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.NumberFormat
@@ -8,13 +7,42 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-fun Int.toResString(context: Context): String {
-    return context.resources.getString(this)
+fun String?.toNumberFormat(): String {
+    this?.let {
+        val number = it.toLong()
+        return NumberFormat.getNumberInstance(Locale.KOREA).format(number)
+    }?: run {
+        return "0"
+    }
 }
 
-fun String.toNumberFormat(): String {
-    val number = Integer.parseInt(this)
-    return NumberFormat.getNumberInstance(Locale.KOREA).format(number)
+/**
+ * "#" 해시태그 붙이기
+ */
+fun String?.toHashTag(): String{
+    return this?.let {
+        "#${this}"
+    }?: run {
+        ""
+    }
+}
+
+/**
+ * "Y" or "N" Boolean으로 리턴
+ */
+fun String?.isY(): Boolean{
+    return this?.let {
+        it == "Y"
+    }?: run {
+        false
+    }
+}
+
+/**
+ * Y or N 으로 리턴
+ */
+fun Boolean.toYN(): String {
+    return if(this) "Y" else "N"
 }
 
 

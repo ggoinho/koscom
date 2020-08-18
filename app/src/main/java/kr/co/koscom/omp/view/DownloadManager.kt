@@ -1,5 +1,6 @@
 package kr.co.koscom.omp.view
 
+import android.app.Application
 import android.os.Build
 import android.os.Environment
 import android.os.Handler
@@ -76,8 +77,8 @@ class DownloadManager {
                 val buffer = ByteArray(1024)
                 var length: Int
 
-                val path =
-                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                val path = BaseApplication.getAppContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
+//                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
                 val file = File(path, org_file_name)
                 Log.d(
                     DownloadManager::class.java.simpleName,
@@ -174,8 +175,7 @@ class DownloadManager {
                 val buffer = ByteArray(1024)
                 var length: Int
 
-                val path =
-                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                val path = BaseApplication.getAppContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
                 val file = File(path, "MyOrderListExcel.xls")
                 Log.d(
                     DownloadManager::class.java.simpleName,

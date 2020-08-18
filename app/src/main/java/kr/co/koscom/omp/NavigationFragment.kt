@@ -7,16 +7,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.fragment_navigation.*
+import kr.co.koscom.omp.constants.Constants
+import kr.co.koscom.omp.enums.*
+import kr.co.koscom.omp.extension.toResString
+import kr.co.koscom.omp.util.ActivityUtil
 import kr.co.koscom.omp.view.ViewUtils
 
 class NavigationFragment : Fragment() {
@@ -36,7 +38,8 @@ class NavigationFragment : Fragment() {
 
             ViewUtils.alertLogoutDialog(activity!!, "로그아웃하시겠습니까?"){
                 val intent = Intent(activity, LoginActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
 
                 activity?.finish()
@@ -49,11 +52,7 @@ class NavigationFragment : Fragment() {
         }
 
         btnHome.setOnClickListener {
-            val intent = Intent(activity, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            startActivity(intent)
-
+            ActivityUtil.startMainNewActivity(activity!!)
             btnClose.callOnClick()
         }
 
@@ -93,13 +92,8 @@ class NavigationFragment : Fragment() {
                 menu4.findViewWithTag<ImageView>("more").setImageResource(R.drawable.ico_expand_more)
             }
         }
-        menu5!!.setOnClickListener {
-            var intent = Intent(activity, WebActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("title", "서비스 소개")
-            intent.putExtra("url", BuildConfig.SERVER_URL + "/mobile/common/mServiceGuide")
-            startActivity(intent)
-
+        btnServiceInfo!!.setOnClickListener {
+            ActivityUtil.startCustomerCenterActivity(requireActivity(), CustomerTabType.SERVICE.ordinal)
             btnClose.callOnClick()
         }
         menu6!!.setOnClickListener {
@@ -122,172 +116,131 @@ class NavigationFragment : Fragment() {
         }
 
         btnTrading1.setOnClickListener {
-
-            var intent = Intent(activity, OrderListActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("gubn",1)
-            startActivity(intent)
-
+            ActivityUtil.startOrderListActivity(requireActivity(), OrderListTab.ORDER_STATUS.ordinal)
             btnClose.callOnClick()
         }
         btnTrading2.setOnClickListener {
-
-            var intent = Intent(activity, OrderListActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("gubn",2)
-            startActivity(intent)
-
+            ActivityUtil.startOrderListActivity(requireActivity(), OrderListTab.CONCLUSION_STATUS.ordinal)
             btnClose.callOnClick()
         }
         btnTrading3.setOnClickListener {
-
-            var intent = Intent(activity, OrderListActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("gubn",3)
-            startActivity(intent)
-
+            ActivityUtil.startOrderWriteActivity(requireActivity())
             btnClose.callOnClick()
         }
         btnInvestment1.setOnClickListener {
-
-            val intent = Intent(activity, InvestmentActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("tab", 0)
-            startActivity(intent)
-
+            ActivityUtil.startInvestmentActivity(requireActivity(), tab = InvestTabType.BUSINESS_INFO.ordinal)
             btnClose.callOnClick()
         }
         btnInvestment2.setOnClickListener {
+            ActivityUtil.startInvestmentActivity(requireActivity(), tab = InvestTabType.CORPORATE_PROMOTION.ordinal)
+            btnClose.callOnClick()
+        }
 
-            val intent = Intent(activity, InvestmentActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("tab", 1)
-            startActivity(intent)
+        btnExpertDiagnosis.setOnClickListener {
+            ActivityUtil.startInvestmentActivity(requireActivity(), tab = InvestTabType.EXPERT.ordinal)
+            btnClose.callOnClick()
+        }
 
+        btnDiscussion.setOnClickListener {
+            ActivityUtil.startInvestmentActivity(requireActivity(), tab = InvestTabType.DISCUSSION_BOARD.ordinal)
+            btnClose.callOnClick()
+        }
+
+        btnNews.setOnClickListener {
+            ActivityUtil.startInvestmentActivity(requireActivity(), tab = InvestTabType.NEWS.ordinal)
+            btnClose.callOnClick()
+        }
+
+        btnPatent.setOnClickListener {
+            ActivityUtil.startInvestmentActivity(requireActivity(), tab = InvestTabType.PATENT.ordinal)
             btnClose.callOnClick()
         }
 
         btnAlarmList.setOnClickListener {
-            val intent = Intent(activity, MyPageActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("tab", 0)
-            startActivity(intent)
+            ActivityUtil.startMyPageActivity(activity!!, MyPageTabType.ALARM.ordinal)
 
             btnClose.callOnClick()
         }
         btnRegist.setOnClickListener {
-            val intent = Intent(activity, MyPageActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("tab", 1)
-            startActivity(intent)
+            ActivityUtil.startMyPageActivity(activity!!, MyPageTabType.SIGN_MANAGEMENT.ordinal)
 
             btnClose.callOnClick()
         }
-        btnOrder.setOnClickListener {
-            val intent = Intent(activity, MyPageActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("tab", 2)
-            startActivity(intent)
+        btnMyOrder.setOnClickListener {
+            ActivityUtil.startMyPageActivity(activity!!, MyPageTabType.MY_ORDER.ordinal)
+
+            btnClose.callOnClick()
+
+        }
+        btnMyNego.setOnClickListener {
+            ActivityUtil.startMyPageActivity(activity!!, MyPageTabType.MY_NEGO.ordinal)
+
+            btnClose.callOnClick()
+
+        }
+        btnMyContractAndConclusion.setOnClickListener {
+            ActivityUtil.startMyPageActivity(activity!!, MyPageTabType.MY_CONTRACT_CONCLUSION.ordinal)
 
             btnClose.callOnClick()
         }
-        btnFavorite.setOnClickListener {
-            val intent = Intent(activity, MyPageActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("tab", 3)
-            startActivity(intent)
+        btnBalance.setOnClickListener {
+            ActivityUtil.startMyPageActivity(activity!!, MyPageTabType.BALANCE.ordinal)
 
             btnClose.callOnClick()
         }
         btnFile.setOnClickListener {
-            val intent = Intent(activity, MyPageActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("tab", 4)
-            startActivity(intent)
+            ActivityUtil.startMyPageActivity(activity!!, MyPageTabType.DOCUMENT_MANAGEMENT.ordinal)
 
             btnClose.callOnClick()
+
         }
         btnQna.setOnClickListener {
-            val intent = Intent(activity, MyPageActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("tab", 5)
-            startActivity(intent)
-
+            ActivityUtil.startCustomerCenterActivity(requireActivity(), CustomerTabType.ONE_AND_ONE.ordinal)
             btnClose.callOnClick()
         }
         btnOut.setOnClickListener {
-            val intent = Intent(activity, ServiceOutActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-
+            ActivityUtil.startMyPageActivity(requireActivity(), MyPageTabType.SERVICE_TERMINATION.ordinal)
             btnClose.callOnClick()
         }
 
         btnNotice.setOnClickListener {
-            val intent = Intent(activity, CustomerCenterActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("tab", 0)
-            startActivity(intent)
-
+            ActivityUtil.startCustomerCenterActivity(requireActivity(), CustomerTabType.GONGJI.ordinal)
             btnClose.callOnClick()
         }
         btnFaq.setOnClickListener {
-            val intent = Intent(activity, CustomerCenterActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("tab", 1)
-            startActivity(intent)
-
+            ActivityUtil.startCustomerCenterActivity(requireActivity(), CustomerTabType.FAQ.ordinal)
             btnClose.callOnClick()
         }
 
         btnAlarm.setOnClickListener {
-            var intent = Intent(activity, SettingActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-
+            ActivityUtil.startSettingNewActivity(requireActivity(), SettingTabType.ALARM.ordinal)
             btnClose.callOnClick()
         }
         btnAgree.setOnClickListener {
-            var intent = Intent(activity, SettingActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-
+            ActivityUtil.startSettingNewActivity(requireActivity(), SettingTabType.ALARM.ordinal)
             btnClose.callOnClick()
         }
         btnVersion.setOnClickListener {
-            var intent = Intent(activity, SettingActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-
+            ActivityUtil.startSettingNewActivity(requireActivity(), SettingTabType.VERSION.ordinal)
             btnClose.callOnClick()
         }
         btnUseAgreement.setOnClickListener {
-            var intent = Intent(activity, WebActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("title", "서비스 이용약관")
-            intent.putExtra("url", BuildConfig.SERVER_URL + "/mobile/common/mSrvAdminPoc")
-            startActivity(intent)
-
+            ActivityUtil.startSettingNewActivity(requireActivity(), SettingTabType.SERVICE_USETERM.ordinal)
             btnClose.callOnClick()
 
         }
         btnInfoAgreement.setOnClickListener {
-            var intent = Intent(activity, WebActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("title", "개인정보취급처리방침")
-            intent.putExtra("url", BuildConfig.SERVER_URL + "/mobile/common/mPrivacyPolicy")
-            startActivity(intent)
-
+            ActivityUtil.startSettingNewActivity(requireActivity(), SettingTabType.USERINFO_POLICY.ordinal)
             btnClose.callOnClick()
 
         }
         btnRightAgreement.setOnClickListener {
-            var intent = Intent(activity, WebActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("title", "저작권보호방침")
-            intent.putExtra("url", BuildConfig.SERVER_URL + "/mobile/common/mCopyrightPolicy")
-            startActivity(intent)
+            ActivityUtil.startSettingNewActivity(requireActivity(), SettingTabType.COPYRIGHT.ordinal)
+            btnClose.callOnClick()
+        }
 
+        btnEasyLogin.setOnClickListener {
+            ActivityUtil.startSettingNewActivity(requireActivity(), SettingTabType.EASY_LOGIN.ordinal)
             btnClose.callOnClick()
         }
 

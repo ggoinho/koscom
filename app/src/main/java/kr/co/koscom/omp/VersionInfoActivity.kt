@@ -55,7 +55,7 @@ class VersionInfoActivity : AppCompatActivity() {
 
     private fun init(){
 
-        toolbar.initTitle(R.string.versioninfo_top_title.toResString(this))
+        toolbar.initTitle(R.string.versioninfo_top_title.toResString())
         toolbar.initData(this)
     }
 
@@ -88,13 +88,13 @@ class VersionInfoActivity : AppCompatActivity() {
 
                     if (versionCompare(currentAppVersion,currentServerVersion)){
                         tvUpdate.enableView(false)
-                        tvUpdateContents.text = R.string.versioninfo_update_contents2.toResString(this)
+                        tvUpdateContents.text = R.string.versioninfo_update_contents2.toResString()
                     } else {
                         tvUpdate.enableView(true)
-                        tvUpdateContents.text = R.string.versioninfo_update_contents.toResString(this)
+                        tvUpdateContents.text = R.string.versioninfo_update_contents.toResString()
                     }
 
-                    tvVersionInfo.text = String.format(R.string.versioninfo_version_contents.toResString(this),
+                    tvVersionInfo.text = String.format(R.string.versioninfo_version_contents.toResString(),
                         Build.VERSION.RELEASE,
                         "V.${getAppVersion()}",
                         "V.${currentServerVersion}",

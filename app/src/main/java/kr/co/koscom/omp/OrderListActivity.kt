@@ -12,24 +12,22 @@ import android.text.TextWatcher
 import android.util.Log
 import android.util.TypedValue
 import android.view.*
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
-import com.scsoft.boribori.data.viewmodel.OrderViewModel
+import kr.co.koscom.omp.data.viewmodel.OrderViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -40,14 +38,16 @@ import kotlinx.android.synthetic.main.activity_order_list.nothing
 import kotlinx.android.synthetic.main.activity_order_list.progress_bar_login
 import kotlinx.android.synthetic.main.activity_order_list.search
 import kotlinx.android.synthetic.main.activity_order_list.tabLayout
-import kotlinx.android.synthetic.main.activity_order_popup.*
-import kotlinx.android.synthetic.main.activity_search2.*
-import kotlinx.android.synthetic.main.list_item_ordered.view.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.model.Order
 import kr.co.koscom.omp.data.model.OrderContract
 import kr.co.koscom.omp.data.model.Stock
+import kr.co.koscom.omp.enums.DealType
+import kr.co.koscom.omp.extension.toGone
+import kr.co.koscom.omp.extension.toResString
+import kr.co.koscom.omp.extension.toVisible
+import kr.co.koscom.omp.util.ActivityUtil
 import kr.co.koscom.omp.view.PaginationListener
 import kr.co.koscom.omp.view.ViewUtils
 import java.text.DecimalFormat
@@ -132,12 +132,12 @@ class OrderListActivity : AppCompatActivity() {
 
         })
         search.setOnClickListener {
-            startActivityForResult(Intent(this@OrderListActivity, SearchActivity::class.java), BuyWriteActivity.STOCK_SEARCH)
+            ActivityUtil.startSearchActivityResult(this, BuyWriteActivity.STOCK_SEARCH)
+//            startActivityForResult(Intent(this@OrderListActivity, SearchActivity::class.java), BuyWriteActivity.STOCK_SEARCH)
         }
 
         btnSearch.setOnClickListener {
             if(tabLayout.selectedTabPosition == 0){
-                ll_orderList.visibility = View.VISIBLE
 
                 filterAllUnderBar.visibility = View.VISIBLE
                 filterSellUnderBar.visibility = View.INVISIBLE
@@ -147,90 +147,85 @@ class OrderListActivity : AppCompatActivity() {
                 isCreate = false
 
                 listData.clear()
-                search("")
+                search(DealType.ALL.type)
             }
             else if(tabLayout.selectedTabPosition == 1){
-                searchContract()
-                ll_orderList.visibility = View.GONE
+                contractList.clear()
+                searchContract(DealType.ALL.type)
             }
         }
 
         filterAll.setOnClickListener {
-            filterAllUnderBar.visibility = View.VISIBLE
-            filterSellUnderBar.visibility = View.INVISIBLE
-            filterBuyUnderBar.visibility = View.INVISIBLE
+            onTapSubDealType(DealType.ALL)
 
             if(tabLayout.selectedTabPosition == 0){
                 listData.clear()
-                search("")
-                ll_orderList.visibility = View.VISIBLE
+                search(DealType.ALL.type)
             }
             else if(tabLayout.selectedTabPosition == 1){
-                searchContract()
-                ll_orderList.visibility = View.GONE
+                contractList.clear()
+                searchContract(DealType.ALL.type)
             }
         }
 
         filterSell.setOnClickListener {
-            filterAllUnderBar.visibility = View.INVISIBLE
-            filterSellUnderBar.visibility = View.VISIBLE
-            filterBuyUnderBar.visibility = View.INVISIBLE
+            onTapSubDealType(DealType.SELL)
 
             if(tabLayout.selectedTabPosition == 0){
                 listData.clear()
-                search("10")
-                ll_orderList.visibility = View.VISIBLE
+                search(DealType.SELL.type)
             }
             else if(tabLayout.selectedTabPosition == 1){
-                searchContract()
-                ll_orderList.visibility = View.GONE
+                contractList.clear()
+                searchContract(DealType.SELL.type)
             }
         }
 
         filterBuy.setOnClickListener {
-            filterAllUnderBar.visibility = View.INVISIBLE
-            filterSellUnderBar.visibility = View.INVISIBLE
-            filterBuyUnderBar.visibility = View.VISIBLE
+            onTapSubDealType(DealType.BUYING)
 
             if(tabLayout.selectedTabPosition == 0){
                 listData.clear()
-                search("20")
-                ll_orderList.visibility = View.VISIBLE
+                search(DealType.BUYING.type)
             }
             else if(tabLayout.selectedTabPosition == 1){
-                searchContract()
-                ll_orderList.visibility = View.GONE
+                contractList.clear()
+                searchContract(DealType.BUYING.type)
             }
         }
 
         btnOrder.setOnClickListener {
-            startActivity(Intent(this@OrderListActivity, OrderWriteActivity::class.java))
+            ActivityUtil.startOrderWriteActivity(this)
+//            startActivity(Intent(this@OrderListActivity, OrderWriteActivity::class.java))
         }
 
-        for (i in 0 until tabLayout.tabCount) {
-
-            val tab = tabLayout.getTabAt(i)
-            if (tab != null) {
-
-                val tabTextView = TextView(this)
-                tab.customView = tabTextView
-
-                tabTextView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
-                tabTextView.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
-
-                tabTextView.text = tab.text
-                tabTextView.setTextColor(Color.parseColor("#ffffff"))
-                tabTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15F)
-
-                // First tab is the selected tab, so if i==0 then set BOLD typeface
-                if (i == 0) {
-                    tabTextView.setTypeface(null, Typeface.BOLD)
-                    tabTextView.setTextColor(Color.parseColor("#ffffff"))
-                }
-
-            }
-
-        }
+//        for (i in 0 until tabLayout.tabCount) {
+//
+//            val tab = tabLayout.getTabAt(i)
+//            if (tab != null) {
+//
+//                val tabTextView = TextView(this)
+//                tab.customView = tabTextView
+//
+//                tabTextView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+//                tabTextView.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+//
+//                tabTextView.text = tab.text
+//                tabTextView.setTextColor(Color.parseColor("#ffffff"))
+//                tabTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14F)
+//
+//                // First tab is the selected tab, so if i==0 then set BOLD typeface
+//                if (i == 0) {
+//                    tabTextView.setTypeface(ResourcesCompat.getFont(this, R.font.spoqa_han_sans), Typeface.BOLD)
+//                    tabTextView.setTextColor(Color.parseColor("#ffffff"))
+//                }else{
+//                    tabTextView.setTypeface(ResourcesCompat.getFont(this, R.font.spoqa_han_sans), Typeface.NORMAL)
+//                    tabTextView.setTextColor(Color.parseColor("#ffffff"))
+//                }
+//
+//            }
+//
+//        }
 
         tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
 
@@ -239,7 +234,7 @@ class OrderListActivity : AppCompatActivity() {
                 if(!isCreateTab) {
                     val text = tab?.customView as TextView?
 
-                    text?.setTypeface(null, Typeface.BOLD)
+                    text?.setTypeface(ResourcesCompat.getFont(this@OrderListActivity, R.font.spoqa_han_sans), Typeface.BOLD)
                     text?.setTextColor(Color.parseColor("#ffffff"))
 
                     lastPage = false
@@ -250,17 +245,16 @@ class OrderListActivity : AppCompatActivity() {
 
                     if(tab!!.position == 0){
                         subFragment.visibility = View.INVISIBLE
+                        onTapSubDealType(DealType.ALL)
 
-                        search("")
+                        search(DealType.ALL.type)
 
-                        ll_orderList.visibility = View.VISIBLE
                     }
                     else if(tab.position == 1){
                         subFragment.visibility = View.INVISIBLE
+                        onTapSubDealType(DealType.ALL)
 
-                        searchContract()
-
-                        ll_orderList.visibility = View.GONE
+                        searchContract(DealType.ALL.type)
                     }
                     else if(tab.position == 2){
 
@@ -281,18 +275,18 @@ class OrderListActivity : AppCompatActivity() {
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-                val text = tab?.customView as TextView?
-
-                text?.setTypeface(null, Typeface.NORMAL)
-                text?.setTextColor(Color.parseColor("#ffffff"))
+//                val text = tab?.customView as TextView?
+//
+//                text?.setTypeface(ResourcesCompat.getFont(this@OrderListActivity, R.font.spoqa_han_sans), Typeface.NORMAL)
+//                text?.setTextColor(Color.parseColor("#ffffff"))
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 Log.i("tabLayout", "onTabSelected")
-                val text = tab?.customView as TextView?
-
-                text?.setTypeface(null, Typeface.BOLD)
-                text?.setTextColor(Color.parseColor("#ffffff"))
+//                val text = tab?.customView as TextView?
+//
+//                text?.setTypeface(ResourcesCompat.getFont(this@OrderListActivity, R.font.spoqa_han_sans), Typeface.BOLD)
+//                text?.setTextColor(Color.parseColor("#ffffff"))
 
                 lastPage = false
 
@@ -302,17 +296,16 @@ class OrderListActivity : AppCompatActivity() {
 
                 if(tab!!.position == 0){
                     subFragment.visibility = View.INVISIBLE
+                    onTapSubDealType(DealType.ALL)
 
-                    search("")
+                    search(DealType.ALL.type)
 
-                    ll_orderList.visibility = View.VISIBLE
                 }
                 else if(tab.position == 1){
                     subFragment.visibility = View.INVISIBLE
+                    onTapSubDealType(DealType.ALL)
 
-                    searchContract()
-
-                    ll_orderList.visibility = View.GONE
+                    searchContract(DealType.ALL.type)
                 }
                 else if(tab.position == 2){
 
@@ -343,12 +336,12 @@ class OrderListActivity : AppCompatActivity() {
             override fun loadMoreItems() {
                 loading = true
                 if(tabLayout.selectedTabPosition == 0){
-                    search("")
-                    ll_orderList.visibility = View.VISIBLE
+                    onTapSubDealType(DealType.ALL)
+                    search(DealType.ALL.type)
                 }
                 else if(tabLayout.selectedTabPosition == 1){
-                    searchContract()
-                    ll_orderList.visibility = View.GONE
+                    onTapSubDealType(DealType.ALL)
+                    searchContract(DealType.ALL.type)
                 }
             }
 
@@ -366,6 +359,33 @@ class OrderListActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * 전체, 매도, 매수 클릭시
+     */
+    private fun onTapSubDealType(dealType: DealType){
+        when(dealType){
+            DealType.SELL ->{
+                //매도
+                filterAllUnderBar.visibility = View.INVISIBLE
+                filterSellUnderBar.visibility = View.VISIBLE
+                filterBuyUnderBar.visibility = View.INVISIBLE
+            }
+            DealType.BUYING ->{
+                //매수
+                filterAllUnderBar.visibility = View.INVISIBLE
+                filterSellUnderBar.visibility = View.INVISIBLE
+                filterBuyUnderBar.visibility = View.VISIBLE
+            }
+            DealType.ALL ->{
+                //전체
+                filterAllUnderBar.visibility = View.VISIBLE
+                filterSellUnderBar.visibility = View.INVISIBLE
+                filterBuyUnderBar.visibility = View.INVISIBLE
+            }
+        }
+
+    }
+
     override fun onResume() {
         super.onResume()
         
@@ -380,13 +400,13 @@ class OrderListActivity : AppCompatActivity() {
 
             if(gubn == 1){
                 tabLayout.getTabAt(0)?.select()
-                search("")
-                ll_orderList.visibility = View.VISIBLE
+                onTapSubDealType(DealType.ALL)
+                search(DealType.ALL.type)
             }
             else if(gubn == 2){
                 tabLayout.getTabAt(1)?.select()
-                searchContract()
-                ll_orderList.visibility = View.GONE
+                onTapSubDealType(DealType.ALL)
+                searchContract(DealType.ALL.type)
             }
             else if(gubn == 3){
                 tabLayout.getTabAt(2)?.select()
@@ -460,10 +480,10 @@ class OrderListActivity : AppCompatActivity() {
                 ViewUtils.alertDialog(this, "네트워크상태를 확인해주세요."){}
             }))
     }
-    private fun searchContract(){
+    private fun searchContract(dealTpCode : String?){
         progress_bar_login.visibility = View.VISIBLE
 
-        disposable.add(orderViewModel.contractList(contractList.size, PAGE_SIZE, search.text.toString())
+        disposable.add(orderViewModel.contractList(contractList.size, PAGE_SIZE, search.text.toString(), dealTpCode = dealTpCode?: "")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -540,6 +560,7 @@ class OrderListActivity : AppCompatActivity() {
             var contract_status1 = itemView.findViewById<LinearLayoutCompat>(R.id.contract_status1)
             var contract_status2 = itemView.findViewById<LinearLayoutCompat>(R.id.contract_status2)
             var btnNego = itemView.findViewById<RelativeLayout>(R.id.btnNego)
+            var ivSecret = itemView.findViewById<ImageView>(R.id.ivSecret)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderAdapter.ViewHolder {
@@ -555,10 +576,9 @@ class OrderListActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: OrderAdapter.ViewHolder, position: Int) {
             val data = list[position]
 
-            holder.stockName.text = data.STK_NM
+            holder.stockName.text = data.CORP_HANGL_NM
             holder.stockName2.text = data.STOCK_TP_CODE_NM
-            holder.count.text = numberFormat.format(data.DEAL_QTY)
-            holder.price.text = numberFormat.format(data.DEAL_UPRC)
+
             //holder.status.text = if(data.POST_ORD_STAT_CODE == "0"){"협상대기"}else if(data.POST_ORD_STAT_CODE == "1"){"협상중"}else if(data.POST_ORD_STAT_CODE == "2"){"협상중(협상불가)"}else if(data.POST_ORD_STAT_CODE == "4"){"삭제"}else{""}
 
             holder.status1.visibility = View.INVISIBLE
@@ -567,6 +587,16 @@ class OrderListActivity : AppCompatActivity() {
             holder.status4.visibility = View.INVISIBLE
             holder.contract_status1.visibility = View.INVISIBLE
             holder.contract_status2.visibility = View.INVISIBLE
+
+            if(data.PUBLIC_YN == "Y"){
+                holder.ivSecret.toGone()
+                holder.count.text = numberFormat.format(data.DEAL_QTY)
+                holder.price.text = numberFormat.format(data.DEAL_UPRC)
+            }else{
+                holder.ivSecret.toVisible()
+                holder.count.text = R.string.star6.toResString()
+                holder.price.text = R.string.star6.toResString()
+            }
 
             if(data.POST_ORD_STAT_CODE == "0"){
                 if(data.DEAL_TP == "10"){
@@ -587,21 +617,26 @@ class OrderListActivity : AppCompatActivity() {
 
             holder.mRow.setOnClickListener {
 
-                var intent = Intent(this@OrderListActivity, OrderDetailActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                intent.putExtra("entpNo", data.ENTP_NO)
-                intent.putExtra("stkCode", data.STK_CODE)
-                intent.putExtra("stkName", data.STK_NM)
-                intent.putExtra("orderNo", data.ORDER_NO)
-                startActivity(intent)
+
+                ActivityUtil.startOrderDetailActivity(this@OrderListActivity, data)
+
+//                var intent = Intent(this@OrderListActivity, OrderDetailActivity::class.java)
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                intent.putExtra("entpNo", data.ENTP_NO)
+//                intent.putExtra("stkCode", data.STK_CODE)
+//                intent.putExtra("stkName", data.STK_NM)
+//                intent.putExtra("orderNo", data.ORDER_NO)
+//                startActivity(intent)
 
             }
 
             holder.btnNego.setOnClickListener {
-                var intent = Intent(this@OrderListActivity, OrderPopupActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                intent.putExtra("orderItem", data)
-                startActivity(intent)
+                ActivityUtil.startOrderPopupActivity(this@OrderListActivity, data)
+
+//                var intent = Intent(this@OrderListActivity, OrderPopupActivity::class.java)
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                intent.putExtra("orderItem", data)
+//                startActivity(intent)
             }
         }
 
@@ -628,6 +663,7 @@ class OrderListActivity : AppCompatActivity() {
             var contract_status1 = itemView.findViewById<LinearLayoutCompat>(R.id.contract_status1)
             var contract_status2 = itemView.findViewById<LinearLayoutCompat>(R.id.contract_status2)
             var btnNego = itemView.findViewById<RelativeLayout>(R.id.btnNego)
+            var ivSecret = itemView.findViewById<ImageView>(R.id.ivSecret)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContractAdapter.ViewHolder {
@@ -643,10 +679,8 @@ class OrderListActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: ContractAdapter.ViewHolder, position: Int) {
             val data = list[position]
 
-            holder.stockName.text = data.STK_NM
+            holder.stockName.text = data.CORP_HANGL_NM
             holder.stockName2.text = data.STOCK_TP_CODE_NM
-            holder.count.text = numberFormat.format(data.DEAL_QTY ?: 0)
-            holder.price.text = numberFormat.format(data.DEAL_UPRC ?: 0)
 
             holder.status1.visibility = View.INVISIBLE
             holder.status2.visibility = View.INVISIBLE
@@ -654,6 +688,16 @@ class OrderListActivity : AppCompatActivity() {
             holder.status4.visibility = View.INVISIBLE
             holder.contract_status1.visibility = View.INVISIBLE
             holder.contract_status2.visibility = View.INVISIBLE
+
+            if(data.PUBLIC_YN == "Y"){
+                holder.ivSecret.toGone()
+                holder.count.text = numberFormat.format(data.DEAL_QTY ?: 0)
+                holder.price.text = numberFormat.format(data.DEAL_UPRC ?: 0)
+            }else{
+                holder.ivSecret.toVisible()
+                holder.count.text = R.string.star6.toResString()
+                holder.price.text = R.string.star6.toResString()
+            }
 
             if(data.NEGO_SETT_STAT_CODE == "204" || data.NEGO_SETT_STAT_CODE == "206"){
                 holder.contract_status1.visibility = View.VISIBLE
@@ -663,18 +707,20 @@ class OrderListActivity : AppCompatActivity() {
             }
 
             holder.mRow.setOnClickListener {
+                ActivityUtil.startContractPopupActivity(this@OrderListActivity, data)
 
-                var intent = Intent(this@OrderListActivity, ContractPopupActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                intent.putExtra("contractItem", data)
-                startActivity(intent)
+//                var intent = Intent(this@OrderListActivity, ContractPopupActivity::class.java)
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                intent.putExtra("contractItem", data)
+//                startActivity(intent)
 
             }
             holder.btnNego.setOnClickListener {
-                var intent = Intent(this@OrderListActivity, ContractPopupActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                intent.putExtra("contractItem", data)
-                startActivity(intent)
+                ActivityUtil.startContractPopupActivity(this@OrderListActivity, data)
+//                var intent = Intent(this@OrderListActivity, ContractPopupActivity::class.java)
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                intent.putExtra("contractItem", data)
+//                startActivity(intent)
             }
         }
 
@@ -706,6 +752,7 @@ class OrderListActivity : AppCompatActivity() {
         }
         else{
             super.onBackPressed()
+            overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
         }
     }
 

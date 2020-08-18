@@ -29,11 +29,28 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_vguard_config"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VersionInfoActivity"
-            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".view.SchemeActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="splash"
+                    android:scheme="bemyunicorn" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".VersionInfoActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait">
@@ -45,25 +62,35 @@
         </activity>
         <activity
             android:name=".TutorialActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".OrderListActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.order.OrderListNewActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity
             android:name=".OrderPopupActivity"
+            android:theme="@style/AppTheme.Transparent" />
+        <activity
+            android:name=".ui.popup.OrderPopupNewActivity"
+            android:theme="@style/AppTheme.Transparent" />
+        <activity
+            android:name=".NegotiationPopupActivity"
             android:theme="@style/AppTheme.Transparent" />
         <activity
             android:name=".ContractPopupActivity"
             android:theme="@style/AppTheme.Transparent" />
         <activity
             android:name=".ChatListActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity android:name=".DidReceiverActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -78,24 +105,31 @@
         </activity>
         <activity
             android:name=".Regist1Activity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".PersonRegist2Activity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".PersonRegist3Activity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CompanyRegist2Activity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CompanyRegist3Activity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AgreementActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".OrderDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.order.OrderDetailNewActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.order.OrderRegistActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".OrderWriteActivity"
@@ -115,7 +149,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".WebActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".ContractDetailActivity"
             android:screenOrientation="portrait" />
@@ -127,21 +162,24 @@
             android:theme="@style/AppTheme.Transparent" />
         <activity
             android:name=".ChatbotLoginActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CreateGroupChannelActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".GroupChannelActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.sendbird.syncmanager.utils.PhotoViewerActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.sendbird.syncmanager.utils.MediaPlayerActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SettingNewActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MyPageActivity"
@@ -161,6 +199,16 @@
         <activity
             android:name=".RegistActivity"
             android:screenOrientation="portrait" />
+        <activity android:name="kr.co.koscom.omp.ui.main.MainNewActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="kr.co.koscom.omp.ui.drawerlayout.DrawerLayoutActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="kr.co.koscom.omp.ui.drawerlayout.quick.QuickMenuActivity"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".SignLaunchActivity"
             android:screenOrientation="portrait" /> <!-- 검사 Activity -->
@@ -168,11 +216,11 @@
             android:name="kr.co.vguard2.ScanActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name="com.softforum.xecurekeypad.XKKeypadView"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.Translucent"></activity>
+            android:theme="@android:style/Theme.Translucent" />
 
         <service
             android:name=".DownloadService"

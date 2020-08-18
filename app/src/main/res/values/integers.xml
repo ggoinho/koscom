@@ -1,0 +1,4 @@
+<resources>
+    <integer name="default_animation_duration">250</integer>
+    <integer name="default_triggerSync">400</integer>
+</resources>

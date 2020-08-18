@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/holderlayoutSearchFilter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingStart="16dp"
+        android:paddingTop="18dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/holderlayoutSearchFilterTab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- 주문 현황 -->
+            <TextView
+                android:id="@+id/holdertvTabOrderStatus"
+                style="@style/main_filter_tab"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tab_selector_main_filter_left"
+                android:gravity="center"
+                android:paddingTop="11dp"
+                android:paddingBottom="11dp"
+                android:text="@string/main_tab_order_status"
+                app:layout_constraintEnd_toStartOf="@+id/holdervTabDivide1"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_weight="93"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/holdervTabDivide1"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/color_selector_white_blue"
+                app:layout_constraintBottom_toBottomOf="@+id/holdertvTabOrderStatus"
+                app:layout_constraintEnd_toStartOf="@+id/holdertvTabMyNegoProgress"
+                app:layout_constraintStart_toEndOf="@+id/holdertvTabOrderStatus"
+                app:layout_constraintTop_toTopOf="@+id/holdertvTabOrderStatus" />
+
+            <!-- 나의 협상 진행상황 -->
+            <TextView
+                android:id="@+id/holdertvTabMyNegoProgress"
+                style="@style/main_filter_tab"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/tab_selector_main_filter_mid"
+                android:gravity="center"
+                android:paddingTop="11dp"
+                android:paddingBottom="11dp"
+                android:text="@string/main_tab_nego_progress"
+                app:layout_constraintBottom_toBottomOf="@+id/holdertvTabOrderStatus"
+                app:layout_constraintEnd_toStartOf="@+id/holdervTabDivide2"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_weight="140"
+                app:layout_constraintStart_toEndOf="@+id/holdervTabDivide1"
+                app:layout_constraintTop_toTopOf="@+id/holdertvTabOrderStatus" />
+
+            <View
+                android:id="@+id/holdervTabDivide2"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/color_selector_white_blue"
+                app:layout_constraintBottom_toBottomOf="@+id/holdertvTabMyNegoProgress"
+                app:layout_constraintEnd_toStartOf="@+id/holdertvConclusionStatus"
+                app:layout_constraintStart_toEndOf="@+id/holdertvTabMyNegoProgress"
+                app:layout_constraintTop_toTopOf="@+id/holdertvTabMyNegoProgress" />
+
+            <!-- 나의 체결 현황 -->
+            <TextView
+                android:id="@+id/holdertvConclusionStatus"
+                style="@style/main_filter_tab"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/tab_selector_main_filter_right"
+                android:gravity="center"
+                android:paddingTop="11dp"
+                android:paddingBottom="11dp"
+                android:text="@string/main_tab_conclusion_status"
+                app:layout_constraintBottom_toBottomOf="@+id/holdertvTabOrderStatus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_weight="93"
+                app:layout_constraintStart_toEndOf="@+id/holdervTabDivide2"
+                app:layout_constraintTop_toTopOf="@+id/holdertvTabOrderStatus" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/holderlayoutSearchFilterInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/holderlayoutSearchFilterTab">
+
+            <TextView
+                android:id="@+id/holdertvNegotiable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/checkbox_main_agree"
+                android:drawablePadding="6dp"
+                android:text="@string/main_negotiable"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/holdertvMy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:drawableLeft="@drawable/checkbox_main_agree"
+                android:drawablePadding="6dp"
+                android:text="@string/main_my"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/holdertvNegotiable"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/holdertvOrderTotalCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="9dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/holdertvOrderDetailView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/holdertvOrderDetailView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_white_dddddd"
+                android:paddingStart="7dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="7dp"
+                android:paddingBottom="5dp"
+                android:text="@string/main_order_detail_view"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="8.5dp"
+                android:background="@color/gray_dddddd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/holdertvOrderDetailView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

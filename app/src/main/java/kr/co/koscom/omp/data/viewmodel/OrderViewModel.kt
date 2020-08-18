@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.scsoft.boribori.data.viewmodel
+package kr.co.koscom.omp.data.viewmodel
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.Flowable
@@ -48,6 +48,20 @@ class OrderViewModel() : ViewModel() {
         return orderService.tradeList(request)
     }
 
+    fun tradeList(start: Int?, end: Int?, keyword: String?, dealTpCode: String = "", isNegotiable : String = "", isMyOrder: String = ""): Flowable<Order> {
+
+        var request = Request()
+        request.start = start
+        request.end = end
+        request.keyword = keyword
+        request.isNegotiable = isNegotiable
+        request.isMyOrder = isMyOrder
+        request.dealTpCode = dealTpCode
+
+        return orderService.tradeList(request)
+    }
+
+
     fun orderDetail(orderNo: String, rqtClientNo: String, orderStkCode: String): Flowable<OrderDetail> {
 
         var request = Request()
@@ -58,12 +72,15 @@ class OrderViewModel() : ViewModel() {
         return orderService.orderDetail(request)
     }
 
-    fun contractList(start: Int?, end: Int?, keyword: String?): Flowable<OrderContract> {
+    fun contractList(start: Int?, end: Int?, keyword: String = "", dealTpCode: String = "", contractStatusParam: String = ""): Flowable<OrderContract> {
 
         var request = Request()
         request.start = start
         request.end = end
         request.keyword = keyword
+        request.dealTpCode = dealTpCode
+        //todo 9월에 작업
+//        request.negoSettStat = contractStatusParam
 
         return orderService.contractList(request)
     }
@@ -79,7 +96,7 @@ class OrderViewModel() : ViewModel() {
 
     fun submitOrder(unitPrice: String, orderType: String, condition: String,
                     clientName: String, clientNo: String, orderQty: String,
-                    stockCode: String, startDate: String): Flowable<Response> {
+                    stockCode: String, startDate: String, publicYn: String, certiNum: String): Flowable<Response> {
 
         var request = Request()
         request.unitPrice = unitPrice
@@ -90,6 +107,8 @@ class OrderViewModel() : ViewModel() {
         request.orderQty = orderQty
         request.stockCode = stockCode
         request.startDate = startDate
+        request.publicYn = publicYn
+        request.certiNum = certiNum
 
         return orderService.submitOrder(request)
     }
@@ -102,6 +121,28 @@ class OrderViewModel() : ViewModel() {
         request.type = type
 
         return orderService.favoriteCorp(request)
+    }
+
+    fun getCertiNum(clientNo: String, mobileToken: String?): Flowable<Certi> {
+
+        var request = Request()
+        request.clientNo = clientNo
+        request.MOBILE_TOCKEN = mobileToken
+
+        return orderService.getCertiNum(request)
+    }
+
+    fun myNegoList(clientNo: String, start: Int?, end: Int?, stk_nm: String?, searchRequstDeBgn: String?, searchRequstDeEnd: String?): Flowable<OrderNego> {
+
+        var request = Request()
+        request.clientNo = clientNo
+        request.start = start
+        request.end = end
+        request.stk_nm = stk_nm
+        request.searchRequstDeBgn = searchRequstDeBgn
+        request.searchRequstDeEnd = searchRequstDeEnd
+
+        return orderService.myNegoList(request)
     }
 
 }

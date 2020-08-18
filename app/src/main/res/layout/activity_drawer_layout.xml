@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- 상단 툴바 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutToolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="19dp"
+        android:paddingTop="14dp"
+        android:paddingEnd="19dp"
+        android:paddingBottom="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivToolHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/top_icon_b_01"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvToolLogout"
+            style="@style/F15R_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:text="@string/drawer_logout"
+            app:layout_constraintStart_toEndOf="@+id/ivToolHome"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/ivToolShutDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/top_icon_b_04"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivToolSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/top_icon_b_03"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivToolShutDown"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivToolAlarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/top_icon_b_02"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivToolSetting"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 메뉴 내용 레이아웃 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/gray_f2f5f9"
+        app:layout_constraintBottom_toTopOf="@+id/layoutToolBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutToolbar">
+
+
+        <!-- 메뉴 내용 레이아웃 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutBottomContents"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutToolSearch">
+
+
+            <!-- 왼쪽 메뉴 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutToolLeft"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/gray_f2f5f9"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/layoutToolRight"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintHorizontal_weight="130"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <View
+                    android:id="@+id/vLeftTopMargin"
+                    android:layout_width="0dp"
+                    android:layout_height="9dp"
+                    android:background="@drawable/color_selector_f2f5f9_white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvLeftMenu"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:fadingEdgeLength="0dp"
+                    android:overScrollMode="never"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vLeftTopMargin" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!-- 오른쪽 메뉴 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutToolRight"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintHorizontal_weight="230"
+                app:layout_constraintStart_toEndOf="@+id/layoutToolLeft"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRightMenu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fadingEdgeLength="0dp"
+                    android:overScrollMode="never"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!-- 검색 레이아웃 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutToolSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_4e4e9e"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/layoutBottomContents"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/ivToolProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:background="@drawable/ico_sn_r"
+                app:layout_constraintBottom_toBottomOf="@+id/tvToolNickName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvToolNickName" />
+
+            <TextView
+                android:id="@+id/tvToolNickName"
+                style="@style/F24R_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/ivToolProfile"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="네오포스코리아" />
+
+
+            <!-- 검색 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutSearchBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="22dp"
+                android:paddingTop="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivToolProfile">
+
+                <EditText
+                    android:id="@+id/etToolSearch"
+                    style="@style/F14R_white"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@null"
+                    android:hint="@string/drawer_search_hint"
+                    android:imeOptions="actionSearch"
+                    android:inputType="textWebEditText"
+                    android:maxLines="1"
+                    android:textColorHint="@color/purple_c2c2f9"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivToolSearch"
+                    app:layout_constraintEnd_toStartOf="@+id/ivToolSearch"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ivToolSearch" />
+
+                <ImageView
+                    android:id="@+id/ivToolSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ico_w_search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/vDivideSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivToolSearch" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutSearchListFrame"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:background="@color/purple_4e4e9e"
+                app:layout_constraintEnd_toEndOf="@+id/layoutSearchBar"
+                app:layout_constraintStart_toStartOf="@+id/layoutSearchBar"
+                app:layout_constraintTop_toBottomOf="@+id/layoutSearchBar">
+
+
+                <TextView
+                    android:id="@+id/tvSearchEmpty"
+                    style="@style/F14R_purple_c2c2f9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="@string/drawer_search_empty"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSearchList"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fadingEdgeLength="0dp"
+                    android:overScrollMode="never"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- 하단 툴 레이아웃 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutToolBottom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_f8f8f8"
+        android:paddingBottom="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <View
+            android:id="@+id/vDivideBottom"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray_e0e0e0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvToolBottomChat"
+            style="@style/F12R_5e5e5e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:drawableTop="@drawable/menu_icon_f_01"
+            android:text="@string/drawer_bottom_chat"
+            app:layout_constraintEnd_toStartOf="@+id/tvToolBottomService"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vDivideBottom" />
+
+        <TextView
+            android:id="@+id/tvToolBottomService"
+            style="@style/F12R_5e5e5e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/menu_icon_f_02"
+            android:text="@string/drawer_bottom_service_introduce"
+            app:layout_constraintEnd_toStartOf="@+id/tvToolBottomOneAndOne"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tvToolBottomChat"
+            app:layout_constraintTop_toTopOf="@+id/tvToolBottomChat" />
+
+
+        <TextView
+            android:id="@+id/tvToolBottomOneAndOne"
+            style="@style/F12R_5e5e5e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/menu_icon_f_03"
+            android:text="@string/drawer_bottom_one_and_one"
+            app:layout_constraintEnd_toStartOf="@+id/tvToolBottomQuick"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tvToolBottomService"
+            app:layout_constraintTop_toTopOf="@+id/tvToolBottomChat" />
+
+
+        <TextView
+            android:id="@+id/tvToolBottomQuick"
+            style="@style/F12R_5e5e5e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/menu_icon_f_04"
+            android:text="@string/drawer_bottom_quick_menu"
+            app:layout_constraintEnd_toStartOf="@+id/tvToolBottomClose"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tvToolBottomOneAndOne"
+            app:layout_constraintTop_toTopOf="@+id/tvToolBottomChat" />
+
+
+        <TextView
+            android:id="@+id/tvToolBottomClose"
+            style="@style/F12R_5e5e5e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:drawableTop="@drawable/menu_icon_f_05"
+            android:text="@string/drawer_bottom_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tvToolBottomQuick"
+            app:layout_constraintTop_toTopOf="@+id/tvToolBottomChat" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,8 +14,11 @@ import com.google.android.material.tabs.TabLayout
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_customer_center.*
+import kr.co.koscom.omp.constants.Constants
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
+import kr.co.koscom.omp.enums.CustomerTabType
+import kr.co.koscom.omp.extension.toResString
 
 /**
  * 고객센터
@@ -36,7 +39,7 @@ class CustomerCenterActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_customer_center)
 
-        toolbar.initTitle("고객센터")
+        toolbar.initTitle(R.string.customer_title.toResString())
         toolbar.initData(this)
 
         if (savedInstanceState == null) {
@@ -52,7 +55,7 @@ class CustomerCenterActivity : AppCompatActivity() {
             val transaction = supportFragmentManager.beginTransaction()
             fragment = WebFragment()
             var bundle = Bundle()
-            bundle.putString("url", BuildConfig.SERVER_URL + "/mobile/common/mClmtCntrLst?LOGIN_ID="+PreferenceUtils.getUserId())
+            bundle.putString("url", Constants.URL_GONGJI+"?LOGIN_ID=${PreferenceUtils.getUserId()}")
             fragment!!.arguments = bundle
             transaction.replace(R.id.subFragment, fragment!!)
             transaction.commitAllowingStateLoss()
@@ -68,9 +71,19 @@ class CustomerCenterActivity : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val transaction = supportFragmentManager.beginTransaction()
 
-                when(tab!!.position){
-                    0 -> fragment!!.loadUrl(BuildConfig.SERVER_URL + "/mobile/common/mClmtCntrLst?LOGIN_ID="+PreferenceUtils.getUserId())
-                    1 -> fragment!!.loadUrl(BuildConfig.SERVER_URL + "/mobile/common/mClmtCntrFaqLst?LOGIN_ID="+PreferenceUtils.getUserId())
+                /**
+                 * 0: 공지사항
+                 * 1: 서비스소개
+                 * 2: FAQ
+                 * 3: 1:1문
+                 */
+
+                fragment?.clearHistory()
+                when(CustomerTabType.getType(tab!!.position)){
+                    CustomerTabType.GONGJI -> fragment!!.loadUrl(Constants.URL_GONGJI+"?LOGIN_ID=${PreferenceUtils.getUserId()}")
+                    CustomerTabType.SERVICE -> fragment!!.loadUrl(Constants.URL_SERVICE_GUIDE)
+                    CustomerTabType.FAQ -> fragment!!.loadUrl(Constants.URL_FAQ+"?LOGIN_ID=${PreferenceUtils.getUserId()}")
+                    CustomerTabType.ONE_AND_ONE -> fragment!!.loadUrl(Constants.URL_ONE_AND_ONE_QUESTION+"?LOGIN_ID=${PreferenceUtils.getUserId()}")
                 }
                 transaction.replace(R.id.subFragment, fragment!!)
                 transaction.commitAllowingStateLoss()
@@ -83,15 +96,6 @@ class CustomerCenterActivity : AppCompatActivity() {
                 tabLayout.getTabAt(tab)?.select()
             }
         }
-    }
-
-    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        if (getCurrentFocus() != null) {
-            var imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(getCurrentFocus()!!.getWindowToken(), 0);
-        }
-
-        return super.dispatchTouchEvent(ev);
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -130,11 +134,13 @@ class CustomerCenterActivity : AppCompatActivity() {
                 }
                 else{
                     super.onBackPressed()
+                    overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
                 }
             }
             else{
 
                 super.onBackPressed()
+                overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
             }
         }
 

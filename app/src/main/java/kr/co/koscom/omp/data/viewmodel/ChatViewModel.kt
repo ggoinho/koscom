@@ -71,11 +71,12 @@ class ChatViewModel() : ViewModel() {
 
         return chatService.login(request)
     }
-    fun requestNego(loginId: String, orderNo: String): Flowable<Response> {
+    fun requestNego(loginId: String, orderNo: String, certiNum: String): Flowable<Response> {
 
         var request = Request()
         request.LOGIN_ID = loginId
         request.ORDER_NO = orderNo
+        request.CERTI_NUM = certiNum
 
         return chatService.login(request)
     }
@@ -217,4 +218,16 @@ class ChatViewModel() : ViewModel() {
 
         return chatService.logintest(request)
     }
+
+
+    fun yocheongCancel(loginId: String, orderNo: String, channelUrl: String): Flowable<Response> {
+
+        var request = Request()
+        request.LOGIN_ID = loginId
+        request.ORDER_NO = orderNo
+        request.CHANNEL_URL = channelUrl
+
+        return chatService.yocheongCancel(request)
+    }
+
 }

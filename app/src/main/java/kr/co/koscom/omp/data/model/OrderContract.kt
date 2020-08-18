@@ -1,7 +1,5 @@
 package kr.co.koscom.omp.data.model
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
 import org.apache.commons.lang3.builder.ToStringBuilder
 import java.io.Serializable
 
@@ -56,6 +54,12 @@ class OrderContract {
 
         var CVNT_DEAL_DATE: String? = null
         var ROWNUM: String? = null
+
+        var PUBLIC_YN: String? = null
+        var SECRET_CERTI_YN: String? = null
+        var PBLS_CLNT_NO: String? = null
+        var IS_MY_ORDER: String? = null
+
 
     }
 

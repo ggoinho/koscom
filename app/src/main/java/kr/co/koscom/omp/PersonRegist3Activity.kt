@@ -1,14 +1,10 @@
 package kr.co.koscom.omp
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.Toolbar
-import androidx.core.widget.ContentLoadingProgressBar
 import kotlinx.android.synthetic.main.activity_person_regist3.*
+import kr.co.koscom.omp.util.ActivityUtil
 
 // kr.co.koscom.omp
 // BeMyUNICORN
@@ -25,8 +21,9 @@ class PersonRegist3Activity : AppCompatActivity() {
 
         btnCancel!!.setOnClickListener { finish() }
         btnApply!!.setOnClickListener {
-            startActivity(Intent(this@PersonRegist3Activity, MainActivity::class.java))
-            finish()
+            ActivityUtil.startMainNewActivity(this@PersonRegist3Activity)
+//            startActivity(Intent(this@PersonRegist3Activity, MainActivity::class.java))
+//            finish()
         }
 
 

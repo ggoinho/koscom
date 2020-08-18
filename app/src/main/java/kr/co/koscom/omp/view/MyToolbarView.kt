@@ -23,12 +23,14 @@ import kotlinx.android.synthetic.main.view_toolbar.view.*
 import kr.co.koscom.omp.LoginActivity
 import kr.co.koscom.omp.MyPageActivity
 import kr.co.koscom.omp.R
-import kr.co.koscom.omp.data.Constants
+import kr.co.koscom.omp.constants.Constants
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
+import kr.co.koscom.omp.enums.MyPageTabType
 import kr.co.koscom.omp.extension.toDrawable
 import kr.co.koscom.omp.extension.toInvisible
 import kr.co.koscom.omp.extension.toVisible
+import kr.co.koscom.omp.util.ActivityUtil
 
 class MyToolbarView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -59,11 +61,13 @@ class MyToolbarView @JvmOverloads constructor(
 
         btnBack.setOnClickListener {
             activity.finish()
+            activity.overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
         }
         btnAlarm.setOnClickListener {
-            var intent = Intent(context, MyPageActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            activity.startActivity(intent)
+            ActivityUtil.startMyPageActivity(activity, MyPageTabType.ALARM.ordinal)
+//            var intent = Intent(context, MyPageActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            activity.startActivity(intent)
         }
 
         btnMenu.setOnClickListener {

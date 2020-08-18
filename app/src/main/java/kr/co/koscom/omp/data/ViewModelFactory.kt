@@ -19,6 +19,7 @@ package kr.co.koscom.omp.data
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.scsoft.boribori.data.viewmodel.*
+import kr.co.koscom.omp.data.viewmodel.OrderViewModel
 import kr.co.koscom.omp.data.viewmodel.UpdateViewModel
 
 /**

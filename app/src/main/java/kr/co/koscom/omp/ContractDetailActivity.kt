@@ -14,11 +14,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.scsoft.boribori.data.viewmodel.ChatViewModel
 import com.scsoft.boribori.data.viewmodel.LoginViewModel
@@ -28,18 +26,14 @@ import com.sendbird.syncmanager.utils.PreferenceUtils
 import com.signkorea.openpass.interfacelib.SKCallback
 import com.signkorea.openpass.interfacelib.SKCertManager
 import com.signkorea.openpass.interfacelib.SKConstant
-import com.signkorea.openpass.sksystemcrypto.SKSystemCertInfo
-import com.signkorea.openpass.sksystemcrypto.SKUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_contract_detail.*
 import kotlinx.android.synthetic.main.activity_drawer_contract.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.model.Contract
-import kr.co.koscom.omp.data.model.Response
 import kr.co.koscom.omp.view.ViewUtils
 
 
@@ -200,26 +194,26 @@ class ContractDetailActivity : AppCompatActivity() {
         progress_bar_login?.visibility = View.VISIBLE
     }
 
-    private fun initializeOpenPass(listener: () -> Unit) {
+    private fun initializeMyPass(listener: () -> Unit) {
         showProgressDialog("", "초기화 중입니다.")
 
         // 초기화 함수 호출.
-        val nResult = SKCertManager.initOpenPass(this,
-            LoginActivity.OPENPASS_LICENSE,
-            LoginActivity.OPENPASS_LAUNCHMODE,
+        val nResult = SKCertManager.initMyPass(this,
+            LoginActivity.MY_LICENSE,
+            LoginActivity.MY_LAUNCHMODE,
             SKCallback.MessageCallback { requestCode, resultCode, resultMessage ->
                 progress_bar_login?.visibility = View.INVISIBLE
 
                 if (resultCode == SKConstant.RESULT_CODE_ERROR_NOT_INSTALL ||
                     resultCode == SKConstant.RESULT_CODE_ERROR_APP_DISABLED ||
                     resultCode == SKConstant.RESULT_CODE_ERROR_NEED_UPDATE){
-                    // OpenPass 설치 등 상태 관련 오류
+                    // MyPass 설치 등 상태 관련 오류
                     SKCertManager.showErrorPopup(resultCode)
                 } else if (resultCode == SKConstant.RESULT_CODE_OK){
-                    Log.d(WebFragment::class.simpleName, "initializeOpenPass success.")
+                    Log.d(WebFragment::class.simpleName, "initializeMyPass success.")
                     listener.invoke()
                 } else {
-                    // OpenPass 초기화 실패
+                    // MyPass 초기화 실패
                     Toast.makeText(this@ContractDetailActivity, resultMessage, Toast.LENGTH_LONG).show()
 
                     progress_bar_login?.visibility = View.INVISIBLE
@@ -242,7 +236,7 @@ class ContractDetailActivity : AppCompatActivity() {
 
     fun signContract(listener: Runnable){
 
-        initializeOpenPass {
+        initializeMyPass {
             if (PreferenceUtils.getLoginType().equals("openpass")) {
                 Log.d(WebFragment::class.simpleName, "SKCertManager.sign invoke")
                 SKCertManager.sign(
@@ -261,8 +255,8 @@ class ContractDetailActivity : AppCompatActivity() {
                     )
 
                     if (resultCode == SKConstant.RESULT_CODE_OK) {
-                        //Log.v("OpenPassClient", "binSignData : " + String(binSignData))
-                        //Log.v("OpenPassClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
+                        //Log.v("MyPassClient", "binSignData : " + String(binSignData))
+                        //Log.v("MyPassClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
 
                         resultCertify(
                             "1",
@@ -363,7 +357,7 @@ class ContractDetailActivity : AppCompatActivity() {
     }
 
     private fun resultCertify(opCode: String, signData: String, snData: String, listener: (securityNum: String?, dn: String, signature: String, publicKey: String, name: String) -> Unit){
-        disposable.add(loginViewModel.resultCertOpenPass(opCode, signData, snData)
+        disposable.add(loginViewModel.resultCertMyPass(opCode, signData, snData)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -477,6 +471,7 @@ class ContractDetailActivity : AppCompatActivity() {
         }
         else{
             super.onBackPressed()
+            overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
         }
     }
 
@@ -492,10 +487,13 @@ class ContractDetailActivity : AppCompatActivity() {
             }
 
             Log.d(ContractDetailActivity::class.simpleName, "web fragment laod url : " + url)
+
             if(position == 0){
+                (supportFragmentManager.findFragmentById(R.id.webFragment1) as WebFragment).clearHistory()
                 (supportFragmentManager.findFragmentById(R.id.webFragment1) as WebFragment).loadUrl(url)
             }
             else if(position == 1){
+                (supportFragmentManager.findFragmentById(R.id.webFragment2) as WebFragment).clearHistory()
                 (supportFragmentManager.findFragmentById(R.id.webFragment2) as WebFragment).loadUrl(url)
             }
 

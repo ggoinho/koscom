@@ -1,15 +1,9 @@
 package kr.co.koscom.omp
 
-import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.text.Html
-import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -23,7 +17,6 @@ import com.scsoft.boribori.data.viewmodel.ChatViewModel
 import com.scsoft.boribori.data.viewmodel.LoginViewModel
 import com.sendbird.android.SendBird
 import com.sendbird.syncmanager.ConnectionManager
-import com.sendbird.syncmanager.utils.Base64Utils
 import com.sendbird.syncmanager.utils.ComUtil
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import com.signkorea.openpass.interfacelib.SKCallback
@@ -31,17 +24,16 @@ import com.signkorea.openpass.interfacelib.SKCertManager
 import com.signkorea.openpass.interfacelib.SKConstant
 import com.signkorea.openpass.sksystemcrypto.SKSystemCertInfo
 import com.signkorea.openpass.sksystemcrypto.SKUtil
-import com.softforum.xecurekeypad.XKConstants
-import com.softforum.xecurekeypad.XKKeypadCustomInterface
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_intro.*
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.progress_bar_login
-import kotlinx.android.synthetic.main.activity_login.version
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
+import kr.co.koscom.omp.extension.enableView
+import kr.co.koscom.omp.extension.toGone
+import kr.co.koscom.omp.extension.toVisible
+import kr.co.koscom.omp.util.ActivityUtil
 import kr.co.koscom.omp.view.MyDialog
 import kr.co.koscom.omp.view.ViewUtils
 
@@ -64,19 +56,20 @@ class LoginActivity : AppCompatActivity() {
 
     var mainProgress: MyDialog? = null
 
-    // OpenPass 연동 단계
+    // MyPass 연동 단계
     private val _STEP_IDLE = -1
-    private val _STEP_INITIALIZE = 0                       // OpenPass 초기화
+    private val _STEP_INITIALIZE = 0                       // MyPass 초기화
     private val _STEP_CHECK_VERSION = 1                    // 버전 체크
     private val _STEP_SEND_CUSTOM_UI_RESOURCES = 2         // 커스컴 UI 리소스 설정
     private val _STEP_COMPLETED = 3                        // 연동 완료
     private var mCurrentStep = _STEP_IDLE
+    private var currsentUserType = ""
 
 
-    private val METHOD_PERSON = 0                           //개인
-    private val METHOD_COMPANY = 1                          //법인
-    private val METHOD_INTERGRATED = 2                      //통합인증 앱
-    private val METHOD_DID = 3                              //DID
+//    private val METHOD_PERSON = 0                           //개인
+//    private val METHOD_COMPANY = 1                          //법인
+//    private val METHOD_INTERGRATED = 2                      //통합인증 앱
+//    private val METHOD_DID = 3                              //DID
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,10 +79,16 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_login)
 
-        version.text = "V.${BuildConfig.VERSION_NAME}"
+        tvVersion.text = "V.${BuildConfig.VERSION_NAME}"
 
-        tv_title.setText(Html.fromHtml(getString(R.string.login_title)))
-        tv_sub_title.setText(Html.fromHtml(getString(R.string.login_auth_type)))
+//        tv_title.setText(Html.fromHtml(getString(R.string.login_title)))
+//        tv_sub_title.setText(Html.fromHtml(getString(R.string.login_auth_type)))
+
+        if(intent.getBooleanExtra("isCloseBtn", false)){
+            layoutClose.toVisible()
+        }else{
+            layoutClose.toGone()
+        }
 
 
         viewModelFactory = Injection.provideViewModelFactory(this)
@@ -97,25 +96,42 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
 
 
-        chkPerson.setOnClickListener {
-            clickMethod(METHOD_PERSON)
-        }
-        chkCompany.setOnClickListener {
-            clickMethod(METHOD_COMPANY)
-        }
-        chkIntegrated.setOnClickListener {
-            clickMethod(METHOD_INTERGRATED)
-        }
-        chkDid.setOnClickListener {
-            clickMethod(METHOD_DID)
+        tvIndividualIntegraded.setOnClickListener {
+            //개인 통합 로그인
+            PreferenceUtils.setLoginType("openpass")
+            mCurrentStep = _STEP_IDLE
+            currsentUserType = "USER_INVT"
+            proceedNextStep()
         }
 
-        chkPerson.callOnClick()
-        //chkDid!!.visibility = View.INVISIBLE
-        chkIntegrated.callOnClick()
+        tvIndividualDid.setOnClickListener {
+            //개인 DID 로그인
+//            PreferenceUtils.setLoginType("did")
 
+            //Login type = L , verify = "J" , sign = "S"
+//            getSkdid("L"){ didNonce: String, didSvcPublic: String ->
+//                val url = "initial://reqService?orgName=Koscom&vcType=login&svcPublicDID=${Base64Utils.getBase64encode(didSvcPublic)}&nonce=${Base64Utils.getBase64encode(didNonce)}"
+//
+//                Log.d("LoginActivity", "didSvcPublic : $didSvcPublic \ndidNonce : $didNonce")
+//                Log.d("LoginActivity", "did scheme url : $url")
+//
+//                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+//                startActivity(intent)
+//
+//            }
+        }
+        tvIndividualDid.enableView(false)
+
+        tvCoporationIntegraded.setOnClickListener {
+            //법인 통합 로그인
+            PreferenceUtils.setLoginType("openpass")
+            mCurrentStep = _STEP_IDLE
+            currsentUserType = "CORP_INVT"
+            proceedNextStep()
+        }
+
+        /*
         btnLogin!!.setOnClickListener {
-
             if(integratedCheckbox.isSelected){
 
 //                if(BuildConfig.DEBUG){
@@ -138,135 +154,61 @@ class LoginActivity : AppCompatActivity() {
 
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     startActivity(intent)
-
                 }
-
             }
+        }
+        */
 
+        tvServiceSign.setOnClickListener {
+            ActivityUtil.startRegistActivity(this)
         }
 
-        btnRegist!!.setOnClickListener {
-            var intent = Intent(this, RegistActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+        tvEasyLoginRegist.setOnClickListener{
+            ActivityUtil.startSignLaunchActivity(this)
         }
 
-        btnSetAlarm.setOnClickListener{
-            var intent = Intent(this, SignLaunchActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-        }
-
-        btnClose!!.setOnClickListener {
+        layoutClose.setOnClickListener {
             closeScreen()
         }
 
-        password_chatId.setE2EURL(mE2EURL)
-        password_chatId.setXKViewType(XKConstants.XKViewType.XKViewTypeNormalView)
-        password_chatId.setMaskString("*")
-        password_chatId.setXKKeypadType (XKConstants.XKKeypadType.XKKeypadTypeQwerty)
-
-        password_chatId.setXKDimAlpha(0.5f)
-        password_chatId.setTopViewOnOff(false)
-        password_chatId.setLayoutIdentifier(R.id.container)
+        //로그인 화면 변경하면서 안쓰는것 제거 2020-06-25 혹시 모르니 주석.
+//        password_chatId.setE2EURL(mE2EURL)
+//        password_chatId.setXKViewType(XKConstants.XKViewType.XKViewTypeNormalView)
+//        password_chatId.setMaskString("*")
+//        password_chatId.setXKKeypadType (XKConstants.XKKeypadType.XKKeypadTypeQwerty)
+//
+//        password_chatId.setXKDimAlpha(0.5f)
+//        password_chatId.setTopViewOnOff(false)
+//        password_chatId.setLayoutIdentifier(R.id.container)
 
         /*--------------------------------------------------------------------------------------*
 		 * 보안 세션 만료되었을 경우의 결과 처리를 위한 인터페이스 클래스 & 함수 추가.
 		 * 원하는 결과 처리 추가하면됨.
 		 * 현재는 알림창으로 보안 세션 만료를 알리고 확인 버튼을 클릭하면 키패드가 내려감.
 		 *--------------------------------------------------------------------------------------*/
-        val aXKKeypadCustomInterface = XKKeypadCustomInterface { pContext ->
-            val aAlertDialogBuilder = AlertDialog.Builder(pContext)
-            aAlertDialogBuilder.setMessage("보안 세션이 만료되었습니다.\n다시 실행해 주세요.")
-            aAlertDialogBuilder.setPositiveButton("확인") { dialog, which ->
-                password_chatId.inputCancel()
-            }
-
-            val aAlertDialog = aAlertDialogBuilder.create()
-            aAlertDialog.show()
-        }
-
-        password_chatId.setXKKeypadCustomInterface(aXKKeypadCustomInterface)
+//        val aXKKeypadCustomInterface = XKKeypadCustomInterface { pContext ->
+//            val aAlertDialogBuilder = AlertDialog.Builder(pContext)
+//            aAlertDialogBuilder.setMessage("보안 세션이 만료되었습니다.\n다시 실행해 주세요.")
+//            aAlertDialogBuilder.setPositiveButton("확인") { dialog, which ->
+//                password_chatId.inputCancel()
+//            }
+//
+//            val aAlertDialog = aAlertDialogBuilder.create()
+//            aAlertDialog.show()
+//        }
+//
+//        password_chatId.setXKKeypadCustomInterface(aXKKeypadCustomInterface)
 
         initToken()
 
         val redirect_regist = intent.getBooleanExtra("redirect_regist", false)
         if (redirect_regist) {
 
-            var intent = Intent(this, RegistActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+            ActivityUtil.startRegistActivity(this)
         }
 
     }
 
-    /**
-     * 상단 로그인 방법 선택
-     */
-    private fun clickMethod(method: Int){
-
-        when(method){
-            METHOD_PERSON ->{   //개인
-                loginWayZone!!.visibility = View.VISIBLE
-                btnPersonalLogin!!.visibility = View.VISIBLE
-                imgLoginKey!!.visibility = View.GONE
-                btnCompanyLogin!!.visibility = View.GONE
-
-                chkCompany.setBackgroundResource(R.drawable.shape_rect_fill33)
-                companyCheck.isSelected = false
-                companyTitle.setTextColor(Color.parseColor("#333333"))
-
-                chkPerson.setBackgroundResource(R.drawable.shape_rect_fill31)
-                personCheck.isSelected = true
-                personTitle.setTextColor(Color.parseColor("#3348ae"))
-            }
-            METHOD_COMPANY ->{  //법인
-                loginWayZone!!.visibility = View.GONE
-                btnPersonalLogin!!.visibility = View.GONE
-                imgLoginKey!!.visibility = View.VISIBLE
-                btnCompanyLogin!!.visibility = View.VISIBLE
-
-                chkPerson.setBackgroundResource(R.drawable.shape_rect_fill33)
-                personCheck.isSelected = false
-                personTitle.setTextColor(Color.parseColor("#333333"))
-
-                chkCompany.setBackgroundResource(R.drawable.shape_rect_fill31)
-                companyCheck.isSelected = true
-                companyTitle.setTextColor(Color.parseColor("#3348ae"))
-            }
-            METHOD_INTERGRATED ->{  //통합인증 앱
-                chkDid.setBackgroundResource(R.drawable.shape_rect_fill33)
-                didCheckbox.isSelected = false
-                didTitle.setTextColor(Color.parseColor("#000000"))
-                didIcon.setImageResource(R.drawable.ico_login_did)
-
-                chkIntegrated.setBackgroundResource(R.drawable.shape_rect_fill31)
-                integratedCheckbox.isSelected = true
-                integratedTitle.setTextColor(Color.parseColor("#3348ae"))
-                integratedIcon.setImageResource(R.drawable.ico_login_key_b)
-
-                PreferenceUtils.setLoginType("openpass")
-            }
-            METHOD_DID ->{  //DID
-                //DID 서버 기동 오류로 인한 임시 주석처리
-                /*
-                chkIntegrated.setBackgroundResource(R.drawable.shape_rect_fill33)
-                integratedCheckbox.isSelected = false
-                integratedTitle.setTextColor(Color.parseColor("#000000"))
-                integratedIcon.setImageResource(R.drawable.ico_login_key)
-
-                chkDid.setBackgroundResource(R.drawable.shape_rect_fill31)
-                didCheckbox.isSelected = true
-                didTitle.setTextColor(Color.parseColor("#3348ae"))
-                didIcon.setImageResource(R.drawable.ico_login_did_b)
-
-                PreferenceUtils.setLoginType("did")
-                */
-            }
-
-        }
-
-    }
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
@@ -277,10 +219,10 @@ class LoginActivity : AppCompatActivity() {
         var publicKey = intent?.getStringExtra("publicKey")
         var clientName = intent?.getStringExtra("clientName")
         var signature = intent?.getStringExtra("signature")
-        Log.d(LoginActivity::class.java.simpleName, "pairwiseDID : $pairwiseDID")
-        Log.d(LoginActivity::class.java.simpleName, "publicKey : $publicKey")
-        Log.d(LoginActivity::class.java.simpleName, "clientName : $clientName")
-        Log.d(LoginActivity::class.java.simpleName, "signature : $signature")
+//        Log.d(LoginActivity::class.java.simpleName, "pairwiseDID : $pairwiseDID")
+//        Log.d(LoginActivity::class.java.simpleName, "publicKey : $publicKey")
+//        Log.d(LoginActivity::class.java.simpleName, "clientName : $clientName")
+//        Log.d(LoginActivity::class.java.simpleName, "signature : $signature")
 
         if(!pairwiseDID.isNullOrEmpty()){
             login("2", pairwiseDID!!)
@@ -289,9 +231,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun closeScreen(){
         if(PreferenceUtils.getUserId().isNullOrEmpty()){
-            var intent = Intent(this@LoginActivity, TutorialActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+            ActivityUtil.startTutorialActivity(this)
         }
         finish()
     }
@@ -308,18 +248,18 @@ class LoginActivity : AppCompatActivity() {
     private fun logintest(){
         progress_bar_login.visibility = View.VISIBLE
 
-        disposable.add(chatViewModel.logintest(password_chatId.data)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                progress_bar_login.visibility = View.INVISIBLE
-
-                Log.d(LoginActivity::class.simpleName, "response : " + it)
-            }, {
-                progress_bar_login.visibility = View.INVISIBLE
-                it.printStackTrace()
-                ViewUtils.alertDialog(this, "네트워크상태를 확인해주세요."){}
-            }))
+//        disposable.add(chatViewModel.logintest(password_chatId.data)
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe({
+//                progress_bar_login.visibility = View.INVISIBLE
+//
+//                Log.d(LoginActivity::class.simpleName, "response : " + it)
+//            }, {
+//                progress_bar_login.visibility = View.INVISIBLE
+//                it.printStackTrace()
+//                ViewUtils.alertDialog(this, "네트워크상태를 확인해주세요."){}
+//            }))
     }
 
     private fun login(gubn: String, certified: String){
@@ -388,11 +328,12 @@ class LoginActivity : AppCompatActivity() {
                                                     })*/
 
 
-                                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                                    startActivity(intent)
-                                    finish()
+                                    ActivityUtil.startMainNewActivity(this@LoginActivity)
+//                                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+//                                    startActivity(intent)
+//                                    finish()
                                     //    }
                                     //})
                                 }
@@ -412,7 +353,11 @@ class LoginActivity : AppCompatActivity() {
 
         //CL0000140 : 601333332641178467171688483832714453434050407531286401470446502543282728771
         loginCertify(gubn, certified,signData,opCode) { userId ->
+            ActivityUtil.startMainNewActivity(this@LoginActivity)
 
+
+            /**
+             *  2020-05-14 로그인 할때 샌드버드 채팅방 개설이 아닌 채팅리스트 갔을 때 채팅방 개설
             chatLogin(userId) {accessToken : String ->
 
                 ConnectionManager.login(userId,accessToken) { user, e ->
@@ -489,6 +434,8 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
+
+             */
         }
     }
 
@@ -540,7 +487,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun resultCertify(opCode: String, signData: String, snData: String, listener: (securityNum: String?, dn: String, signature: String, publicKey: String, name: String) -> Unit){
-        disposable.add(loginViewModel.resultCertOpenPass(opCode, signData, snData)
+        disposable.add(loginViewModel.resultCertMyPass(opCode, signData, snData)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -578,13 +525,17 @@ class LoginActivity : AppCompatActivity() {
                         listener.invoke(it.CLNT_NO!!)
                     }
                 }else{
-                    ViewUtils.showErrorMsg(this, it.rCode, it.rMsg)
+//                    ViewUtils.showErrorMsg(this, it.rCode, it.rMsg)
 
-                    var intent = Intent(this, WebActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    intent.putExtra("title", "인증정보 갱신")
-                    intent.putExtra("url", BuildConfig.SERVER_URL + "/mobile/renew/invstSvJoinRenew?AUTH_TYPE="+PreferenceUtils.getLoginType())
-                    startActivity(intent)
+                    ViewUtils.alertDialog(this, it.rMsg){
+//                        var intent = Intent(this, WebActivity::class.java)
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                        intent.putExtra("title", "인증정보 갱신")
+//                        intent.putExtra("isBottomHide", true)
+//                        intent.putExtra("url", BuildConfig.SERVER_URL + "/mobile/renew/invstSvJoinRenew?AUTH_TYPE="+PreferenceUtils.getLoginType())
+//                        startActivity(intent)
+                    }
+
                 }
                 progress_bar_login.visibility = View.INVISIBLE
             }, {
@@ -595,7 +546,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginCertify(gubn: String, certified: String, signData: String, opCode: String, listener: (userId: String) -> Unit){
-        disposable.add(loginViewModel.login(gubn, certified,signData,opCode)
+        disposable.add(loginViewModel.login(gubn, certified,signData, opCode, currsentUserType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -612,13 +563,18 @@ class LoginActivity : AppCompatActivity() {
                         listener.invoke(it.CLNT_NO!!)
                     }
                 }else{
-                    ViewUtils.showErrorMsg(this, it.rCode, it.rMsg)
+//                    ViewUtils.showErrorMsg(this, it.rCode, it.rMsg)
 
-                    var intent = Intent(this, WebActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    intent.putExtra("title", "인증정보 갱신")
-                    intent.putExtra("url", BuildConfig.SERVER_URL + "/mobile/renew/invstSvJoinRenew?AUTH_TYPE="+PreferenceUtils.getLoginType())
-                    startActivity(intent)
+                    ViewUtils.alertDialog(this, it.rMsg){
+//                        var intent = Intent(this, WebActivity::class.java)
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                        intent.putExtra("title", "인증정보 갱신")
+//                        intent.putExtra("isBottomHide", true)
+//                        intent.putExtra("url", BuildConfig.SERVER_URL + "/mobile/renew/invstSvJoinRenew?AUTH_TYPE="+PreferenceUtils.getLoginType())
+//                        startActivity(intent)
+                    }
+
+
                 }
                 progress_bar_login.visibility = View.INVISIBLE
             }, {
@@ -677,20 +633,21 @@ class LoginActivity : AppCompatActivity() {
         FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
             Log.d(LoginActivity::class.java.simpleName,"firebase token : " + instanceIdResult.token)
 
-            token.setText(instanceIdResult.token)
+//            token.setText(instanceIdResult.token)
         }
     }
 
     override fun onActivityResult(aRequestCode: Int, aResultCode: Int, data: Intent?) {
         super.onActivityResult(aRequestCode, aResultCode, data)
 
+
         /*--------------------------------------------------------------------------------------*
 		 * XecureKeypad가 종료되면 Result 값을 받아 처리해야함.
 		 * 	- RequestCode는 XKConstants.XKKeypadRequestCode로 설정.
 		 *--------------------------------------------------------------------------------------*/
-        if (aRequestCode == XKConstants.XKKeypadRequestCode && aResultCode == Activity.RESULT_OK) {
-            password.text = password_chatId.data
-        }
+//        if (aRequestCode == XKConstants.XKKeypadRequestCode && aResultCode == Activity.RESULT_OK) {
+//            password.text = password_chatId.data
+//        }
     }
 
     private fun showProgressDialog(mTitle: String, mMessage: String){
@@ -716,17 +673,17 @@ class LoginActivity : AppCompatActivity() {
     }
 
     /**
-     * [Step 2] (OpenPass 화면 비전환) OpenPass 연등을 위한 초기화.<br></br>
+     * [Step 2] (MyPass 화면 비전환) MyPass 연등을 위한 초기화.<br></br>
      * (이 단계는 필수 사항입니다.)<br></br><br></br>
-     * OpenPass 연동을 위한 채널 생성 등의 초기화 작업을 진항합니다.<br></br>
-     * [SKCertManager.initOpenPass] 함수를 사용합니다.<br></br>
-     * OpenPass가 설치되어 있지 않다면 설치 의사를 묻는 팝업을 표시합니다.
+     * MyPass 연동을 위한 채널 생성 등의 초기화 작업을 진항합니다.<br></br>
+     * [SKCertManager.initMyPass] 함수를 사용합니다.<br></br>
+     * MyPass가 설치되어 있지 않다면 설치 의사를 묻는 팝업을 표시합니다.
      */
-    private fun initializeOpenPass() {
+    private fun initializeMyPass() {
         showProgressDialog("", "초기화 중입니다.")
 
         // 초기화 함수 호출.
-        val nResult = SKCertManager.initOpenPass(this, OPENPASS_LICENSE, OPENPASS_LAUNCHMODE,
+        val nResult = SKCertManager.initMyPass(this, MY_LICENSE, MY_LAUNCHMODE,
             SKCallback.MessageCallback { requestCode, resultCode, resultMessage ->
 
             mainProgress?.dismiss()
@@ -734,15 +691,15 @@ class LoginActivity : AppCompatActivity() {
             if (resultCode == SKConstant.RESULT_CODE_ERROR_NOT_INSTALL ||
                 resultCode == SKConstant.RESULT_CODE_ERROR_APP_DISABLED ||
                 resultCode == SKConstant.RESULT_CODE_ERROR_NEED_UPDATE){
-                // OpenPass 설치 등 상태 관련 오류
+                // MyPass 설치 등 상태 관련 오류
                 SKCertManager.showErrorPopup(resultCode)
             }
             else if (resultCode == SKConstant.RESULT_CODE_OK){
-                // OpenPass 초기화 성공
+                // MyPass 초기화 성공
                 proceedNextStep()
             }
             else {
-                // OpenPass 초기화 실패
+                // MyPass 초기화 실패
                 Toast.makeText(applicationContext, resultMessage, Toast.LENGTH_LONG).show()
                 mainProgress?.dismiss()
             }
@@ -764,16 +721,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     /**
-     * [Step 1] (OpenPass 화면 비전환) 기기에 설치된 OpenPass의 버전을 확인.<br></br>
+     * [Step 1] (MyPass 화면 비전환) 기기에 설치된 MyPass의 버전을 확인.<br></br>
      * (이 단계는 옵션 사항입니다.)<br></br><br></br>
-     * [SKCertManager.getOpenPassVersion] 함수를 사용합니다.<br></br>
-     * OpenPass의 버전을 확인하고 아직 설치가 되어 있지 않다면 설치 의사를 묻는 팝업을 표시합니다.
+     * [SKCertManager.getMyPassVersion] 함수를 사용합니다.<br></br>
+     * MyPass의 버전을 확인하고 아직 설치가 되어 있지 않다면 설치 의사를 묻는 팝업을 표시합니다.
      */
-    private fun checkOpenPassVersion() {
+    private fun checkMyPassVersion() {
         showProgressDialog("", "MyPass 버전을 확인합니다.")
 
-        SKCertManager.getOpenPassVersion(this
-        , SKCallback.MessageCallback{ requestCode, resultCode, resultMessage ->
+        SKCertManager.getMyPassVersion(this) { requestCode, resultCode, resultMessage ->
 
             mainProgress?.dismiss()
 
@@ -786,26 +742,24 @@ class LoginActivity : AppCompatActivity() {
                 mainProgress?.dismiss()
                 SKCertManager.showErrorPopup(resultCode)
             }
-        })
+        }
     }
 
     private fun requestSign() {
 
         try
         {
-            showProgressDialog("", "인증을 요청합니다.")
+//            showProgressDialog("", "인증을 요청합니다.")
 
 
             SKCertManager.sign(SKConstant.REQUEST_CODE_KOSCOM_FULL_SIGN, null, "ServerRandom".toByteArray(), SKConstant.AUTH_TYPE_ALL, true,
                 ComUtil.policyMode , null,
                 SKCallback.SignCallback { requestCode, resultCode, resultMessage, binSignData, b64Cert, isTrustZone ->
 
-                    mainProgress?.dismiss()
-
                     if (resultCode == SKConstant.RESULT_CODE_OK) {
 
-                        //Log.v("OpenPassClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
-                        //Log.v("OpenPassClient", "signData : " + signData)
+                        //Log.v("MyPassClient", "Sign result(hex) : " + SKUtil.bin2hex(binSignData))
+                        //Log.v("MyPassClient", "signData : " + signData)
                         // 샘플 앱에서는 서명 검증 구현이 생략되어 있습니다.
                         // 서명 검증은 서버 모듈의 기능을 참조하여 주십시오.
                         Log.d(LoginActivity::class.simpleName, binSignData)
@@ -873,9 +827,9 @@ class LoginActivity : AppCompatActivity() {
 
     internal var mHandler = Handler(Handler.Callback { msg ->
         when (msg.what) {
-            _STEP_INITIALIZE -> initializeOpenPass()
+            _STEP_INITIALIZE -> initializeMyPass()
 
-            _STEP_CHECK_VERSION -> checkOpenPassVersion()
+            _STEP_CHECK_VERSION -> checkMyPassVersion()
 
             _STEP_SEND_CUSTOM_UI_RESOURCES -> requestSign()
         }
@@ -898,8 +852,8 @@ class LoginActivity : AppCompatActivity() {
 
         var loginActivity: LoginActivity? = null
 
-        val OPENPASS_LAUNCHMODE = SKCertManager.LAUNCH_MODE_REAL
-        val OPENPASS_LICENSE =
+        val MY_LAUNCHMODE = SKCertManager.LAUNCH_MODE_REAL
+        val MY_LICENSE =
             "{\"licenseSign\":\"QHbig+ViXPOoxJBuiaZ4PgO6b7pNgwsJP9eci2aAMmFXG1FWG0WSqGezukAP6WDgdeqHCBtbGrr1C3mQ+a/xYvm5UaQfmA+fFKV/f97N5CUu1AceM/vtpDhBZSeIN9nSCpIgH+JaV/qNRUORKAjLENXIM7hlFAeWYbCFCklIe07ScPzK4NxEqa+jRnV3JuOnFmgxcnm1xrgTXnl5sSuUsnbEDzVZMbBBOdvvBu2moWxDWirkUEWqcTgds7YEevRJQqr5NTL33BuNod395n6gCiUPZxeMiY/VAj0cvNi7+vVdW2B+h/TuNd8YUK4ULQgpZSbk57Wi/xNtJiXx107vPQ==\",\"licenseInfo\":\"eyJDb21wYW55TmFtZSI6Iuy9lOyKpOy9pOu4lOufreyytOyduCIsIkxpY2Vuc2VWZXJzaW9uIjoiMS4wIiwiQ29tcGFueUlEIjoiMDAwMDEiLCJQbGF0Zm9ybSI6IjEiLCJBcHBJRCI6ImtyLmNvLmtvc2NvbS5vbXAiLCJBcHBOYW1lIjoiQmVNeVVuaWNvcm4ifQ==\"}"
 
     }

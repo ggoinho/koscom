@@ -14,25 +14,23 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
-import com.scsoft.boribori.data.viewmodel.OrderViewModel
+import kr.co.koscom.omp.data.viewmodel.OrderViewModel
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_order_detail.toolbar
 import kotlinx.android.synthetic.main.activity_search.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.model.Stock
+import kr.co.koscom.omp.extension.toGone
+import kr.co.koscom.omp.extension.toVisible
 import kr.co.koscom.omp.view.ViewUtils
 import java.util.*
 
@@ -57,7 +55,7 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search)
 
         btnClose.setOnClickListener {
-            finish()
+            onBackPressed()
         }
 
         btnCloseSearch.setOnClickListener {
@@ -72,6 +70,8 @@ class SearchActivity : AppCompatActivity() {
                 search.setText("")
                 listData.clear()
                 list!!.adapter = SearchAdapter(listData)
+
+                search()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -81,7 +81,18 @@ class SearchActivity : AppCompatActivity() {
                 search.setText("")
                 listData.clear()
                 list!!.adapter = SearchAdapter(listData)
-                //search()
+
+                when(tab?.position){
+                    0 ->{
+                        layoutSearch.toVisible()
+                        svQuick.toVisible()
+                    }
+                    else ->{
+                        layoutSearch.toGone()
+                        svQuick.toGone()
+                    }
+                }
+                search()
             }
         })
 
@@ -139,7 +150,7 @@ class SearchActivity : AppCompatActivity() {
 
         list!!.adapter = SearchAdapter(listData)
 
-        //search()
+        search()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -167,8 +178,8 @@ class SearchActivity : AppCompatActivity() {
 
         disposable.add(orderViewModel.searchStock(PreferenceUtils.getUserId(),
             if(tabLayout.selectedTabPosition == 0){"A"}else if(tabLayout.selectedTabPosition == 1){"P"}else{"F"},
-            if(tabLayout.selectedTabPosition != 1){type()}else{null},
-            if(tabLayout.selectedTabPosition != 1){search.text.toString()}else{null})
+            if(tabLayout.selectedTabPosition == 0) type() else null,
+            if(tabLayout.selectedTabPosition == 0) search.text.toString() else "")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -214,6 +225,12 @@ class SearchActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_bottom)
+
     }
 
     override fun onStop() {

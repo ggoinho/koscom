@@ -7,13 +7,12 @@ import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.view.Window
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.snackbar.Snackbar
 import kr.co.koscom.omp.LoginActivity
 import kr.co.koscom.omp.R
+import kr.co.koscom.omp.extension.toResString
+import kr.co.koscom.omp.util.ActivityUtil
 
 class ViewUtils {
 
@@ -39,9 +38,11 @@ class ViewUtils {
 
                 if(rCode == "9988" || rCode == "9977"){
 
-                    val intent = Intent(activity, LoginActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    activity.startActivity(intent)
+
+                    ActivityUtil.startLoginActivity(activity)
+//                    val intent = Intent(activity, LoginActivity::class.java)
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                    activity.startActivity(intent)
 
                     activity.finish()
                 }
@@ -167,6 +168,40 @@ class ViewUtils {
             var btnConfirm = dlg.findViewById<TextView>(R.id.btnConfirm)
             var message = dlg.findViewById<TextView>(R.id.message)
             message.setText(info?: "")
+
+            btnConfirm.setOnClickListener {
+                dlg.dismiss()
+                confirmListener.invoke()
+            }
+            btnCancel.setOnClickListener {
+                dlg.dismiss()
+                cancelListener.invoke()
+            }
+        }
+
+
+        fun alertCustomDialog(context: Context, info: String?, canCelContents: String?, confirmContents: String?, cancelListener: () -> Unit, confirmListener: () -> Unit){
+            var dlg = Dialog(context);
+            dlg.setCancelable(false)
+
+            // 액티비티의 타이틀바를 숨긴다.
+            dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dlg.getWindow()!!.setBackgroundDrawableResource(android.R.color.transparent);
+
+            // 커스텀 다이얼로그의 레이아웃을 설정한다.
+            dlg.setContentView(R.layout.activity_alert5);
+
+            // 커스텀 다이얼로그를 노출한다.
+            dlg.show()
+
+            var btnCancel = dlg.findViewById<TextView>(R.id.btnCancel)
+            var btnConfirm = dlg.findViewById<TextView>(R.id.btnConfirm)
+            var message = dlg.findViewById<TextView>(R.id.message)
+            message.text = info?: ""
+
+            btnCancel.text = canCelContents?: R.string.cancel.toResString()
+            btnConfirm.text = confirmContents?: R.string.confirm.toResString()
+
 
             btnConfirm.setOnClickListener {
                 dlg.dismiss()

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/roundrect_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutTopInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutTopMark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvNice"
+                    style="@style/F13R_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/blue_0099d9"
+                    android:gravity="center"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:text="@string/orderdetail_nice"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivSecret"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ivSecret" />
+
+                <TextView
+                    android:id="@+id/tvNotation"
+                    style="@style/F13R_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/green_b5d31e"
+                    android:gravity="center"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/orderdetail_notation"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivSecret"
+                    app:layout_constraintStart_toEndOf="@+id/tvNice"
+                    app:layout_constraintTop_toTopOf="@+id/ivSecret" />
+
+                <TextView
+                    android:id="@+id/tvExpert"
+                    style="@style/F13R_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/pink_ba3fa2"
+                    android:gravity="center"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:text="@string/orderdetail_expert"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivSecret"
+                    app:layout_constraintStart_toEndOf="@+id/tvNotation"
+                    app:layout_constraintTop_toTopOf="@+id/ivSecret" />
+
+                <ImageView
+                    android:id="@+id/ivSecret"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ico"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvExpert"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!-- 수량 -->
+            <TextView
+                android:id="@+id/tvTitleCount"
+                style="@style/F12R_9e9e9e"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/unit_title_count"
+                app:layout_constraintBottom_toBottomOf="@+id/tvContentsCount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvContentsCount" />
+
+            <TextView
+                android:id="@+id/tvContentsCount"
+                style="@style/F17B_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:layout_constraintEnd_toStartOf="@+id/tvContentsCountUnit"
+                app:layout_constraintTop_toBottomOf="@+id/layoutTopMark" />
+
+            <TextView
+                android:id="@+id/tvContentsCountUnit"
+                style="@style/F14R_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="23dp"
+                android:text="@string/unit_stock"
+                app:layout_constraintBottom_toBottomOf="@+id/tvContentsCount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvContentsCount" />
+
+
+            <!-- 총주식수 -->
+            <TextView
+                android:id="@+id/tvTitleTotalCount"
+                style="@style/F12R_9e9e9e"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/unit_title_totalstock_count"
+                app:layout_constraintBottom_toBottomOf="@+id/tvContentsTotalCount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvContentsTotalCount" />
+
+            <TextView
+                android:id="@+id/tvContentsTotalCount"
+                style="@style/F17B_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/tvContentsTotalCountUnit"
+                app:layout_constraintTop_toBottomOf="@+id/tvContentsCount" />
+
+            <TextView
+                android:id="@+id/tvContentsTotalCountUnit"
+                style="@style/F14R_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="23dp"
+                android:text="@string/unit_stock"
+                app:layout_constraintBottom_toBottomOf="@+id/tvContentsTotalCount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvContentsTotalCount" />
+
+            <!-- 가격 -->
+            <TextView
+                android:id="@+id/tvTitlePrice"
+                style="@style/F12R_9e9e9e"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/unit_title_won"
+                app:layout_constraintBottom_toBottomOf="@+id/tvContentsPrice"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvContentsPrice" />
+
+            <TextView
+                android:id="@+id/tvContentsPrice"
+                style="@style/F17B_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/tvContentsPriceUnit"
+                app:layout_constraintTop_toBottomOf="@+id/tvContentsTotalCount" />
+
+            <TextView
+                android:id="@+id/tvContentsPriceUnit"
+                style="@style/F14B_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/unit_won"
+                app:layout_constraintBottom_toBottomOf="@+id/tvContentsPrice"
+                app:layout_constraintEnd_toEndOf="@+id/tvContentsCountUnit"
+                app:layout_constraintTop_toTopOf="@+id/tvContentsPrice" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/vDivide"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="9dp"
+            android:background="@color/gray_dddddd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutTopInfo" />
+
+        <!-- 협상관리 하단 기능 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutNegoBottomInfo"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vDivide">
+
+            <TextView
+                android:id="@+id/tvCompanyInfo"
+                style="@style/F14R_757575"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/orderdetail_company_info"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/vDivideNegoBottom"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/vDivideNegoBottom"
+                android:layout_width="1dp"
+                android:layout_height="22dp"
+                android:background="@color/gray_dddddd"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/layoutAccecpt"
+                app:layout_constraintStart_toEndOf="@+id/tvCompanyInfo"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutAccecpt"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/vDivideNegoBottom"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvAccept"
+                    style="@style/F16B_blue_3348ae"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/btn_checkbox_b_3"
+                    android:drawablePadding="1dp"
+                    android:gravity="center"
+                    android:text="@string/negotiation_request"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

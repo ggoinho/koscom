@@ -46,14 +46,14 @@ class LoginViewModel() : ViewModel() {
         return loginService.getSkdid(request)
     }
 
-    fun resultCertOpenPass(opCode: String, signData: String, snData: String): Flowable<Response> {
+    fun resultCertMyPass(opCode: String, signData: String, snData: String): Flowable<Response> {
 
         var request = Request()
         request.opCode = opCode
         request.signData = signData
         request.snData = snData
 
-        return loginService.resultCertOpenPass(request)
+        return loginService.resultCertMyPass(request)
     }
 
     fun login(gubn: String, certified: String): Flowable<Response> {
@@ -62,16 +62,20 @@ class LoginViewModel() : ViewModel() {
         request.CERTI_MTHD_TP = gubn
         request.CERTI_DATA = certified
 
+
         return loginService.login(request)
     }
 
-    fun login(gubn: String, certified: String, signData: String, opCode: String): Flowable<Response> {
+    fun login(gubn: String, certified: String, signData: String, opCode: String, userType: String): Flowable<Response> {
 
         var request = Request()
         request.CERTI_MTHD_TP = gubn
         request.CERTI_DATA = certified
         request.signData = signData
         request.opCode = opCode
+
+        request.DEVICE_TP = "A"
+        request.USER_TP = userType
 
         return loginService.login(request)
     }

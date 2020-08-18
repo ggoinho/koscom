@@ -19,7 +19,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="74dp">
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
@@ -47,6 +48,114 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_dddddd" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="14dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="14dp">
+
+                        <TextView
+                            android:id="@+id/tvPublicOrder"
+                            style="@style/F14R_black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/radiobox"
+                            android:drawablePadding="9dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/orderwrite_public_order"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvPrivateOrder"
+                            style="@style/F14R_black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:drawableLeft="@drawable/radiobox"
+                            android:drawablePadding="9dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/orderwrite_private_order"
+                            app:layout_constraintStart_toEndOf="@+id/tvPublicOrder"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- 비밀번호 -->
+                    <LinearLayout
+                        android:id="@+id/layoutPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        android:orientation="vertical">
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/gray_f7f7f8"
+                            android:paddingLeft="16dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="16dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:id="@+id/tvPasswordTitle"
+                                style="@style/F13R_333333"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/orderwrite_password"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/tvPasswordContents"
+                                app:layout_constraintBottom_toBottomOf="@+id/tvPasswordContents"
+                                />
+
+                            <TextView
+                                android:id="@+id/tvPasswordContents"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="6dp"
+                                android:paddingLeft="10dp"
+                                style="@style/F14R_333333"
+                                android:background="@drawable/shape_rect_fill7"
+                                android:gravity="center_vertical"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/tvPasswordTitle"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvPasswordExplain"
+                                style="@style/F12R_e8055a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/orderwrite_password_explain"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/tvPasswordContents"
+                                app:layout_constraintTop_toBottomOf="@+id/tvPasswordContents" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <View
+                            android:id="@+id/vPasswordBottom"
+                            android:layout_width="match_parent"
+                            android:layout_height="8dp"
+                            android:background="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                    </LinearLayout>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
@@ -205,7 +314,6 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="9dp"
-                                    android:paddingEnd="40dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/shape_rect_fill7"
                                     android:gravity="right|center_vertical"
@@ -214,6 +322,7 @@
                                     android:lineSpacingExtra="4dp"
                                     android:maxLength="10"
                                     android:orientation="horizontal"
+                                    android:paddingEnd="40dp"
                                     android:paddingRight="11dp"
                                     android:textColor="#333333"
                                     android:textSize="20dp"
@@ -224,8 +333,8 @@
                                     android:layout_width="24dp"
                                     android:layout_height="24dp"
                                     android:layout_marginRight="6dp"
-                                    android:visibility="gone"
                                     android:src="@drawable/ico_close_search"
+                                    android:visibility="gone"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="@+id/countOrder"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -259,7 +368,6 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="9dp"
-                                    android:paddingEnd="40dp"
                                     android:background="@drawable/shape_rect_fill7"
                                     android:gravity="right|center_vertical"
                                     android:hint="0"
@@ -267,6 +375,7 @@
                                     android:lineSpacingExtra="4dp"
                                     android:maxLength="10"
                                     android:orientation="horizontal"
+                                    android:paddingEnd="40dp"
                                     android:paddingRight="11dp"
                                     android:textColor="#3348ae"
                                     android:textSize="20dp"
@@ -276,9 +385,9 @@
                                     android:id="@+id/btnClosePriceOrder"
                                     android:layout_width="24dp"
                                     android:layout_height="24dp"
+                                    android:layout_marginEnd="6dp"
                                     android:src="@drawable/ico_close_search"
                                     android:visibility="gone"
-                                    android:layout_marginEnd="6dp"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="@+id/priceOrder"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -307,17 +416,17 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
-                                <androidx.appcompat.widget.AppCompatTextView
+                                <TextView
                                     android:id="@+id/amountOrder"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="9dp"
-                                    android:paddingEnd="40dp"
                                     android:background="@drawable/shape_rect_fill7"
                                     android:gravity="right|center_vertical"
                                     android:hint="0"
                                     android:lineSpacingExtra="4dp"
                                     android:orientation="horizontal"
+                                    android:paddingEnd="40dp"
                                     android:paddingRight="11dp"
                                     android:textColor="#3348ae"
                                     android:textSize="17dp" />
@@ -448,10 +557,10 @@
                 <FrameLayout
                     android:id="@+id/frame_popup"
                     android:layout_width="239dp"
-                    android:visibility="gone"
                     android:layout_height="320dp"
                     android:layout_marginEnd="12dp"
                     android:layout_marginBottom="55dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
                     app:layout_constraintEnd_toEndOf="parent">
 

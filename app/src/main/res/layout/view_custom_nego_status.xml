@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutNegoStatus"
+        android:layout_width="74dp"
+        android:layout_height="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <!-- 협상대기 -->
+        <TextView
+            android:id="@+id/tvNegoBuyWait"
+            style="@style/F13R_e8055a"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rectangle_white_ef508b"
+            android:drawableLeft="@drawable/ico_state_1_buy"
+            android:gravity="center_vertical"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="@string/main_nego_wait"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!-- 협상대기 -->
+        <TextView
+            android:id="@+id/tvNegoSellWait"
+            style="@style/F13R_blue_3348ae"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rectangle_white_707fc6"
+            android:drawableLeft="@drawable/ico_state_2_sell"
+            android:gravity="center_vertical"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="@string/main_nego_wait"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!-- 협상 회색 -->
+        <TextView
+            android:id="@+id/tvNegoStatus3"
+            style="@style/F13R_666666"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rectangle_f2f2f2_dddddd"
+            android:drawableLeft="@drawable/ico_state_4_chat_g"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="@string/main_nego"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 협상 -->
+        <TextView
+            android:id="@+id/tvNegoStatus4"
+            style="@style/F13R_green_038085"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rectangle_white_4aac9f"
+            android:drawableLeft="@drawable/ico_state_3_chat"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="@string/main_nego"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 계약 -->
+        <TextView
+            android:id="@+id/tvContract"
+            style="@style/F13R_blue_4747c3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rectangle_white_ccccc3"
+            android:drawableLeft="@drawable/ico_state_9_contract"
+            android:drawablePadding="2dp"
+            android:gravity="center_vertical"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="@string/main_contract"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 입금대기-->
+        <TextView
+            android:id="@+id/tvDepositWait"
+            style="@style/F13R_blue_4747c3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rectangle_white_ccccc3"
+            android:drawableLeft="@drawable/ico_state_10_pay"
+            android:drawablePadding="2dp"
+            android:gravity="center_vertical"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="@string/main_depositwait"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 체결 -->
+        <TextView
+            android:id="@+id/tvConclusion"
+            style="@style/F13R_blue_4747c3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rectangle_white_ccccc3"
+            android:drawableLeft="@drawable/ico_state_11_success"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="@string/main_conclusion"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 완료 -->
+        <TextView
+            android:id="@+id/tvStatusComplete"
+            style="@style/F13R_blue_4747c3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rectangle_white_ccccc3"
+            android:drawableLeft="@drawable/ico_state_12_complete"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="@string/status_complete"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 계약취소 -->
+        <TextView
+            android:id="@+id/tvStatusContractCancel"
+            style="@style/F13R_blue_4747c3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rectangle_white_ccccc3"
+            android:drawableLeft="@drawable/ico_state_13cancel"
+            android:drawablePadding="2dp"
+            android:gravity="center_vertical"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="@string/status_contract_cancel"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 요청취소 -->
+        <TextView
+            android:id="@+id/tvStatusRequestCancel"
+            style="@style/F13R_blue_4747c3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rectangle_white_ccccc3"
+            android:drawableLeft="@drawable/ico_state_13cancel"
+            android:drawablePadding="2dp"
+            android:gravity="center_vertical"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="@string/status_request_cancel"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 자동결렬 -->
+        <TextView
+            android:id="@+id/tvStatusAutoBreakdown"
+            style="@style/F13R_blue_4747c3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rectangle_white_ccccc3"
+            android:drawableLeft="@drawable/ico_state_4_chat_g"
+            android:drawablePadding="2dp"
+            android:gravity="center_vertical"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="@string/status_auto_breakdown"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 자동결렬 -->
+        <TextView
+            android:id="@+id/tvStatusBreakdown"
+            style="@style/F13R_blue_4747c3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rectangle_white_ccccc3"
+            android:drawableLeft="@drawable/ico_state_4_chat_g"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="@string/status_breakdown"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

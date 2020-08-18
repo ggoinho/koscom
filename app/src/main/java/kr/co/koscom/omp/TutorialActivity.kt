@@ -17,6 +17,7 @@ import androidx.viewpager.widget.ViewPager
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.activity_tutorial.*
 import kotlinx.android.synthetic.main.activity_tutorial.view.*
+import kr.co.koscom.omp.util.ActivityUtil
 
 import kr.co.koscom.omp.view.MyPageIndicator
 
@@ -50,9 +51,12 @@ class TutorialActivity : AppCompatActivity() {
                 PreferenceUtils.setTutorialCheck(false)
             }
 
-            var intent = Intent(this@TutorialActivity, LoginActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+            ActivityUtil.startLoginActivity(this@TutorialActivity, isClose = true)
+
+//            var intent = Intent(this@TutorialActivity, LoginActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            intent.putExtra("isCloseBtn", true)
+//            startActivity(intent)
 
             finish()
         }
@@ -64,10 +68,13 @@ class TutorialActivity : AppCompatActivity() {
                 PreferenceUtils.setTutorialCheck(false)
             }
 
-            val intent = Intent(this@TutorialActivity, LoginActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("redirect_regist", true)
-            startActivity(intent)
+            ActivityUtil.startLoginActivity(this@TutorialActivity, redirectRegist = true, isClose = true)
+
+//            val intent = Intent(this@TutorialActivity, LoginActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            intent.putExtra("redirect_regist", true)
+//            intent.putExtra("isCloseBtn", true)
+//            startActivity(intent)
 
             finish()
         }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="drawer_main_menu">
+        <item>주문</item>
+        <item>종목정보</item>
+        <item>My Page</item>
+        <item>고객센터</item>
+        <item>설정</item>
+    </string-array>
+
+    <string-array name="drawer_order">
+        <item>주문현황</item>
+        <item>계약 및 체결현황</item>
+        <item>종합현황</item>
+        <item>주문등록</item>
+    </string-array>
+
+    <string-array name="drawer_stock_info">
+        <item>기업정보</item>
+        <item>전문가진단</item>
+        <item>기업알림/홍보/평가자료</item>
+        <item>토론게시판</item>
+        <item>뉴스</item>
+        <item>특허</item>
+    </string-array>
+
+
+    <string-array name="drawer_mypage">
+        <item>가입정보관리</item>
+        <item>나의 주문</item>
+        <item>나의 협상</item>
+        <item>나의 계약 및 체결</item>
+        <item>보유 잔고</item>
+        <item>증빙 서류 관리</item>
+        <item>서비스 해지</item>
+        <item>알림 수신함</item>
+    </string-array>
+
+    <string-array name="drawer_customer">
+        <item>공지사항</item>
+        <item>서비스소개</item>
+        <item>FAQ</item>
+        <item>1:1문의</item>
+    </string-array>
+
+
+    <string-array name="drawer_setting">
+        <item>알림설정</item>
+        <item>마케팅수신동의</item>
+        <item>버전정보</item>
+        <item>서비스이용약관</item>
+        <item>개인정보취급처리방침</item>
+        <item>저작권보호방침</item>
+        <item>간편로그인</item>
+    </string-array>
+
+
+</resources>

@@ -31,7 +31,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:src="@drawable/ico_arrow_back"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <ImageView
+                android:id="@+id/ivSecret"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_lock"
+                app:layout_constraintStart_toEndOf="@+id/btnBack"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="6dp"
+                android:visibility="gone" />
+
+
+            <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

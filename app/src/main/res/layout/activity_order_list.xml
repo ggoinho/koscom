@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
@@ -11,398 +10,621 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="#ffffff">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/gray_eeeeee"
+                app:layout_constraintBottom_toBottomOf="@+id/tabLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:background="@color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tabIndicatorColor="@color/blue_3348ae"
+                app:tabIndicatorFullWidth="true"
+                app:tabIndicatorHeight="1dp"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/blue_3348ae"
+                app:tabTextAppearance="@style/tab_text"
+                app:tabTextColor="@color/gray_555555">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/orderlist_tab_orderstatus" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/orderlist_tab_contract_conclusion" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+
+            <!-- 검색 필터 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutSearchFilter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingStart="16dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+
+                <kr.co.koscom.omp.custom.CustomSearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintEnd_toStartOf="@+id/tvOrderRegist"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvOrderRegist"
+                    style="@style/F15R_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rect_fill5"
+                    android:drawableLeft="@drawable/ico_write_w"
+                    android:gravity="center_vertical"
+                    android:padding="7dp"
+                    android:text="@string/orderlist_order_regist"
+                    app:layout_constraintBottom_toBottomOf="@+id/searchView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/searchView" />
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="42dp"
-                    android:background="#4e4e9e">
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:paddingTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/searchView">
 
-                    <View
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layoutSearchFilterTab"
                         android:layout_width="0dp"
-                        app:layout_constraintWidth_percent="0.2"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:background="@drawable/gradient2"/>
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tabLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        <!-- 전체 -->
+                        <TextView
+                            android:id="@+id/tvTabAll"
+                            style="@style/main_filter_tab"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/tab_selector_main_filter_left"
+                            android:gravity="center"
+                            android:paddingTop="11dp"
+                            android:paddingBottom="11dp"
+                            android:text="@string/total"
+                            app:layout_constraintEnd_toStartOf="@+id/vTabDivide1"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintHorizontal_weight="1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:id="@+id/vTabDivide1"
+                            android:layout_width="1dp"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="1dp"
+                            android:background="@drawable/color_selector_white_blue"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvTabAll"
+                            app:layout_constraintEnd_toStartOf="@+id/tvTabSell"
+                            app:layout_constraintStart_toEndOf="@+id/tvTabAll"
+                            app:layout_constraintTop_toTopOf="@+id/tvTabAll" />
+
+                        <!-- 매도 -->
+                        <TextView
+                            android:id="@+id/tvTabSell"
+                            style="@style/main_filter_tab"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@drawable/tab_selector_main_filter_mid"
+                            android:gravity="center"
+                            android:paddingTop="11dp"
+                            android:paddingBottom="11dp"
+                            android:text="@string/sell"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvTabAll"
+                            app:layout_constraintEnd_toStartOf="@+id/vTabDivide2"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintHorizontal_weight="1"
+                            app:layout_constraintStart_toEndOf="@+id/vTabDivide1"
+                            app:layout_constraintTop_toTopOf="@+id/tvTabAll" />
+
+                        <View
+                            android:id="@+id/vTabDivide2"
+                            android:layout_width="1dp"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="1dp"
+                            android:background="@drawable/color_selector_white_blue"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvTabSell"
+                            app:layout_constraintEnd_toStartOf="@+id/tvTabBuy"
+                            app:layout_constraintStart_toEndOf="@+id/tvTabSell"
+                            app:layout_constraintTop_toTopOf="@+id/tvTabSell" />
+
+                        <!-- 매수 -->
+                        <TextView
+                            android:id="@+id/tvTabBuy"
+                            style="@style/main_filter_tab"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@drawable/tab_selector_main_filter_right"
+                            android:gravity="center"
+                            android:paddingTop="11dp"
+                            android:paddingBottom="11dp"
+                            android:text="@string/buying"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvTabAll"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintHorizontal_weight="1"
+                            app:layout_constraintStart_toEndOf="@+id/vTabDivide2"
+                            app:layout_constraintTop_toTopOf="@+id/tvTabAll" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <TextView
+                        android:id="@+id/tvNegotiable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="19dp"
+                        android:drawableLeft="@drawable/checkbox_main_agree"
+                        android:drawablePadding="6dp"
+                        android:text="@string/main_negotiable"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:tabTextAppearance="@style/tab_text"
-                        app:tabIndicatorColor="#FFFFFF"
-                        app:tabIndicatorFullWidth="false"
-                        app:tabSelectedTextColor="#FFFFFF"
-                        app:tabTextColor="#FFFFFF">
+                        app:layout_constraintTop_toBottomOf="@+id/layoutSearchFilterTab" />
 
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=" 주문현황 " />
+                    <TextView
+                        android:id="@+id/tvMy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:drawableLeft="@drawable/checkbox_main_agree"
+                        android:drawablePadding="6dp"
+                        android:text="@string/main_my"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvNegotiable"
+                        app:layout_constraintStart_toEndOf="@+id/tvNegotiable"
+                        app:layout_constraintTop_toTopOf="@+id/tvNegotiable" />
 
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="계약 및 체결현황" />
+                    <TextView
+                        android:id="@+id/tvOrderTotalCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="9dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvNegotiable"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvNegotiable" />
 
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="전종목 거래현황" />
-                    </com.google.android.material.tabs.TabLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <RelativeLayout
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/vDivideFilter"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray_dddddd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutSearchFilter" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutEmpty"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vDivideFilter">
+
+                <TextView
+                    style="@style/F14R_555555"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ico_pointmark_g_50"
+                    android:drawablePadding="9dp"
+                    android:text="@string/main_empty"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvOrder"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fadingEdgeLength="0dp"
+                android:overScrollMode="never"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vDivideFilter" />
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vDivideFilter">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_height="38dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="bottom"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="5dp"
+                            android:text="종목명"
+                            android:textColor="#757575"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:id="@+id/search"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:layout_weight="1"
+                            android:background="#FFFFFF"
+                            android:gravity="center"
+                            android:hint="종목명 입력"
+                            android:imeOptions="actionSearch"
+                            android:inputType="text"
+                            android:lineSpacingExtra="1dp"
+                            android:maxLines="1"
+                            android:textColor="#0e1d64"
+                            android:textSize="14dp" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/btnSearch"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginBottom="2dp"
+                            android:src="@drawable/ico_search" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="#000826" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="16dp">
+
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:orientation="horizontal"
+                            android:id="@+id/ll_orderList"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/filterAll"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="전체"
+                                    android:textColor="#333333"
+                                    android:textSize="14dp" />
+
+                                <View
+                                    android:id="@+id/filterAllUnderBar"
+                                    android:layout_width="26dp"
+                                    android:layout_height="2dp"
+                                    android:background="#333333"
+                                    android:visibility="visible" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/filterSell"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="매도"
+                                    android:textColor="#3348ae"
+                                    android:textSize="14dp" />
+
+                                <View
+                                    android:id="@+id/filterSellUnderBar"
+                                    android:layout_width="26dp"
+                                    android:layout_height="2dp"
+                                    android:background="#3348ae"
+                                    android:visibility="invisible" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/filterBuy"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="매수"
+                                    android:textColor="#e8055a"
+                                    android:textSize="14dp" />
+
+                                <View
+                                    android:id="@+id/filterBuyUnderBar"
+                                    android:layout_width="26dp"
+                                    android:layout_height="2dp"
+                                    android:background="#e8055a"
+                                    android:visibility="invisible" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.5"
+                                android:orientation="vertical"
+                                android:paddingRight="10dp">
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="13dp"
+                                    android:background="#dddddd" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
                             android:gravity="bottom"
-                            android:focusable="true"
-                            android:focusableInTouchMode="true">
+                            android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="3dp"
-                                android:textSize="13dp"
-                                android:textColor="#757575"
-                                android:letterSpacing="-0.03"
                                 android:lineSpacingExtra="5dp"
-                                android:text="종목명"/>
+                                android:text="총"
+                                android:textColor="#555555"
+                                android:textSize="13dp" />
 
                             <TextView
-                                android:id="@+id/search"
-                                android:layout_width="0dp"
+                                android:id="@+id/count"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="1dp"
-                                android:layout_weight="1"
-                                android:background="#FFFFFF"
-                                android:gravity="center"
-                                android:hint="종목명 입력"
-                                android:imeOptions="actionSearch"
-                                android:inputType="text"
-                                android:lineSpacingExtra="1dp"
-                                android:maxLines="1"
-                                android:textColor="#0e1d64"
+                                android:layout_marginLeft="6dp"
+                                android:lineSpacingExtra="4dp"
+                                android:text="50"
+                                android:textColor="#3348ae"
                                 android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="1dp"
+                                android:lineSpacingExtra="5dp"
+                                android:text="건"
+                                android:textColor="#555555"
+                                android:textSize="13dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="16dp"
+                            android:background="@drawable/shape_rect_fill5"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingLeft="7dp"
+                            android:paddingTop="3dp"
+                            android:paddingRight="7dp"
+                            android:paddingBottom="3dp">
+
                             <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/btnSearch"
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:layout_marginBottom="2dp"
-                                android:src="@drawable/ico_search"/>
-                        </LinearLayout>
+                                android:src="@drawable/ico_write_w" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:background="#000826"/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="44dp"
-                            android:paddingLeft="16dp"
-                            android:orientation="horizontal"
-                            android:gravity="center">
-
-                            <LinearLayout
-                                android:id="@+id/ll_orderList"
+                            <TextView
+                                android:id="@+id/btnOrder"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_weight="1"
-                                >
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:id="@+id/filterAll"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="전체"
-                                        android:textSize="14dp"
-                                        android:textColor="#333333"
-                                        />
-
-                                    <View
-                                        android:id="@+id/filterAllUnderBar"
-                                        android:layout_width="26dp"
-                                        android:layout_height="2dp"
-                                        android:background="#333333"
-                                        android:visibility="visible"
-                                        />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    >
-
-                                    <TextView
-                                        android:id="@+id/filterSell"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="매도"
-                                        android:textSize="14dp"
-                                        android:textColor="#3348ae"
-                                        />
-
-                                    <View
-                                        android:id="@+id/filterSellUnderBar"
-                                        android:layout_width="26dp"
-                                        android:layout_height="2dp"
-                                        android:background="#3348ae"
-                                        android:visibility="invisible"
-                                        />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    >
-
-                                    <TextView
-                                        android:id="@+id/filterBuy"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="매수"
-                                        android:textSize="14dp"
-                                        android:textColor="#e8055a"
-                                        />
-
-                                    <View
-                                        android:id="@+id/filterBuyUnderBar"
-                                        android:layout_width="26dp"
-                                        android:layout_height="2dp"
-                                        android:background="#e8055a"
-                                        android:visibility="invisible"
-                                        />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="0.5"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:paddingRight="10dp"
-                                    >
-
-                                    <View
-                                        android:layout_width="1dp"
-                                        android:layout_height="13dp"
-                                        android:background="#dddddd"
-                                        />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="2"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="bottom">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="13dp"
-                                    android:textColor="#555555"
-                                    android:lineSpacingExtra="5dp"
-                                    android:text="총"/>
-                                <TextView
-                                    android:id="@+id/count"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="6dp"
-                                    android:textSize="14dp"
-                                    android:textColor="#3348ae"
-                                    android:lineSpacingExtra="4dp"
-                                    android:text="50"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="1dp"
-                                    android:textSize="13dp"
-                                    android:textColor="#555555"
-                                    android:lineSpacingExtra="5dp"
-                                    android:text="건" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="16dp"
-                                android:background="@drawable/shape_rect_fill5"
-                                android:paddingTop="3dp"
-                                android:paddingBottom="3dp"
-                                android:paddingLeft="7dp"
-                                android:paddingRight="7dp"
-                                android:orientation="horizontal"
-                                android:gravity="center">
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:src="@drawable/ico_write_w"/>
-                                <TextView
-                                    android:id="@+id/btnOrder"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="15dp"
-                                    android:textColor="#ffffff"
-                                    android:lineSpacingExtra="5dp"
-                                    android:gravity="center_horizontal"
-                                    android:text="주문등록"
-                                    />
-                            </LinearLayout>
+                                android:gravity="center_horizontal"
+                                android:lineSpacingExtra="5dp"
+                                android:text="주문등록"
+                                android:textColor="#ffffff"
+                                android:textSize="15dp" />
                         </LinearLayout>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#dddddd"/>
+                    </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:weightSum="5"
-                            android:orientation="horizontal">
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_weight="2"
-                                android:layout_height="wrap_content"
-                                android:textSize="13dp"
-                                android:textColor="#555555"
-                                android:lineSpacingExtra="5dp"
-                                android:text="종목명"
-                                android:gravity="center"/>
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"
-                                android:textSize="13dp"
-                                android:textColor="#555555"
-                                android:lineSpacingExtra="5dp"
-                                android:text="수량(주)"
-                                android:gravity="center"/>
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"
-                                android:textSize="13dp"
-                                android:textColor="#555555"
-                                android:lineSpacingExtra="5dp"
-                                android:text="가격(원)"
-                                android:gravity="center"/>
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"
-                                android:textSize="13dp"
-                                android:textColor="#555555"
-                                android:lineSpacingExtra="5dp"
-                                android:text="주문상태"
-                                android:gravity="center"/>
-                        </LinearLayout>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#dddddd"/>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/listOrder"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                tools:listitem="@layout/list_item_order_list"/>
-
-                            <androidx.appcompat.widget.LinearLayoutCompat
-                                android:id="@+id/nothing"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:paddingBottom="50dp"
-                                android:orientation="vertical"
-                                android:gravity="center"
-                                android:visibility="gone">
-                                <ImageView
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:src="@drawable/ico_pointmark_g_50"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="9dp"
-                                    android:textSize="14dp"
-                                    android:textColor="#555555"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4dp"
-                                    android:gravity="center_horizontal"
-                                    android:text="조회된 내용이 없습니다"/>
-                            </androidx.appcompat.widget.LinearLayoutCompat>
-                        </RelativeLayout>
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <FrameLayout
-                        android:id="@+id/subFragment"
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="invisible"/>
+                        android:layout_height="1dp"
+                        android:background="#dddddd" />
 
-                </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:weightSum="5">
 
-            </LinearLayout>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:lineSpacingExtra="5dp"
+                            android:text="종목명"
+                            android:textColor="#555555"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:lineSpacingExtra="5dp"
+                            android:text="수량(주)"
+                            android:textColor="#555555"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:lineSpacingExtra="5dp"
+                            android:text="가격(원)"
+                            android:textColor="#555555"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:lineSpacingExtra="5dp"
+                            android:text="주문상태"
+                            android:textColor="#555555"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#dddddd" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/listOrder"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            tools:listitem="@layout/list_item_order_list" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/nothing"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingBottom="50dp"
+                            android:visibility="gone">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/ico_pointmark_g_50" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="9dp"
+                                android:gravity="center_horizontal"
+                                android:letterSpacing="-0.03"
+                                android:lineSpacingExtra="4dp"
+                                android:text="조회된 내용이 없습니다"
+                                android:textColor="#555555"
+                                android:textSize="14dp" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </RelativeLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <FrameLayout
+                    android:id="@+id/subFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible" />
+
+            </RelativeLayout>
+
 
             <androidx.core.widget.ContentLoadingProgressBar
                 android:id="@+id/progress_bar_login"
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:visibility="invisible" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -415,7 +637,7 @@
             <kr.co.koscom.omp.view.MyToolbarView
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="44dp"/>
+                android:layout_height="44dp" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -424,7 +646,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"/>
+            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -434,7 +656,7 @@
         android:layout_width="232dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:fitsSystemWindows="true"/>
+        android:fitsSystemWindows="true" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
 

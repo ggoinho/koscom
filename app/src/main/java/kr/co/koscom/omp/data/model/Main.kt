@@ -2,6 +2,7 @@ package kr.co.koscom.omp.data.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kr.co.koscom.omp.enums.MainOrderTab
 import org.apache.commons.lang3.builder.ToStringBuilder
 import java.io.Serializable
 
@@ -11,6 +12,7 @@ class Main {
     var rMsg: String? = null
 
     var datas: DataMap? = null
+
 
     class DataMap{
         var myNegoList: List<Nego>? = null
@@ -51,6 +53,7 @@ class Main {
         var CHANNEL_URL: String? = null
         var CONT_FLAG: String? = null
         var ESCR_FLAG: String? = null
+        var PUBLIC_YN: String? = null
     }
 
     class OrderContract: Serializable{

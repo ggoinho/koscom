@@ -23,6 +23,8 @@ import com.sendbird.syncmanager.ConnectionManager;
 import com.sendbird.syncmanager.utils.PreferenceUtils;
 import com.sendbird.syncmanager.utils.PushUtils;
 
+import kr.co.koscom.omp.util.ActivityUtil;
+
 // kr.co.koscom.omp
 // BeMyUNICORN
 

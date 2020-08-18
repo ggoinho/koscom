@@ -37,6 +37,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.viewmodel.UpdateViewModel
+import kr.co.koscom.omp.util.ActivityUtil
 import kr.co.koscom.omp.view.ViewUtils
 import kr.co.sdk.vguard2.*
 import kr.co.vguard2.RealtimeScanningService
@@ -87,6 +88,7 @@ class SplashActivity : AppCompatActivity() {
 
             showAnimation()
         }
+
 
     }
 
@@ -177,7 +179,7 @@ class SplashActivity : AppCompatActivity() {
         if (LiappAgent.LIAPP_SUCCESS == nRet) {
             bIsStarted = true
             var userId = "userid_123456789" + System.currentTimeMillis()
-            Log.i("SplashActivity", "Liapp AuthKey : " + LiappAgent.GA(userId))
+//            Log.i("SplashActivity", "Liapp AuthKey : " + LiappAgent.GA(userId))
 
             listener.invoke()
         }
@@ -629,14 +631,17 @@ class SplashActivity : AppCompatActivity() {
 
     private fun moveNextScreen(){
         if(!PreferenceUtils.getTutorialCheck()){
-            var intent = Intent(this@SplashActivity, TutorialActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+            ActivityUtil.startTutorialActivity(this)
+
+//            var intent = Intent(this@SplashActivity, TutorialActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            startActivity(intent)
         }
         else{
-            var intent = Intent(this@SplashActivity, LoginActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+            ActivityUtil.startLoginActivity(this)
+//            var intent = Intent(this@SplashActivity, LoginActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            startActivity(intent)
         }
         finish()
     }

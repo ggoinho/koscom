@@ -1,6 +1,7 @@
 package kr.co.koscom.omp
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -8,12 +9,9 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.material.snackbar.Snackbar
 import com.scsoft.boribori.data.viewmodel.ChatViewModel
-import com.scsoft.boribori.data.viewmodel.OrderViewModel
-import com.sendbird.syncmanager.utils.DateUtils
+import kr.co.koscom.omp.data.viewmodel.OrderViewModel
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -25,8 +23,13 @@ import kotlinx.android.synthetic.main.view_order_status3.*
 import kotlinx.android.synthetic.main.view_order_status4.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
+import kr.co.koscom.omp.data.model.NegotiationData
 import kr.co.koscom.omp.data.model.Order
 import kr.co.koscom.omp.data.model.OrderDetail
+import kr.co.koscom.omp.enums.NegotiationEnterType
+import kr.co.koscom.omp.enums.TransactionTargetType
+import kr.co.koscom.omp.extension.toResString
+import kr.co.koscom.omp.util.ActivityUtil
 import kr.co.koscom.omp.view.ViewUtils
 import java.text.DecimalFormat
 
@@ -59,11 +62,46 @@ class OrderPopupActivity : AppCompatActivity() {
         chatViewModel = ViewModelProviders.of(this, viewModelFactory).get(ChatViewModel::class.java)
 
         btnClose.setOnClickListener {
-            finish()
+            onBackPressed()
         }
 
         btnOk.setOnClickListener {
-            requestNego()
+            when (orderDetail?.PUBLIC_YN) {
+                "N" -> {
+                    //비공개
+                    orderDetail?.let { it ->
+
+                        if(PreferenceUtils.getUserId() == it.PBLS_CLNT_NO){
+                            ViewUtils.alertDialog(this, R.string.orderpopup_popup_contents1.toResString()){}
+                            return@setOnClickListener
+                        }
+
+                        ActivityUtil.startNegotiationPopupActivity(this@OrderPopupActivity, NegotiationData().apply {
+                            orderNo = it.ORDER_NO ?:""
+                            enterType = NegotiationEnterType.LIST
+                            transactionTargetType = if(it.SECRET_CERTI_YN == "Y") TransactionTargetType.SPECIFIC else TransactionTargetType.UNSPECIFIC
+                            registNickName = it.NICKNAME ?: ""
+                            stockTpCodeNm = it.STOCK_TP_CODE_NM?: ""
+                        })
+
+//                        var intent = Intent(this@OrderPopupActivity, NegotiationPopupActivity::class.java)
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                        intent.putExtra("negotiationData", NegotiationData().apply {
+//                            orderNo = it.ORDER_NO ?:""
+//                            enterType = NegotiationEnterType.LIST
+//                            transactionTargetType = if(it.SECRET_CERTI_YN == "Y") TransactionTargetType.SPECIFIC else TransactionTargetType.UNSPECIFIC
+//                            registNickName = it.NICKNAME ?: ""
+//                            stockTpCodeNm = it.STOCK_TP_CODE_NM?: ""
+//                        })
+//                        startActivity(intent)
+                        onBackPressed()
+                    }
+                }
+                "Y" -> {
+                    //공개
+                    requestNego()
+                }
+            }
         }
 
         var param = intent.getSerializableExtra("orderItem") as Order.OrderItem
@@ -97,10 +135,21 @@ class OrderPopupActivity : AppCompatActivity() {
                     stockName.text = it.datas?.result?.STK_NM
                     stockGubn.text = it.datas?.result?.STOCK_TP_CODE_NM
                     orderGubn.text = if(it.datas?.result?.DEAL_TP == "10"){"매도"}else if(it.datas?.result?.DEAL_TP == "20"){"매수"}else{""}
-                    count.text = numberFormat.format(it.datas?.result?.DEAL_QTY ?: 0)
-                    price.text = numberFormat.format(it.datas?.result?.DEAL_UPRC ?: 0)
-                    left.text = numberFormat.format(it.datas?.result?.RMQTY ?: 0)
-                    prePrice.text = numberFormat.format(it.datas?.result?.LST_PRC ?: 0)
+
+                    if(it.datas?.result?.PUBLIC_YN == "Y"){
+                        count.text = numberFormat.format(it.datas?.result?.DEAL_QTY ?: 0)
+                        price.text = numberFormat.format(it.datas?.result?.DEAL_UPRC ?: 0)
+                        left.text = numberFormat.format(it.datas?.result?.RMQTY ?: 0)
+                        prePrice.text = numberFormat.format(it.datas?.result?.LST_PRC ?: 0)
+                    }else{
+                        count.text = R.string.star6.toResString()
+                        price.text = R.string.star6.toResString()
+                        left.text = R.string.star6.toResString()
+                        prePrice.text = R.string.star6.toResString()
+                    }
+
+
+
 
                     status1.visibility = View.GONE
                     status2.visibility = View.GONE
@@ -159,10 +208,10 @@ class OrderPopupActivity : AppCompatActivity() {
             }))
     }
 
-    private fun requestNego(){
+    private fun requestNego(certiNum: String = ""){
         progress_bar_login.visibility = View.VISIBLE
 
-        disposable.add(chatViewModel.requestNego(PreferenceUtils.getUserId(), orderDetail!!.ORDER_NO!!)
+        disposable.add(chatViewModel.requestNego(PreferenceUtils.getUserId(), orderDetail!!.ORDER_NO!!, certiNum)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -172,7 +221,7 @@ class OrderPopupActivity : AppCompatActivity() {
                 if("0000".equals(it.rCode)){
 
                     ViewUtils.alertDialog(this, it.rMsg){
-                        finish()
+                        onBackPressed()
                     }
 
                 }else{
@@ -191,6 +240,11 @@ class OrderPopupActivity : AppCompatActivity() {
         super.onStop()
 
         disposable.clear()
+    }
+
+    override fun onBackPressed() {
+        finish()
+        overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_bottom)
     }
 
     companion object {

@@ -12,17 +12,16 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.webkit.WebView
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.core.widget.NestedScrollView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -33,24 +32,25 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.scsoft.boribori.data.viewmodel.*
 import com.sendbird.syncmanager.utils.PreferenceUtils
-import com.signkorea.openpass.sksystemcrypto.SKDefine.v
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.progress_bar_login
-import kotlinx.android.synthetic.main.fragment_web.*
-import kotlinx.android.synthetic.main.view_toolbar.view.*
-import kr.co.koscom.omp.data.Constants
+import kr.co.koscom.omp.constants.Constants
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.model.Main
 import kr.co.koscom.omp.data.model.Order
 import kr.co.koscom.omp.data.model.OrderContract
+import kr.co.koscom.omp.data.viewmodel.OrderViewModel
+import kr.co.koscom.omp.extension.toGone
 import kr.co.koscom.omp.extension.toInvisible
+import kr.co.koscom.omp.extension.toResString
 import kr.co.koscom.omp.extension.toVisible
 import kr.co.koscom.omp.view.ViewUtils
+import toDealType
+import toDealTypeBackground
 import java.text.DecimalFormat
 import java.util.*
 
@@ -72,7 +72,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var alarmViewModel: AlarmViewModel
     private lateinit var negoViewModel: NegoViewModel
     private lateinit var orderViewModel: OrderViewModel
-
     private val disposable = CompositeDisposable()
 
     private var deaLData = ArrayList<Main.Nego>()
@@ -244,7 +243,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) {
-                contractPage.setText((position+1).toString())
+//                contractPage.setText((position+1).toString())
             }
 
         })
@@ -398,6 +397,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     if(it.datas!!.myNegoList!!.size > 0){
+                        myDealZone.toVisible()
                         deaLData.clear()
                         deaLData.addAll(it.datas!!.myNegoList!!)
                         vpMyDeal.adapter?.notifyDataSetChanged()
@@ -409,22 +409,23 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                     else{
-                        myDealZone.visibility = View.GONE
+                        myDealZone.toGone()
                     }
 
                     if(it.datas!!.myContList!!.size > 0){
+                        myContractZone.toVisible()
                         contractData.clear()
                         contractData.addAll(it.datas!!.myContList!!)
                         vpMyContract.adapter?.notifyDataSetChanged()
                         vpMyContract!!.currentItem = it.datas!!.myContList!!.size / 2
 
-                        vpMyContract.post {
-                            contractPage.setText((vpMyContract.currentItem+1).toString())
-                            contractTotal.setText(vpMyContract.adapter!!.count.toString())
-                        }
+//                        vpMyContract.post {
+//                            contractPage.setText((vpMyContract.currentItem+1).toString())
+//                            contractTotal.setText(vpMyContract.adapter!!.count.toString())
+//                        }
                     }
                     else{
-                        myContractZone.visibility = View.GONE
+                        myContractZone.toGone()
                     }
 
                     orderList.clear()
@@ -435,7 +436,6 @@ class MainActivity : AppCompatActivity() {
                         nothing1.visibility = View.VISIBLE
                     }
                     else{
-                        nothing1.visibility = View.GONE
                     }
 
                     contractList.clear()
@@ -497,7 +497,8 @@ class MainActivity : AppCompatActivity() {
         else{
             ViewUtils.alertLogoutDialog(this, "로그아웃하시겠습니까?"){
                 val intent = Intent(this, LoginActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
 
                 finish()
@@ -535,7 +536,9 @@ class MainActivity : AppCompatActivity() {
                         if("0000".equals(it.rCode)){
                             ViewUtils.alertDialog(this@MainActivity, it.rMsg){}
 
+                            searchAlram()
 
+                            search()
                         }else{
 
                             ViewUtils.showErrorMsg(this@MainActivity, it.rCode, it.rMsg)
@@ -557,10 +560,14 @@ class MainActivity : AppCompatActivity() {
                         Log.d(LoginActivity::class.simpleName, "response : " + it)
 
                         if("0000".equals(it.rCode)){
-                            ViewUtils.alertDialog(this@MainActivity, it.rMsg){}
+                            ViewUtils.alertDialog(this@MainActivity, it.rMsg){
+                                searchAlram()
+
+                                search()
+
+                            }
                         }else{
                             ViewUtils.showErrorMsg(this@MainActivity, it.rCode, it.rMsg)
-
                         }
                         progress_bar_login.visibility = View.INVISIBLE
                     }, {
@@ -573,6 +580,10 @@ class MainActivity : AppCompatActivity() {
             container.addView(view)
 
             return view
+        }
+
+        override fun getItemPosition(`object`: Any): Int {
+            return POSITION_NONE
         }
 
         override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
@@ -599,11 +610,31 @@ class MainActivity : AppCompatActivity() {
             val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
             view = inflater.inflate(R.layout.page_mycontract, container, false)
-            view.findViewById<TextView>(R.id.stockName).text = data.CORP_HANGL_NM
+            view.findViewById<TextView>(R.id.stockName).text = data.STK_NM
             view.findViewById<TextView>(R.id.stockGubn).text = data.STOCK_TP_CODE_NM + if(data.SEC_KIND_DTL_TP_CODE == "02"){"(상환)"}else if(data.SEC_KIND_DTL_TP_CODE == "03"){"(전환상환)"}else{""}
             view.findViewById<TextView>(R.id.count).text = data.DEAL_QTY
             view.findViewById<TextView>(R.id.price).text = data.DEAL_UPRC
             view.findViewById<TextView>(R.id.host).text = data.NEGO_REQST_CLNT_NM
+            val ivSecret = view.findViewById<ImageView>(R.id.ivSecret)
+
+            view.findViewById<TextView>(R.id.contractPage).text = (position+1).toString()
+            view.findViewById<TextView>(R.id.contractTotal).text = vpMyContract.adapter!!.count.toString()
+
+            if(data.PUBLIC_YN == "Y"){
+                ivSecret.toGone()
+            }else{
+                ivSecret.toVisible()
+            }
+
+            view.findViewById<TextView>(R.id.tvContractConfirm).setOnClickListener {
+                Intent(this@MainActivity, ContractDetailActivity::class.java).apply{
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    putExtra("groupChannelTitle", contractData[position].STOCK_TP_CODE_NM)
+                    putExtra("groupChannelUrl", contractData[position].CHANNEL_URL)
+                    putExtra("orderNo", contractData[position].ORDER_NO)
+                    startActivity(this)
+                }
+            }
 
             if(data.NEGO_SETT_STAT_CODE == "204" || data.NEGO_SETT_STAT_CODE == "206"){
                 view.findViewById<ImageView>(R.id.imgStatus).setImageResource(R.drawable.ico_state_11_success)
@@ -642,18 +673,22 @@ class MainActivity : AppCompatActivity() {
             }*/
 
             if(position % 3 == 0){
-                view.findViewById<LinearLayout>(R.id.page).setBackgroundResource(R.drawable.shape_rect_fill36)
+                view.findViewById<ConstraintLayout>(R.id.page).setBackgroundResource(R.drawable.shape_rect_fill36)
             }
             else if(position % 3 == 1){
-                view.findViewById<LinearLayout>(R.id.page).setBackgroundResource(R.drawable.shape_rect_fill39)
+                view.findViewById<ConstraintLayout>(R.id.page).setBackgroundResource(R.drawable.shape_rect_fill39)
             }
             else if(position % 3 == 2){
-                view.findViewById<LinearLayout>(R.id.page).setBackgroundResource(R.drawable.shape_rect_fill40)
+                view.findViewById<ConstraintLayout>(R.id.page).setBackgroundResource(R.drawable.shape_rect_fill40)
             }
 
             container.addView(view)
 
             return view
+        }
+
+        override fun getItemPosition(`object`: Any): Int {
+            return POSITION_NONE
         }
 
         override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
@@ -684,7 +719,10 @@ class MainActivity : AppCompatActivity() {
             var status2 = itemView.findViewById<LinearLayoutCompat>(R.id.status2)
             var status3 = itemView.findViewById<LinearLayoutCompat>(R.id.status3)
             var status4 = itemView.findViewById<LinearLayoutCompat>(R.id.status4)
-            var btnNego = itemView.findViewById<LinearLayoutCompat>(R.id.btnNego)
+            var btnNego = itemView.findViewById<RelativeLayout>(R.id.layoutOrderStatus)
+            var tvDealType = itemView.findViewById<TextView>(R.id.tvDealType)
+            var ivSecret = itemView.findViewById<ImageView>(R.id.ivSecret)
+
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderAdapter.ViewHolder {
@@ -702,14 +740,27 @@ class MainActivity : AppCompatActivity() {
 
             holder.stockName.text = data.CORP_HANGL_NM
             holder.stockGubn.text = data.STOCK_TP_CODE_NM
-            holder.count.text = numberFormat.format(data.DEAL_QTY)
-            holder.price.text = numberFormat.format(data.DEAL_UPRC)
+
             //holder.stockGubn.text = data.SEC_KIND_TP_CODE + if(data.SEC_KIND_DTL_TP_CODE == "02"){"(상환)"}else if(data.SEC_KIND_DTL_TP_CODE == "03"){"(전환상환)"}else{""}
 
             holder.status1.visibility = View.INVISIBLE
             holder.status2.visibility = View.INVISIBLE
             holder.status3.visibility = View.INVISIBLE
             holder.status4.visibility = View.INVISIBLE
+
+            if(data.PUBLIC_YN == "Y"){
+                holder.ivSecret.toGone()
+                holder.count.text = numberFormat.format(data.DEAL_QTY)
+                holder.price.text = numberFormat.format(data.DEAL_UPRC)
+            }else{
+                holder.ivSecret.toVisible()
+                holder.count.text = R.string.star6.toResString()
+                holder.price.text = R.string.star6.toResString()
+            }
+
+
+            holder.tvDealType.text = data.DEAL_TP.toDealType()
+            data.DEAL_TP.toDealTypeBackground(holder.tvDealType)
 
             if(data.POST_ORD_STAT_CODE == "0"){
                 if(data.DEAL_TP == "10"){
@@ -729,6 +780,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             holder.row.setOnClickListener {
+
+
                 val intent = Intent(this@MainActivity, OrderDetailActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 intent.putExtra("entpNo", data.ENTP_NO)
@@ -760,6 +813,8 @@ class MainActivity : AppCompatActivity() {
             val stockName2 = itemView.findViewById<TextView>(R.id.stockName2)
             val count = itemView.findViewById<TextView>(R.id.count)
             val price = itemView.findViewById<TextView>(R.id.price)
+            val tvDealType = itemView.findViewById<TextView>(R.id.tvDealType)
+            var ivSecret = itemView.findViewById<ImageView>(R.id.ivSecret)
         }
 
 
@@ -778,8 +833,22 @@ class MainActivity : AppCompatActivity() {
 
             holder.stockName.text = data.CORP_HANGL_NM
             holder.stockName2.text = data.STOCK_TP_CODE_NM
-            holder.count.text = numberFormat.format(data.DEAL_QTY)
-            holder.price.text = numberFormat.format(data.DEAL_UPRC ?: 0)
+
+
+            if(data.PUBLIC_YN == "Y"){
+                holder.ivSecret.toGone()
+                holder.count.text = numberFormat.format(data.DEAL_QTY)
+                holder.price.text = numberFormat.format(data.DEAL_UPRC ?: 0)
+            }else{
+                holder.ivSecret.toVisible()
+                holder.count.text = R.string.star6.toResString()
+                holder.price.text = R.string.star6.toResString()
+            }
+
+
+
+            holder.tvDealType.text = data.DEAL_TP.toDealType()
+            data.DEAL_TP.toDealTypeBackground(holder.tvDealType)
 
             holder.row.setOnClickListener {
                 var intent = Intent(this@MainActivity, ContractPopupActivity::class.java)

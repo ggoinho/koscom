@@ -8,11 +8,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.material.snackbar.Snackbar
-import com.scsoft.boribori.data.viewmodel.OrderViewModel
-import com.sendbird.syncmanager.utils.DateUtils
+import kr.co.koscom.omp.data.viewmodel.OrderViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -23,8 +20,8 @@ import kotlinx.android.synthetic.main.view_contract_status4.*
 import kotlinx.android.synthetic.main.view_contract_status5.*
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
-import kr.co.koscom.omp.data.model.Order
 import kr.co.koscom.omp.data.model.OrderContract
+import kr.co.koscom.omp.extension.toResString
 import kr.co.koscom.omp.view.ViewUtils
 import java.text.DecimalFormat
 
@@ -53,7 +50,8 @@ class ContractPopupActivity : AppCompatActivity() {
         orderViewModel = ViewModelProviders.of(this, viewModelFactory).get(OrderViewModel::class.java)
 
         btnClose.setOnClickListener {
-            finish()
+            onBackPressed()
+
         }
 
         var param = intent.getSerializableExtra("contractItem") as OrderContract.OrderContractItem
@@ -82,12 +80,21 @@ class ContractPopupActivity : AppCompatActivity() {
 
                 if("0000".equals(it.rCode)){
 
-                    stockName.text = it.datas?.result?.STK_NM
+                    stockName.text = it.datas?.result?.CORP_HANGL_NM
+                    stockGubn.text = it.datas?.result?.STOCK_TP_CODE_NM
                     seller.text = it.datas?.result?.MAEDO_NM
                     buyer.text = it.datas?.result?.MAESU_NM
-                    count.text = numberFormat.format(it.datas?.result?.DEAL_QTY ?: 0)
-                    price.text = numberFormat.format(it.datas?.result?.DEAL_UPRC ?: 0)
-                    amount.text = numberFormat.format(it.datas?.result?.DEAL_QTY!! * it.datas?.result?.DEAL_UPRC!!)
+
+                    if(it.datas?.result?.PUBLIC_YN == "Y"){
+                        count.text = numberFormat.format(it.datas?.result?.DEAL_QTY ?: 0)
+                        price.text = numberFormat.format(it.datas?.result?.DEAL_UPRC ?: 0)
+                        amount.text = numberFormat.format(it.datas?.result?.DEAL_QTY!! * it.datas?.result?.DEAL_UPRC!!)
+                    }else{
+                        count.text = R.string.star6.toResString()
+                        price.text = R.string.star6.toResString()
+                        amount.text = R.string.star6.toResString()
+                    }
+
 
                     dealTime.text = it.datas?.result?.CHG_DTTM_FORM
 
@@ -120,6 +127,11 @@ class ContractPopupActivity : AppCompatActivity() {
                 it.printStackTrace()
                 ViewUtils.alertDialog(this, "네트워크상태를 확인해주세요."){}
             }))
+    }
+
+    override fun onBackPressed() {
+        finish()
+        overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_bottom)
     }
 
     override fun onStop() {

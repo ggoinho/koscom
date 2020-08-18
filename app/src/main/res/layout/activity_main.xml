@@ -65,8 +65,8 @@
 
             <TextView
                 android:id="@+id/alarm"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="44dp"
                 android:background="@drawable/shape_rect_fill6"
@@ -75,7 +75,8 @@
                 android:lineSpacingExtra="4dp"
                 android:text="0"
                 android:textColor="#ffffff"
-                android:textSize="12dp"
+                android:paddingBottom="3dp"
+                android:textSize="10dp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -106,7 +107,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
                     android:background="#4e4e9e"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <View
                         android:layout_width="0dp"
@@ -247,7 +248,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/myContractZone"
                     android:layout_width="match_parent"
-                    android:layout_height="204dp">
+                    android:layout_height="223dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -298,50 +299,10 @@
                     <androidx.viewpager.widget.ViewPager
                         android:id="@+id/vpMyContract"
                         android:layout_width="match_parent"
-                        android:layout_height="132dp"
+                        android:layout_height="140dp"
                         android:layout_marginBottom="23dp"
                         app:layout_constraintBottom_toBottomOf="parent" />
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="39dp"
-                        android:layout_height="18dp"
-                        android:layout_marginLeft="23dp"
-                        android:layout_marginTop="56dp"
-                        android:background="@drawable/shape_rect_fill10"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <TextView
-                            android:id="@+id/contractPage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="5dp"
-                            android:text="1"
-                            android:textColor="#000000"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="5dp"
-                            android:text="/"
-                            android:textColor="#666666"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:id="@+id/contractTotal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="5dp"
-                            android:text="15"
-                            android:textColor="#666666"
-                            android:textSize="12dp" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <ImageView
                         android:id="@+id/btnContract"
@@ -350,6 +311,7 @@
                         android:layout_marginRight="16dp"
                         android:layout_marginBottom="2dp"
                         android:src="@drawable/btn_go"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>

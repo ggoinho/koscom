@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
+
+        <include
+            android:id="@+id/tbClose"
+            layout="@layout/toolbar_close" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutMenuSetting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <!-- 메뉴 위치 선택 -->
+            <TextView
+                android:id="@+id/tvMenuLocationTitle"
+                style="@style/F16R_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/qucikmenu_menu_location_select"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/vDivideMenuLocation"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/gray_eeeeee"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvMenuLocationTitle" />
+
+
+            <!-- 홈 버튼 노출 설정 -->
+            <TextView
+                android:id="@+id/tvHomeBtnExposure"
+                style="@style/F16R_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/qucikmenu_homebtn_exposure_select"
+                app:layout_constraintStart_toStartOf="@+id/tvMenuLocationTitle"
+                app:layout_constraintTop_toBottomOf="@+id/vDivideMenuLocation" />
+
+            <View
+                android:id="@+id/vDivideHomeBtnExposure"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/gray_eeeeee"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvHomeBtnExposure" />
+
+
+            <!-- 홈 내용 선택 -->
+            <TextView
+                android:id="@+id/tvHomeContents"
+                style="@style/F16R_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/qucikmenu_home_contents_select"
+                app:layout_constraintStart_toStartOf="@+id/tvMenuLocationTitle"
+                app:layout_constraintTop_toBottomOf="@+id/vDivideHomeBtnExposure" />
+
+            <View
+                android:id="@+id/vDivideHomeContents"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/gray_eeeeee"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvHomeContents" />
+
+
+            <!-- 기업 정보 -->
+            <TextView
+                android:id="@+id/tvBusinessInfoSelect"
+                style="@style/F13R_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:drawableLeft="@drawable/radiobox"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="@string/qucikmenu_business_info"
+                app:layout_constraintBottom_toBottomOf="@+id/tvHomeContents"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvHomeContents" />
+
+
+            <!-- 주문현황 -->
+            <TextView
+                android:id="@+id/tvOrderStatusSelect"
+                style="@style/F13R_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="17dp"
+                android:drawableLeft="@drawable/radiobox"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="@string/qucikmenu_order_status"
+                app:layout_constraintBottom_toBottomOf="@+id/tvHomeContents"
+                app:layout_constraintEnd_toStartOf="@+id/tvBusinessInfoSelect"
+                app:layout_constraintTop_toTopOf="@+id/tvHomeContents" />
+
+
+            <!-- 홈버튼 노출 On/Off -->
+            <ImageView
+                android:id="@+id/ivHomeBtnExposure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/select_on_off"
+                app:layout_constraintBottom_toBottomOf="@+id/tvHomeBtnExposure"
+                app:layout_constraintStart_toStartOf="@+id/tvOrderStatusSelect"
+                app:layout_constraintTop_toTopOf="@+id/tvHomeBtnExposure" />
+
+
+            <!-- 왼쪽 -->
+            <TextView
+                android:id="@+id/tvMenuLocationLeft"
+                style="@style/F13R_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/radiobox"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="@string/qucikmenu_left"
+                app:layout_constraintBottom_toBottomOf="@+id/tvMenuLocationTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvOrderStatusSelect"
+                app:layout_constraintTop_toTopOf="@+id/tvMenuLocationTitle" />
+
+
+            <!-- 오른쪽 -->
+            <TextView
+                android:id="@+id/tvMenuLocationRight"
+                style="@style/F13R_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/radiobox"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="@string/qucikmenu_right"
+                app:layout_constraintBottom_toBottomOf="@+id/tvMenuLocationTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvBusinessInfoSelect"
+                app:layout_constraintTop_toTopOf="@+id/tvMenuLocationTitle" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutMid"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/layoutBottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutMenuSetting">
+
+            <!-- 왼쪽 메뉴 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutToolLeft"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/gray_f2f5f9"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/layoutToolRight"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintHorizontal_weight="143"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvLeft"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:fadingEdgeLength="0dp"
+                    android:overScrollMode="never"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!-- 오른쪽 메뉴 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutToolRight"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintHorizontal_weight="217"
+                app:layout_constraintStart_toEndOf="@+id/layoutToolLeft"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutRightManage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <TextView
+                        android:id="@+id/tvAllRemove"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/rectangle_white_dddddd"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:paddingStart="7dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="7dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/qucikmenu_remove_all"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvCurrentCount"
+                        style="@style/F16B_green_4bada0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvAllRemove"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <View
+                        android:id="@+id/vUnderCount"
+                        android:layout_width="12dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="3dp"
+                        android:background="@color/green_4bada0"
+                        app:layout_constraintBottom_toBottomOf="@id/tvAllRemove"
+                        android:layout_marginBottom="4dp"
+                        app:layout_constraintStart_toEndOf="@+id/tvCurrentCount" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:text="@string/qucikmenu_totalcount"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvAllRemove"
+                        app:layout_constraintStart_toEndOf="@+id/vUnderCount" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/gray_eeeeee"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvCurrentCount"
+                        app:layout_constraintTop_toBottomOf="@+id/tvAllRemove" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRight"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:fadingEdgeLength="0dp"
+                    android:overScrollMode="never"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutRightManage"
+                    app:layout_constraintVertical_bias="1.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutBottom"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutMid">
+
+
+
+            <!-- 초기화 -->
+            <TextView
+                android:id="@+id/tvInit"
+                style="@style/F14R_333333"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="@string/cancel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvComplete"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintHorizontal_weight="143"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/gray_cccccc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <!-- 완 -->
+            <TextView
+                android:id="@+id/tvComplete"
+                style="@style/F15B_white"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/blue_3348ae"
+                android:gravity="center"
+                android:text="@string/complete"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintHorizontal_weight="217"
+                app:layout_constraintStart_toEndOf="@+id/tvInit"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

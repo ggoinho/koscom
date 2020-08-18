@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.ContentLoadingProgressBar
 import kotlinx.android.synthetic.main.activity_regist1.*
+import kr.co.koscom.omp.util.ActivityUtil
 
 // kr.co.koscom.omp
 // BeMyUNICORN
@@ -42,9 +43,11 @@ class Regist1Activity : AppCompatActivity() {
 
         btnLogin!!.setOnClickListener {
             if (chkPerson!!.isChecked) {
-                startActivity(Intent(this@Regist1Activity, PersonRegist2Activity::class.java))
+                ActivityUtil.startPersonRegist2Activity(this)
+//                startActivity(Intent(this@Regist1Activity, PersonRegist2Activity::class.java))
             } else {
-                startActivity(Intent(this@Regist1Activity, CompanyRegist2Activity::class.java))
+                ActivityUtil.startCompanyRegist2Activity(this)
+//                startActivity(Intent(this@Regist1Activity, CompanyRegist2Activity::class.java))
             }
             finish()
         }

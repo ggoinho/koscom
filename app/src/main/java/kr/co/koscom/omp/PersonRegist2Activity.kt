@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.ContentLoadingProgressBar
 import kotlinx.android.synthetic.main.activity_person_regist2.*
+import kr.co.koscom.omp.util.ActivityUtil
 
 // kr.co.koscom.omp
 // BeMyUNICORN
@@ -28,24 +29,29 @@ class PersonRegist2Activity : AppCompatActivity() {
         toolbar.initData(this)
 
         btnViewAgreement1!!.setOnClickListener {
-            startActivity(
-                Intent(
-                    this@PersonRegist2Activity,
-                    AgreementActivity::class.java
-                )
-            )
+
+            ActivityUtil.startAgreementActivity(this)
+
+//            startActivity(
+//                Intent(
+//                    this@PersonRegist2Activity,
+//                    AgreementActivity::class.java
+//                )
+//            )
         }
         btnViewAgreement2!!.setOnClickListener {
-            startActivity(
-                Intent(
-                    this@PersonRegist2Activity,
-                    AgreementActivity::class.java
-                )
-            )
+            ActivityUtil.startAgreementActivity(this)
+//            startActivity(
+//                Intent(
+//                    this@PersonRegist2Activity,
+//                    AgreementActivity::class.java
+//                )
+//            )
         }
         btnAgreeNot!!.setOnClickListener { finish() }
         btnAgree!!.setOnClickListener {
-            startActivity(Intent(this@PersonRegist2Activity, PersonRegist3Activity::class.java))
+            ActivityUtil.startPersonRegist3Activity(this)
+//            startActivity(Intent(this@PersonRegist2Activity, PersonRegist3Activity::class.java))
             finish()
         }
 

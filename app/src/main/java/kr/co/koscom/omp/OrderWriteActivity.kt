@@ -17,28 +17,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProviders
 import com.scsoft.boribori.data.viewmodel.ChatViewModel
-import com.scsoft.boribori.data.viewmodel.OrderViewModel
 import com.sendbird.syncmanager.utils.DateUtils
 import com.sendbird.syncmanager.utils.PreferenceUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_buy_write.*
 import kotlinx.android.synthetic.main.activity_order_write.*
-import kotlinx.android.synthetic.main.activity_order_write.btnGubn
-import kotlinx.android.synthetic.main.activity_order_write.ableCount
-import kotlinx.android.synthetic.main.activity_order_write.btnCancel
-import kotlinx.android.synthetic.main.activity_order_write.btnSave
-import kotlinx.android.synthetic.main.activity_order_write.btnSearch
-import kotlinx.android.synthetic.main.activity_order_write.drawer_layout
-import kotlinx.android.synthetic.main.activity_order_write.message
-import kotlinx.android.synthetic.main.activity_order_write.messageLength
-import kotlinx.android.synthetic.main.activity_order_write.stockName
-import kotlinx.android.synthetic.main.activity_order_write.toolbar
 import kr.co.koscom.omp.data.Injection
 import kr.co.koscom.omp.data.ViewModelFactory
 import kr.co.koscom.omp.data.model.Stock
+import kr.co.koscom.omp.data.viewmodel.OrderViewModel
+import kr.co.koscom.omp.dialog.TransactionTargetDialog
+import kr.co.koscom.omp.enums.TransactionTargetType
+import kr.co.koscom.omp.extension.toGone
 import kr.co.koscom.omp.extension.toNumberFormat
+import kr.co.koscom.omp.extension.toVisible
+import kr.co.koscom.omp.ui.order.OrderListNewActivity
+import kr.co.koscom.omp.util.ActivityUtil
 import kr.co.koscom.omp.view.NumberTextWatcher
 import kr.co.koscom.omp.view.ViewUtils
 import org.apache.commons.lang3.StringUtils
@@ -85,10 +80,12 @@ class OrderWriteActivity : AppCompatActivity() {
         chatViewModel = ViewModelProviders.of(this, viewModelFactory).get(ChatViewModel::class.java)
 
         btnSearch.setOnClickListener {
-            startActivityForResult(
-                Intent(this@OrderWriteActivity, OrderSearchActivity::class.java),
-                STOCK_SEARCH
-            )
+            ActivityUtil.startOrderSearchActivityResult(this, STOCK_SEARCH)
+
+//            startActivityForResult(
+//                Intent(this@OrderWriteActivity, OrderSearchActivity::class.java),
+//                STOCK_SEARCH
+//            )
         }
         stockName.setOnClickListener {
             btnSearch.callOnClick()
@@ -181,18 +178,73 @@ class OrderWriteActivity : AppCompatActivity() {
 
         })
 
+
+        tvPublicOrder.setOnClickListener {
+            tvPasswordContents.text = ""
+            layoutPassword.toGone()
+
+            tvPublicOrder.isSelected = true
+            tvPrivateOrder.isSelected = false
+        }
+
+        tvPrivateOrder.setOnClickListener {
+
+            if(tvPrivateOrder.isSelected) return@setOnClickListener
+
+
+            tvPublicOrder.isSelected = false
+            tvPrivateOrder.isSelected = true
+
+            TransactionTargetDialog.Builder(this)
+                .setPositiveListener { transactionTarget ->
+                    when(transactionTarget){
+                        TransactionTargetType.SPECIFIC ->{
+                            getCertiNum()
+                        }
+                        TransactionTargetType.UNSPECIFIC ->{
+                            tvPasswordContents.text = ""
+                            layoutPassword.toGone()
+                        }
+                        else ->{
+                            tvPublicOrder.callOnClick()
+                        }
+                    }
+                }
+                .show()
+        }
+
         stock = intent.getSerializableExtra("stock") as? Stock.ResultMap
         if (stock != null) {
             stockName.text = stock?.STK_NM
             ableCount.text = stock?.TRSF_ABLE_QTY?.toNumberFormat()
 
+            tv_re_title.visibility=View.VISIBLE
+            tv_re_sub_title.visibility=View.VISIBLE
+            ableCount.visibility=View.VISIBLE
+            tv_re_sub_tail.visibility=View.VISIBLE
+            iv_popup.visibility=View.VISIBLE
+        }else{
+            tv_re_title.visibility=View.INVISIBLE
+            tv_re_sub_title.visibility=View.INVISIBLE
+            ableCount.visibility=View.INVISIBLE
+            tv_re_sub_tail.visibility=View.INVISIBLE
+            iv_popup.visibility=View.INVISIBLE
         }
 
-        tv_re_title.visibility=View.INVISIBLE
-        tv_re_sub_title.visibility=View.INVISIBLE
-        ableCount.visibility=View.INVISIBLE
-        tv_re_sub_tail.visibility=View.INVISIBLE
-        iv_popup.visibility=View.INVISIBLE
+        tvPublicOrder.isSelected = intent.getBooleanExtra("isPublicYn", true)
+        tvPasswordContents.text  = intent.getStringExtra("passwordContents")
+        if(tvPublicOrder.isSelected){
+            tvPublicOrder.callOnClick()
+        }else{
+            tvPublicOrder.isSelected = false
+            tvPrivateOrder.isSelected = true
+
+            if(tvPasswordContents.text.isNullOrEmpty()){
+                layoutPassword.toGone()
+            }else{
+                layoutPassword.toVisible()
+            }
+        }
 
     }
 
@@ -245,10 +297,14 @@ class OrderWriteActivity : AppCompatActivity() {
 
 
                     } else {
-                        var intent = Intent(this, BuyWriteActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        intent.putExtra("stock", data.getSerializableExtra("stock"))
-                        startActivity(intent)
+                        ActivityUtil.startBuyWriteActivity(this, data.getSerializableExtra("stock"), tvPublicOrder.isSelected, tvPasswordContents.text.toString())
+
+//                        var intent = Intent(this, BuyWriteActivity::class.java)
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                        intent.putExtra("stock", data.getSerializableExtra("stock"))
+//                        intent.putExtra("isPublicYn", tvPublicOrder.isSelected)
+//                        intent.putExtra("passwordContents", tvPasswordContents.text.toString())
+//                        startActivity(intent)
 
                         finish()
                     }
@@ -279,18 +335,16 @@ class OrderWriteActivity : AppCompatActivity() {
                         PreferenceUtils.getUserId(),
                         StringUtils.remove(countOrder.text.toString(), ","),
                         stock!!.STK_CODE!!,
-                        DateUtils.format3Date(System.currentTimeMillis())
+                        DateUtils.format3Date(System.currentTimeMillis()),
+                        if(tvPublicOrder.isSelected) "Y" else "N",
+                        tvPasswordContents.text.toString()
                     )
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
                             if ("0000".equals(it.rCode)) {
 
-                                ViewUtils.alertDialog(this@OrderWriteActivity, it.rMsg) {
-                                    OrderListActivity.REQUIRE_REFRESH = true
 
-                                    finish()
-                                }
                             } else {
                                 ViewUtils.showErrorMsg(this, it.rCode, it.rMsg)
 
@@ -307,7 +361,32 @@ class OrderWriteActivity : AppCompatActivity() {
             ViewUtils.alertDialog(this, "종목을 선택하세요.") {}
 
         }
+    }
 
+    /**
+     * 인증번호 받아오는 API
+     */
+    private fun getCertiNum(){
+        disposable.add(
+            orderViewModel.getCertiNum(
+                PreferenceUtils.getUserId(),
+                Preference.getServerToken(BaseApplication.getAppContext()))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe ({
+                    if ("0000" == it.rCode) {
+                        tvPasswordContents.text = it.datas?.certi_num ?: ""
+                        layoutPassword.toVisible()
+                    }else{
+                        ViewUtils.showErrorMsg(this, it.rCode, it.rMsg)
+                        tvPublicOrder.callOnClick()
+                    }
+                }, {
+                    it.printStackTrace()
+                    ViewUtils.alertDialog(this, "네트워크상태를 확인해주세요.") {}
+                    tvPublicOrder.callOnClick()
+                })
+        )
     }
 
     private fun sendPush(listener: Runnable?) {
@@ -363,6 +442,7 @@ class OrderWriteActivity : AppCompatActivity() {
             drawer_layout?.closeDrawer(GravityCompat.END)
         } else {
             super.onBackPressed()
+            overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_to_right)
         }
     }
 

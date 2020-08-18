@@ -5,6 +5,9 @@
     <color name="colorPrimaryDarkV23">#FFFFFF</color>
     <color name="colorAccent">#f6ab2e</color>
 
+    <color name="transparent">#00FFFFFF</color>
+    <color name="black_alpha50">#80000000</color>
+
     <!-- Group Chat -->
     <color name="groupChatBubbleMe">#774df2</color>
     <color name="groupChatTextMe">#ffffff</color>
@@ -33,8 +36,77 @@
     <color name="btn_send_disabled">#8e8e8e</color>
 
 
+    <!-- 매수 or 매도 color -->
+    <color name="buy_background">#e8055a</color>
+    <color name="sell_background">#3348ae</color>
+
+
+    <color name="dialog_background">#80000000</color>
+    <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
 
+    <color name="black_111111">#111111</color>
+    <color name="black_000826">#000826</color>
+    <color name="black_0c0f1b">#0c0f1b</color>
+
+
     <color name="gray_333333">#333333</color>
+    <color name="gray_555555">#555555</color>
+    <color name="gray_cccccc">#cccccc</color>
+    <color name="gray_ccccc3">#ccccc3</color>
+    <color name="gray_dddddd">#dddddd</color>
+    <color name="gray_eeeeee">#eeeeee</color>
+    <color name="gray_ebebeb">#ebebeb</color>
+    <color name="gray_f7f7f8">#f7f7f8</color>
+    <color name="gray_666666">#666666</color>
+    <color name="gray_757575">#757575</color>
+    <color name="gray_f8f8f8">#f8f8f8</color>
+    <color name="gray_727272">#727272</color>
+    <color name="gray_f5f5f5">#f5f5f5</color>
+    <color name="gray_e9e9e9">#e9e9e9</color>
+    <color name="gray_9e9e9e">#9e9e9e</color>
+    <color name="gray_716f8b">#716f8b</color>
+    <color name="gray_e6e8f4">#e6e8f4</color>
+    <color name="gray_575d76">#575d76</color>
+    <color name="gray_f2f2f2">#f2f2f2</color>
+    <color name="gray_fafafa">#fafafa</color>
+    <color name="gray_e5e5e5">#e5e5e5</color>
+    <color name="gray_f2f5f9">#f2f5f9</color>
+    <color name="gray_e0e0e0">#e0e0e0</color>
+    <color name="gray_8f8f91">#8f8f91</color>
+    <color name="gray_5e5e5e">#5e5e5e</color>
+    <color name="gray_f3f9ff">#f3f9ff</color>
+
+
+
+
+
+    <color name="blue_3348ae">#3348ae</color>
+    <color name="blue_707fc6">#707fc6</color>
+    <color name="blue_0099d9">#0099d9</color>
+    <color name="blue_0e1d64">#0e1d64</color>
+
+    <color name="red_e8055a">#e8055a</color>
+    <color name="red_ef508b">#ef508b</color>
+    <color name="green_4bada0">#4bada0</color>
+    <color name="green_548235">#548235</color>
+    <color name="green_038085">#038085</color>
+    <color name="green_b5d31e">#b5d31e</color>
+
+
+    <color name="blue_132475">#132475</color>
+    <color name="blue_4747c3">#4747c3</color>
+
+    <color name="purple_4e4e9e">#4e4e9e</color>
+    <color name="purple_575bb2">#575bb2</color>
+    <color name="purple_7e84a7">#7e84a7</color>
+    <color name="purple_abafcb">#abafcb</color>
+    <color name="purple_c2c2f9">#c2c2f9</color>
+
+    <color name="pink_ba3fa2">#ba3fa2</color>
+
+    <color name="yellow_ffc000">#ffc000</color>
+
+
 
 </resources>

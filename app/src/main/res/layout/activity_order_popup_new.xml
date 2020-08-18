@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_alpha50"
+    tools:context=".OrderPopupActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutTopTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_round_lt_rt_white"
+            android:paddingStart="15dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/F16B_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/orderpopup_title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_expand_close"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/vDivideTop"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:visibility="gone"
+            android:background="@color/gray_dddddd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutTopTitle" />
+
+
+        <!-- 회사 이름 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutCompanyInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingStart="15dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vDivideTop">
+
+            <!-- 보통주 -->
+            <TextView
+                android:id="@+id/tvStockGubun"
+                style="@style/F13R_555555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvStockName"
+                style="@style/F16R_blue_132475"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tvStockGubun"
+                app:layout_constraintTop_toBottomOf="@+id/tvStockGubun" />
+
+
+            <!-- 매수, 매도 -->
+            <TextView
+                android:id="@+id/tvDealType"
+                style="@style/F13R_white"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginTop="6dp"
+                android:background="@color/red_e8055a"
+                android:gravity="center"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="@string/buying"
+                app:layout_constraintStart_toStartOf="@+id/tvStockGubun"
+                app:layout_constraintTop_toBottomOf="@+id/tvStockName" />
+
+
+            <TextView
+                android:id="@+id/tvMy"
+                style="@style/F13R_white"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:background="@color/green_548235"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:text="@string/main_my"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDealType"
+                app:layout_constraintStart_toEndOf="@+id/tvDealType"
+                app:layout_constraintTop_toTopOf="@+id/tvDealType" />
+
+            <ImageView
+                android:id="@+id/ivSecret"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ico"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDealType"
+                app:layout_constraintStart_toEndOf="@+id/tvMy"
+                app:layout_constraintTop_toTopOf="@+id/tvDealType" />
+
+
+            <!-- 협상 상태 -->
+            <kr.co.koscom.omp.custom.CustomOrderStatusView
+                android:id="@+id/customOrderStatusView"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDealType"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvDealType"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/vDivideCompanyInfo"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray_cccccc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutCompanyInfo" />
+
+
+        <!-- 중간 내용 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutMidContents"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingTop="9dp"
+            android:paddingBottom="7dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vDivideCompanyInfo">
+
+            <!-- 홍길동 -->
+            <TextView
+                android:id="@+id/tvUserName"
+                style="@style/F16R_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="홍길동" />
+
+            <!-- 등록 일시 -->
+            <TextView
+                android:id="@+id/tvRegistDateTitle"
+                style="@style/F13R_555555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="@string/orderpopup_regist_date"
+                app:layout_constraintStart_toStartOf="@+id/tvUserName"
+                app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+
+            <TextView
+                android:id="@+id/tvRegistDateContents"
+                style="@style/F13R_555555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvRegistDateTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvRegistDateTitle"
+                tools:text="2020.05.19 14:42" />
+
+            <!-- 총 주식수 -->
+            <TextView
+                android:id="@+id/tvTotalCountTitle"
+                style="@style/F13R_555555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/orderpopup_title_total_stock_count"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTotalCountContents"
+                app:layout_constraintStart_toStartOf="@+id/tvUserName"
+                app:layout_constraintTop_toTopOf="@+id/tvTotalCountContents" />
+
+            <TextView
+                android:id="@+id/tvTotalCountContents"
+                style="@style/F17R_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvRegistDateContents"
+                app:layout_constraintTop_toBottomOf="@+id/tvRegistDateContents"
+                tools:text="60,000 주" />
+
+
+            <View
+                android:id="@+id/vDivideTotalCount"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="9dp"
+                android:background="@color/gray_eeeeee"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTotalCountContents" />
+
+            <!-- 주식수 -->
+            <TextView
+                android:id="@+id/tvCountTitle"
+                style="@style/F13R_555555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/orderpopup_title_count_stock"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCountContents"
+                app:layout_constraintStart_toStartOf="@+id/tvUserName"
+                app:layout_constraintTop_toTopOf="@+id/tvCountContents" />
+
+            <TextView
+                android:id="@+id/tvCountContents"
+                style="@style/F15R_blue_3348ae"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvRegistDateContents"
+                app:layout_constraintTop_toBottomOf="@+id/vDivideTotalCount"
+                tools:text="5,000 주" />
+
+            <View
+                android:id="@+id/vDivideCount"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="7dp"
+                android:background="@color/gray_eeeeee"
+                app:layout_constraintEnd_toEndOf="@+id/tvCountContents"
+                app:layout_constraintStart_toStartOf="@+id/tvCountTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvCountContents" />
+
+
+            <!-- 가격 -->
+            <TextView
+                android:id="@+id/tvPriceTitle"
+                style="@style/F13R_555555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/orderpopup_title_won"
+                app:layout_constraintBottom_toBottomOf="@+id/tvPriceContents"
+                app:layout_constraintStart_toStartOf="@+id/tvUserName"
+                app:layout_constraintTop_toTopOf="@+id/tvPriceContents" />
+
+            <TextView
+                android:id="@+id/tvPriceContents"
+                style="@style/F15R_blue_3348ae"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvRegistDateContents"
+                app:layout_constraintTop_toBottomOf="@+id/vDivideCount"
+                tools:text="450,000,000 주" />
+
+            <View
+                android:id="@+id/vDividePrice"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="7dp"
+                android:background="@color/gray_eeeeee"
+                app:layout_constraintEnd_toEndOf="@+id/tvPriceContents"
+                app:layout_constraintStart_toStartOf="@+id/tvPriceTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvPriceContents" />
+
+
+            <!-- 잔량 -->
+            <TextView
+                android:id="@+id/tvRemainTitle"
+                style="@style/F13R_555555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/orderpopup_title_remain"
+                app:layout_constraintBottom_toBottomOf="@+id/tvRemainContents"
+                app:layout_constraintStart_toStartOf="@+id/tvUserName"
+                app:layout_constraintTop_toTopOf="@+id/tvRemainContents" />
+
+            <TextView
+                android:id="@+id/tvRemainContents"
+                style="@style/F15R_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvRegistDateContents"
+                app:layout_constraintTop_toBottomOf="@+id/vDividePrice"
+                tools:text="2,000 주" />
+
+            <View
+                android:id="@+id/vDivideRemain"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="7dp"
+                android:background="@color/gray_eeeeee"
+                app:layout_constraintEnd_toEndOf="@+id/tvRemainContents"
+                app:layout_constraintStart_toStartOf="@+id/tvRemainTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvRemainContents" />
+
+
+            <!-- 직전체결가 -->
+            <TextView
+                android:id="@+id/tvDirectPriceTitle"
+                style="@style/F13R_555555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/orderpopup_title_direct_price"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDirectPriceContents"
+                app:layout_constraintStart_toStartOf="@+id/tvUserName"
+                app:layout_constraintTop_toTopOf="@+id/tvDirectPriceContents" />
+
+            <TextView
+                android:id="@+id/tvDirectPriceContents"
+                style="@style/F15R_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvRegistDateContents"
+                app:layout_constraintTop_toBottomOf="@+id/vDivideRemain"
+                tools:text="2,000 주" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!-- 거래조건 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutBottomContents"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_eeeeee"
+            android:paddingStart="20dp"
+            android:paddingTop="9dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutMidContents">
+
+            <TextView
+                android:id="@+id/tvTradeConditionTitle"
+                style="@style/F13R_555555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/orderpopup_title_trade_condition"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvTradeConditionContents"
+                style="@style/F14R_555555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvTradeConditionTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTradeConditionTitle"
+                tools:text="100주 미만은 거래가 불가합니다.  100주 미만은 거래가 불가합니다." />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- ACTION BUTTON -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutNegoRequest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_round_lb_rb_038085"
+            android:paddingTop="7dp"
+            android:paddingBottom="9dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutBottomContents">
+
+            <TextView
+                style="@style/F16B_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ico_chat_w"
+                android:gravity="center"
+                android:text="@string/negotiation_request"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/progress_bar_login"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

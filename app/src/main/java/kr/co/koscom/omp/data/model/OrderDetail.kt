@@ -42,6 +42,9 @@ class OrderDetail {
         var STOCK_TP_CODE_NM: String? = null
         var PARPRC: Long? = null
         var LST_PRC: Long? =null
+        var PUBLIC_YN: String? = null
+        var SECRET_CERTI_YN: String? = null
+        var FLTN_QTY: Int = 0
     }
 
     class TimeData : Serializable{

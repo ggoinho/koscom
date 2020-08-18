@@ -34,7 +34,7 @@
                         android:layout_height="0dp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:background="@drawable/bg_purple_1"/>
+                        android:background="@color/purple_4e4e9e"/>
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:id="@+id/top"
                         android:layout_width="match_parent"
@@ -79,20 +79,20 @@
                     <View
                         android:id="@+id/height87"
                         android:layout_width="0dp"
-                        android:layout_height="87dp"
+                        android:layout_height="107dp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"/>
                     <View
                         android:id="@+id/height53"
                         android:layout_width="0dp"
-                        android:layout_height="53dp"
+                        android:layout_height="73dp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"/>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/content"
                         android:layout_width="match_parent"
-                        android:layout_height="87dp"
+                        android:layout_height="107dp"
                         app:layout_constraintTop_toBottomOf="@id/top">
                         <androidx.viewpager.widget.ViewPager
                             android:id="@+id/vpCompany"
@@ -132,7 +132,9 @@
                         <HorizontalScrollView
                             android:id="@+id/tabScrollView"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none"
+                            >
                             <com.google.android.material.tabs.TabLayout
                                 android:id="@+id/tabLayout"
 

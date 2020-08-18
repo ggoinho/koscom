@@ -73,6 +73,7 @@ class DidReceiverActivity : AppCompatActivity() {
         goIntent?.putExtra("signature", signature)
 
         startActivity(goIntent)
+        overridePendingTransition(R.anim.slide_in_from_right, android.R.anim.fade_out)
 
         finish()
 
