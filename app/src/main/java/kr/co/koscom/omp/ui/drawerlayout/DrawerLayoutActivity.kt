@@ -43,6 +43,10 @@ class DrawerLayoutActivity : AppCompatActivity(), DrawerLayoutContract.View {
         DrawerLayoutPresenter(this)
     }
 
+    val activity: DrawerLayoutActivity by lazy {
+        this
+    }
+
 
     private val adapterLeft: DrawerLeftMenuAdapter by lazy{
         DrawerLeftMenuAdapter(object: DrawerLeftMenuAdapter.OnMenuClickClickListener{
@@ -63,8 +67,8 @@ class DrawerLayoutActivity : AppCompatActivity(), DrawerLayoutContract.View {
             }
 
             override fun onNotifyChanged() {
-                adapterRight.notifyItemChanged(0)
-                finish()
+//                adapterRight.notifyItemChanged(0)
+                activity.finish()
             }
         })
     }
@@ -73,7 +77,7 @@ class DrawerLayoutActivity : AppCompatActivity(), DrawerLayoutContract.View {
         DrawerRelationSearchAdapter(object: DrawerRelationSearchAdapter.OnMenuClickClickListener{
             override fun onNotifyChanged() {
                 adapterRight.notifyItemChanged(0)
-                finish()
+                activity.finish()
             }
         })
     }
@@ -218,7 +222,7 @@ class DrawerLayoutActivity : AppCompatActivity(), DrawerLayoutContract.View {
                     }.collect(Collectors.toList())
 
                     adapterSearch.clearList()
-                    adapterSearch.notifyChangedRange()
+                    adapterSearch.notifyDataSetChanged()
                     if(listStream.isNullOrEmpty()){
                         rvSearchList.toGone()
                         tvSearchEmpty.toVisible()
@@ -226,16 +230,14 @@ class DrawerLayoutActivity : AppCompatActivity(), DrawerLayoutContract.View {
                         rvSearchList.toVisible()
                         tvSearchEmpty.toGone()
 
-                        Handler().postDelayed({
-                            adapterSearch.searchContents = str.toString()
-                            for(streamData in listStream){
-                                adapterSearch.addItem(streamData)
+                        adapterSearch.searchContents = str.toString()
+                        for(streamData in listStream){
+                            adapterSearch.addItem(streamData)
 //                            layoutSearchList.addView(CustomDrawerSearchView(this@DrawerLayoutActivity).apply {
 //                                setDrawerSearchContents(streamData.searchName , str.toString())
 //                            })
-                            }
-                            adapterSearch.notifyChangedRange()
-                        },200)
+                        }
+                        adapterSearch.notifyDataSetChanged()
 
                     }
 

@@ -52,6 +52,7 @@ class DrawerRightViewHolder(parent: ViewGroup, val listener: DrawerRightMenuAdap
                                 val tagData = tagItem.tag as DrawerMenuData
 
                                 tagData.addRecentlyMenu()
+                                ActivityUtil.startDrawerType(context as Activity, tagData.title)
                                 listener.onNotifyChanged()
 
                             }

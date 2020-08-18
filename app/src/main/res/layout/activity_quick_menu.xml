@@ -281,6 +281,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3dp"
                         android:text="@string/qucikmenu_totalcount"
+                        style="@style/F16R_333333"
                         app:layout_constraintBottom_toBottomOf="@+id/tvAllRemove"
                         app:layout_constraintStart_toEndOf="@+id/vUnderCount" />
 

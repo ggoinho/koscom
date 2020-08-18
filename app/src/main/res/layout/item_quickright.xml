@@ -42,11 +42,15 @@
 
     <TextView
         android:id="@+id/tvRightMenuName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvRightNumber"
+        app:layout_constraintEnd_toStartOf="@id/ivRightMove"
+        android:layout_marginEnd="3dp"
+        android:maxLines="1"
+        android:ellipsize="end"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView

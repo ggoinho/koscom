@@ -525,7 +525,6 @@ object ActivityUtil {
      * 간편로그인
      */
     fun startDrawerType(activity: Activity, drawerTitle: String){
-        if(isDuplicateClick()) return
 
         LogUtil.e("drawerType : ${DrawerEventType.getType(drawerTitle)}")
 
@@ -540,7 +539,7 @@ object ActivityUtil {
 
             }
             DrawerEventType.ORDER_REGIST-> {
-                startOrderWriteActivity(activity)
+                startOrderRegistActivity(activity)
             }
             DrawerEventType.BUSINESS_INFO-> {
                 startInvestmentActivity(activity, tab = InvestTabType.BUSINESS_INFO.ordinal)

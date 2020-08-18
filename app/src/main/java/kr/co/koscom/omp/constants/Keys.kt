@@ -28,6 +28,12 @@ object Keys {
     const val INTENT_DEAL_TYPE = "dealType"
 
 
+    const val KEY_MENU_LOCAION = "key.pref.menu.location"
+    const val KEY_HOMEBTN_EXPOSURE = "key.pref.homebtn.exposure"
+    const val KEY_HOME_CONTENTS = "key.pref.home.contents"
+    const val KEY_QUICK_MENULIST = "key.pref.quick.list"
+
+
 
 
 
