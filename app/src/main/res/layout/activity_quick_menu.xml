@@ -327,13 +327,13 @@
 
             <!-- 초기화 -->
             <TextView
-                android:id="@+id/tvInit"
+                android:id="@+id/tvReset"
                 style="@style/F14R_333333"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@color/white"
                 android:gravity="center"
-                android:text="@string/cancel"
+                android:text="@string/reset"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tvComplete"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -363,7 +363,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintHorizontal_weight="217"
-                app:layout_constraintStart_toEndOf="@+id/tvInit"
+                app:layout_constraintStart_toEndOf="@+id/tvReset"
                 app:layout_constraintTop_toTopOf="parent" />
 
 

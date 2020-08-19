@@ -104,7 +104,7 @@ class DrawerRightMenuAdapter(val listener: OnMenuClickClickListener) : RecyclerV
      * 리스트 클릭 리스너
      */
     interface OnMenuClickClickListener{
-        fun onMenuClick(position: Int, item: Any)
+        fun onMenuClick(item: Any)
         fun onNotifyChanged()
     }
 }

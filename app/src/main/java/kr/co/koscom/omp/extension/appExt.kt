@@ -6,14 +6,17 @@ import com.sendbird.syncmanager.utils.PreferenceUtils
 import kr.co.koscom.omp.BaseApplication
 import kr.co.koscom.omp.Preference
 import kr.co.koscom.omp.R
+import kr.co.koscom.omp.constants.Keys
 import kr.co.koscom.omp.data.local.DrawerMenuData
 import kr.co.koscom.omp.data.model.Order
 import kr.co.koscom.omp.data.model.OrderDetail
 import kr.co.koscom.omp.enums.DealType
+import kr.co.koscom.omp.enums.DrawerMenuType
 import kr.co.koscom.omp.enums.OrderStatusType
 import kr.co.koscom.omp.enums.SecKindDtlType
 import kr.co.koscom.omp.extension.toResColor
 import kr.co.koscom.omp.extension.toResString
+import kr.co.koscom.omp.util.KosSharedPreferences
 import java.util.ArrayList
 
 /**
@@ -209,5 +212,8 @@ fun DrawerMenuData.removeRecently(){
     }
     Preference.setRecentlyDrawerMenu(BaseApplication.getAppContext(), listStr)
 }
+
+
+
 
 

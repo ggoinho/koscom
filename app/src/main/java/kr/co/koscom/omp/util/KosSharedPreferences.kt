@@ -1,4 +1,4 @@
-package com.sendbird.syncmanager.utils
+package kr.co.koscom.omp.util
 
 import android.content.Context
 import android.content.SharedPreferences

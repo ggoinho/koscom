@@ -63,12 +63,12 @@ class DrawerLayoutActivity : AppCompatActivity(), DrawerLayoutContract.View {
 
     private val adapterRight: DrawerRightMenuAdapter by lazy{
         DrawerRightMenuAdapter(object: DrawerRightMenuAdapter.OnMenuClickClickListener{
-            override fun onMenuClick(position: Int, item: Any) {
+            override fun onMenuClick(item: Any) {
+                activity.finish()
             }
 
             override fun onNotifyChanged() {
-//                adapterRight.notifyItemChanged(0)
-                activity.finish()
+                adapterRight.notifyItemChanged(0)
             }
         })
     }
@@ -218,7 +218,7 @@ class DrawerLayoutActivity : AppCompatActivity(), DrawerLayoutContract.View {
                     layoutSearchListFrame.toVisible()
 
                     val listStream = listSearchData.stream().filter{
-                        t-> t.title.contains(str)
+                            t-> t.title.contains(str)
                     }.collect(Collectors.toList())
 
                     adapterSearch.clearList()

@@ -25,6 +25,11 @@ class QuickRightMenuAdapter(val listener: OnMenuClickClickListener, val dragList
         items.add(item)
     }
 
+    fun addAllItem(list: MutableList<DrawerMenuData>){
+        items.clear()
+        items.addAll(list)
+    }
+
     fun removeItem(item: DrawerMenuData){
         items.remove(item)
     }

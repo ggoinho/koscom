@@ -2,24 +2,24 @@ package kr.co.koscom.omp.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kr.co.koscom.omp.adapter.holder.DrawerLeftViewHolder
-import kr.co.koscom.omp.adapter.holder.QuickLeftViewHolder
+import kr.co.koscom.omp.adapter.holder.BottomToolViewHolder
+import kr.co.koscom.omp.adapter.holder.QuickRightViewHolder
+import kr.co.koscom.omp.custom.QuickItemTouchHelperCallback
 import kr.co.koscom.omp.data.local.DrawerMenuData
+import java.util.*
 
-class QuickLeftMenuAdapter(val listener: OnMenuClickClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BottomToolAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var items: MutableList<DrawerMenuData> = arrayListOf()
-    var selectPosition = 0
 
-
-    fun getList(): MutableList<DrawerMenuData>{
+    fun getList(): MutableList<DrawerMenuData> {
         return items
     }
 
     /**
      * 리스트 추가
      */
-    fun addItem(item: DrawerMenuData){
+    fun addItem(item: DrawerMenuData) {
         items.add(item)
     }
 
@@ -28,15 +28,19 @@ class QuickLeftMenuAdapter(val listener: OnMenuClickClickListener) : RecyclerVie
         items.addAll(list)
     }
 
+    fun removeItem(item: DrawerMenuData){
+        items.remove(item)
+    }
+
     /**
      * 리스트 클리어
      */
-    fun clearList(){
+    fun clearList() {
         items.clear()
     }
 
 
-    fun notifyChangedRange(){
+    fun notifyChangedRange() {
         notifyItemRangeChanged(0, itemCount);
     }
 
@@ -49,35 +53,26 @@ class QuickLeftMenuAdapter(val listener: OnMenuClickClickListener) : RecyclerVie
         return items.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):  RecyclerView.ViewHolder {
-        return QuickLeftViewHolder(parent, listener)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return BottomToolViewHolder(parent)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val listHolder = holder as QuickLeftViewHolder
+        val listHolder = holder as BottomToolViewHolder
         listHolder.onBind(items[position], position)
     }
 
 
     /**
-     * 스크롤시 메뉴 Selected
-     */
-    fun setSelectedPosition(position: Int){
-        if(items[position].isSelectedMenu) return
-
-        items[selectPosition].isSelectedMenu = false
-        selectPosition = position
-        items[position].isSelectedMenu = true
-        notifyDataSetChanged()
-    }
-
-
-
-
-    /**
      * 리스트 클릭 리스너
      */
-    interface OnMenuClickClickListener{
+    interface OnMenuClickClickListener {
         fun onMenuClick(position: Int, item: Any)
     }
+
+    interface OnStartDragListener{
+        fun onStartDrag(holder: QuickRightViewHolder)
+        fun onEndDrag(holder: QuickRightViewHolder)
+    }
+
 }

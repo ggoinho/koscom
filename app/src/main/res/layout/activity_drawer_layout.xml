@@ -90,7 +90,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutToolSearch">
+            app:layout_constraintTop_toBottomOf="@+id/vMarginSearch">
 
 
             <!-- 왼쪽 메뉴 -->
@@ -165,8 +165,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/purple_4e4e9e"
-            android:paddingBottom="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/layoutBottomContents"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -245,43 +243,54 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layoutSearchListFrame"
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/vMarginSearch"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:background="@color/purple_4e4e9e"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutToolSearch"
+            />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutSearchListFrame"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_4e4e9e"
+            android:paddingTop="9dp"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/layoutToolSearch"
+            app:layout_constraintStart_toStartOf="@+id/layoutToolSearch"
+            app:layout_constraintTop_toBottomOf="@+id/layoutToolSearch">
+
+            <TextView
+                android:id="@+id/tvSearchEmpty"
+                style="@style/F14R_purple_c2c2f9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="@string/drawer_search_empty"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSearchList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:background="@color/purple_4e4e9e"
-                app:layout_constraintEnd_toEndOf="@+id/layoutSearchBar"
-                app:layout_constraintStart_toStartOf="@+id/layoutSearchBar"
-                app:layout_constraintTop_toBottomOf="@+id/layoutSearchBar">
-
-
-                <TextView
-                    android:id="@+id/tvSearchEmpty"
-                    style="@style/F14R_purple_c2c2f9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:text="@string/drawer_search_empty"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvSearchList"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:fadingEdgeLength="0dp"
-                    android:overScrollMode="never"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+                android:fadingEdgeLength="0dp"
+                android:overScrollMode="never"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
